@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Babich Grader</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+        body { background-color: #0f1115; color: #fff; padding-bottom: 70px; }
+        
+        .header { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background: #161922; border-bottom: 1px solid #222634; }
+        .balance { font-size: 18px; font-weight: bold; color: #f39c12; }
+        
+        .tabs { display: flex; justify-content: space-around; background: #161922; border-bottom: 1px solid #222634; padding: 10px 0; }
+        .tab { background: none; border: none; color: #8a91a8; font-size: 15px; font-weight: 600; cursor: pointer; padding: 8px 15px; border-radius: 8px; }
+        .tab.active { background: #222634; color: #fff; }
+
+        .container { padding: 15px; }
+        .hidden { display: none !important; }
+
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        .card { background: #1a1e29; border: 1px solid #262c3d; border-radius: 12px; padding: 12px; text-align: center; }
+        .card img { width: 70px; height: 70px; object-fit: cover; border-radius: 8px; margin-bottom: 8px; }
+        .card-title { font-size: 14px; font-weight: bold; margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .card-price { color: #f39c12; font-size: 13px; font-weight: 600; }
+        .btn { width: 100%; background: #3b82f6; color: #fff; border: none; padding: 8px; border-radius: 8px; font-weight: bold; margin-top: 8px; cursor: pointer; }
+
+        .wheel-container { text-align: center; padding: 20px 10px; }
+        .selected-item-box { background: #1a1e29; border: 2px dashed #3b82f6; border-radius: 12px; padding: 15px; margin-bottom: 20px; display: inline-block; width: 120px; cursor: pointer; }
+        .selected-item-box img { width: 60px; height: 60px; object-fit: cover; border-radius: 6px; }
+        
+        .wheel-circle { width: 180px; height: 180px; border-radius: 50%; border: 6px solid #262c3d; border-top-color: #f39c12; margin: 0 auto 20px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .wheel-percent { font-size: 28px; font-weight: bold; color: #fff; }
+        .wheel-label { font-size: 12px; color: #8a91a8; text-transform: uppercase; }
+
+        .mult-selector { display: flex; justify-content: center; gap: 8px; margin-bottom: 15px; }
+        .mult-btn { background: #1a1e29; border: 1px solid #262c3d; color: #fff; padding: 8px 12px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        .mult-btn.active { background: #f39c12; border-color: #f39c12; color: #0f1115; }
+
+        .dep-box { background: #161922; border-radius: 12px; padding: 12px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .dep-controls { display: flex; gap: 10px; align-items: center; }
+        .dep-btn { background: #262c3d; color: #fff; border: none; width: 30px; height: 30px; border-radius: 50%; font-weight: bold; cursor: pointer; }
+
+        .spin-btn { width: 100%; background: linear-gradient(135deg, #f39c12, #e67e22); color: #0f1115; font-size: 18px; font-weight: bold; padding: 14px; border: none; border-radius: 12px; cursor: pointer; text-transform: uppercase; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div>🔥 <b>Babich Grader</b></div>
+        <div class="balance">💰 <span id="abichBalance">15</span> А-Бичей</div>
+    </div>
+
+    <div class="tabs">
+        <button class="tab active" onclick="switchTab('inventory')">Мои</button>
+        <button class="tab" onclick="switchTab('wheel')">Апгрейд</button>
+        <button class="tab" onclick="switchTab('shop')">Магазин</button>
+    </div>
+
+    <div class="container">
+        <div id="tab-inventory" class="grid">
+            <div class="card">
+                <img src="babich.jpg" alt="Бабич">
+                <div class="card-title">Обычный Бабич</div>
+                <div class="card-price">Ценность: 5 🪙</div>
+                <button class="btn" onclick="selectForWheel('Обычный Бабич', 5)">На апгрейд</button>
+            </div>
+        </div>
+
+        <div id="tab-wheel" class="wheel-container hidden">
+            <div style="margin-bottom: 10px; color: #8a91a8; font-size: 14px;">Выбранный Бабич:</div>
+            <div class="selected-item-box" onclick="switchTab('inventory')">
+                <img id="selectedImg" src="babich.jpg" alt="Выбрать">
+                <div id="selectedName" style="font-size: 12px; margin-top: 5px;">Нажми, чтобы выбрать</div>
+            </div>
+
+            <div class="mult-selector">
+                <button class="mult-btn active" onclick="setMultiplier(2, 49)">x2</button>
+                <button class="mult-btn" onclick="setMultiplier(5, 22)">x5</button>
+                <button class="mult-btn" onclick="setMultiplier(10, 10)">x10</button>
+            </div>
+
+            <div class="wheel-circle">
+                <div class="wheel-percent" id="chanceText">49%</div>
+                <div class="wheel-label">Шанс успеха</div>
+            </div>
+
+            <div class="dep-box">
+                <span style="font-size: 13px;">Деп А-Бичей (+7% за шт):</span>
+                <div class="dep-controls">
+                    <button class="dep-btn" onclick="changeDep(-1)">-</button>
+                    <span id="depCount" style="font-weight: bold; color: #f39c12;">0</span>
+                    <button class="dep-btn" onclick="changeDep(1)">+</button>
+                </div>
+            </div>
+
+            <button class="spin-btn" onclick="spinWheel()">КРУТИТЬ КОЛЕСО</button>
+        </div>
+
+        <div id="tab-shop" class="grid">
+            <div class="card">
+                <img src="babich.jpg" alt="Бабич">
+                <div class="card-title">Обычный Бабич</div>
+                <div class="card-price">⚡ 5 А-Бичей</div>
+                <button class="btn" onclick="buyItem('Обычный Бабич', 5)">Купить</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let tg = window.Telegram.WebApp;
+        tg.expand(); // Растягиваем на весь экран в телеге
+
+        let abichs = 15;
+        let selectedItem = null;
+        let currentMultiplier = 2;
+        let baseChance = 49;
+        let depAmount = 0;
+
+        function switchTab(tabName) {
+            document.querySelectorAll('.container > div').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+            
+            if(tabName === 'inventory') {
+                document.getElementById('tab-inventory').classList.remove('hidden');
+                document.querySelectorAll('.tab')[0].classList.add('active');
+            } else if(tabName === 'wheel') {
+                document.getElementById('tab-wheel').classList.remove('hidden');
+                document.querySelectorAll('.tab')[1].classList.add('active');
+            } else if(tabName === 'shop') {
+                document.getElementById('tab-shop').classList.remove('hidden');
+                document.querySelectorAll('.tab')[2].classList.add('active');
+            }
+        }
+
+        function selectForWheel(name, price) {
+            selectedItem = { name, price };
+            document.getElementById('selectedName').innerText = name;
+            switchTab('wheel');
+        }
+
+        function setMultiplier(mult, chance) {
+            currentMultiplier = mult;
+            baseChance = chance;
+            document.querySelectorAll('.mult-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            updateChance();
+        }
+
+        function changeDep(delta) {
+            if(depAmount + delta >= 0 && depAmount + delta <= 10) {
+                depAmount += delta;
+                document.getElementById('depCount').innerText = depAmount;
+                updateChance();
+            }
+        }
+
+        function updateChance() {
+            let totalChance = baseChance + (depAmount * 7);
+            if(totalChance > 82) totalChance = 82;
+            document.getElementById('chanceText').innerText = totalChance + '%';
+        }
+
+        function buyItem(name, price) {
+            if(abichs >= price) {
+                abichs -= price;
+                document.getElementById('abichBalance').innerText = abichs;
+                alert('Куплено: ' + name);
+            } else {
+                alert('Не хватает А-Бичей!');
+            }
+        }
+
+        function spinWheel() {
+            if(!selectedItem) {
+                alert('Сначала выбери Бабича!');
+                switchTab('inventory');
+                return;
+            }
+            let totalChance = Math.min(baseChance + (depAmount * 7), 82);
+            if(abichs < depAmount) {
+                alert('Не хватает А-Бичей для депа!');
+                return;
+            }
+            
+            abichs -= depAmount;
+            document.getElementById('abichBalance').innerText = abichs;
+            depAmount = 0;
+            document.getElementById('depCount').innerText = 0;
+
+            let roll = Math.floor(Math.random() * 100) + 1;
+            if(roll <= totalChance) {
+                alert('🎉 УСПЕХ! Апгрейд x' + currentMultiplier + ' залетел!');
+            } else {
+                alert('😢 ЛУЗ! Бабич сгорел...');
+                selectedItem = null;
+                document.getElementById('selectedName').innerText = 'Нажми, чтобы выбрать';
+            }
+            updateChance();
+        }
+    </script>
+</body>
+</html>
