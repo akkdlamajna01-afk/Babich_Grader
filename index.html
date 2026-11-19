@@ -7,18 +7,17 @@
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
     :root {
-      --bg-0: #090b0f;
-      --bg-1: #11151d;
-      --bg-2: #181e29;
-      --bg-3: #202837;
-      --line: rgba(255, 255, 255, 0.08);
-      --line-hi: rgba(226, 232, 240, 0.28);
-      --txt: #f1f5f9;
+      --bg-0: #07090d;
+      --bg-1: #0f131b;
+      --bg-2: #161c27;
+      --bg-3: #1e2635;
+      --line: rgba(255, 255, 255, 0.09);
+      --line-hi: rgba(226, 232, 240, 0.34);
+      --txt: #f8fafc;
       --muted: #94a3b8;
       --gold: #facc15;
       --green: #22c55e;
       --green-soft: #4ade80;
-      --red: #ef4444;
     }
 
     * {
@@ -33,9 +32,10 @@
     body {
       min-height: 100vh;
       background:
-        radial-gradient(circle at 15% 12%, rgba(148, 163, 184, 0.16), transparent 45%),
-        radial-gradient(circle at 85% 22%, rgba(71, 85, 105, 0.22), transparent 50%),
-        linear-gradient(130deg, #080a0d 0%, #151922 48%, #0a0c10 100%);
+        radial-gradient(circle at 14% 10%, rgba(148, 163, 184, 0.18), transparent 44%),
+        radial-gradient(circle at 86% 20%, rgba(71, 85, 105, 0.25), transparent 48%),
+        radial-gradient(circle at 50% 90%, rgba(34, 197, 94, 0.08), transparent 55%),
+        linear-gradient(135deg, #06080c 0%, #141923 50%, #080a0f 100%);
       background-size: 220% 220%;
       animation: greyGradFlow 12s ease-in-out infinite alternate;
       color: var(--txt);
@@ -54,16 +54,15 @@
       width: 100%;
       max-width: 430px;
       min-height: 100vh;
-      background: linear-gradient(180deg, rgba(18, 22, 31, 0.96) 0%, rgba(10, 12, 17, 0.99) 100%);
+      background: linear-gradient(180deg, rgba(17, 21, 30, 0.97) 0%, rgba(9, 11, 16, 0.995) 100%);
       border-left: 1px solid var(--line);
       border-right: 1px solid var(--line);
       display: flex;
       flex-direction: column;
       padding-bottom: 84px;
-      box-shadow: 0 0 65px rgba(0, 0, 0, 0.92);
+      box-shadow: 0 0 75px rgba(0, 0, 0, 0.95);
     }
 
-    /* TOPBAR */
     .topbar {
       position: sticky;
       top: 0;
@@ -72,59 +71,37 @@
       align-items: center;
       justify-content: space-between;
       padding: 13px 16px;
-      background: rgba(14, 17, 24, 0.92);
-      backdrop-filter: blur(14px);
+      background: rgba(12, 15, 22, 0.94);
+      backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--line);
     }
 
     .brand {
       font-size: 16px;
       font-weight: 950;
-      letter-spacing: 0.9px;
-      background: linear-gradient(90deg, #e2e8f0, #94a3b8, #ffffff, #94a3b8);
+      letter-spacing: 1px;
+      background: linear-gradient(90deg, #e2e8f0, #94a3b8, #ffffff, #cbd5e1, #94a3b8);
       background-size: 240% auto;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: brandSweep 6s linear infinite;
+      animation: brandSweep 5.5s linear infinite;
     }
 
     @keyframes brandSweep {
       to { background-position: 240% center; }
     }
 
-    .wallet {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
     .wallet-coins {
-      background: var(--bg-2);
-      border: 1px solid var(--line-hi);
-      border-radius: 10px;
-      padding: 6px 11px;
+      background: linear-gradient(145deg, rgba(30, 37, 52, 0.95), rgba(18, 22, 32, 0.95));
+      border: 1px solid rgba(250, 204, 21, 0.35);
+      border-radius: 11px;
+      padding: 6px 12px;
       font-size: 12px;
       font-weight: 900;
       color: var(--gold);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
     }
 
-    .wallet-plus {
-      width: 30px;
-      height: 30px;
-      border-radius: 9px;
-      border: 1px solid var(--line-hi);
-      background: linear-gradient(180deg, #334155, #1e293b);
-      color: #fff;
-      font-size: 17px;
-      font-weight: 800;
-      cursor: pointer;
-    }
-
-    .wallet-plus:active {
-      transform: scale(0.94);
-    }
-
-    /* MAIN */
     .main {
       padding: 15px;
       display: flex;
@@ -144,11 +121,11 @@
     }
 
     .card {
-      background: linear-gradient(160deg, rgba(28, 34, 46, 0.92), rgba(15, 19, 27, 0.96));
+      background: linear-gradient(160deg, rgba(28, 35, 48, 0.94), rgba(14, 18, 26, 0.97));
       border: 1px solid var(--line);
       border-radius: 18px;
       padding: 16px;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 12px 28px rgba(0, 0, 0, 0.45);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 14px 30px rgba(0, 0, 0, 0.5);
     }
 
     .card-head {
@@ -161,9 +138,9 @@
     .card-title {
       font-size: 12px;
       font-weight: 900;
-      letter-spacing: 0.8px;
+      letter-spacing: 0.85px;
       text-transform: uppercase;
-      color: #cbd5e1;
+      color: #e2e8f0;
     }
 
     .badge {
@@ -173,30 +150,29 @@
       border-radius: 8px;
       background: var(--bg-2);
       border: 1px solid var(--line);
-      color: var(--muted);
+      color: #cbd5e1;
     }
 
-    /* WHEEL: неподвижный корпус, плавно расширяющаяся/сужающаяся зелёная зона, крутится только стрелка */
     .wheel-stage {
       position: relative;
-      width: 216px;
-      height: 216px;
-      margin: 4px auto 16px;
+      width: 228px;
+      height: 228px;
+      margin: 4px auto 14px;
       display: grid;
       place-items: center;
     }
 
     .wheel-housing {
       position: absolute;
-      inset: 0;
+      inset: 4px;
       border-radius: 50%;
-      background: radial-gradient(circle at center, transparent 63%, #1e2533 64%, #10141c 93%, #2b3548 100%);
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.8), inset 0 0 16px rgba(255, 255, 255, 0.04);
+      background: radial-gradient(circle at center, transparent 63%, #1e2636 64%, #0f131b 93%, #334155 100%);
+      box-shadow: 0 0 34px rgba(0, 0, 0, 0.88), inset 0 0 18px rgba(255, 255, 255, 0.06);
     }
 
     .wheel-green-fill {
       position: absolute;
-      inset: 5px;
+      inset: 9px;
       border-radius: 50%;
       background:
         conic-gradient(
@@ -206,21 +182,20 @@
         );
       -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 14px), #000 calc(100% - 13px));
       mask: radial-gradient(farthest-side, transparent calc(100% - 14px), #000 calc(100% - 13px));
-      filter: drop-shadow(0 0 12px rgba(34, 197, 94, 0.42));
+      filter: drop-shadow(0 0 14px rgba(34, 197, 94, 0.48));
     }
 
     .wheel-green-shimmer {
       position: absolute;
-      inset: 5px;
+      inset: 9px;
       border-radius: 50%;
       background: conic-gradient(
         from 0deg,
-        rgba(255, 255, 255, 0.32) 0deg calc(var(--arc-deg, 180deg) * 0.5),
-        rgba(74, 222, 128, 0.14) var(--arc-deg, 180deg),
+        rgba(255, 255, 255, 0.36) 0deg calc(var(--arc-deg, 180deg) * 0.5),
+        rgba(74, 222, 128, 0.16) var(--arc-deg, 180deg),
         transparent var(--arc-deg, 180deg) 360deg
       );
-      background-size: 200% 200%;
-      animation: greenPulseShimmer 2.8s ease-in-out infinite alternate;
+      animation: greenPulseShimmer 2.5s ease-in-out infinite alternate;
       -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 14px), #000 calc(100% - 13px));
       mask: radial-gradient(farthest-side, transparent calc(100% - 14px), #000 calc(100% - 13px));
       pointer-events: none;
@@ -233,7 +208,7 @@
 
     .arrow-rotator {
       position: absolute;
-      inset: 1px;
+      inset: 5px;
       border-radius: 50%;
       z-index: 6;
       pointer-events: none;
@@ -250,41 +225,109 @@
       border-left: 11px solid transparent;
       border-right: 11px solid transparent;
       border-top: 22px solid #ffffff;
-      filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.85));
+      filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.92));
     }
 
     .wheel-hub {
       position: relative;
       z-index: 4;
-      width: 144px;
-      height: 144px;
+      width: 148px;
+      height: 148px;
       border-radius: 50%;
-      background: linear-gradient(160deg, #1b2230, #0c0f15);
+      background: linear-gradient(160deg, #1d2536, #0b0e14);
       border: 1px solid var(--line-hi);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      box-shadow: inset 0 4px 16px rgba(0, 0, 0, 0.85);
+      box-shadow: inset 0 4px 18px rgba(0, 0, 0, 0.9), 0 0 24px rgba(0, 0, 0, 0.5);
     }
 
     .chance-value {
-      font-size: 28px;
+      font-size: 29px;
       font-weight: 950;
       color: var(--green-soft);
-      text-shadow: 0 0 16px rgba(34, 197, 94, 0.45);
+      text-shadow: 0 0 18px rgba(74, 222, 128, 0.55);
     }
 
     .chance-label {
       font-size: 10px;
       font-weight: 800;
-      letter-spacing: 1.2px;
+      letter-spacing: 1.3px;
       text-transform: uppercase;
       color: var(--muted);
       margin-top: 2px;
     }
 
-    /* SLOTS: МОЕ -> ЖЕЛАЕМОЕ */
+    .wheel-boost-btn {
+      position: absolute;
+      right: -4px;
+      bottom: 4px;
+      z-index: 8;
+      padding: 7px 11px;
+      border-radius: 10px;
+      border: 1px solid rgba(251, 146, 60, 0.85);
+      background: linear-gradient(135deg, #ea580c, #475569);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 950;
+      letter-spacing: 0.7px;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(234, 88, 12, 0.5);
+      transition: transform 0.12s ease, box-shadow 0.15s ease;
+    }
+
+    .wheel-boost-btn:hover {
+      box-shadow: 0 8px 24px rgba(251, 146, 60, 0.65);
+    }
+
+    .wheel-boost-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* ТЕМЫ БАБИЧЕЙ */
+    .theme-red {
+      background: linear-gradient(160deg, rgba(153, 27, 27, 0.85), rgba(26, 14, 18, 0.97)) !important;
+      border-color: rgba(248, 113, 113, 0.65) !important;
+      box-shadow: 0 10px 24px rgba(220, 38, 38, 0.28), inset 0 1px 0 rgba(254, 202, 202, 0.14) !important;
+    }
+
+    .theme-burgundy {
+      background: linear-gradient(160deg, rgba(120, 16, 44, 0.9), rgba(25, 10, 16, 0.98)) !important;
+      border-color: rgba(244, 63, 94, 0.68) !important;
+      box-shadow: 0 10px 26px rgba(159, 18, 57, 0.36), inset 0 1px 0 rgba(254, 205, 211, 0.16) !important;
+    }
+
+    .theme-green {
+      background: linear-gradient(160deg, rgba(20, 83, 45, 0.84), rgba(13, 25, 19, 0.97)) !important;
+      border-color: rgba(74, 222, 128, 0.62) !important;
+      box-shadow: 0 10px 24px rgba(34, 197, 94, 0.26), inset 0 1px 0 rgba(187, 247, 208, 0.14) !important;
+    }
+
+    .theme-blue {
+      background: linear-gradient(160deg, rgba(30, 58, 138, 0.84), rgba(13, 20, 34, 0.97)) !important;
+      border-color: rgba(96, 165, 250, 0.62) !important;
+      box-shadow: 0 10px 24px rgba(59, 130, 246, 0.26), inset 0 1px 0 rgba(191, 219, 254, 0.14) !important;
+    }
+
+    .theme-purple {
+      background: linear-gradient(160deg, rgba(88, 28, 135, 0.8), rgba(20, 15, 30, 0.97)) !important;
+      border-color: rgba(192, 132, 252, 0.52) !important;
+      box-shadow: 0 8px 20px rgba(147, 51, 234, 0.22), inset 0 1px 0 rgba(233, 213, 255, 0.12) !important;
+    }
+
+    .theme-gold {
+      background: linear-gradient(160deg, rgba(133, 77, 14, 0.82), rgba(26, 20, 12, 0.97)) !important;
+      border-color: rgba(250, 204, 21, 0.55) !important;
+      box-shadow: 0 8px 22px rgba(234, 179, 8, 0.24), inset 0 1px 0 rgba(254, 240, 138, 0.15) !important;
+    }
+
+    .theme-grey {
+      background: linear-gradient(160deg, rgba(30, 37, 50, 0.92), rgba(18, 22, 31, 0.96));
+      border-color: var(--line);
+    }
+
     .slots {
       display: grid;
       grid-template-columns: 1fr auto 1fr;
@@ -298,7 +341,7 @@
       border: 1px solid var(--line);
       border-radius: 14px;
       padding: 11px 8px;
-      min-height: 116px;
+      min-height: 118px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -309,24 +352,23 @@
     }
 
     .slot:hover {
-      border-color: var(--line-hi);
       transform: translateY(-1px);
     }
 
     .slot-top {
       font-size: 10px;
       font-weight: 900;
-      letter-spacing: 0.7px;
+      letter-spacing: 0.75px;
       text-transform: uppercase;
-      color: var(--muted);
+      color: #cbd5e1;
     }
 
     .pic-box {
-      width: 48px;
-      height: 48px;
-      border-radius: 10px;
-      background: var(--bg-1);
-      border: 1px solid var(--line);
+      width: 50px;
+      height: 50px;
+      border-radius: 11px;
+      background: rgba(9, 12, 18, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.14);
       display: grid;
       place-items: center;
       overflow: hidden;
@@ -345,7 +387,7 @@
     .slot-title {
       font-size: 12px;
       font-weight: 800;
-      max-width: 120px;
+      max-width: 124px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -353,7 +395,7 @@
 
     .slot-coins {
       font-size: 11px;
-      font-weight: 800;
+      font-weight: 900;
       color: var(--gold);
     }
 
@@ -363,7 +405,6 @@
       color: var(--muted);
     }
 
-    /* PRESETS */
     .presets {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
@@ -387,24 +428,24 @@
       background: var(--bg-3);
       border-color: var(--line-hi);
       color: #fff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
     }
 
-    /* GLOWING UPGRADE BUTTON */
     .btn-upgrade {
       width: 100%;
       padding: 15px;
       border-radius: 13px;
-      border: 1px solid rgba(134, 239, 172, 0.6);
+      border: 1px solid rgba(134, 239, 172, 0.68);
       background: linear-gradient(95deg, #15803d 0%, #22c55e 45%, #4ade80 50%, #22c55e 55%, #16a34a 100%);
       background-size: 220% 100%;
       color: #051209;
       font-size: 16px;
       font-weight: 950;
-      letter-spacing: 1.2px;
+      letter-spacing: 1.25px;
       text-transform: uppercase;
       cursor: pointer;
-      box-shadow: 0 0 26px rgba(34, 197, 94, 0.45), 0 8px 20px rgba(0, 0, 0, 0.55);
-      animation: btnGlowSweep 3.2s linear infinite;
+      box-shadow: 0 0 28px rgba(34, 197, 94, 0.5), 0 8px 22px rgba(0, 0, 0, 0.6);
+      animation: btnGlowSweep 3s linear infinite;
       transition: transform 0.12s ease;
     }
 
@@ -422,7 +463,6 @@
       cursor: not-allowed;
     }
 
-    /* SUBTABS INSIDE UPGRADE: МОЕ / ЖЕЛАЕМОЕ / МАГАЗИН */
     .subtabs {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -464,6 +504,11 @@
       align-items: center;
       gap: 6px;
       text-align: center;
+      transition: transform 0.14s ease;
+    }
+
+    .item-card:hover {
+      transform: translateY(-1px);
     }
 
     .btn-mini {
@@ -471,7 +516,7 @@
       padding: 8px;
       border-radius: 9px;
       border: 1px solid var(--line-hi);
-      background: linear-gradient(180deg, #2b3548, #1b212e);
+      background: linear-gradient(180deg, #2d384d, #1a202d);
       color: #fff;
       font-size: 11px;
       font-weight: 800;
@@ -483,8 +528,8 @@
     }
 
     .btn-sell {
-      background: linear-gradient(180deg, #3f2326, #271517);
-      border-color: rgba(239, 68, 68, 0.45);
+      background: linear-gradient(180deg, #452328, #261417);
+      border-color: rgba(239, 68, 68, 0.5);
       color: #fecaca;
     }
 
@@ -505,14 +550,13 @@
       transition: width 0.25s ease;
     }
 
-    /* BOTTOM NAV: АПГРЕЙДЕР / ИНВЕНТАРЬ / НАГРАДЫ */
     .bottom-nav {
       position: fixed;
       bottom: 0;
       width: 100%;
       max-width: 430px;
-      background: rgba(13, 16, 23, 0.96);
-      backdrop-filter: blur(14px);
+      background: rgba(12, 15, 22, 0.97);
+      backdrop-filter: blur(16px);
       border-top: 1px solid var(--line);
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -539,11 +583,10 @@
       color: #fff;
     }
 
-    /* MODAL */
     .modal {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.78);
+      background: rgba(0, 0, 0, 0.8);
       z-index: 80;
       display: none;
       align-items: flex-end;
@@ -561,11 +604,57 @@
       border-top: 1px solid var(--line-hi);
       border-radius: 20px 20px 0 0;
       padding: 18px 14px 26px;
-      max-height: 72vh;
+      max-height: 76vh;
       overflow-y: auto;
     }
 
-    /* SPARKLES */
+    .boost-sheet {
+      background: linear-gradient(165deg, rgba(67, 36, 17, 0.96) 0%, rgba(30, 35, 44, 0.98) 55%, rgba(20, 24, 31, 0.99) 100%);
+      border-top: 1px solid rgba(251, 146, 60, 0.65);
+      box-shadow: 0 -10px 35px rgba(234, 88, 12, 0.25);
+    }
+
+    .boost-stat-box {
+      background: rgba(15, 18, 24, 0.72);
+      border: 1px solid rgba(251, 146, 60, 0.32);
+      border-radius: 13px;
+      padding: 12px;
+      margin-bottom: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 12px;
+    }
+
+    .boost-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .boost-val {
+      font-weight: 900;
+      color: #fdba74;
+    }
+
+    .btn-boost-action {
+      width: 100%;
+      padding: 13px;
+      border-radius: 12px;
+      border: 1px solid rgba(251, 146, 60, 0.75);
+      background: linear-gradient(90deg, #c2410c, #ea580c, #52525b);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 950;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .btn-boost-action:active {
+      transform: scale(0.98);
+    }
+
     .sparkles {
       position: fixed;
       inset: 0;
@@ -613,6 +702,7 @@
       pointer-events: none;
       transition: all 0.2s ease;
       white-space: nowrap;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55);
     }
 
     .toast.show {
@@ -628,14 +718,10 @@
   <div class="app">
     <header class="topbar">
       <div class="brand">BABICH--GRADER</div>
-      <div class="wallet">
-        <div class="wallet-coins"><span id="bal">15</span> МОНЕТ</div>
-        <button class="wallet-plus" onclick="addCoins(5)" title="+5 монет">+</button>
-      </div>
+      <div class="wallet-coins">А-БИЧИ: <span id="bal">0</span></div>
     </header>
 
     <main class="main">
-      <!-- ВКЛАДКА 1: АПГРЕЙДЕР -->
       <section id="pane-upgrader" class="pane active">
         <div class="card">
           <div class="card-head">
@@ -654,10 +740,11 @@
               <div class="chance-value" id="chance-value">50%</div>
               <div class="chance-label">Шанс</div>
             </div>
+            <button class="wheel-boost-btn" onclick="openBoostModal()">УЛУЧШИТЬ</button>
           </div>
 
           <div class="slots">
-            <div class="slot" onclick="openPicker('mine')">
+            <div class="slot theme-grey" id="slot-mine-card" onclick="openPicker('mine')">
               <div class="slot-top">МОЕ</div>
               <div class="pic-box" id="slot-mine-pic">ФОТО</div>
               <div class="slot-title" id="slot-mine-title">Не выбрано</div>
@@ -666,7 +753,7 @@
 
             <div class="gt-mid">&gt;</div>
 
-            <div class="slot" onclick="openPicker('wish')">
+            <div class="slot theme-grey" id="slot-wish-card" onclick="openPicker('wish')">
               <div class="slot-top">ЖЕЛАЕМОЕ</div>
               <div class="pic-box" id="slot-wish-pic">ФОТО</div>
               <div class="slot-title" id="slot-wish-title">Выбери цель</div>
@@ -696,7 +783,6 @@
         </div>
       </section>
 
-      <!-- ВКЛАДКА 2: ИНВЕНТАРЬ -->
       <section id="pane-inventory" class="pane">
         <div class="card">
           <div class="card-head">
@@ -707,15 +793,14 @@
         </div>
       </section>
 
-      <!-- ВКЛАДКА 3: НАГРАДЫ -->
       <section id="pane-rewards" class="pane">
         <div class="card">
           <div class="card-head">
-            <span class="card-title">Награда раз в 3 часа</span>
+            <span class="card-title">Бонус за заход (тест без КД)</span>
             <span class="badge">+7 МОНЕТ</span>
           </div>
           <div style="font-size:13px;color:var(--muted);margin-bottom:12px;" id="hourly-status">
-            Доступно сейчас
+            Кулдаун отключён для тестов — жми сколько нужно
           </div>
           <button class="btn-mini" style="padding:11px;font-size:12px;" id="btn-claim-3h" onclick="claim3h()">
             ЗАБРАТЬ 7 МОНЕТ
@@ -756,14 +841,27 @@
     if (tg) {
       tg.ready();
       tg.expand();
-      tg.setHeaderColor('#0e1118');
-      tg.setBackgroundColor('#090b0f');
+      tg.setHeaderColor('#0c0f16');
+      tg.setBackgroundColor('#07090d');
     }
 
-    const BABICH_LIST = [
-      { id: 'b_1', name: 'Бабич', val: 5, img: 'babich.jpg' },
+    function resolveTheme(name, val, customTheme) {
+      if (customTheme) return customTheme;
+      if (name === 'AHLELELE BABICHNAS') return 'burgundy';
+      if (name === 'HIJNIAK') return 'red';
+      if (name === 'Бабич Прайм') return 'green';
+      if (name === 'Киррил БАБИЧ') return 'blue';
+      if (val >= 67) return 'gold';
+      if (val >= 34) return 'purple';
+      return 'grey';
+    }
+
+    const RAW_BABICH_LIST = [
+      { id: 'b_1', name: 'Бабич', val: 5, img: 'ObichniBabich.jpg' },
+      { id: 'b_23', name: 'Киррил', val: 5, img: 'kirril.jpg' },
       { id: 'b_2', name: 'ОмгБабич', val: 8, img: 'omg_babich.jpg' },
       { id: 'b_3', name: 'Бибич', val: 12, img: 'bibich.jpg' },
+      { id: 'b_25', name: 'бубич', val: 13, img: 'bubich.jpg' },
       { id: 'b_4', name: 'Бибач', val: 16, img: 'bibach.jpg' },
       { id: 'b_5', name: 'Квадрат', val: 19, img: 'kvadrat.jpg' },
       { id: 'b_6', name: 'Квадрачлен', val: 20, img: 'kvadrachlen.jpg' },
@@ -775,27 +873,50 @@
       { id: 'b_12', name: 'О.К.С.Бабич', val: 40, img: 'oks_babich.jpg' },
       { id: 'b_13', name: 'БАРАБАН', val: 42, img: 'baraban.jpg' },
       { id: 'b_14', name: 'БАБИЧ БАРАБАН', val: 46, img: 'babich_baraban.jpg' },
+      { id: 'b_33', name: 'Гроза Бабичей', val: 46, img: 'groza_babichey.jpg' },
       { id: 'b_15', name: 'ГРИНЕВИЧ', val: 50, img: 'grinevich.jpg' },
+      { id: 'b_26', name: 'бубичненко', val: 50, img: 'bubichnenko.jpg' },
       { id: 'b_16', name: 'АЛЛАХ БАБИЧ', val: 52, img: 'allah_babich.jpg' },
+      { id: 'b_30', name: 'Бабич тянка', val: 54, img: 'babich_tyanka.jpg' },
       { id: 'b_17', name: 'Грибабич', val: 60, img: 'gribabich.jpg' },
-      { id: 'b_18', name: 'квадриллион', val: 75, img: 'kvadrillion.jpg' },
-      { id: 'b_19', name: 'ультрабабич', val: 80, img: 'ultra_babich.jpg' },
-      { id: 'b_20', name: 'Сиксиллион', val: 90, img: 'siksillion.jpg' },
-      { id: 'b_21', name: 'TRUE BABICH', val: 100, img: 'true_babich.jpg' }
+      { id: 'b_24', name: 'Киррил БАБИЧ', val: 64, img: 'kirril_babich.jpg', theme: 'blue' },
+      { id: 'b_38', name: 'Грибатрон', val: 64, img: 'gribatron.jpg' },
+      { id: 'b_18', name: '67Бабич', val: 67, img: '67babich.jpg' },
+      { id: 'b_29', name: 'Бабич хуесос', val: 67, img: 'babich_huesos.jpg' },
+      { id: 'b_35', name: 'Бабучка', val: 74, img: 'babuchka.jpg' },
+      { id: 'b_19', name: 'квадриллион', val: 75, img: 'kvadrillion.jpg' },
+      { id: 'b_20', name: 'ультрабабич', val: 80, img: 'ultra_babich.jpg' },
+      { id: 'b_36', name: 'Бабник', val: 84, img: 'babnik.jpg' },
+      { id: 'b_21', name: 'Сиксиллион', val: 90, img: 'siksillion.jpg' },
+      { id: 'b_28', name: 'Фуфел Бабич', val: 95, img: 'fufel_babich.jpg' },
+      { id: 'b_22', name: 'TRUE BABICH', val: 100, img: 'true_babich.jpg' },
+      { id: 'b_37', name: 'Грибабник', val: 111, img: 'gribabnik.jpg' },
+      { id: 'b_27', name: 'Бабич Прайм', val: 134, img: 'babich_prime.jpg', theme: 'green' },
+      { id: 'b_31', name: 'МГЕ бабич', val: 150, img: 'mge_babich.jpg' },
+      { id: 'b_39', name: 'ГРАБАТРОН', val: 175, img: 'grabitron.jpg' },
+      { id: 'b_34', name: 'Бабичанос', val: 195, img: 'babichanos.jpg' },
+      { id: 'b_32', name: 'HIJNIAK', val: 240, img: 'hijniak.jpg', theme: 'red' },
+      { id: 'b_40', name: 'AHLELELE BABICHNAS', val: 300, img: 'ahlelele_babichnas.jpg', theme: 'burgundy' }
     ];
 
-    const THREE_HOURS_MS = 3 * 60 * 60 * 1000;
-    const STORAGE_KEY = 'babich_grader_v4_state';
+    const BABICH_LIST = RAW_BABICH_LIST
+      .map(it => ({ ...it, theme: resolveTheme(it.name, it.val, it.theme) }))
+      .sort((a, b) => a.val - b.val);
+
+    const MAX_CHANCE = 79;
+    const MAX_BOOST_CLICKS = 6;
+    const STORAGE_KEY = 'babich_grader_v10_burgundy_new_babichi';
 
     let state = {
-      bal: 15,
+      bal: 0,
       chance: 50,
+      activeMult: 2,
+      boostCoinsUsed: 0,
       subTab: 'mine',
       inv: [],
-      wishIds: ['b_2', 'b_3', 'b_9', 'b_21'],
+      wishIds: ['b_2', 'b_24', 'b_27', 'b_32', 'b_40'],
       selectedInvUid: null,
       selectedWishId: 'b_2',
-      last3hClaim: 0,
       successfulSpins: 0,
       claimed25Batches: 0
     };
@@ -813,6 +934,24 @@
     let chanceAnimFrame = null;
     let audioCtx = null;
 
+    function getThemeClass(item) {
+      return 'theme-' + resolveTheme(item?.name, item?.val || 0, item?.theme);
+    }
+
+    function applyThemeClass(el, item) {
+      if (!el) return;
+      el.classList.remove(
+        'theme-red',
+        'theme-burgundy',
+        'theme-green',
+        'theme-blue',
+        'theme-purple',
+        'theme-gold',
+        'theme-grey'
+      );
+      el.classList.add(getThemeClass(item));
+    }
+
     function saveState() {
       try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (_) {}
     }
@@ -823,6 +962,57 @@
       el.classList.add('show');
       clearTimeout(toast._t);
       toast._t = setTimeout(() => el.classList.remove('show'), 2200);
+    }
+
+    function ensureAudio() {
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        return audioCtx;
+      } catch (_) {
+        return null;
+      }
+    }
+
+    function playTone(freq, type, duration, gainPeak, delay = 0) {
+      const ctx = ensureAudio();
+      if (!ctx) return;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = type;
+      osc.frequency.value = freq;
+      const t0 = ctx.currentTime + delay;
+      gain.gain.setValueAtTime(0.0001, t0);
+      gain.gain.exponentialRampToValueAtTime(gainPeak, t0 + 0.012);
+      gain.gain.exponentialRampToValueAtTime(0.0001, t0 + duration);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(t0);
+      osc.stop(t0 + duration + 0.02);
+    }
+
+    function playClickSound() { playTone(660, 'sine', 0.055, 0.08); }
+    function playBuySound() { playTone(520, 'triangle', 0.08, 0.13, 0); playTone(780, 'triangle', 0.12, 0.13, 0.07); }
+    function playSellSound() { playTone(700, 'sine', 0.08, 0.12, 0); playTone(500, 'sine', 0.12, 0.12, 0.07); }
+    function playSpinStartSound() {
+      playTone(190, 'sawtooth', 0.18, 0.1, 0);
+      playTone(285, 'sawtooth', 0.18, 0.1, 0.08);
+      playTone(380, 'triangle', 0.2, 0.11, 0.16);
+      playTone(540, 'sine', 0.22, 0.1, 0.24);
+    }
+    function playTickSound(speedRatio) {
+      const clamped = Math.max(0.05, Math.min(1, speedRatio));
+      playTone(440 + clamped * 520, 'triangle', 0.032, 0.055);
+      playTone(880 + clamped * 400, 'sine', 0.018, 0.025, 0.006);
+    }
+    function playWinSound() {
+      [523.25, 659.25, 783.99, 1046.5, 1318.5, 1567.98].forEach((f, idx) => {
+        playTone(f, 'triangle', 0.3, 0.17, idx * 0.075);
+      });
+    }
+    function playLoseSound() {
+      playTone(310, 'sawtooth', 0.19, 0.12, 0);
+      playTone(205, 'sawtooth', 0.3, 0.12, 0.15);
     }
 
     function attachPic(box, item) {
@@ -841,7 +1031,24 @@
       };
     }
 
-    /* Плавное увеличение/уменьшение зелёной дуги рулетки */
+    function autoPickWishForCurrentSetup() {
+      const mine = state.inv.find(x => x.uid === state.selectedInvUid) || null;
+      if (!mine) return;
+
+      const mult = Math.max(1.2, 100 / Math.max(5, state.chance));
+      const targetVal = mine.val * mult;
+
+      const higherPool = BABICH_LIST.filter(x => x.id !== mine.id && x.val > mine.val);
+      if (!higherPool.length) return;
+
+      higherPool.sort((a, b) => Math.abs(a.val - targetVal) - Math.abs(b.val - targetVal));
+      const picked = higherPool[0];
+      state.selectedWishId = picked.id;
+      if (!state.wishIds.includes(picked.id)) {
+        state.wishIds.push(picked.id);
+      }
+    }
+
     function animateGreenChanceTo(targetChance) {
       if (chanceAnimFrame) cancelAnimationFrame(chanceAnimFrame);
       const fromChance = visualChance;
@@ -870,57 +1077,42 @@
       chanceAnimFrame = requestAnimationFrame(step);
     }
 
-    function playWinSound() {
-      try {
-        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        if (audioCtx.state === 'suspended') audioCtx.resume();
-        const notes = [440, 554.37, 659.25, 880];
-        notes.forEach((f, idx) => {
-          const osc = audioCtx.createOscillator();
-          const gain = audioCtx.createGain();
-          osc.type = 'triangle';
-          osc.frequency.value = f;
-          const t0 = audioCtx.currentTime + idx * 0.08;
-          gain.gain.setValueAtTime(0.0001, t0);
-          gain.gain.exponentialRampToValueAtTime(0.16, t0 + 0.02);
-          gain.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.35);
-          osc.connect(gain);
-          gain.connect(audioCtx.destination);
-          osc.start(t0);
-          osc.stop(t0 + 0.36);
-        });
-      } catch (_) {}
-    }
-
     function spawnSparkles() {
       const layer = document.getElementById('sparkles');
-      for (let i = 0; i < 45; i++) {
+      for (let i = 0; i < 55; i++) {
         const sp = document.createElement('div');
         sp.className = 'sparkle';
         sp.style.left = (Math.random() * 100) + '%';
-        sp.style.setProperty('--dx', (Math.random() * 160 - 80) + 'px');
-        sp.style.setProperty('--dur', (1.4 + Math.random() * 1.1) + 's');
+        sp.style.setProperty('--dx', (Math.random() * 180 - 90) + 'px');
+        sp.style.setProperty('--dur', (1.3 + Math.random() * 1.1) + 's');
         sp.style.animationDelay = (Math.random() * 0.3) + 's';
         layer.appendChild(sp);
         setTimeout(() => sp.remove(), 2700);
       }
     }
 
-    function computeEffectiveChance() {
+    function getCoinStepPercent() {
       const mine = state.inv.find(x => x.uid === state.selectedInvUid) || null;
       const wish = BABICH_LIST.find(x => x.id === state.selectedWishId) || BABICH_LIST[1];
-      let ch = state.chance;
-      if (mine && wish && wish.val > mine.val) {
-        const ratioCh = Math.round((mine.val / wish.val) * 100);
-        ch = Math.max(5, Math.min(state.chance, ratioCh));
-      }
-      return ch;
+      if (!mine || !wish) return 6;
+      if (wish.id === 'b_32' && mine.id === 'b_27') return 1;
+      const diffRatio = wish.val / Math.max(1, mine.val);
+      if (diffRatio >= 1.7) return 1;
+      if (diffRatio >= 1.4) return 2;
+      if (diffRatio >= 1.15) return 4;
+      return 6;
+    }
+
+    function computeEffectiveChance() {
+      const step = getCoinStepPercent();
+      const total = state.chance + state.boostCoinsUsed * step;
+      return Math.min(MAX_CHANCE, Math.max(1, total));
     }
 
     function syncChanceDisplay() {
       const eff = computeEffectiveChance();
       document.getElementById('chance-value').textContent = eff + '%';
-      document.getElementById('mult-badge').textContent = 'x' + (100 / Math.max(5, eff)).toFixed(1);
+      document.getElementById('mult-badge').textContent = 'x' + state.activeMult.toFixed(1);
       animateGreenChanceTo(eff);
     }
 
@@ -935,21 +1127,23 @@
           box.innerHTML = '<div style="font-size:13px;color:var(--muted);">В МОЕ пока пусто. Купи Бабича в МАГАЗИНЕ.</div>';
           return;
         }
-        box.innerHTML = `<div class="grid-2">${state.inv.map(it => `
-          <div class="item-card">
+        const sortedInv = [...state.inv].sort((a, b) => a.val - b.val);
+        box.innerHTML = `<div class="grid-2">${sortedInv.map(it => `
+          <div class="item-card ${getThemeClass(it)}">
             <div class="pic-box" data-sub-mine="${it.uid}">ФОТО</div>
             <div style="font-size:12px;font-weight:800;">${it.name}</div>
             <div style="font-size:11px;font-weight:800;color:var(--gold);">${it.val} МОНЕТ</div>
             <button class="btn-mini" onclick="selectMine(${it.uid})">${it.uid === state.selectedInvUid ? 'Выбран' : 'Выбрать'}</button>
           </div>
         `).join('')}</div>`;
-        state.inv.forEach(it => attachPic(box.querySelector(`[data-sub-mine="${it.uid}"]`), it));
+        sortedInv.forEach(it => attachPic(box.querySelector(`[data-sub-mine="${it.uid}"]`), it));
       } else if (state.subTab === 'wish') {
         const wishItems = state.wishIds
           .map(id => BABICH_LIST.find(x => x.id === id))
-          .filter(Boolean);
+          .filter(Boolean)
+          .sort((a, b) => a.val - b.val);
         box.innerHTML = `<div class="grid-2">${wishItems.map(it => `
-          <div class="item-card">
+          <div class="item-card ${getThemeClass(it)}">
             <div class="pic-box" data-sub-wish="${it.id}">ФОТО</div>
             <div style="font-size:12px;font-weight:800;">${it.name}</div>
             <div style="font-size:11px;font-weight:800;color:var(--gold);">${it.val} МОНЕТ</div>
@@ -959,7 +1153,7 @@
         wishItems.forEach(it => attachPic(box.querySelector(`[data-sub-wish="${it.id}"]`), it));
       } else {
         box.innerHTML = `<div class="grid-2">${BABICH_LIST.map(it => `
-          <div class="item-card">
+          <div class="item-card ${getThemeClass(it)}">
             <div class="pic-box" data-sub-shop="${it.id}">ФОТО</div>
             <div style="font-size:12px;font-weight:800;">${it.name}</div>
             <div style="font-size:11px;font-weight:800;color:var(--gold);">${it.val} МОНЕТ</div>
@@ -977,35 +1171,23 @@
         wrap.innerHTML = '<div style="font-size:13px;color:var(--muted);">Инвентарь пуст. Купи Бабича в Апгрейдере.</div>';
         return;
       }
-      wrap.innerHTML = `<div class="grid-2">${state.inv.map(it => `
-        <div class="item-card">
+      const sortedInv = [...state.inv].sort((a, b) => a.val - b.val);
+      wrap.innerHTML = `<div class="grid-2">${sortedInv.map(it => `
+        <div class="item-card ${getThemeClass(it)}">
           <div class="pic-box" data-inv-sell="${it.uid}">ФОТО</div>
           <div style="font-size:12px;font-weight:800;">${it.name}</div>
           <div style="font-size:11px;font-weight:800;color:var(--gold);">Цена: ${it.val} МОНЕТ</div>
           <button class="btn-mini btn-sell" onclick="sellBabich(${it.uid})">Продать (+${it.val})</button>
         </div>
       `).join('')}</div>`;
-      state.inv.forEach(it => attachPic(wrap.querySelector(`[data-inv-sell="${it.uid}"]`), it));
+      sortedInv.forEach(it => attachPic(wrap.querySelector(`[data-inv-sell="${it.uid}"]`), it));
     }
 
     function renderRewardsTab() {
-      const now = Date.now();
-      const left = Math.max(0, THREE_HOURS_MS - (now - state.last3hClaim));
+      document.getElementById('hourly-status').textContent = 'Кулдаун отключён для тестов — жми сколько нужно';
       const btn3h = document.getElementById('btn-claim-3h');
-      const status3h = document.getElementById('hourly-status');
-
-      if (left <= 0) {
-        status3h.textContent = 'Награда 7 монет готова к получению';
-        btn3h.disabled = false;
-        btn3h.textContent = 'ЗАБРАТЬ 7 МОНЕТ';
-      } else {
-        const hrs = Math.floor(left / 3600000);
-        const mins = Math.floor((left % 3600000) / 60000);
-        const secs = Math.floor((left % 60000) / 1000);
-        status3h.textContent = `Следующая награда через ${hrs}ч ${mins}м ${secs}с`;
-        btn3h.disabled = true;
-        btn3h.textContent = 'ОЖИДАНИЕ 3 ЧАСОВ';
-      }
+      btn3h.disabled = false;
+      btn3h.textContent = 'ЗАБРАТЬ 7 МОНЕТ';
 
       const availableBatches = Math.floor(state.successfulSpins / 25) - state.claimed25Batches;
       const inCycle = state.successfulSpins % 25;
@@ -1027,6 +1209,8 @@
       document.getElementById('bal').textContent = state.bal;
 
       const mine = state.inv.find(x => x.uid === state.selectedInvUid) || null;
+      const mineCard = document.getElementById('slot-mine-card');
+      applyThemeClass(mineCard, mine);
       if (mine) {
         document.getElementById('slot-mine-title').textContent = mine.name;
         document.getElementById('slot-mine-val').textContent = mine.val + ' МОНЕТ';
@@ -1038,6 +1222,8 @@
       }
 
       const wish = BABICH_LIST.find(x => x.id === state.selectedWishId) || BABICH_LIST[1];
+      const wishCard = document.getElementById('slot-wish-card');
+      applyThemeClass(wishCard, wish);
       document.getElementById('slot-wish-title').textContent = wish.name;
       document.getElementById('slot-wish-val').textContent = wish.val + ' МОНЕТ';
       attachPic(document.getElementById('slot-wish-pic'), wish);
@@ -1050,6 +1236,7 @@
     }
 
     function goMainTab(name, btn) {
+      playClickSound();
       document.querySelectorAll('.pane').forEach(p => p.classList.remove('active'));
       document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
       document.getElementById('pane-' + name).classList.add('active');
@@ -1058,30 +1245,31 @@
     }
 
     function setSubTab(tab) {
+      playClickSound();
       state.subTab = tab;
       renderSubTab();
       saveState();
     }
 
     function setChance(pct, btn) {
-      state.chance = pct;
+      playClickSound();
+      state.chance = Math.min(MAX_CHANCE, pct);
+      state.boostCoinsUsed = 0;
+      state.activeMult = Number((100 / Math.max(5, state.chance)).toFixed(1));
+      autoPickWishForCurrentSetup();
       document.querySelectorAll('.preset').forEach(b => b.classList.remove('active'));
       if (btn) btn.classList.add('active');
-      syncChanceDisplay();
-      saveState();
+      renderAll();
     }
 
     function setMult(mult, btn) {
-      state.chance = Math.max(5, Math.min(85, Math.round(100 / mult)));
+      playClickSound();
+      state.activeMult = mult;
+      state.chance = Math.max(5, Math.min(MAX_CHANCE, Math.round(100 / mult)));
+      state.boostCoinsUsed = 0;
+      autoPickWishForCurrentSetup();
       document.querySelectorAll('.preset').forEach(b => b.classList.remove('active'));
       if (btn) btn.classList.add('active');
-      syncChanceDisplay();
-      saveState();
-    }
-
-    function addCoins(n) {
-      state.bal += n;
-      toast('+' + n + ' монет');
       renderAll();
     }
 
@@ -1089,6 +1277,7 @@
       const item = BABICH_LIST.find(x => x.id === id);
       if (!item) return;
       if (state.bal < item.val) {
+        playLoseSound();
         toast('Не хватает монет');
         return;
       }
@@ -1098,10 +1287,14 @@
         id: item.id,
         name: item.name,
         val: item.val,
-        img: item.img
+        img: item.img,
+        theme: item.theme
       };
       state.inv.push(owned);
       state.selectedInvUid = owned.uid;
+      state.boostCoinsUsed = 0;
+      autoPickWishForCurrentSetup();
+      playBuySound();
       toast('Куплено: ' + item.name + ' -> добавлено в МОЕ');
       renderAll();
     }
@@ -1114,34 +1307,98 @@
       state.inv.splice(idx, 1);
       if (state.selectedInvUid === uid) {
         state.selectedInvUid = state.inv[0] ? state.inv[0].uid : null;
+        state.boostCoinsUsed = 0;
       }
+      playSellSound();
       toast('Продано: ' + item.name + ' (+' + item.val + ' монет)');
       renderAll();
     }
 
     function selectMine(uid) {
+      playClickSound();
       state.selectedInvUid = uid;
+      state.boostCoinsUsed = 0;
+      autoPickWishForCurrentSetup();
       toast('Выбрано в МОЕ');
       renderAll();
     }
 
     function selectWish(id) {
+      playClickSound();
       state.selectedWishId = id;
+      state.boostCoinsUsed = 0;
       if (!state.wishIds.includes(id)) state.wishIds.push(id);
       const item = BABICH_LIST.find(x => x.id === id);
       toast('Желаемое: ' + (item ? item.name : id));
       renderAll();
     }
 
-    function claim3h() {
-      const now = Date.now();
-      if (now - state.last3hClaim < THREE_HOURS_MS) {
-        toast('Награда ещё не готова');
+    function depOneBoostCoin() {
+      if (state.boostCoinsUsed >= MAX_BOOST_CLICKS) {
+        toast('Лимит улучшений: максимум 6 раз');
         return;
       }
-      state.last3hClaim = now;
+      if (computeEffectiveChance() >= MAX_CHANCE) {
+        toast('Достигнут лимит шанса: 79%');
+        return;
+      }
+      if (state.bal < 1) {
+        playLoseSound();
+        toast('Нет монет А-БИЧИ на балансе');
+        return;
+      }
+      state.bal -= 1;
+      state.boostCoinsUsed += 1;
+      playBuySound();
+      renderAll();
+      openBoostModal();
+    }
+
+    function resetBoostCoins() {
+      if (state.boostCoinsUsed <= 0) return;
+      state.bal += state.boostCoinsUsed;
+      state.boostCoinsUsed = 0;
+      playSellSound();
+      renderAll();
+      openBoostModal();
+    }
+
+    function openBoostModal() {
+      playClickSound();
+      const sheet = document.getElementById('modal-sheet');
+      sheet.classList.add('boost-sheet');
+      const step = getCoinStepPercent();
+      const curChance = computeEffectiveChance();
+
+      sheet.innerHTML = `
+        <div class="card-head">
+          <span class="card-title" style="color:#fdba74;">УЛУЧШИТЬ ШАНС</span>
+          <span class="badge" style="cursor:pointer;" onclick="closeBoostModal()">Закрыть</span>
+        </div>
+        <div class="boost-stat-box">
+          <div class="boost-row"><span>Твои А-БИЧИ:</span><span class="boost-val">${state.bal}</span></div>
+          <div class="boost-row"><span>За 1 монету сейчас:</span><span class="boost-val">+${step}%</span></div>
+          <div class="boost-row"><span>Улучшений использовано:</span><span class="boost-val">${state.boostCoinsUsed} / ${MAX_BOOST_CLICKS}</span></div>
+          <div class="boost-row"><span>Итоговый шанс (макс. 79%):</span><span class="boost-val">${curChance}%</span></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <button class="btn-boost-action" onclick="depOneBoostCoin()">ДЕПНУТЬ 1 А-БИЧ (+${step}%)</button>
+          <button class="btn-mini" onclick="resetBoostCoins()">ВЕРНУТЬ ДЕПНУТЫЕ МОНЕТЫ</button>
+        </div>
+      `;
+      document.getElementById('modal').classList.add('open');
+    }
+
+    function closeBoostModal() {
+      const sheet = document.getElementById('modal-sheet');
+      sheet.classList.remove('boost-sheet');
+      document.getElementById('modal').classList.remove('open');
+    }
+
+    function claim3h() {
       state.bal += 7;
-      toast('Получено +7 монет');
+      playWinSound();
+      toast('Получено +7 монет (тест без КД)');
       renderAll();
     }
 
@@ -1153,35 +1410,39 @@
       }
       state.claimed25Batches += available;
       state.bal += available * 10;
+      playWinSound();
       toast('Получено +' + (available * 10) + ' монет');
       renderAll();
     }
 
     function openPicker(kind) {
+      playClickSound();
       const sheet = document.getElementById('modal-sheet');
+      sheet.classList.remove('boost-sheet');
       if (kind === 'mine') {
+        const sortedInv = [...state.inv].sort((a, b) => a.val - b.val);
         sheet.innerHTML = `
           <div class="card-head">
-            <span class="card-title">МОЕ (твой выбор)</span>
+            <span class="card-title">МОЕ (от дешёвых к топам)</span>
             <span class="badge" style="cursor:pointer;" onclick="document.getElementById('modal').classList.remove('open')">Закрыть</span>
           </div>
-          ${state.inv.length ? `<div class="grid-2">${state.inv.map(it => `
-            <div class="item-card" style="cursor:pointer;" onclick="selectMine(${it.uid}); document.getElementById('modal').classList.remove('open');">
+          ${sortedInv.length ? `<div class="grid-2">${sortedInv.map(it => `
+            <div class="item-card ${getThemeClass(it)}" style="cursor:pointer;" onclick="selectMine(${it.uid}); document.getElementById('modal').classList.remove('open');">
               <div class="pic-box" data-pick-mine="${it.uid}">ФОТО</div>
               <div style="font-size:12px;font-weight:800;">${it.name}</div>
               <div style="font-size:11px;color:var(--gold);font-weight:800;">${it.val} МОНЕТ</div>
             </div>
           `).join('')}</div>` : `<div style="font-size:13px;color:var(--muted);">В МОЕ пусто. Купи Бабича в МАГАЗИНЕ.</div>`}
         `;
-        state.inv.forEach(it => attachPic(sheet.querySelector(`[data-pick-mine="${it.uid}"]`), it));
+        sortedInv.forEach(it => attachPic(sheet.querySelector(`[data-pick-mine="${it.uid}"]`), it));
       } else {
         sheet.innerHTML = `
           <div class="card-head">
-            <span class="card-title">ЖЕЛАЕМОЕ</span>
+            <span class="card-title">ЖЕЛАЕМОЕ (от дешёвых к топам)</span>
             <span class="badge" style="cursor:pointer;" onclick="document.getElementById('modal').classList.remove('open')">Закрыть</span>
           </div>
           <div class="grid-2">${BABICH_LIST.map(it => `
-            <div class="item-card" style="cursor:pointer;" onclick="selectWish('${it.id}'); document.getElementById('modal').classList.remove('open');">
+            <div class="item-card ${getThemeClass(it)}" style="cursor:pointer;" onclick="selectWish('${it.id}'); document.getElementById('modal').classList.remove('open');">
               <div class="pic-box" data-pick-wish="${it.id}">ФОТО</div>
               <div style="font-size:12px;font-weight:800;">${it.name}</div>
               <div style="font-size:11px;color:var(--gold);font-weight:800;">${it.val} МОНЕТ</div>
@@ -1194,15 +1455,15 @@
     }
 
     function closeModal(e) {
-      if (e.target.id === 'modal') document.getElementById('modal').classList.remove('open');
+      if (e.target.id === 'modal') closeBoostModal();
     }
 
-    /* Плавный разгон, ровная скорость и плавное торможение стрелки 7 сек */
     function spinArrow(finalDeg, durationMs, done) {
       const rotator = document.getElementById('arrow-rotator');
       const startDeg = arrowAngle;
       const delta = finalDeg - startDeg;
       const tStart = performance.now();
+      let lastSector = Math.floor(startDeg / 45);
 
       function easeInOutQuint(x) {
         return x < 0.5 ? 16 * x * x * x * x * x : 1 - Math.pow(-2 * x + 2, 5) / 2;
@@ -1210,8 +1471,17 @@
 
       function tick(now) {
         const p = Math.min(1, (now - tStart) / durationMs);
-        arrowAngle = startDeg + delta * easeInOutQuint(p);
+        const eased = easeInOutQuint(p);
+        arrowAngle = startDeg + delta * eased;
         rotator.style.transform = `rotate(${arrowAngle}deg)`;
+
+        const curSector = Math.floor(arrowAngle / 45);
+        if (curSector !== lastSector) {
+          lastSector = curSector;
+          const speedRatio = 1 - Math.abs(p - 0.5) * 1.4;
+          playTickSound(Math.max(0.05, speedRatio));
+        }
+
         if (p < 1) {
           requestAnimationFrame(tick);
         } else {
@@ -1226,17 +1496,21 @@
 
     function startUpgrade() {
       if (isSpinning) return;
-      const mine = state.inv.find(x => x.uid === state.selectedInvUid) || null;
-      if (!mine) {
+      const mineIdx = state.inv.findIndex(x => x.uid === state.selectedInvUid);
+      if (mineIdx === -1) {
+        playLoseSound();
         toast('Сначала выбери Бабича в МОЕ');
         return;
       }
 
+      const mine = state.inv[mineIdx];
       const wish = BABICH_LIST.find(x => x.id === state.selectedWishId) || BABICH_LIST[1];
       const effChance = computeEffectiveChance();
 
       isSpinning = true;
       document.getElementById('btn-upgrade').disabled = true;
+      state.boostCoinsUsed = 0;
+      playSpinStartSound();
 
       const win = (Math.random() * 100) < effChance;
       const winDegSpan = (effChance / 100) * 360;
@@ -1250,23 +1524,25 @@
 
       spinArrow(targetAngle, 7000, () => {
         if (win) {
-          state.inv = state.inv.filter(x => x.uid !== mine.uid);
           const upgraded = {
-            uid: Date.now() + Math.floor(Math.random() * 100000),
+            uid: mine.uid,
             id: wish.id,
             name: wish.name,
             val: wish.val,
-            img: wish.img
+            img: wish.img,
+            theme: wish.theme
           };
-          state.inv.push(upgraded);
+          state.inv[mineIdx] = upgraded;
           state.selectedInvUid = upgraded.uid;
           state.successfulSpins += 1;
+          autoPickWishForCurrentSetup();
           playWinSound();
           spawnSparkles();
-          toast('Успех! Получен ' + wish.name);
+          toast('Успех! Теперь в МОЕ: ' + wish.name);
         } else {
-          state.inv = state.inv.filter(x => x.uid !== mine.uid);
+          state.inv.splice(mineIdx, 1);
           state.selectedInvUid = state.inv[0] ? state.inv[0].uid : null;
+          playLoseSound();
           toast('Неудача! ' + mine.name + ' сгорел');
         }
         isSpinning = false;
@@ -1275,7 +1551,6 @@
       });
     }
 
-    setInterval(renderRewardsTab, 1000);
     renderAll();
   </script>
 </body>
