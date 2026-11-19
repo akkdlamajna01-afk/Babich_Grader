@@ -167,44 +167,6 @@
       color: #fde047;
     }
 
-    .inv-toolbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      margin-bottom: 12px;
-      flex-wrap: wrap;
-    }
-
-    .inv-toolbar-actions {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .btn-delete-all {
-      padding: 6px 11px;
-      border-radius: 9px;
-      border: 1px solid rgba(248, 113, 113, 0.65);
-      background: linear-gradient(180deg, rgba(127, 29, 29, 0.85), rgba(69, 10, 10, 0.95));
-      color: #fecaca;
-      font-size: 11px;
-      font-weight: 900;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: transform 0.12s ease, opacity 0.15s ease;
-    }
-
-    .btn-delete-all:active {
-      transform: scale(0.96);
-    }
-
-    .btn-delete-all:disabled {
-      opacity: 0.45;
-      cursor: not-allowed;
-    }
-
     .wheel-stage {
       position: relative;
       width: 228px;
@@ -341,6 +303,7 @@
       transform: scale(0.95);
     }
 
+    /* ТЕМЫ БАБИЧЕЙ */
     .theme-red {
       background: linear-gradient(160deg, rgba(153, 27, 27, 0.85), rgba(26, 14, 18, 0.97)) !important;
       border-color: rgba(248, 113, 113, 0.65) !important;
@@ -402,17 +365,11 @@
       justify-content: space-between;
       gap: 6px;
       cursor: pointer;
-      transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+      transition: border-color 0.15s, transform 0.15s;
     }
 
     .slot:hover {
       transform: translateY(-1px);
-    }
-
-    .slot-pick-prompt {
-      border-style: dashed !important;
-      border-color: rgba(250, 204, 21, 0.78) !important;
-      box-shadow: 0 0 18px rgba(250, 204, 21, 0.18), inset 0 0 12px rgba(250, 204, 21, 0.08) !important;
     }
 
     .slot-top {
@@ -451,7 +408,6 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      text-align: center;
     }
 
     .slot-coins {
@@ -582,7 +538,6 @@
     }
 
     .item-card {
-      position: relative;
       background: var(--bg-2);
       border: 1px solid var(--line);
       border-radius: 14px;
@@ -597,36 +552,6 @@
 
     .item-card:hover {
       transform: translateY(-1px);
-    }
-
-    .heart-btn {
-      position: absolute;
-      top: 7px;
-      right: 7px;
-      width: 26px;
-      height: 26px;
-      border-radius: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      background: rgba(10, 13, 20, 0.72);
-      color: #94a3b8;
-      font-size: 14px;
-      line-height: 1;
-      display: grid;
-      place-items: center;
-      cursor: pointer;
-      transition: transform 0.12s ease, all 0.15s ease;
-      z-index: 2;
-    }
-
-    .heart-btn.active {
-      border-color: rgba(251, 113, 133, 0.8);
-      background: rgba(159, 18, 57, 0.45);
-      color: #fb7185;
-      box-shadow: 0 0 12px rgba(244, 63, 94, 0.35);
-    }
-
-    .heart-btn:active {
-      transform: scale(0.9);
     }
 
     .btn-mini {
@@ -648,14 +573,6 @@
     .btn-mini:disabled {
       opacity: 0.55;
       cursor: not-allowed;
-    }
-
-    .btn-claim-ready {
-      background: linear-gradient(180deg, #22c55e, #15803d);
-      border-color: rgba(187, 247, 208, 0.85);
-      color: #051209;
-      font-weight: 950;
-      box-shadow: 0 0 16px rgba(34, 197, 94, 0.38);
     }
 
     .btn-yellow-claim {
@@ -894,18 +811,18 @@
             <div class="slot theme-grey" id="slot-wish-card" onclick="openPicker('wish')">
               <div class="slot-top">ЖЕЛАЕМОЕ</div>
               <div class="pic-box" id="slot-wish-pic">ФОТО</div>
-              <div class="slot-title" id="slot-wish-title">Выберите кого хотите</div>
-              <div class="slot-coins" id="slot-wish-val">Нажми сюда</div>
+              <div class="slot-title" id="slot-wish-title">Выбери цель</div>
+              <div class="slot-coins" id="slot-wish-val">0 А-БИЧЕЙ</div>
             </div>
           </div>
 
           <div class="presets">
-            <button class="preset" id="preset-m2" onclick="setMult(2, this)">x2</button>
-            <button class="preset" id="preset-m5" onclick="setMult(5, this)">x5</button>
-            <button class="preset" id="preset-m10" onclick="setMult(10, this)">x10</button>
-            <button class="preset" id="preset-c30" onclick="setChance(30, this)">30%</button>
-            <button class="preset" id="preset-c50" onclick="setChance(50, this)">50%</button>
-            <button class="preset" id="preset-c75" onclick="setChance(75, this)">75%</button>
+            <button class="preset" onclick="setMult(2, this)">x2</button>
+            <button class="preset" onclick="setMult(5, this)">x5</button>
+            <button class="preset" onclick="setMult(10, this)">x10</button>
+            <button class="preset" onclick="setChance(30, this)">30%</button>
+            <button class="preset active" onclick="setChance(50, this)">50%</button>
+            <button class="preset" onclick="setChance(75, this)">75%</button>
           </div>
 
           <div class="action-row">
@@ -926,12 +843,9 @@
 
       <section id="pane-inventory" class="pane">
         <div class="card">
-          <div class="inv-toolbar">
-            <span class="card-title">Инвентарь (♥ защищает от удаления)</span>
-            <div class="inv-toolbar-actions">
-              <span class="badge" id="inv-badge">0 ШТ.</span>
-              <button class="btn-delete-all" id="btn-delete-all" onclick="deleteAllUnlocked()">УДАЛИТЬ ВСЕ</button>
-            </div>
+          <div class="card-head">
+            <span class="card-title">Инвентарь (можно продать)</span>
+            <span class="badge" id="inv-badge">0 ШТ.</span>
           </div>
           <div id="inv-sell-list"></div>
         </div>
@@ -944,7 +858,7 @@
             <span class="badge badge-yellow">+7 А-БИЧИ</span>
           </div>
           <div style="font-size:13px;color:#fde68a;margin-bottom:12px;" id="hourly-status">
-            Кулдаун отключён для тестов — жми чтобы забрать
+            Кулдаун отключён для тестов — жми сколько нужно
           </div>
           <button class="btn-mini btn-yellow-claim" style="padding:11px;font-size:12px;" id="btn-claim-3h" onclick="claim3h()">
             ЗАБРАТЬ 7 А-БИЧИ
@@ -953,7 +867,7 @@
 
         <div class="card">
           <div class="card-head">
-            <span class="card-title">Квест: 15 удачных круток</span>
+            <span class="card-title">За каждые 15 удачных круток</span>
             <span class="badge">+10 А-БИЧИ</span>
           </div>
           <div style="font-size:13px;color:var(--muted);" id="wins-progress-txt">
@@ -963,13 +877,13 @@
             <div class="progress-fill" id="wins-bar"></div>
           </div>
           <button class="btn-mini" style="padding:11px;font-size:12px;" id="btn-claim-15w" onclick="claim15Wins()">
-            ЗАБРАТЬ НАГРАДУ
+            ЗАБРАТЬ 10 А-БИЧИ
           </button>
         </div>
 
         <div class="card">
           <div class="card-head">
-            <span class="card-title">Квест: 100 проигрышей</span>
+            <span class="card-title">За каждые 100 проигрышей</span>
             <span class="badge">+12 А-БИЧИ</span>
           </div>
           <div style="font-size:13px;color:var(--muted);" id="losses-progress-txt">
@@ -979,17 +893,17 @@
             <div class="progress-fill" id="losses-bar"></div>
           </div>
           <button class="btn-mini" style="padding:11px;font-size:12px;" id="btn-claim-100l" onclick="claim100Losses()">
-            ЗАБРАТЬ НАГРАДУ
+            ЗАБРАТЬ 12 А-БИЧИ
           </button>
         </div>
 
         <div class="card">
           <div class="card-head">
-            <span class="card-title">Квест раз в 24ч: дроп &gt; 100 А-БИЧЕЙ</span>
+            <span class="card-title">Раз в 24 часа: выпал Бабич &gt; 100 А-БИЧЕЙ</span>
             <span class="badge">+20 А-БИЧИ</span>
           </div>
           <div style="font-size:13px;color:var(--muted);margin-bottom:12px;" id="quest-24h-txt">
-            Выбей Бабича дороже 100 А-БИЧЕЙ, чтобы открыть кнопку «Забрать»
+            Выбей Бабича дороже 100 А-БИЧЕЙ, чтобы открыть приз
           </div>
           <button class="btn-mini" style="padding:11px;font-size:12px;" id="btn-claim-24h" onclick="claim24hHighDrop()">
             ЗАБРАТЬ 20 А-БИЧИ
@@ -998,7 +912,7 @@
 
         <div class="card">
           <div class="card-head">
-            <span class="card-title">Квест: 40 улучшений колеса</span>
+            <span class="card-title">За каждые 40 улучшений колеса</span>
             <span class="badge">+14 А-БИЧИ</span>
           </div>
           <div style="font-size:13px;color:var(--muted);" id="boost40-progress-txt">
@@ -1008,7 +922,7 @@
             <div class="progress-fill" id="boost40-bar"></div>
           </div>
           <button class="btn-mini" style="padding:11px;font-size:12px;" id="btn-claim-40b" onclick="claim40Boosts()">
-            ЗАБРАТЬ НАГРАДУ
+            ЗАБРАТЬ 14 А-БИЧИ
           </button>
         </div>
       </section>
@@ -1047,10 +961,10 @@
 
     const RAW_BABICH_LIST = [
       { id: 'b_1', name: 'Бабич', val: 5, img: 'babich.jpg' },
-      { id: 'b_23', name: 'Киррил', val: 5, img: 'kiril.jpg' },
+      { id: 'b_23', name: 'Киррил', val: 5, img: 'kirril.jpg' },
       { id: 'b_2', name: 'ОмгБабич', val: 8, img: 'omg_babich.jpg' },
-      { id: 'b_3', name: 'Бибич', val: 12, img: 'babiich.jpg' },
-      { id: 'b_25', name: 'бубич', val: 13, img: 'babush.jpg' },
+      { id: 'b_3', name: 'Бибич', val: 12, img: 'bibich.jpg' },
+      { id: 'b_25', name: 'бубич', val: 13, img: 'bubich.jpg' },
       { id: 'b_4', name: 'Бибач', val: 16, img: 'bibach.jpg' },
       { id: 'b_5', name: 'Квадрат', val: 19, img: 'kvadrat.jpg' },
       { id: 'b_6', name: 'Квадрачлен', val: 20, img: 'kvadrachlen.jpg' },
@@ -1062,26 +976,26 @@
       { id: 'b_12', name: 'О.К.С.Бабич', val: 40, img: 'oks_babich.jpg' },
       { id: 'b_13', name: 'БАРАБАН', val: 42, img: 'baraban.jpg' },
       { id: 'b_14', name: 'БАБИЧ БАРАБАН', val: 46, img: 'babich_baraban.jpg' },
-      { id: 'b_33', name: 'Гроза Бабичей', val: 46, img: 'laserbabich.jpg' },
+      { id: 'b_33', name: 'Гроза Бабичей', val: 46, img: 'groza_babichey.jpg' },
       { id: 'b_15', name: 'ГРИНЕВИЧ', val: 50, img: 'grinevich.jpg' },
       { id: 'b_26', name: 'бубичненко', val: 50, img: 'bubichnenko.jpg' },
-      { id: 'b_16', name: 'АЛЛАХ БАБИЧ', val: 52, img: 'HallahBabich.jpg' },
+      { id: 'b_16', name: 'АЛЛАХ БАБИЧ', val: 52, img: 'allah_babich.jpg' },
       { id: 'b_30', name: 'Бабич тянка', val: 54, img: 'babich_tyanka.jpg' },
       { id: 'b_17', name: 'Грибабич', val: 60, img: 'gribabich.jpg' },
       { id: 'b_24', name: 'Киррил БАБИЧ', val: 64, img: 'kirril_babich.jpg', theme: 'blue' },
       { id: 'b_38', name: 'Грибатрон', val: 64, img: 'gribatron.jpg' },
       { id: 'b_18', name: '67Бабич', val: 67, img: '67babich.jpg' },
       { id: 'b_29', name: 'Бабич хуесос', val: 67, img: 'babich_huesos.jpg' },
-      { id: 'b_35', name: 'Бабучка', val: 74, img: 'babkababich.jpg' },
+      { id: 'b_35', name: 'Бабучка', val: 74, img: 'babuchka.jpg' },
       { id: 'b_19', name: 'квадриллион', val: 75, img: 'kvadrillion.jpg' },
-      { id: 'b_20', name: 'ультрабабич', val: 80, img: 'light_babich.jpg' },
+      { id: 'b_20', name: 'ультрабабич', val: 80, img: 'ultra_babich.jpg' },
       { id: 'b_36', name: 'Бабник', val: 84, img: 'babnik.jpg' },
       { id: 'b_21', name: 'Сиксиллион', val: 90, img: 'siksillion.jpg' },
       { id: 'b_28', name: 'Фуфел Бабич', val: 95, img: 'fufel_babich.jpg' },
       { id: 'b_22', name: 'TRUE BABICH', val: 100, img: 'true_babich.jpg' },
       { id: 'b_37', name: 'Грибабник', val: 111, img: 'gribabnik.jpg' },
       { id: 'b_27', name: 'Бабич Прайм', val: 134, img: 'babich_prime.jpg', theme: 'green' },
-      { id: 'b_31', name: 'МГЕ бабич', val: 150, img: 'MGEBABICH.jpg' },
+      { id: 'b_31', name: 'МГЕ бабич', val: 150, img: 'mge_babich.jpg' },
       { id: 'b_39', name: 'ГРАБАТРОН', val: 175, img: 'grabitron.jpg' },
       { id: 'b_34', name: 'Бабичанос', val: 195, img: 'babichanos.jpg' },
       { id: 'b_32', name: 'HIJNIAK', val: 240, img: 'hijniak.jpg', theme: 'red' },
@@ -1095,28 +1009,26 @@
     const MAX_CHANCE = 79;
     const MAX_BOOST_CLICKS = 6;
     const DAY_MS = 24 * 60 * 60 * 1000;
-    const STORAGE_KEY = 'babich_grader_v14_preset_resets_wish';
+    const STORAGE_KEY = 'babich_grader_v11_abichi_quests_4x';
 
     let state = {
       bal: 0,
       chance: 50,
       activeMult: 2,
-      presetChosen: false,
       boostCoinsUsed: 0,
       turbo4x: false,
       subTab: 'mine',
       inv: [],
       wishIds: ['b_2', 'b_24', 'b_27', 'b_32', 'b_40'],
       selectedInvUid: null,
-      selectedWishId: null,
+      selectedWishId: 'b_2',
       successfulSpins: 0,
       claimed15Batches: 0,
       failedSpins: 0,
       claimed100LossBatches: 0,
       totalWheelBoosts: 0,
       claimed40BoostBatches: 0,
-      highDropQuestState: 'idle',
-      highDropNextAt: 0,
+      highDropReadyAt: 0,
       lastHighDropName: ''
     };
 
@@ -1230,6 +1142,24 @@
       };
     }
 
+    function autoPickWishForCurrentSetup() {
+      const mine = state.inv.find(x => x.uid === state.selectedInvUid) || null;
+      if (!mine) return;
+
+      const mult = Math.max(1.2, 100 / Math.max(5, state.chance));
+      const targetVal = mine.val * mult;
+
+      const higherPool = BABICH_LIST.filter(x => x.id !== mine.id && x.val > mine.val);
+      if (!higherPool.length) return;
+
+      higherPool.sort((a, b) => Math.abs(a.val - targetVal) - Math.abs(b.val - targetVal));
+      const picked = higherPool[0];
+      state.selectedWishId = picked.id;
+      if (!state.wishIds.includes(picked.id)) {
+        state.wishIds.push(picked.id);
+      }
+    }
+
     function animateGreenChanceTo(targetChance) {
       if (chanceAnimFrame) cancelAnimationFrame(chanceAnimFrame);
       const fromChance = visualChance;
@@ -1311,37 +1241,6 @@
       animateGreenChanceTo(eff);
     }
 
-    function toggleHeart(uid, ev) {
-      if (ev) ev.stopPropagation();
-      const item = state.inv.find(x => x.uid === uid);
-      if (!item) return;
-      item.locked = !item.locked;
-      playClickSound();
-      toast(item.locked ? `♥ Защищено: ${item.name}` : `Защита снята: ${item.name}`);
-      renderAll();
-    }
-
-    function deleteAllUnlocked() {
-      if (!state.inv.length) {
-        toast('Инвентарь уже пуст');
-        return;
-      }
-      const kept = state.inv.filter(x => Boolean(x.locked));
-      const deletedCount = state.inv.length - kept.length;
-      if (deletedCount <= 0) {
-        toast('Все Бабичи под сердечком — сними ♥, чтобы удалить');
-        return;
-      }
-      state.inv = kept;
-      if (!state.inv.some(x => x.uid === state.selectedInvUid)) {
-        state.selectedInvUid = null;
-        state.boostCoinsUsed = 0;
-      }
-      playSellSound();
-      toast(`Удалено: ${deletedCount} шт.${kept.length ? ` (сохранено ♥: ${kept.length})` : ''}`);
-      renderAll();
-    }
-
     function renderSubTab() {
       const box = document.getElementById('subtab-content');
       ['mine', 'wish', 'shop'].forEach(k => {
@@ -1356,7 +1255,6 @@
         const sortedInv = [...state.inv].sort((a, b) => a.val - b.val);
         box.innerHTML = `<div class="grid-2">${sortedInv.map(it => `
           <div class="item-card ${getThemeClass(it)}">
-            <button class="heart-btn ${it.locked ? 'active' : ''}" onclick="toggleHeart(${it.uid}, event)" title="Защита">${it.locked ? '♥' : '♡'}</button>
             <div class="pic-box" data-sub-mine="${it.uid}">ФОТО</div>
             <div style="font-size:12px;font-weight:800;">${it.name}</div>
             <div style="font-size:11px;font-weight:800;color:var(--gold);">${it.val} А-БИЧЕЙ</div>
@@ -1392,15 +1290,7 @@
     }
 
     function renderInventoryTab() {
-      const lockedCount = state.inv.filter(x => Boolean(x.locked)).length;
-      document.getElementById('inv-badge').textContent =
-        lockedCount > 0 ? `${state.inv.length} ШТ. (♥ ${lockedCount})` : `${state.inv.length} ШТ.`;
-
-      const delBtn = document.getElementById('btn-delete-all');
-      const unlockedCount = state.inv.length - lockedCount;
-      delBtn.disabled = unlockedCount <= 0;
-      delBtn.textContent = unlockedCount > 0 ? `УДАЛИТЬ ВСЕ (${unlockedCount})` : 'УДАЛИТЬ ВСЕ';
-
+      document.getElementById('inv-badge').textContent = state.inv.length + ' ШТ.';
       const wrap = document.getElementById('inv-sell-list');
       if (!state.inv.length) {
         wrap.innerHTML = '<div style="font-size:13px;color:var(--muted);">Инвентарь пуст. Купи Бабича в Апгрейдере.</div>';
@@ -1409,11 +1299,10 @@
       const sortedInv = [...state.inv].sort((a, b) => a.val - b.val);
       wrap.innerHTML = `<div class="grid-2">${sortedInv.map(it => `
         <div class="item-card ${getThemeClass(it)}">
-          <button class="heart-btn ${it.locked ? 'active' : ''}" onclick="toggleHeart(${it.uid}, event)" title="Защита">${it.locked ? '♥' : '♡'}</button>
           <div class="pic-box" data-inv-sell="${it.uid}">ФОТО</div>
           <div style="font-size:12px;font-weight:800;">${it.name}</div>
           <div style="font-size:11px;font-weight:800;color:var(--gold);">Цена: ${it.val} А-БИЧЕЙ</div>
-          <button class="btn-mini btn-sell" onclick="sellBabich(${it.uid})">${it.locked ? '♥ Защищён' : `Продать (+${it.val})`}</button>
+          <button class="btn-mini btn-sell" onclick="sellBabich(${it.uid})">Продать (+${it.val})</button>
         </div>
       `).join('')}</div>`;
       sortedInv.forEach(it => attachPic(wrap.querySelector(`[data-inv-sell="${it.uid}"]`), it));
@@ -1428,81 +1317,75 @@
     }
 
     function renderRewardsTab() {
-      document.getElementById('hourly-status').textContent = 'Кулдаун отключён для тестов — жми чтобы забрать';
+      document.getElementById('hourly-status').textContent = 'Кулдаун отключён для тестов — жми сколько нужно';
       const btn3h = document.getElementById('btn-claim-3h');
       btn3h.disabled = false;
       btn3h.textContent = 'ЗАБРАТЬ 7 А-БИЧИ';
 
+      // 15 удачных круток -> +10 А-БИЧИ
       const avail15 = Math.floor(state.successfulSpins / 15) - state.claimed15Batches;
       const inCycle15 = state.successfulSpins % 15;
       document.getElementById('wins-progress-txt').textContent =
         `Удачных круток: ${state.successfulSpins} (текущий цикл: ${inCycle15} / 15)`;
       document.getElementById('wins-bar').style.width = ((inCycle15 / 15) * 100) + '%';
       const btn15 = document.getElementById('btn-claim-15w');
-      btn15.classList.toggle('btn-claim-ready', avail15 > 0);
       if (avail15 > 0) {
         btn15.disabled = false;
         btn15.textContent = `ЗАБРАТЬ ${avail15 * 10} А-БИЧИ`;
       } else {
         btn15.disabled = true;
-        btn15.textContent = `НЕ ГОТОВО (${inCycle15}/15)`;
+        btn15.textContent = `НУЖНО ЕЩЁ ${15 - inCycle15} УСПЕХОВ`;
       }
 
+      // 100 проигрышей -> +12 А-БИЧИ
       const avail100 = Math.floor(state.failedSpins / 100) - state.claimed100LossBatches;
       const inCycle100 = state.failedSpins % 100;
       document.getElementById('losses-progress-txt').textContent =
         `Проигрышей: ${state.failedSpins} (текущий цикл: ${inCycle100} / 100)`;
       document.getElementById('losses-bar').style.width = ((inCycle100 / 100) * 100) + '%';
       const btn100 = document.getElementById('btn-claim-100l');
-      btn100.classList.toggle('btn-claim-ready', avail100 > 0);
       if (avail100 > 0) {
         btn100.disabled = false;
         btn100.textContent = `ЗАБРАТЬ ${avail100 * 12} А-БИЧИ`;
       } else {
         btn100.disabled = true;
-        btn100.textContent = `НЕ ГОТОВО (${inCycle100}/100)`;
+        btn100.textContent = `НУЖНО ЕЩЁ ${100 - inCycle100} ПРОИГРЫШЕЙ`;
       }
 
+      // Раз в 24 часа за Бабича > 100 А-БИЧЕЙ -> +20 А-БИЧИ
       const now = Date.now();
       const btn24 = document.getElementById('btn-claim-24h');
       const txt24 = document.getElementById('quest-24h-txt');
-      if (state.highDropQuestState === 'cooldown' && now >= state.highDropNextAt) {
-        state.highDropQuestState = 'idle';
-        state.highDropNextAt = 0;
-        saveState();
-      }
-
-      if (state.highDropQuestState === 'ready') {
-        btn24.disabled = false;
-        btn24.classList.add('btn-claim-ready');
-        btn24.textContent = 'ЗАБРАТЬ 20 А-БИЧИ';
-        txt24.textContent = `Выпал ${state.lastHighDropName || 'топ Бабич (>100)'}! Нажми «Забрать»`;
-      } else if (state.highDropQuestState === 'cooldown') {
-        const rem = Math.max(0, state.highDropNextAt - now);
-        btn24.disabled = true;
-        btn24.classList.remove('btn-claim-ready');
-        btn24.textContent = `КД 24Ч: ${formatRemaining(rem)}`;
-        txt24.textContent = `Награда забрана. Следующий квест через ${formatRemaining(rem)}`;
+      if (state.highDropReadyAt > 0) {
+        const rem = state.highDropReadyAt - now;
+        if (rem <= 0) {
+          btn24.disabled = false;
+          btn24.textContent = 'ЗАБРАТЬ 20 А-БИЧИ';
+          txt24.textContent = `Выпал ${state.lastHighDropName || 'топ Бабич (>100)'} — приз готов!`;
+        } else {
+          btn24.disabled = true;
+          btn24.textContent = `КД 24Ч: ${formatRemaining(rem)}`;
+          txt24.textContent = `Квест выполнен (${state.lastHighDropName || '>100 А-БИЧЕЙ'}). Следующий через ${formatRemaining(rem)}`;
+        }
       } else {
         btn24.disabled = true;
-        btn24.classList.remove('btn-claim-ready');
-        btn24.textContent = 'ЗАБРАТЬ 20 А-БИЧИ';
-        txt24.textContent = 'Выбей Бабича дороже 100 А-БИЧЕЙ, чтобы открыть кнопку «Забрать»';
+        btn24.textContent = 'НУЖЕН ДРОП > 100 А-БИЧЕЙ';
+        txt24.textContent = 'Выбей Бабича дороже 100 А-БИЧЕЙ, чтобы открыть приз';
       }
 
+      // 40 улучшений колеса -> +14 А-БИЧИ
       const avail40 = Math.floor(state.totalWheelBoosts / 40) - state.claimed40BoostBatches;
       const inCycle40 = state.totalWheelBoosts % 40;
       document.getElementById('boost40-progress-txt').textContent =
         `Улучшений колеса: ${state.totalWheelBoosts} (текущий цикл: ${inCycle40} / 40)`;
       document.getElementById('boost40-bar').style.width = ((inCycle40 / 40) * 100) + '%';
       const btn40 = document.getElementById('btn-claim-40b');
-      btn40.classList.toggle('btn-claim-ready', avail40 > 0);
       if (avail40 > 0) {
         btn40.disabled = false;
         btn40.textContent = `ЗАБРАТЬ ${avail40 * 14} А-БИЧИ`;
       } else {
         btn40.disabled = true;
-        btn40.textContent = `НЕ ГОТОВО (${inCycle40}/40)`;
+        btn40.textContent = `НУЖНО ЕЩЁ ${40 - inCycle40} УЛУЧШЕНИЙ`;
       }
     }
 
@@ -1522,23 +1405,12 @@
         attachPic(document.getElementById('slot-mine-pic'), null);
       }
 
-      const wish = BABICH_LIST.find(x => x.id === state.selectedWishId) || null;
+      const wish = BABICH_LIST.find(x => x.id === state.selectedWishId) || BABICH_LIST[1];
       const wishCard = document.getElementById('slot-wish-card');
-      const needPickPrompt = Boolean(mine && !wish);
-
-      wishCard.classList.toggle('slot-pick-prompt', needPickPrompt);
-
-      if (wish) {
-        applyThemeClass(wishCard, wish);
-        document.getElementById('slot-wish-title').textContent = wish.name;
-        document.getElementById('slot-wish-val').textContent = wish.val + ' А-БИЧЕЙ';
-        attachPic(document.getElementById('slot-wish-pic'), wish);
-      } else {
-        applyThemeClass(wishCard, null);
-        document.getElementById('slot-wish-title').textContent = 'Выберите кого хотите';
-        document.getElementById('slot-wish-val').textContent = 'Нажми сюда';
-        attachPic(document.getElementById('slot-wish-pic'), null);
-      }
+      applyThemeClass(wishCard, wish);
+      document.getElementById('slot-wish-title').textContent = wish.name;
+      document.getElementById('slot-wish-val').textContent = wish.val + ' А-БИЧЕЙ';
+      attachPic(document.getElementById('slot-wish-pic'), wish);
 
       syncChanceDisplay();
       renderSubTab();
@@ -1563,17 +1435,12 @@
       saveState();
     }
 
-    function resetWishOnPresetChange() {
-      state.selectedWishId = null;
-      state.boostCoinsUsed = 0;
-    }
-
     function setChance(pct, btn) {
       playClickSound();
       state.chance = Math.min(MAX_CHANCE, pct);
-      state.presetChosen = true;
+      state.boostCoinsUsed = 0;
       state.activeMult = Number((100 / Math.max(5, state.chance)).toFixed(1));
-      resetWishOnPresetChange();
+      autoPickWishForCurrentSetup();
       document.querySelectorAll('.preset').forEach(b => b.classList.remove('active'));
       if (btn) btn.classList.add('active');
       renderAll();
@@ -1582,9 +1449,9 @@
     function setMult(mult, btn) {
       playClickSound();
       state.activeMult = mult;
-      state.presetChosen = true;
       state.chance = Math.max(5, Math.min(MAX_CHANCE, Math.round(100 / mult)));
-      resetWishOnPresetChange();
+      state.boostCoinsUsed = 0;
+      autoPickWishForCurrentSetup();
       document.querySelectorAll('.preset').forEach(b => b.classList.remove('active'));
       if (btn) btn.classList.add('active');
       renderAll();
@@ -1605,12 +1472,12 @@
         name: item.name,
         val: item.val,
         img: item.img,
-        theme: item.theme,
-        locked: false
+        theme: item.theme
       };
       state.inv.push(owned);
       state.selectedInvUid = owned.uid;
       state.boostCoinsUsed = 0;
+      autoPickWishForCurrentSetup();
       playBuySound();
       toast('Куплено: ' + item.name + ' -> добавлено в МОЕ');
       renderAll();
@@ -1620,15 +1487,10 @@
       const idx = state.inv.findIndex(x => x.uid === uid);
       if (idx === -1) return;
       const item = state.inv[idx];
-      if (item.locked) {
-        playLoseSound();
-        toast('♥ Сними сердечко, чтобы продать');
-        return;
-      }
       state.bal += item.val;
       state.inv.splice(idx, 1);
       if (state.selectedInvUid === uid) {
-        state.selectedInvUid = null;
+        state.selectedInvUid = state.inv[0] ? state.inv[0].uid : null;
         state.boostCoinsUsed = 0;
       }
       playSellSound();
@@ -1640,6 +1502,7 @@
       playClickSound();
       state.selectedInvUid = uid;
       state.boostCoinsUsed = 0;
+      autoPickWishForCurrentSetup();
       toast('Выбрано в МОЕ');
       renderAll();
     }
@@ -1722,63 +1585,59 @@
     function claim3h() {
       state.bal += 7;
       playWinSound();
-      toast('Забрано +7 А-БИЧИ!');
+      toast('Получено +7 А-БИЧИ (тест без КД)');
       renderAll();
     }
 
     function claim15Wins() {
       const available = Math.floor(state.successfulSpins / 15) - state.claimed15Batches;
       if (available <= 0) {
-        toast('Квест за 15 успехов ещё не выполнен');
+        toast('Пока нет доступной награды за 15 успехов');
         return;
       }
       state.claimed15Batches += available;
       state.bal += available * 10;
       playWinSound();
-      spawnSparkles();
-      toast('Награда забрана: +' + (available * 10) + ' А-БИЧИ!');
+      toast('Получено +' + (available * 10) + ' А-БИЧИ');
       renderAll();
     }
 
     function claim100Losses() {
       const available = Math.floor(state.failedSpins / 100) - state.claimed100LossBatches;
       if (available <= 0) {
-        toast('Квест за 100 проигрышей ещё не выполнен');
+        toast('Пока нет доступной награды за 100 проигрышей');
         return;
       }
       state.claimed100LossBatches += available;
       state.bal += available * 12;
       playWinSound();
-      spawnSparkles();
-      toast('Награда забрана: +' + (available * 12) + ' А-БИЧИ!');
+      toast('Получено +' + (available * 12) + ' А-БИЧИ');
       renderAll();
     }
 
     function claim24hHighDrop() {
-      if (state.highDropQuestState !== 'ready') {
-        toast('Награда за дроп >100 А-БИЧЕЙ пока недоступна');
+      if (!state.highDropReadyAt || Date.now() < state.highDropReadyAt) {
+        toast('Приз ещё недоступен');
         return;
       }
       state.bal += 20;
-      state.highDropQuestState = 'cooldown';
-      state.highDropNextAt = Date.now() + DAY_MS;
+      state.highDropReadyAt = Date.now() + DAY_MS;
       playWinSound();
       spawnSparkles();
-      toast('Награда за квест забрана: +20 А-БИЧИ!');
+      toast('Квест выполнен: +20 А-БИЧИ!');
       renderAll();
     }
 
     function claim40Boosts() {
       const available = Math.floor(state.totalWheelBoosts / 40) - state.claimed40BoostBatches;
       if (available <= 0) {
-        toast('Квест за 40 улучшений ещё не выполнен');
+        toast('Пока нет доступной награды за 40 улучшений');
         return;
       }
       state.claimed40BoostBatches += available;
       state.bal += available * 14;
       playWinSound();
-      spawnSparkles();
-      toast('Награда забрана: +' + (available * 14) + ' А-БИЧИ!');
+      toast('Получено +' + (available * 14) + ' А-БИЧИ');
       renderAll();
     }
 
@@ -1806,7 +1665,7 @@
       } else {
         sheet.innerHTML = `
           <div class="card-head">
-            <span class="card-title">ЖЕЛАЕМОЕ — выбери кого хочешь</span>
+            <span class="card-title">ЖЕЛАЕМОЕ (от дешёвых к топам)</span>
             <span class="badge" style="cursor:pointer;" onclick="document.getElementById('modal').classList.remove('open')">Закрыть</span>
           </div>
           <div class="grid-2">${BABICH_LIST.map(it => `
@@ -1871,14 +1730,8 @@
         return;
       }
 
-      const wish = BABICH_LIST.find(x => x.id === state.selectedWishId);
-      if (!wish) {
-        playLoseSound();
-        toast('Нажми на «ЖЕЛАЕМОЕ» и выбери кого хочешь');
-        return;
-      }
-
       const mine = state.inv[mineIdx];
+      const wish = BABICH_LIST.find(x => x.id === state.selectedWishId) || BABICH_LIST[1];
       const effChance = computeEffectiveChance();
 
       isSpinning = true;
@@ -1907,24 +1760,24 @@
             name: wish.name,
             val: wish.val,
             img: wish.img,
-            theme: wish.theme,
-            locked: Boolean(mine.locked)
+            theme: wish.theme
           };
           state.inv[mineIdx] = upgraded;
           state.selectedInvUid = upgraded.uid;
           state.successfulSpins += 1;
 
-          if (upgraded.val > 100 && state.highDropQuestState === 'idle') {
-            state.highDropQuestState = 'ready';
+          if (upgraded.val > 100 && !state.highDropReadyAt) {
+            state.highDropReadyAt = Date.now();
             state.lastHighDropName = upgraded.name;
           }
 
+          autoPickWishForCurrentSetup();
           playWinSound();
           spawnSparkles();
           toast('Успех! Теперь в МОЕ: ' + wish.name);
         } else {
           state.inv.splice(mineIdx, 1);
-          state.selectedInvUid = null;
+          state.selectedInvUid = state.inv[0] ? state.inv[0].uid : null;
           state.failedSpins += 1;
           playLoseSound();
           toast('Неудача! ' + mine.name + ' сгорел');
