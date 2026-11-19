@@ -12,7 +12,7 @@
       --bg-2: #151c29;
       --bg-3: #1d2738;
       --line: rgba(255, 255, 255, 0.12);
-      --line-hi: rgba(226, 232, 240, 0.42);
+      --line-hi: rgba(226, 232, 40, 0.42);
       --txt: #f8fafc;
       --muted: #cbd5e1;
       --gold: #facc15;
@@ -44,6 +44,10 @@
       overflow-x: hidden;
     }
 
+    body.modal-open {
+      overflow: hidden;
+    }
+
     @keyframes greyGradFlow {
       0% { background-position: 0% 15%; }
       50% { background-position: 100% 65%; }
@@ -70,10 +74,11 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 13px 16px;
+      padding: 12px 15px;
       background: rgba(11, 15, 22, 0.95);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--line);
+      gap: 10px;
     }
 
     .brand {
@@ -85,6 +90,7 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       animation: brandSweep 5.5s linear infinite;
+      white-space: nowrap;
     }
 
     @keyframes brandSweep {
@@ -92,14 +98,62 @@
     }
 
     .wallet-coins {
-      background: linear-gradient(145deg, rgba(32, 40, 56, 0.96), rgba(17, 21, 31, 0.96));
-      border: 1px solid rgba(250, 204, 21, 0.42);
-      border-radius: 11px;
-      padding: 6px 12px;
-      font-size: 12px;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 13px;
+      border-radius: 13px;
+      background:
+        linear-gradient(145deg, rgba(250, 204, 21, 0.22), rgba(30, 38, 54, 0.95) 42%, rgba(14, 18, 27, 0.98) 100%);
+      border: 1px solid rgba(250, 204, 21, 0.65);
+      box-shadow:
+        0 0 18px rgba(250, 204, 21, 0.2),
+        0 6px 16px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(254, 240, 138, 0.35);
+      overflow: hidden;
+    }
+
+    .wallet-coins::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -80%;
+      width: 55%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(254, 240, 138, 0.28), transparent);
+      transform: skewX(-22deg);
+      animation: walletShine 4.2s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes walletShine {
+      0%, 65% { left: -80%; }
+      100% { left: 145%; }
+    }
+
+    .wallet-coin-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #fef9c3, #facc15 65%, #ca8a04 100%);
+      box-shadow: 0 0 8px rgba(250, 204, 21, 0.85);
+      flex-shrink: 0;
+    }
+
+    .wallet-label {
+      font-size: 10px;
       font-weight: 900;
-      color: var(--gold);
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      letter-spacing: 0.7px;
+      color: #fde68a;
+      text-transform: uppercase;
+    }
+
+    .wallet-num {
+      font-size: 13px;
+      font-weight: 950;
+      color: #fef08a;
+      text-shadow: 0 0 10px rgba(250, 204, 21, 0.45);
     }
 
     .main {
@@ -134,6 +188,20 @@
       box-shadow: 0 0 26px rgba(250, 204, 21, 0.25), inset 0 1px 0 rgba(254, 240, 138, 0.24);
     }
 
+    .card-welcome-green {
+      background: linear-gradient(160deg, rgba(20, 83, 45, 0.88), rgba(8, 34, 19, 0.98));
+      border: 1px solid rgba(74, 222, 128, 0.82);
+      box-shadow: 0 0 28px rgba(34, 197, 94, 0.28), inset 0 1px 0 rgba(187, 247, 208, 0.28);
+    }
+
+    .btn-welcome-green {
+      background: linear-gradient(180deg, #4ade80, #16a34a);
+      border: 1px solid rgba(187, 247, 208, 0.9);
+      color: #041309;
+      font-weight: 950;
+      box-shadow: 0 0 18px rgba(74, 222, 128, 0.45);
+    }
+
     .card-head {
       display: flex;
       align-items: center;
@@ -165,6 +233,12 @@
       background: rgba(250, 204, 21, 0.18);
       border-color: rgba(250, 204, 21, 0.65);
       color: #fde047;
+    }
+
+    .badge-green {
+      background: rgba(74, 222, 128, 0.2);
+      border-color: rgba(74, 222, 128, 0.72);
+      color: #bbf7d0;
     }
 
     .inv-toolbar {
@@ -207,8 +281,8 @@
 
     .wheel-stage {
       position: relative;
-      width: 228px;
-      height: 228px;
+      width: 232px;
+      height: 232px;
       margin: 4px auto 14px;
       display: grid;
       place-items: center;
@@ -260,7 +334,7 @@
 
     .arrow-rotator {
       position: absolute;
-      inset: 5px;
+      inset: 4px;
       border-radius: 50%;
       z-index: 6;
       pointer-events: none;
@@ -269,12 +343,12 @@
 
     .arrow-pointer {
       position: absolute;
-      top: -9px;
+      top: -12px;
       left: 50%;
       transform: translateX(-50%);
-      width: 28px;
-      height: 32px;
-      filter: drop-shadow(0 0 10px rgba(74, 222, 128, 0.85)) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.9));
+      width: 32px;
+      height: 38px;
+      filter: drop-shadow(0 0 12px rgba(74, 222, 128, 0.95)) drop-shadow(0 0 4px rgba(255, 255, 255, 0.9)) drop-shadow(0 5px 10px rgba(0, 0, 0, 0.95));
     }
 
     .arrow-pointer svg {
@@ -286,17 +360,17 @@
     .wheel-hub {
       position: relative;
       z-index: 4;
-      width: 148px;
-      height: 148px;
+      width: 152px;
+      height: 152px;
       border-radius: 50%;
       overflow: hidden;
       background: linear-gradient(160deg, #1d2536, #0b0e14);
-      border: 1.5px solid var(--line-hi);
+      border: 2px solid rgba(255, 255, 255, 0.45);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      box-shadow: inset 0 4px 18px rgba(0, 0, 0, 0.9), 0 0 24px rgba(0, 0, 0, 0.55);
+      box-shadow: inset 0 0 22px rgba(0, 0, 0, 0.85), 0 0 26px rgba(0, 0, 0, 0.65);
     }
 
     .wheel-hub-bg {
@@ -307,8 +381,8 @@
       border-radius: 50%;
       object-fit: cover;
       object-position: center 14%;
-      transform: scale(1.28);
-      opacity: 0.24;
+      transform: scale(1.26);
+      opacity: 0.56;
       pointer-events: none;
       z-index: 0;
     }
@@ -317,7 +391,7 @@
       position: absolute;
       inset: 0;
       border-radius: 50%;
-      background: radial-gradient(circle at center, rgba(11, 14, 20, 0.48) 0%, rgba(11, 14, 20, 0.84) 100%);
+      background: radial-gradient(circle at center, rgba(6, 9, 15, 0.16) 28%, rgba(6, 9, 15, 0.72) 100%);
       pointer-events: none;
       z-index: 1;
     }
@@ -325,22 +399,28 @@
     .chance-value {
       position: relative;
       z-index: 2;
-      font-size: 27px;
+      font-size: 28px;
       font-weight: 950;
+      padding: 2px 10px;
+      border-radius: 12px;
+      background: rgba(6, 10, 16, 0.58);
       color: var(--green-soft);
-      text-shadow: 0 0 18px rgba(74, 222, 128, 0.65), 0 2px 8px rgba(0, 0, 0, 0.95);
+      text-shadow: 0 0 18px rgba(74, 222, 128, 0.8), 0 2px 8px rgba(0, 0, 0, 1);
     }
 
     .chance-label {
       position: relative;
       z-index: 2;
       font-size: 10px;
-      font-weight: 900;
-      letter-spacing: 1.3px;
+      font-weight: 950;
+      letter-spacing: 1.4px;
       text-transform: uppercase;
-      color: #e2e8f0;
-      margin-top: 2px;
-      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.95);
+      margin-top: 3px;
+      padding: 1px 7px;
+      border-radius: 7px;
+      background: rgba(6, 10, 16, 0.65);
+      color: #f8fafc;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 1);
     }
 
     .wheel-turbo-btn {
@@ -676,6 +756,14 @@
       pointer-events: none;
     }
 
+    .babich-tile-bg.square-fit {
+      aspect-ratio: 1 / 1;
+      height: auto;
+      top: 50%;
+      transform: translateY(-50%);
+      object-position: center;
+    }
+
     .babich-tile-overlay {
       position: relative;
       z-index: 1;
@@ -828,6 +916,7 @@
     }
 
     .nav-btn {
+      position: relative;
       padding: 10px 6px;
       border-radius: 12px;
       border: 1px solid rgba(148, 163, 184, 0.28);
@@ -842,6 +931,30 @@
 
     .nav-btn:active {
       transform: scale(0.96);
+    }
+
+    .rewards-alert-dot {
+      position: absolute;
+      top: -5px;
+      right: -4px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #fca5a5, #ef4444 65%, #b91c1c 100%);
+      border: 1.5px solid #fee2e2;
+      box-shadow: 0 0 10px rgba(239, 68, 68, 0.95), 0 0 4px rgba(255, 255, 255, 0.8);
+      display: none;
+      pointer-events: none;
+      animation: dotPulse 1.5s ease-in-out infinite;
+    }
+
+    .rewards-alert-dot.show {
+      display: block;
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.22); }
     }
 
     .nav-upgrader {
@@ -1018,7 +1131,11 @@
   <div class="app">
     <header class="topbar">
       <div class="brand">BABICH--GRADER</div>
-      <div class="wallet-coins">А-БИЧИ: <span id="bal">0</span></div>
+      <div class="wallet-coins" title="Баланс А-БИЧЕЙ">
+        <span class="wallet-coin-dot"></span>
+        <span class="wallet-label">А-БИЧИ</span>
+        <span class="wallet-num" id="bal">0</span>
+      </div>
     </header>
 
     <main class="main">
@@ -1035,21 +1152,22 @@
             <div class="wheel-green-shimmer" id="green-shimmer"></div>
             <div class="arrow-rotator" id="arrow-rotator">
               <div class="arrow-pointer">
-                <svg viewBox="0 0 32 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg viewBox="0 0 36 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <defs>
-                    <linearGradient id="arrowGrad" x1="16" y1="2" x2="16" y2="34" gradientUnits="userSpaceOnUse">
+                    <linearGradient id="arrowGradV25" x1="18" y1="2" x2="18" y2="39" gradientUnits="userSpaceOnUse">
                       <stop offset="0%" stop-color="#ffffff" />
-                      <stop offset="55%" stop-color="#bbf7d0" />
-                      <stop offset="100%" stop-color="#22c55e" />
+                      <stop offset="48%" stop-color="#86efac" />
+                      <stop offset="100%" stop-color="#16a34a" />
                     </linearGradient>
                   </defs>
-                  <path d="M16 33L3.5 9.5C2.5 7.6 3.9 5.3 6.1 5.3H25.9C28.1 5.3 29.5 7.6 28.5 9.5L16 33Z" fill="url(#arrowGrad)" stroke="#052e16" stroke-width="1.8" stroke-linejoin="round" />
-                  <path d="M16 28.5L7.2 11.5H16V28.5Z" fill="rgba(255,255,255,0.45)" />
+                  <path d="M18 39L3 10.5C2.1 8.8 3.3 6.7 5.2 6.7H30.8C32.7 6.7 33.9 8.8 33 10.5L18 39Z" fill="url(#arrowGradV25)" stroke="#ffffff" stroke-width="1.6" stroke-linejoin="round" />
+                  <path d="M18 34.5L7.5 13.5H18V34.5Z" fill="rgba(255,255,255,0.42)" />
+                  <circle cx="18" cy="11.5" r="2.3" fill="#ffffff" />
                 </svg>
               </div>
             </div>
             <div class="wheel-hub">
-              <img class="wheel-hub-bg" src="babich.jpg" alt="" />
+              <img class="wheel-hub-bg" src="babichAVA.jpg" alt="" />
               <div class="wheel-hub-scrim"></div>
               <div class="chance-value" id="chance-value">50%</div>
               <div class="chance-label">Шанс</div>
@@ -1075,21 +1193,21 @@
               <img class="slot-bg-img" id="slot-wish-bg" style="display:none;" alt="" />
               <button class="slot-clear-btn" id="clear-wish-btn" style="display:none;" onclick="clearWishSlot(event)" title="Убрать цель">✕</button>
               <div class="slot-scrim">
-                <div class="slot-top">ЖЕЛАЕМОЕ</div>
+                <div class="slot-top" id="slot-wish-top">ЦЕЛЬ</div>
                 <div class="slot-title" id="slot-wish-title">Не выбрано</div>
                 <div class="slot-coins" id="slot-wish-val">0 А-БИЧЕЙ</div>
-                <div class="slot-hint-sub" id="slot-wish-hint">Вкладка ЖЕЛАЕМОЕ</div>
+                <div class="slot-hint-sub" id="slot-wish-hint">Вкладка ЦЕЛЬ</div>
               </div>
             </div>
           </div>
 
           <div class="presets">
-            <button class="preset" id="preset-m2" onclick="setMult(2, this)">x2</button>
-            <button class="preset" id="preset-m5" onclick="setMult(5, this)">x5</button>
-            <button class="preset" id="preset-m10" onclick="setMult(10, this)">x10</button>
-            <button class="preset" id="preset-c30" onclick="setChance(30, this)">30%</button>
-            <button class="preset" id="preset-c50" onclick="setChance(50, this)">50%</button>
-            <button class="preset" id="preset-c75" onclick="setChance(75, this)">75%</button>
+            <button class="preset" id="preset-m2" onclick="setMultPreset(2, this)">x2</button>
+            <button class="preset" id="preset-m5" onclick="setMultPreset(5, this)">x5</button>
+            <button class="preset" id="preset-m10" onclick="setMultPreset(10, this)">x10</button>
+            <button class="preset" id="preset-c30" onclick="setChancePreset(30, this)">30%</button>
+            <button class="preset" id="preset-c50" onclick="setChancePreset(50, this)">50%</button>
+            <button class="preset" id="preset-c75" onclick="setChancePreset(75, this)">75%</button>
           </div>
 
           <div class="action-row">
@@ -1101,7 +1219,7 @@
         <div class="card">
           <div class="subtabs">
             <button class="subtab active" id="sub-mine" onclick="setSubTab('mine')">МОЕ</button>
-            <button class="subtab" id="sub-wish" onclick="setSubTab('wish')">ЖЕЛАЕМОЕ</button>
+            <button class="subtab" id="sub-wish" onclick="setSubTab('wish')">ЦЕЛЬ</button>
             <button class="subtab" id="sub-shop" onclick="setSubTab('shop')">МАГАЗИН</button>
           </div>
           <div id="subtab-content"></div>
@@ -1124,14 +1242,27 @@
       <section id="pane-rewards" class="pane">
         <div class="card card-yellow-glow">
           <div class="card-head">
-            <span class="card-title" style="color:#fef08a;">Бонус за 3 часа (светится для теста)</span>
+            <span class="card-title" style="color:#fef08a;">Бонус за 9 часов</span>
             <span class="badge badge-yellow">+7 А-БИЧИ</span>
           </div>
-          <div style="font-size:13px;color:#fde68a;margin-bottom:12px;" id="hourly-status">
-            Кулдаун отключён для тестов — жми чтобы забрать
+          <div style="font-size:13px;color:#fde68a;margin-bottom:12px;" id="nine-hour-status">
+            Доступно! Жми чтобы забрать 7 А-БИЧИ
           </div>
-          <button class="btn-mini btn-yellow-claim" style="padding:11px;font-size:12px;" id="btn-claim-3h" onclick="claim3h()">
+          <button class="btn-mini btn-yellow-claim" style="padding:11px;font-size:12px;" id="btn-claim-9h" onclick="claim9h()">
             ЗАБРАТЬ 7 А-БИЧИ
+          </button>
+        </div>
+
+        <div class="card card-welcome-green" id="welcome-reward-card">
+          <div class="card-head">
+            <span class="card-title" style="color:#bbf7d0;">Награда за вход в бота</span>
+            <span class="badge badge-green">+5 А-БИЧИ</span>
+          </div>
+          <div style="font-size:13px;color:#dcfce7;margin-bottom:12px;">
+            Одноразовая бесплатная награда за первый заход — после получения пропадёт навсегда!
+          </div>
+          <button class="btn-mini btn-welcome-green" style="padding:11px;font-size:12px;" id="btn-claim-welcome" onclick="claimWelcome()">
+            ЗАБРАТЬ 5 А-БИЧИ
           </button>
         </div>
 
@@ -1201,7 +1332,10 @@
     <nav class="bottom-nav">
       <button class="nav-btn nav-upgrader active" onclick="goMainTab('upgrader', this)">АПГРЕЙДЕР</button>
       <button class="nav-btn nav-inventory" onclick="goMainTab('inventory', this)">ИНВЕНТАРЬ</button>
-      <button class="nav-btn nav-rewards" onclick="goMainTab('rewards', this)">НАГРАДЫ</button>
+      <button class="nav-btn nav-rewards" id="nav-btn-rewards" onclick="goMainTab('rewards', this)">
+        НАГРАДЫ
+        <span class="rewards-alert-dot" id="rewards-alert-dot"></span>
+      </button>
     </nav>
   </div>
 
@@ -1218,6 +1352,17 @@
       tg.setBackgroundColor('#06080c');
     }
 
+    function getAccountStorageKey() {
+      const tgUser = tg?.initDataUnsafe?.user;
+      if (tgUser && tgUser.id) {
+        return `babich_grader_v25_acc_tg_${tgUser.id}`;
+      }
+      return 'babich_grader_v25_acc_guest';
+    }
+
+    const ACCOUNT_KEY = getAccountStorageKey();
+    const BACKUP_KEY = 'babich_grader_v25_backup_latest';
+
     function resolveTheme(name, val, customTheme) {
       if (customTheme) return customTheme;
       if (name === 'AHLELELE BABICHNAS' || name === 'граберчик') return 'burgundy';
@@ -1229,7 +1374,6 @@
       return 'grey';
     }
 
-    // Точные имена файлов из папки + повторы + КИРИЛЛ (6) + Квадратлон (GRABABICH.jpg) + бабичниииииик
     const RAW_BABICH_LIST = [
       { id: 'b_1', name: 'Бабич', val: 5, img: 'babich.jpg' },
       { id: 'b_23', name: 'КИРИЛЛ', val: 6, img: 'kiril.jpg' },
@@ -1237,7 +1381,7 @@
       { id: 'b_3', name: 'Бибич', val: 12, img: 'babiich.jpg' },
       { id: 'b_25', name: 'бубич', val: 13, img: 'babich6.jpg' },
       { id: 'b_4', name: 'Бибач', val: 16, img: 'babich8.jpg' },
-      { id: 'b_5', name: 'Квадрат', val: 19, img: 'babush.jpg' },
+      { id: 'b_5', name: 'Квадрат', val: 19, img: 'KVADRAT.jpg', square: true },
       { id: 'b_6', name: 'Квадрачлен', val: 20, img: 'babich6.jpg' },
       { id: 'b_7', name: 'Квадратлон', val: 24, img: 'GRABABICH.jpg' },
       { id: 'b_8', name: 'Бабичтрон', val: 26, img: 'INFBabich.jpg' },
@@ -1282,24 +1426,18 @@
       .map(it => ({ ...it, theme: resolveTheme(it.name, it.val, it.theme) }))
       .sort((a, b) => a.val - b.val);
 
-    const DEFAULT_WISH_IDS = [
-      'b_2', 'b_3', 'b_25', 'b_4', 'b_11', 'b_16', 'b_24', 'b_29',
-      'b_19', 'b_22', 'b_44', 'b_27',
-      'b_45', 'b_34', 'b_32', 'b_42', 'b_43', 'b_40'
-    ];
+    const DEFAULT_WISH_IDS = BABICH_LIST.map(x => x.id);
 
-    // Максимум 1.5x по цене (например 8 -> макс 12, шанс 8/12 = 66.7%, в пределах 75%)
-    const MAX_PRICE_MULT = 1.5;
     const MAX_CHANCE = 75;
     const MAX_BOOST_CLICKS = 6;
+    const NINE_HOURS_MS = 9 * 60 * 60 * 1000;
     const DAY_MS = 24 * 60 * 60 * 1000;
-    const STORAGE_KEY = 'babich_grader_v22_kirill6_quadratlon_15x_cap';
 
     let state = {
       bal: 0,
       baseChance: 50,
       activeMult: 2,
-      presetMode: false,
+      selectionMode: 'none',
       presetRotateIdx: 0,
       boostCoinsUsed: 0,
       turbo4x: false,
@@ -1308,6 +1446,8 @@
       wishIds: [...DEFAULT_WISH_IDS],
       selectedInvUid: null,
       selectedWishId: null,
+      welcomeClaimed: false,
+      nineHourNextAt: 0,
       successfulSpins: 0,
       claimed15Batches: 0,
       failedSpins: 0,
@@ -1319,13 +1459,20 @@
       lastHighDropName: ''
     };
 
-    try {
-      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
-      if (saved && typeof saved === 'object') {
-        state = { ...state, ...saved };
-        state.wishIds = Array.from(new Set([...DEFAULT_WISH_IDS, ...(saved.wishIds || [])]));
-      }
-    } catch (_) {}
+    function loadAccountState() {
+      try {
+        const rawAcc = localStorage.getItem(ACCOUNT_KEY) || localStorage.getItem(BACKUP_KEY);
+        if (rawAcc) {
+          const parsed = JSON.parse(rawAcc);
+          if (parsed && typeof parsed === 'object') {
+            state = { ...state, ...parsed };
+            state.wishIds = Array.from(new Set([...DEFAULT_WISH_IDS, ...(parsed.wishIds || [])]));
+          }
+        }
+      } catch (_) {}
+    }
+
+    loadAccountState();
 
     let isSpinning = false;
     let arrowAngle = 0;
@@ -1333,14 +1480,31 @@
     let chanceAnimFrame = null;
     let audioCtx = null;
 
-    function getMaxAllowedWishVal(mine) {
-      if (!mine) return Infinity;
-      return Math.floor(mine.val * MAX_PRICE_MULT);
+    function getAllowedWishRange(mine) {
+      if (!mine) return { minVal: 0, maxVal: Infinity };
+      const base = mine.val;
+
+      if (state.selectionMode === 'chance') {
+        if (state.baseChance >= 75) return { minVal: base * 1.15, maxVal: base * 1.65 };
+        if (state.baseChance >= 50) return { minVal: base * 1.65, maxVal: base * 2.5 };
+        if (state.baseChance >= 30) return { minVal: base * 2.5, maxVal: base * 3.8 };
+        return { minVal: base * 1.5, maxVal: base * 3.0 };
+      }
+
+      if (state.selectionMode === 'mult') {
+        if (state.activeMult <= 2) return { minVal: base * 1.6, maxVal: base * 2.7 };
+        if (state.activeMult <= 5) return { minVal: base * 3.8, maxVal: base * 6.0 };
+        if (state.activeMult <= 10) return { minVal: base * 8.0, maxVal: base * 13.0 };
+        return { minVal: base * 8.0, maxVal: base * 13.0 };
+      }
+
+      return { minVal: 1, maxVal: base * 2.7 };
     }
 
     function isWishAllowedForMine(mine, wish) {
-      if (!mine || !wish) return false;
-      return wish.val <= getMaxAllowedWishVal(mine);
+      if (!mine || !wish) return true;
+      const { minVal, maxVal } = getAllowedWishRange(mine);
+      return wish.val >= minVal && wish.val <= maxVal;
     }
 
     function getThemeClass(item) {
@@ -1362,7 +1526,11 @@
     }
 
     function saveState() {
-      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (_) {}
+      try {
+        const serialized = JSON.stringify(state);
+        localStorage.setItem(ACCOUNT_KEY, serialized);
+        localStorage.setItem(BACKUP_KEY, serialized);
+      } catch (_) {}
     }
 
     function toast(msg) {
@@ -1435,8 +1603,10 @@
       if (!item) {
         imgEl.style.display = 'none';
         imgEl.removeAttribute('src');
+        imgEl.classList.remove('square-fit');
         return;
       }
+      imgEl.classList.toggle('square-fit', Boolean(item.square));
       imgEl.style.display = 'block';
       imgEl.dataset.fb = '';
       imgEl.src = item.img || createFallbackSvg(item);
@@ -1492,23 +1662,28 @@
       }
     }
 
+    function refundActiveBoostCoins() {
+      if (state.boostCoinsUsed > 0) {
+        state.bal += state.boostCoinsUsed;
+        state.totalWheelBoosts = Math.max(0, state.totalWheelBoosts - state.boostCoinsUsed);
+        state.boostCoinsUsed = 0;
+      }
+    }
+
     function enforceMinePresence() {
       if (!state.selectedInvUid) {
-        state.selectedWishId = null;
-        state.boostCoinsUsed = 0;
+        refundActiveBoostCoins();
         return;
       }
       const mine = state.inv.find(x => x.uid === state.selectedInvUid) || null;
       if (!mine) {
         state.selectedInvUid = null;
-        state.selectedWishId = null;
-        state.boostCoinsUsed = 0;
+        refundActiveBoostCoins();
         return;
       }
       const wish = BABICH_LIST.find(x => x.id === state.selectedWishId) || null;
-      if (wish && !isWishAllowedForMine(mine, wish)) {
-        state.selectedWishId = null;
-        state.boostCoinsUsed = 0;
+      if (wish && state.selectionMode !== 'none' && !isWishAllowedForMine(mine, wish)) {
+        state.selectedWishId = pickReplacementWishForPreset(mine);
       }
     }
 
@@ -1521,13 +1696,17 @@
     }
 
     function getBaseChanceForPair(mine, wish) {
-      if (!mine) return 50;
-      if (!wish) return 50;
+      if (state.selectionMode === 'chance') {
+        return Math.min(MAX_CHANCE, Math.max(5, state.baseChance));
+      }
+      if (state.selectionMode === 'mult') {
+        const raw = Math.round(100 / Math.max(1.1, state.activeMult));
+        return Math.min(MAX_CHANCE, Math.max(5, raw));
+      }
+      if (!mine || !wish) return 50;
       if (wish.val <= mine.val) return MAX_CHANCE;
-
-      const ratio = mine.val / wish.val;
-      const ratioPct = Math.round(ratio * 100);
-      return Math.min(MAX_CHANCE, Math.max(1, ratioPct));
+      const ratioPct = Math.round((mine.val / wish.val) * 100);
+      return Math.min(MAX_CHANCE, Math.max(5, ratioPct));
     }
 
     function computeEffectiveChance() {
@@ -1543,55 +1722,63 @@
       return Number.isInteger(val) ? val + '%' : val.toFixed(1) + '%';
     }
 
-    function pickReplacementWishForPreset(mine, targetChance) {
-      if (!mine) return null;
-      const maxVal = getMaxAllowedWishVal(mine);
-      const allowed = BABICH_LIST.filter(x => x.val <= maxVal && x.val > mine.val);
-      const pool = allowed.length ? allowed : BABICH_LIST.filter(x => x.val <= maxVal);
+    function pickReplacementWishForPreset(mine) {
+      const baseVal = mine ? mine.val : 12;
+      let targetMult = 1.4;
+      if (state.selectionMode === 'chance') {
+        if (state.baseChance >= 75) targetMult = 1.35;
+        else if (state.baseChance >= 50) targetMult = 2.0;
+        else targetMult = 3.2;
+      } else if (state.selectionMode === 'mult') {
+        if (state.activeMult <= 2) targetMult = 2.0;
+        else if (state.activeMult <= 5) targetMult = 5.0;
+        else targetMult = 10.0;
+      }
+
+      const targetVal = baseVal * targetMult;
+      const candidates = BABICH_LIST.filter(x => x.val > baseVal);
+      if (!candidates.length) return BABICH_LIST[BABICH_LIST.length - 1]?.id || null;
+
+      const sorted = [...candidates].sort((a, b) => Math.abs(a.val - targetVal) - Math.abs(b.val - targetVal));
+      const pool = sorted.slice(0, Math.min(5, sorted.length));
       if (!pool.length) return null;
 
-      const desiredRatio = Math.max(0.67, targetChance / 100);
-      const targetVal = Math.min(maxVal, mine.val / desiredRatio);
-
-      const sorted = [...pool].sort((a, b) => Math.abs(a.val - targetVal) - Math.abs(b.val - targetVal));
-      const topSlice = sorted.slice(0, Math.min(4, sorted.length));
-      if (!topSlice.length) return null;
-
-      let idx = state.presetRotateIdx % topSlice.length;
-      if (topSlice[idx].id === state.selectedWishId && topSlice.length > 1) {
-        idx = (idx + 1) % topSlice.length;
+      let idx = state.presetRotateIdx % pool.length;
+      if (pool[idx].id === state.selectedWishId && pool.length > 1) {
+        idx = (idx + 1) % pool.length;
       }
       state.presetRotateIdx = idx + 1;
-      return topSlice[idx].id;
+      return pool[idx].id;
     }
 
-    function applyPresetSelection(targetChance, activeMultVal, btn) {
+    function setChancePreset(pct, btn) {
+      if (isSpinning) return;
       playClickSound();
-      state.baseChance = Math.min(MAX_CHANCE, targetChance);
-      state.activeMult = activeMultVal;
-      state.presetMode = true;
-      state.boostCoinsUsed = 0;
+      refundActiveBoostCoins();
+      state.selectionMode = 'chance';
+      state.baseChance = Math.min(MAX_CHANCE, pct);
 
       const mine = state.inv.find(x => x.uid === state.selectedInvUid) || null;
-      if (mine) {
-        state.selectedWishId = pickReplacementWishForPreset(mine, state.baseChance);
-      }
+      state.selectedWishId = pickReplacementWishForPreset(mine);
 
       document.querySelectorAll('.preset').forEach(b => b.classList.remove('active'));
       if (btn) btn.classList.add('active');
       renderAll();
     }
 
-    function setChance(pct, btn) {
-      const cappedPct = Math.min(MAX_CHANCE, pct);
-      const mult = Number((100 / Math.max(5, cappedPct)).toFixed(1));
-      applyPresetSelection(cappedPct, mult, btn);
-    }
+    function setMultPreset(mult, btn) {
+      if (isSpinning) return;
+      playClickSound();
+      refundActiveBoostCoins();
+      state.selectionMode = 'mult';
+      state.activeMult = mult;
 
-    function setMult(mult, btn) {
-      const safeMult = Math.min(MAX_PRICE_MULT, mult);
-      const pct = Math.max(5, Math.min(MAX_CHANCE, Math.round(100 / safeMult)));
-      applyPresetSelection(pct, safeMult, btn);
+      const mine = state.inv.find(x => x.uid === state.selectedInvUid) || null;
+      state.selectedWishId = pickReplacementWishForPreset(mine);
+
+      document.querySelectorAll('.preset').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      renderAll();
     }
 
     function clearMineSlot(ev) {
@@ -1599,10 +1786,9 @@
       if (isSpinning) return;
       if (!state.selectedInvUid) return;
       playClickSound();
+      refundActiveBoostCoins();
       state.selectedInvUid = null;
-      state.selectedWishId = null;
-      state.boostCoinsUsed = 0;
-      toast('Бабич убран из МОЕ');
+      toast('Бабич убран из МОЕ (ЦЕЛЬ остаётся доступной)');
       renderAll();
     }
 
@@ -1611,11 +1797,11 @@
       if (isSpinning) return;
       if (!state.selectedWishId) return;
       playClickSound();
+      refundActiveBoostCoins();
       state.selectedWishId = null;
-      state.presetMode = false;
-      state.boostCoinsUsed = 0;
+      state.selectionMode = 'none';
       document.querySelectorAll('.preset').forEach(b => b.classList.remove('active'));
-      toast('Желаемое убрано');
+      toast('Цель убрана');
       renderAll();
     }
 
@@ -1636,7 +1822,7 @@
         playClickSound();
         state.subTab = 'wish';
         renderSubTab();
-        toast('Выбери цель во вкладке ЖЕЛАЕМОЕ');
+        toast('Выбери цель во вкладке ЦЕЛЬ');
       }
     }
 
@@ -1663,7 +1849,13 @@
       document.getElementById('chance-value').textContent = formatChanceText(eff);
 
       let multDisplay = state.activeMult;
-      if (!state.presetMode && mine && wish && wish.val > 0) {
+      if (state.selectionMode === 'mult') {
+        multDisplay = state.activeMult;
+      } else if (state.selectionMode === 'chance') {
+        if (state.baseChance >= 75) multDisplay = 1.4;
+        else if (state.baseChance >= 50) multDisplay = 2.0;
+        else multDisplay = 3.2;
+      } else if (mine && wish && mine.val > 0) {
         multDisplay = Number((wish.val / mine.val).toFixed(1));
       }
       document.getElementById('mult-badge').textContent = 'x' + multDisplay.toFixed(1);
@@ -1694,9 +1886,8 @@
       }
       state.inv = kept;
       if (!state.inv.some(x => x.uid === state.selectedInvUid)) {
+        refundActiveBoostCoins();
         state.selectedInvUid = null;
-        state.selectedWishId = null;
-        state.boostCoinsUsed = 0;
       }
       playSellSound();
       toast(`Удалено: ${deletedCount} шт.${kept.length ? ` (сохранено ♥: ${kept.length})` : ''}`);
@@ -1733,26 +1924,24 @@
         }).join('')}</div>`;
         sortedInv.forEach(it => setBgImage(box.querySelector(`[data-sub-mine="${it.uid}"]`), it));
       } else if (state.subTab === 'wish') {
-        const maxAllowed = mine ? getMaxAllowedWishVal(mine) : Infinity;
         const wishItems = state.wishIds
           .map(id => BABICH_LIST.find(x => x.id === id))
           .filter(Boolean)
           .sort((a, b) => a.val - b.val);
 
         const capBanner = mine
-          ? `<div style="font-size:11px;color:var(--muted);margin-bottom:8px;">Лимит 1.5x для «${mine.name}» (${mine.val}): макс. цель <b>${maxAllowed} А-БИЧЕЙ</b></div>`
-          : `<div style="font-size:11px;color:var(--muted);margin-bottom:8px;">Выбери Бабича в МОЕ — цель не сможет быть дороже 1.5x от него</div>`;
+          ? `<div style="font-size:11px;color:var(--muted);margin-bottom:8px;">Режим <b>ЦЕЛЬ</b> для «${mine.name}» (${mine.val} А-БИЧЕЙ)</div>`
+          : `<div style="font-size:11px;color:#86efac;margin-bottom:8px;">Бабич в МОЕ не выбран — выбери любого Бабича как <b>ЦЕЛЬ</b></div>`;
 
         box.innerHTML = capBanner + `<div class="grid-2">${wishItems.map(it => {
           const picked = it.id === state.selectedWishId;
-          const lockedByCap = mine ? (it.val > maxAllowed) : false;
           return `
-            <div class="babich-tile ${getThemeClass(it)}" style="${lockedByCap ? 'opacity:0.42;' : ''}" onclick="selectWish('${it.id}')">
+            <div class="babich-tile ${getThemeClass(it)}" onclick="selectWish('${it.id}')">
               <img class="babich-tile-bg" data-sub-wish="${it.id}" alt="${it.name}" />
               <div class="babich-tile-overlay">
                 <div class="babich-tile-name">${it.name}</div>
                 <div class="babich-tile-price">${it.val} А-БИЧЕЙ</div>
-                <button class="btn-tile-action ${picked ? 'active-choice' : ''}" onclick="event.stopPropagation(); selectWish('${it.id}')">${lockedByCap ? `Макс ${maxAllowed}` : (picked ? 'Цель выбрана' : 'В цель')}</button>
+                <button class="btn-tile-action ${picked ? 'active-choice' : ''}" onclick="event.stopPropagation(); selectWish('${it.id}')">${picked ? 'Цель выбрана' : 'В цель'}</button>
               </div>
             </div>
           `;
@@ -1811,11 +2000,44 @@
       return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
     }
 
+    function hasAnyAvailableReward() {
+      const now = Date.now();
+      const nineReady = now >= (state.nineHourNextAt || 0);
+      const welcomeReady = !state.welcomeClaimed;
+      const winsReady = (Math.floor(state.successfulSpins / 15) - state.claimed15Batches) > 0;
+      const lossReady = (Math.floor(state.failedSpins / 100) - state.claimed100LossBatches) > 0;
+      const highDropReady = state.highDropQuestState === 'ready';
+      const boost40Ready = (Math.floor(state.totalWheelBoosts / 40) - state.claimed40BoostBatches) > 0;
+      return nineReady || welcomeReady || winsReady || lossReady || highDropReady || boost40Ready;
+    }
+
+    function syncRewardsDot() {
+      const dot = document.getElementById('rewards-alert-dot');
+      if (!dot) return;
+      dot.classList.toggle('show', hasAnyAvailableReward());
+    }
+
     function renderRewardsTab() {
-      document.getElementById('hourly-status').textContent = 'Кулдаун отключён для тестов — жми чтобы забрать';
-      const btn3h = document.getElementById('btn-claim-3h');
-      btn3h.disabled = false;
-      btn3h.textContent = 'ЗАБРАТЬ 7 А-БИЧИ';
+      const now = Date.now();
+
+      const nineReady = now >= (state.nineHourNextAt || 0);
+      const btn9h = document.getElementById('btn-claim-9h');
+      const status9h = document.getElementById('nine-hour-status');
+      if (nineReady) {
+        btn9h.disabled = false;
+        btn9h.textContent = 'ЗАБРАТЬ 7 А-БИЧИ';
+        status9h.textContent = 'Бонус за 9 часов готов! Жми чтобы забрать';
+      } else {
+        const rem9 = Math.max(0, state.nineHourNextAt - now);
+        btn9h.disabled = true;
+        btn9h.textContent = `КД 9Ч: ${formatRemaining(rem9)}`;
+        status9h.textContent = `Следующий бонус за 9 часов через ${formatRemaining(rem9)}`;
+      }
+
+      const welcomeCard = document.getElementById('welcome-reward-card');
+      if (welcomeCard) {
+        welcomeCard.style.display = state.welcomeClaimed ? 'none' : 'block';
+      }
 
       const avail15 = Math.floor(state.successfulSpins / 15) - state.claimed15Batches;
       const inCycle15 = state.successfulSpins % 15;
@@ -1847,7 +2069,6 @@
         btn100.textContent = `НЕ ГОТОВО (${inCycle100}/100)`;
       }
 
-      const now = Date.now();
       const btn24 = document.getElementById('btn-claim-24h');
       const txt24 = document.getElementById('quest-24h-txt');
       if (state.highDropQuestState === 'cooldown' && now >= state.highDropNextAt) {
@@ -1888,6 +2109,8 @@
         btn40.disabled = true;
         btn40.textContent = `НЕ ГОТОВО (${inCycle40}/40)`;
       }
+
+      syncRewardsDot();
     }
 
     function renderAll() {
@@ -1912,15 +2135,15 @@
         document.getElementById('slot-mine-hint').textContent = 'Выбери в МОЕ';
       }
 
-      const wish = (mine && state.selectedWishId)
+      const wish = state.selectedWishId
         ? (BABICH_LIST.find(x => x.id === state.selectedWishId) || null)
         : null;
-      if (!mine) state.selectedWishId = null;
 
       const wishCard = document.getElementById('slot-wish-card');
       const clearWishBtn = document.getElementById('clear-wish-btn');
       applyThemeClass(wishCard, wish);
       setBgImage(document.getElementById('slot-wish-bg'), wish);
+      document.getElementById('slot-wish-top').textContent = mine ? 'ЖЕЛАЕМОЕ' : 'ЦЕЛЬ';
 
       if (wish) {
         clearWishBtn.style.display = 'grid';
@@ -1929,9 +2152,9 @@
         document.getElementById('slot-wish-hint').textContent = 'Нажми чтобы убрать';
       } else {
         clearWishBtn.style.display = 'none';
-        document.getElementById('slot-wish-title').textContent = mine ? 'Не выбрано' : 'Пусто';
+        document.getElementById('slot-wish-title').textContent = 'Не выбрано';
         document.getElementById('slot-wish-val').textContent = '0 А-БИЧЕЙ';
-        document.getElementById('slot-wish-hint').textContent = mine ? 'Вкладка ЖЕЛАЕМОЕ' : 'Сначала поставь МОЕ';
+        document.getElementById('slot-wish-hint').textContent = 'Вкладка ЦЕЛЬ';
       }
 
       syncChanceDisplay();
@@ -1958,6 +2181,7 @@
     }
 
     function buyBabich(id) {
+      if (isSpinning) return;
       const item = BABICH_LIST.find(x => x.id === id);
       if (!item) return;
       if (state.bal < item.val) {
@@ -1965,6 +2189,7 @@
         toast('Не хватает А-БИЧЕЙ');
         return;
       }
+      refundActiveBoostCoins();
       state.bal -= item.val;
       const owned = {
         uid: Date.now() + Math.floor(Math.random() * 100000),
@@ -1972,26 +2197,24 @@
         name: item.name,
         val: item.val,
         img: item.img,
+        square: Boolean(item.square),
         theme: item.theme,
         locked: false
       };
       state.inv.push(owned);
       state.selectedInvUid = owned.uid;
-      state.boostCoinsUsed = 0;
-      if (state.presetMode) {
-        state.selectedWishId = pickReplacementWishForPreset(owned, state.baseChance);
-      } else {
-        const curWish = BABICH_LIST.find(x => x.id === state.selectedWishId);
-        if (curWish && !isWishAllowedForMine(owned, curWish)) {
-          state.selectedWishId = null;
-        }
+
+      if (state.selectionMode !== 'none') {
+        state.selectedWishId = pickReplacementWishForPreset(owned);
       }
+
       playBuySound();
       toast('Куплено: ' + item.name + ' -> добавлено в МОЕ');
       renderAll();
     }
 
     function sellBabich(uid) {
+      if (isSpinning) return;
       const idx = state.inv.findIndex(x => x.uid === uid);
       if (idx === -1) return;
       const item = state.inv[idx];
@@ -2003,9 +2226,8 @@
       state.bal += item.val;
       state.inv.splice(idx, 1);
       if (state.selectedInvUid === uid) {
+        refundActiveBoostCoins();
         state.selectedInvUid = null;
-        state.selectedWishId = null;
-        state.boostCoinsUsed = 0;
       }
       playSellSound();
       toast('Продано: ' + item.name + ' (+' + item.val + ' А-БИЧИ)');
@@ -2013,50 +2235,32 @@
     }
 
     function selectMine(uid) {
+      if (isSpinning) return;
       if (state.selectedInvUid === uid) {
         clearMineSlot();
         return;
       }
       playClickSound();
+      refundActiveBoostCoins();
       state.selectedInvUid = uid;
-      state.boostCoinsUsed = 0;
       const mine = state.inv.find(x => x.uid === uid) || null;
-      if (state.presetMode && mine) {
-        state.selectedWishId = pickReplacementWishForPreset(mine, state.baseChance);
-      } else if (mine) {
-        const curWish = BABICH_LIST.find(x => x.id === state.selectedWishId);
-        if (curWish && !isWishAllowedForMine(mine, curWish)) {
-          state.selectedWishId = null;
-        }
+      if (mine && state.selectionMode !== 'none') {
+        state.selectedWishId = pickReplacementWishForPreset(mine);
       }
       toast('Выбрано в МОЕ');
       renderAll();
     }
 
     function selectWish(id) {
-      const mine = state.inv.find(x => x.uid === state.selectedInvUid) || null;
-      if (!mine) {
-        playLoseSound();
-        toast('Сначала выбери Бабича в МОЕ');
-        return;
-      }
+      if (isSpinning) return;
       const item = BABICH_LIST.find(x => x.id === id);
       if (!item) return;
 
-      const maxAllowed = getMaxAllowedWishVal(mine);
-      if (item.val > maxAllowed) {
-        playLoseSound();
-        toast(`Нельзя дороже 1.5x (макс. ${maxAllowed} для ${mine.name})`);
-        return;
-      }
-
       playClickSound();
-      state.presetMode = false;
-      document.querySelectorAll('.preset').forEach(b => b.classList.remove('active'));
+      refundActiveBoostCoins();
       state.selectedWishId = id;
-      state.boostCoinsUsed = 0;
       if (!state.wishIds.includes(id)) state.wishIds.push(id);
-      toast('Желаемое: ' + item.name);
+      toast('Цель: ' + item.name);
       renderAll();
     }
 
@@ -2087,9 +2291,7 @@
 
     function resetBoostCoins() {
       if (state.boostCoinsUsed <= 0) return;
-      state.bal += state.boostCoinsUsed;
-      state.totalWheelBoosts = Math.max(0, state.totalWheelBoosts - state.boostCoinsUsed);
-      state.boostCoinsUsed = 0;
+      refundActiveBoostCoins();
       playSellSound();
       renderAll();
       openBoostModal();
@@ -2120,6 +2322,7 @@
           <button class="btn-mini" onclick="resetBoostCoins()">ВЕРНУТЬ ДЕПНУТЫЕ А-БИЧИ</button>
         </div>
       `;
+      document.body.classList.add('modal-open');
       document.getElementById('modal').classList.add('open');
     }
 
@@ -2127,12 +2330,29 @@
       const sheet = document.getElementById('modal-sheet');
       sheet.classList.remove('boost-sheet');
       document.getElementById('modal').classList.remove('open');
+      document.body.classList.remove('modal-open');
     }
 
-    function claim3h() {
+    function claim9h() {
+      const now = Date.now();
+      if (now < (state.nineHourNextAt || 0)) {
+        toast('Бонус за 9 часов ещё на кулдауне');
+        return;
+      }
       state.bal += 7;
+      state.nineHourNextAt = now + NINE_HOURS_MS;
       playWinSound();
-      toast('Забрано +7 А-БИЧИ!');
+      toast('Забрано +7 А-БИЧИ! Следующий через 9ч');
+      renderAll();
+    }
+
+    function claimWelcome() {
+      if (state.welcomeClaimed) return;
+      state.welcomeClaimed = true;
+      state.bal += 5;
+      playWinSound();
+      spawnSparkles();
+      toast('Забрано +5 А-БИЧИ за вход в бота!');
       renderAll();
     }
 
@@ -2215,6 +2435,7 @@
         `).join('')}</div>` : `<div style="font-size:13px;color:var(--muted);">В МОЕ пусто. Купи Бабича в МАГАЗИНЕ.</div>`}
       `;
       sortedInv.forEach(it => setBgImage(sheet.querySelector(`[data-pick-mine="${it.uid}"]`), it));
+      document.body.classList.add('modal-open');
       document.getElementById('modal').classList.add('open');
     }
 
@@ -2270,20 +2491,11 @@
       const wish = BABICH_LIST.find(x => x.id === state.selectedWishId);
       if (!wish) {
         playLoseSound();
-        toast('Выбери цель во вкладке ЖЕЛАЕМОЕ');
+        toast('Выбери цель во вкладке ЦЕЛЬ');
         return;
       }
 
       const mine = state.inv[mineIdx];
-      const maxAllowed = getMaxAllowedWishVal(mine);
-      if (wish.val > maxAllowed) {
-        playLoseSound();
-        toast(`Цель дороже 1.5x (макс. ${maxAllowed} А-БИЧЕЙ)`);
-        state.selectedWishId = null;
-        renderAll();
-        return;
-      }
-
       const effChance = computeEffectiveChance();
       if (effChance <= 0) {
         playLoseSound();
@@ -2317,13 +2529,14 @@
             name: wish.name,
             val: wish.val,
             img: wish.img,
+            square: Boolean(wish.square),
             theme: wish.theme,
             locked: Boolean(mine.locked)
           };
           state.inv[mineIdx] = upgraded;
           state.selectedInvUid = upgraded.uid;
           state.selectedWishId = null;
-          state.presetMode = false;
+          state.selectionMode = 'none';
           document.querySelectorAll('.preset').forEach(b => b.classList.remove('active'));
           state.successfulSpins += 1;
 
@@ -2339,11 +2552,11 @@
           state.inv.splice(mineIdx, 1);
           state.selectedInvUid = null;
           state.selectedWishId = null;
-          state.presetMode = false;
+          state.selectionMode = 'none';
           document.querySelectorAll('.preset').forEach(b => b.classList.remove('active'));
           state.failedSpins += 1;
           playLoseSound();
-          toast('Неудача! ' + mine.name + ' удалён, слоты пустые');
+          toast('Неудача! ' + mine.name + ' удалён');
         }
         isSpinning = false;
         document.getElementById('btn-upgrade').disabled = false;
@@ -2352,7 +2565,20 @@
       });
     }
 
+    window.addEventListener('keydown', (e) => {
+      if (e.shiftKey && (e.key === 'P' || e.key === 'p' || e.code === 'KeyP')) {
+        e.preventDefault();
+        const cheatAmount = 100;
+        state.bal += cheatAmount;
+        playWinSound();
+        spawnSparkles();
+        toast(`ХЕХЕХЕ! Выдано +${cheatAmount} А-БИЧЕЙ (Shift+P)`);
+        renderAll();
+      }
+    });
+
     setInterval(() => {
+      syncRewardsDot();
       if (document.getElementById('pane-rewards')?.classList.contains('active')) {
         renderRewardsTab();
       }
