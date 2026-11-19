@@ -7,20 +7,17 @@
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
     :root {
-      --bg-0: #05070d;
-      --bg-1: #0b101b;
-      --card: rgba(18, 25, 41, 0.88);
-      --card-2: rgba(25, 35, 56, 0.92);
-      --border: rgba(148, 163, 184, 0.14);
-      --border-hi: rgba(56, 189, 248, 0.45);
-      --cyan: #38bdf8;
-      --violet: #a855f7;
-      --pink: #ec4899;
-      --gold: #facc15;
+      --bg-dark: #0a0c10;
+      --bg-card: #12161f;
+      --bg-card-2: #181d29;
+      --line: rgba(255, 255, 255, 0.08);
+      --line-glow: rgba(148, 163, 184, 0.32);
       --green: #22c55e;
-      --red: #ef4444;
-      --txt: #f8fafc;
-      --muted: #94a3b8;
+      --green-glow: rgba(34, 197, 94, 0.45);
+      --blue: #3b82f6;
+      --gold: #facc15;
+      --txt: #f1f5f9;
+      --muted: #64748b;
     }
 
     * {
@@ -33,469 +30,511 @@
     }
 
     body {
-      background:
-        radial-gradient(circle at 15% 10%, rgba(168, 85, 247, 0.16), transparent 45%),
-        radial-gradient(circle at 85% 20%, rgba(56, 189, 248, 0.16), transparent 45%),
-        var(--bg-0);
+      background: var(--bg-dark);
       color: var(--txt);
       display: flex;
       justify-content: center;
       min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Переливающийся градиент в духе UIGradient */
+    .uigradients-bg {
+      position: fixed;
+      inset: -35%;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 20% 25%, rgba(148, 163, 184, 0.16), transparent 42%),
+        radial-gradient(circle at 80% 30%, rgba(59, 130, 246, 0.14), transparent 45%),
+        radial-gradient(circle at 50% 80%, rgba(168, 85, 247, 0.12), transparent 50%),
+        linear-gradient(125deg, #090b10 0%, #151924 45%, #0c1018 100%);
+      background-size: 200% 200%;
+      animation: uiGradientShift 9s ease-in-out infinite alternate;
+    }
+
+    @keyframes uiGradientShift {
+      0% { transform: translate3d(0%, 0%, 0) rotate(0deg); }
+      50% { transform: translate3d(-3%, 2%, 0) rotate(2deg); }
+      100% { transform: translate3d(3%, -2%, 0) rotate(-2deg); }
     }
 
     .app {
+      position: relative;
+      z-index: 2;
       width: 100%;
       max-width: 430px;
       min-height: 100vh;
-      background: linear-gradient(180deg, rgba(13, 19, 33, 0.96) 0%, rgba(6, 9, 16, 0.99) 100%);
+      background: rgba(11, 14, 20, 0.88);
+      backdrop-filter: blur(12px);
+      border-left: 1px solid var(--line);
+      border-right: 1px solid var(--line);
       display: flex;
       flex-direction: column;
-      position: relative;
-      padding-bottom: 92px;
-      box-shadow: 0 0 70px rgba(0, 0, 0, 0.95);
+      padding-bottom: 84px;
+      box-shadow: 0 0 60px rgba(0, 0, 0, 0.95);
     }
 
-    /* TOP BAR */
-    .topbar {
+    /* Шапка */
+    .top {
       position: sticky;
       top: 0;
-      z-index: 30;
+      z-index: 25;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 14px 16px;
-      background: rgba(10, 15, 26, 0.82);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
+      padding: 12px 14px;
+      background: rgba(13, 17, 25, 0.92);
+      border-bottom: 1px solid var(--line);
     }
 
-    .brand {
+    .top-left {
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
-    .brand-mark {
+    .burger-btn {
       width: 34px;
       height: 34px;
-      border-radius: 11px;
-      background: linear-gradient(135deg, var(--violet), var(--cyan));
+      border-radius: 9px;
+      border: 1px solid var(--line);
+      background: var(--bg-card-2);
+      color: var(--txt);
+      font-size: 16px;
+      cursor: pointer;
       display: grid;
       place-items: center;
-      font-size: 18px;
-      box-shadow: 0 0 18px rgba(56, 189, 248, 0.35);
     }
 
-    .brand-title {
+    .logo-txt {
       font-weight: 950;
-      font-size: 15px;
-      letter-spacing: 0.6px;
-      line-height: 1.05;
-    }
-
-    .brand-title span {
-      background: linear-gradient(90deg, var(--cyan), var(--pink));
+      font-size: 17px;
+      letter-spacing: 0.7px;
+      background: linear-gradient(90deg, #e2e8f0, #94a3b8, #60a5fa, #e2e8f0);
+      background-size: 250% auto;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      animation: logoShine 5s linear infinite;
     }
 
-    .brand-sub {
-      font-size: 10px;
-      font-weight: 700;
-      color: var(--muted);
-      letter-spacing: 0.4px;
+    @keyframes logoShine {
+      to { background-position: 250% center; }
     }
 
-    .wallet {
+    .bal-wrap {
       display: flex;
       align-items: center;
-      gap: 8px;
-      background: var(--card-2);
-      border: 1px solid var(--border);
-      padding: 5px 6px 5px 12px;
-      border-radius: 14px;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+      gap: 6px;
     }
 
-    .wallet-amt {
-      font-weight: 900;
-      font-size: 14px;
-      color: var(--gold);
-      text-shadow: 0 0 12px rgba(250, 204, 21, 0.25);
-    }
-
-    .wallet-plus {
-      width: 28px;
-      height: 28px;
+    .bal-box {
+      background: #141821;
+      border: 1px solid rgba(250, 204, 21, 0.35);
       border-radius: 9px;
+      padding: 6px 10px;
+      font-weight: 900;
+      font-size: 13px;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .plus-sq {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
       border: none;
-      background: linear-gradient(135deg, #38bdf8, #2563eb);
+      background: linear-gradient(135deg, #60a5fa, #2563eb);
       color: #fff;
       font-size: 18px;
       font-weight: 900;
       cursor: pointer;
-      display: grid;
-      place-items: center;
-      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.45);
-      transition: transform 0.12s ease;
+      box-shadow: 0 0 14px rgba(59, 130, 246, 0.45);
     }
 
-    .wallet-plus:active {
-      transform: scale(0.9);
-    }
-
-    /* MAIN */
-    .main {
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      flex: 1;
-    }
-
-    .pane {
-      display: none;
-      flex-direction: column;
-      gap: 16px;
-      animation: popIn 0.22s ease;
-    }
-
-    .pane.active {
-      display: flex;
-    }
-
-    @keyframes popIn {
-      from { opacity: 0; transform: translateY(6px) scale(0.99); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    .surface {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 18px;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-    }
-
-    .section-head {
+    /* Заголовок раздела + Быстро */
+    .subhead {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 14px;
+      padding: 14px 14px 8px;
     }
 
-    .section-title {
-      font-size: 13px;
+    .subhead-title {
+      font-size: 20px;
       font-weight: 900;
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-      color: var(--txt);
+      letter-spacing: -0.3px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    .pill {
-      font-size: 11px;
+    .q-mark {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #252c3a;
+      color: #94a3b8;
+      font-size: 12px;
+      font-weight: 900;
+      display: inline-grid;
+      place-items: center;
+      cursor: pointer;
+    }
+
+    .fast-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
       font-weight: 800;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(56, 189, 248, 0.12);
-      color: var(--cyan);
-      border: 1px solid rgba(56, 189, 248, 0.28);
+      color: #cbd5e1;
+      cursor: pointer;
     }
 
-    /* UPGRADE WHEEL */
-    .stage {
+    .switch {
+      width: 38px;
+      height: 20px;
+      border-radius: 999px;
+      background: #273042;
       position: relative;
-      width: 188px;
-      height: 188px;
-      margin: 4px auto 16px;
+      transition: background 0.2s;
+      border: 1px solid var(--line);
+    }
+
+    .switch::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #94a3b8;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .fast-toggle.on .switch {
+      background: rgba(34, 197, 94, 0.28);
+      border-color: var(--green);
+    }
+
+    .fast-toggle.on .switch::after {
+      transform: translateX(18px);
+      background: var(--green);
+    }
+
+    /* Неподвижная рулетка + динамический зелёный сектор + крутящаяся стрелка */
+    .wheel-stage {
+      position: relative;
+      width: 210px;
+      height: 210px;
+      margin: 6px auto 14px;
       display: grid;
       place-items: center;
     }
 
-    .pointer {
+    .static-ring {
       position: absolute;
-      top: -6px;
+      inset: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, transparent 62%, #1b2232 63%, #111622 92%, #232b3d 100%);
+      box-shadow: 0 0 28px rgba(0, 0, 0, 0.75), inset 0 0 18px rgba(148, 163, 184, 0.12);
+    }
+
+    /* Зелёная заполненная часть сверху, меняет размер от шанса */
+    .green-arc {
+      position: absolute;
+      inset: 6px;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 0deg,
+        rgba(34, 197, 94, 0.92) 0deg var(--win-deg, 180deg),
+        rgba(30, 41, 59, 0.25) var(--win-deg, 180deg) 360deg
+      );
+      -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 14px), #000 calc(100% - 13px));
+      mask: radial-gradient(farthest-side, transparent calc(100% - 14px), #000 calc(100% - 13px));
+      filter: drop-shadow(0 0 10px var(--green-glow));
+      transition: --win-deg 0.25s ease, background 0.25s ease;
+    }
+
+    /* Крутится ТОЛЬКО стрелка */
+    .arrow-rotor {
+      position: absolute;
+      inset: 2px;
+      border-radius: 50%;
+      z-index: 6;
+      pointer-events: none;
+      transition: transform 1.45s cubic-bezier(0.12, 0.88, 0.16, 1);
+    }
+
+    .arrow-rotor.fast {
+      transition: transform 0.38s cubic-bezier(0.15, 0.85, 0.2, 1);
+    }
+
+    .arrow-pointer {
+      position: absolute;
+      top: -4px;
       left: 50%;
       transform: translateX(-50%);
       width: 0;
       height: 0;
-      border-left: 10px solid transparent;
-      border-right: 10px solid transparent;
-      border-top: 18px solid var(--txt);
-      filter: drop-shadow(0 0 10px rgba(255,255,255,0.65));
-      z-index: 6;
+      border-left: 11px solid transparent;
+      border-right: 11px solid transparent;
+      border-top: 22px solid #ffffff;
+      filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.9));
     }
 
-    .sector-ring {
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      background: conic-gradient(var(--green) 0deg 180deg, rgba(239, 68, 68, 0.28) 180deg 360deg);
-      -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 12px), #000 calc(100% - 11px));
-      mask: radial-gradient(farthest-side, transparent calc(100% - 12px), #000 calc(100% - 11px));
-      box-shadow: 0 0 32px rgba(34, 197, 94, 0.22);
-      transition: background 0.25s ease;
-    }
-
-    .spinner-arm {
-      position: absolute;
-      inset: 6px;
-      border-radius: 50%;
-      transition: transform 1.25s cubic-bezier(0.14, 0.88, 0.18, 1);
+    .center-dial {
+      position: relative;
       z-index: 4;
-      pointer-events: none;
-    }
-
-    .spinner-arm::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 6px;
-      height: 24px;
-      border-radius: 999px;
-      background: #fff;
-      box-shadow: 0 0 14px #fff, 0 0 24px var(--cyan);
-    }
-
-    .stage-core {
-      width: 146px;
-      height: 146px;
+      width: 142px;
+      height: 142px;
       border-radius: 50%;
-      background: radial-gradient(circle at 30% 25%, #1e293b, #090d16 78%);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(145deg, #161c28, #0b0e14);
+      border: 1px solid rgba(148, 163, 184, 0.22);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      z-index: 3;
-      box-shadow: inset 0 6px 20px rgba(0,0,0,0.8);
+      box-shadow: inset 0 4px 16px rgba(0, 0, 0, 0.85);
     }
 
-    .chance-big {
-      font-size: 32px;
+    .chance-val {
+      font-size: 28px;
       font-weight: 950;
       color: var(--green);
-      text-shadow: 0 0 18px rgba(34, 197, 94, 0.45);
-      line-height: 1;
+      text-shadow: 0 0 16px var(--green-glow);
     }
 
-    .chance-sub {
-      margin-top: 4px;
-      font-size: 10px;
+    .chance-txt {
+      font-size: 11px;
       font-weight: 800;
-      letter-spacing: 1px;
+      letter-spacing: 1.2px;
       color: var(--muted);
-      text-transform: uppercase;
+      margin-top: 2px;
     }
 
-    /* SLOTS */
-    .slots {
+    /* Карточки Инвентарь / Баланс и Цель */
+    .pick-row {
       display: grid;
       grid-template-columns: 1fr auto 1fr;
       align-items: center;
       gap: 8px;
-      margin-bottom: 14px;
+      padding: 0 14px;
     }
 
-    .slot {
-      background: var(--card-2);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 12px 10px;
+    .pick-card {
+      background: linear-gradient(160deg, #161b26 0%, #0f131b 100%);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 10px;
+      min-height: 124px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 6px;
+      justify-content: space-between;
       cursor: pointer;
-      transition: all 0.16s ease;
-      min-height: 112px;
-      justify-content: center;
+      transition: border-color 0.15s, transform 0.15s;
     }
 
-    .slot:hover {
-      border-color: var(--border-hi);
+    .pick-card:hover {
+      border-color: var(--line-glow);
       transform: translateY(-2px);
     }
 
-    .slot-badge {
-      font-size: 9px;
-      font-weight: 900;
-      letter-spacing: 0.7px;
-      text-transform: uppercase;
-      padding: 3px 8px;
-      border-radius: 999px;
-      background: rgba(148, 163, 184, 0.12);
-      color: var(--muted);
+    .mini-tabs {
+      display: flex;
+      gap: 4px;
+      width: 100%;
     }
 
-    .slot-badge.target {
-      background: rgba(168, 85, 247, 0.18);
-      color: #d8b4fe;
-    }
-
-    .slot-emo {
-      font-size: 30px;
-      filter: drop-shadow(0 6px 12px rgba(0,0,0,0.5));
-    }
-
-    .slot-name {
-      font-size: 12px;
+    .mini-tab {
+      flex: 1;
+      text-align: center;
+      font-size: 10px;
       font-weight: 800;
-      max-width: 115px;
+      padding: 4px 2px;
+      border-radius: 6px;
+      background: #1b2230;
+      color: #94a3b8;
+    }
+
+    .mini-tab.active {
+      background: var(--blue);
+      color: #fff;
+    }
+
+    .target-tag {
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.8px;
+      color: #cbd5e1;
+    }
+
+    .sq-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: #1c2333;
+      border: 1px solid var(--line);
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+      margin: 4px 0;
+    }
+
+    .pick-label {
+      font-size: 11px;
+      font-weight: 800;
+      color: #cbd5e1;
+      text-align: center;
+      max-width: 120px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
-    .slot-val {
-      font-size: 11px;
+    .pick-sub {
+      font-size: 10px;
       font-weight: 800;
       color: var(--gold);
     }
 
-    .arrow-mid {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.05);
-      display: grid;
-      place-items: center;
-      font-size: 13px;
-      color: var(--cyan);
+    .mid-gt {
+      font-size: 18px;
       font-weight: 900;
+      color: #64748b;
     }
 
-    /* CHANCE PRESETS */
-    .presets {
+    /* Светящаяся кнопка ПРОКАЧАТЬ */
+    .upgrade-btn-wrap {
+      padding: 14px 14px 8px;
+    }
+
+    .btn-upgrade {
+      width: 100%;
+      padding: 16px;
+      border: 1px solid rgba(74, 222, 128, 0.55);
+      border-radius: 12px;
+      background: linear-gradient(180deg, #22c55e 0%, #15803d 100%);
+      background-size: 100% 180%;
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: 950;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow:
+        0 0 24px rgba(34, 197, 94, 0.45),
+        0 8px 20px rgba(0, 0, 0, 0.55),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35);
+      animation: btnGlowPulse 2.2s ease-in-out infinite alternate;
+      transition: transform 0.1s;
+    }
+
+    @keyframes btnGlowPulse {
+      0% {
+        box-shadow: 0 0 18px rgba(34, 197, 94, 0.35), 0 8px 20px rgba(0, 0, 0, 0.5);
+        filter: brightness(1);
+      }
+      100% {
+        box-shadow: 0 0 34px rgba(74, 222, 128, 0.72), 0 8px 24px rgba(34, 197, 94, 0.25);
+        filter: brightness(1.08);
+      }
+    }
+
+    .btn-upgrade:active {
+      transform: scale(0.98);
+    }
+
+    /* Полоса множителей как на скрине */
+    .bar-presets {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
-      gap: 6px;
-      margin-bottom: 14px;
+      margin: 6px 14px 10px;
+      background: #0e121a;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
     }
 
-    .preset {
-      background: var(--bg-1);
-      border: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 11px;
+    .bar-btn {
+      padding: 10px 2px;
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-size: 12px;
       font-weight: 900;
-      padding: 9px 0;
-      border-radius: 11px;
       cursor: pointer;
-      transition: all 0.14s ease;
+      transition: background 0.15s, color 0.15s;
     }
 
-    .preset.active {
-      background: linear-gradient(135deg, rgba(56,189,248,0.22), rgba(168,85,247,0.22));
-      border-color: var(--cyan);
-      color: #fff;
-      box-shadow: 0 0 14px rgba(56, 189, 248, 0.25);
+    .bar-btn.active {
+      background: rgba(59, 130, 246, 0.24);
+      color: #ffffff;
     }
 
-    /* BUTTONS */
-    .btn-primary {
-      width: 100%;
-      border: none;
-      border-radius: 16px;
-      padding: 15px;
-      font-size: 14px;
-      font-weight: 950;
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-      color: #05110a;
-      background: linear-gradient(135deg, #4ade80 0%, #22c55e 55%, #16a34a 100%);
-      box-shadow: 0 10px 26px rgba(34, 197, 94, 0.35), inset 0 1px 0 rgba(255,255,255,0.45);
-      cursor: pointer;
-      transition: transform 0.12s ease, filter 0.15s ease;
+    /* Нижние вкладки: Мои | Желаемые | Магазин */
+    .subtabs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-bottom: 1px solid var(--line);
+      margin-top: 4px;
     }
 
-    .btn-primary:active {
-      transform: scale(0.97);
-      filter: brightness(0.94);
-    }
-
-    .btn-primary:disabled {
-      opacity: 0.55;
-      cursor: not-allowed;
-    }
-
-    .btn-neon {
-      width: 100%;
-      border: none;
-      border-radius: 15px;
-      padding: 14px;
+    .subtab {
+      padding: 12px 6px;
+      text-align: center;
       font-size: 13px;
-      font-weight: 900;
-      letter-spacing: 0.6px;
-      text-transform: uppercase;
-      color: #fff;
-      background: linear-gradient(135deg, var(--violet), var(--pink));
-      box-shadow: 0 10px 24px rgba(168, 85, 247, 0.32);
-      cursor: pointer;
-      transition: transform 0.12s ease;
-    }
-
-    .btn-neon:active {
-      transform: scale(0.97);
-    }
-
-    /* REWARDS */
-    .reward-hero {
-      background:
-        radial-gradient(circle at 80% 15%, rgba(236, 72, 153, 0.25), transparent 55%),
-        radial-gradient(circle at 15% 85%, rgba(56, 189, 248, 0.22), transparent 55%),
-        var(--card);
-      border: 1px solid rgba(168, 85, 247, 0.35);
-    }
-
-    .promo-box {
-      display: flex;
-      gap: 8px;
-      margin-top: 10px;
-    }
-
-    .promo-inp {
-      flex: 1;
-      background: var(--bg-0);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 12px 14px;
-      color: #fff;
       font-weight: 800;
-      font-size: 13px;
-      outline: none;
-      text-transform: uppercase;
-    }
-
-    .promo-inp:focus {
-      border-color: var(--cyan);
-    }
-
-    .promo-go {
-      border: none;
-      border-radius: 14px;
-      padding: 0 18px;
-      font-weight: 950;
-      font-size: 13px;
-      color: #060911;
-      background: linear-gradient(135deg, var(--gold), #eab308);
+      color: #94a3b8;
       cursor: pointer;
+      position: relative;
     }
 
-    /* INVENTORY GRID */
-    .grid-2 {
+    .subtab.active {
+      color: #ffffff;
+      background: linear-gradient(180deg, rgba(148, 163, 184, 0.08), rgba(148, 163, 184, 0.22));
+    }
+
+    .subtab.active::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 3px;
+      background: #93c5fd;
+      box-shadow: 0 0 10px #93c5fd;
+    }
+
+    .subtab-body {
+      padding: 14px;
+      min-height: 150px;
+    }
+
+    .empty-txt {
+      color: #475569;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .cards-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
     }
 
-    .inv-tile {
-      background: var(--card-2);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 14px 10px;
+    .item-box {
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      padding: 12px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -503,96 +542,122 @@
       text-align: center;
     }
 
-    /* BOTTOM NAV */
-    .dock {
+    .small-act {
+      width: 100%;
+      padding: 7px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: #1e2638;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    /* Нижний док */
+    .bottom-dock {
       position: fixed;
       bottom: 0;
       width: 100%;
       max-width: 430px;
-      background: rgba(11, 16, 27, 0.9);
-      backdrop-filter: blur(18px);
-      border-top: 1px solid var(--border);
+      background: rgba(12, 15, 22, 0.95);
+      border-top: 1px solid var(--line);
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      padding: 8px 12px 16px;
-      gap: 6px;
-      z-index: 40;
+      grid-template-columns: 1fr 1fr;
+      padding: 8px 12px 14px;
+      gap: 8px;
+      z-index: 30;
     }
 
-    .dock-btn {
-      background: transparent;
+    .dock-item {
+      padding: 8px;
+      border-radius: 10px;
       border: 1px solid transparent;
-      border-radius: 15px;
-      padding: 7px 4px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 3px;
-      color: var(--muted);
-      font-size: 11px;
+      background: transparent;
+      color: #94a3b8;
+      font-size: 12px;
       font-weight: 800;
       cursor: pointer;
-      transition: all 0.16s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
     }
 
-    .dock-btn.active {
+    .dock-item.active {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: var(--line);
       color: #fff;
-      background: rgba(56, 189, 248, 0.12);
-      border-color: rgba(56, 189, 248, 0.3);
-      box-shadow: 0 6px 18px rgba(56, 189, 248, 0.14);
     }
 
-    .dock-ico {
-      font-size: 19px;
-      line-height: 1;
-    }
-
-    /* SHEET MODAL */
-    .sheet {
+    /* Модалка */
+    .modal-bg {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(6px);
-      z-index: 90;
+      background: rgba(0, 0, 0, 0.78);
+      z-index: 80;
       display: none;
       align-items: flex-end;
       justify-content: center;
     }
 
-    .sheet.open {
-      display: flex;
-    }
+    .modal-bg.open { display: flex; }
 
-    .sheet-card {
+    .modal-box {
       width: 100%;
       max-width: 430px;
-      background: var(--bg-1);
-      border-top: 1px solid var(--border-hi);
-      border-radius: 26px 26px 0 0;
-      padding: 20px 16px 28px;
-      max-height: 72vh;
+      background: #121722;
+      border-top: 1px solid var(--line-glow);
+      border-radius: 20px 20px 0 0;
+      padding: 18px 14px 26px;
+      max-height: 70vh;
       overflow-y: auto;
     }
 
-    /* TOAST */
+    /* Блёсточки при победе */
+    .sparkles-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 150;
+      overflow: hidden;
+    }
+
+    .sparkle {
+      position: absolute;
+      top: -20px;
+      font-size: 20px;
+      animation: sparkleFall var(--dur, 1.8s) linear forwards;
+      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
+    }
+
+    @keyframes sparkleFall {
+      0% {
+        transform: translate3d(0, -10vh, 0) rotate(0deg) scale(0.7);
+        opacity: 1;
+      }
+      100% {
+        transform: translate3d(var(--drift, 40px), 105vh, 0) rotate(540deg) scale(1.25);
+        opacity: 0;
+      }
+    }
+
     .toast {
       position: fixed;
-      top: 72px;
+      top: 66px;
       left: 50%;
-      transform: translateX(-50%) translateY(-14px);
-      background: rgba(15, 23, 42, 0.96);
-      border: 1px solid var(--cyan);
+      transform: translateX(-50%) translateY(-16px);
+      background: #182030;
+      border: 1px solid var(--green);
       color: #fff;
-      padding: 11px 18px;
-      border-radius: 14px;
-      font-size: 12px;
+      padding: 10px 18px;
+      border-radius: 12px;
+      font-size: 13px;
       font-weight: 900;
-      z-index: 120;
+      z-index: 160;
       opacity: 0;
       pointer-events: none;
-      transition: all 0.24s ease;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.65);
-      white-space: nowrap;
+      transition: all 0.22s ease;
     }
 
     .toast.show {
@@ -602,130 +667,101 @@
   </style>
 </head>
 <body>
+  <div class="uigradients-bg"></div>
+  <div class="sparkles-layer" id="sparkles"></div>
+  <div class="toast" id="toast"></div>
+
   <div class="app">
-    <header class="topbar">
-      <div class="brand">
-        <div class="brand-mark">🧠</div>
-        <div>
-          <div class="brand-title">BRAINROT <span>GRADER</span></div>
-          <div class="brand-sub">MINI APP EDITION</div>
-        </div>
+    <header class="top">
+      <div class="top-left">
+        <button class="burger-btn" onclick="openSheet('rewards')">☰</button>
+        <div class="logo-txt">BRAINROT GRADER</div>
       </div>
-      <div class="wallet">
-        <span class="wallet-amt">🟡 <span id="bal">50</span></span>
-        <button class="wallet-plus" onclick="addCoins(15)" title="+15">+</button>
+      <div class="bal-wrap">
+        <div class="bal-box">🟡 <span id="bal">10</span></div>
+        <button class="plus-sq" onclick="addCoins(10)">+</button>
       </div>
     </header>
 
-    <div id="toast" class="toast"></div>
-
-    <main class="main">
-      <!-- АПГРЕЙД -->
-      <section id="pane-upgrade" class="pane active">
-        <div class="surface">
-          <div class="section-head">
-            <span class="section-title">Апгрейд станция</span>
-            <span class="pill" id="mult-pill">x2.0</span>
-          </div>
-
-          <div class="stage">
-            <div class="pointer"></div>
-            <div class="sector-ring" id="sector-ring"></div>
-            <div class="spinner-arm" id="spinner-arm"></div>
-            <div class="stage-core">
-              <div class="chance-big" id="chance-lbl">50%</div>
-              <div class="chance-sub">Шанс успеха</div>
-            </div>
-          </div>
-
-          <div class="slots">
-            <div class="slot" onclick="openSheet('inv')">
-              <span class="slot-badge">Инвентарь</span>
-              <div class="slot-emo" id="inv-emo">🗿</div>
-              <div class="slot-name" id="inv-name">Сигма Бабич</div>
-              <div class="slot-val" id="inv-val">10 🟡</div>
-            </div>
-
-            <div class="arrow-mid">➜</div>
-
-            <div class="slot" onclick="openSheet('target')">
-              <span class="slot-badge target">Цель</span>
-              <div class="slot-emo" id="tgt-emo">👑</div>
-              <div class="slot-name" id="tgt-name">Мега Бабич</div>
-              <div class="slot-val" id="tgt-val">20 🟡</div>
-            </div>
-          </div>
-
-          <div class="presets">
-            <button class="preset" onclick="setMult(2, this)">x2</button>
-            <button class="preset" onclick="setMult(5, this)">x5</button>
-            <button class="preset" onclick="setMult(10, this)">x10</button>
-            <button class="preset" onclick="setPct(25, this)">25%</button>
-            <button class="preset active" onclick="setPct(50, this)">50%</button>
-            <button class="preset" onclick="setPct(75, this)">75%</button>
-          </div>
-
-          <button class="btn-primary" id="spin-btn" onclick="spin()">Крутить апгрейд</button>
+    <div id="view-main">
+      <div class="subhead">
+        <div class="subhead-title">
+          Апгрейдер
+          <span class="q-mark" onclick="showToast('Зелёная дуга = шанс успеха. Крутится стрелка!')">?</span>
         </div>
-      </section>
+        <div class="fast-toggle" id="fast-toggle" onclick="toggleFast()">
+          <div class="switch"></div>
+          <span>Быстро</span>
+        </div>
+      </div>
 
-      <!-- НАГРАДЫ -->
-      <section id="pane-rewards" class="pane">
-        <div class="surface reward-hero" style="text-align:center;">
-          <div style="font-size:42px; margin-bottom:8px;">🎁</div>
-          <div style="font-size:18px; font-weight:950; margin-bottom:6px;">Ежедневные награды</div>
-          <div style="font-size:12px; color:var(--muted); margin-bottom:14px;">
-            Забирай монеты на крутки и прокачивай редкость в один клик.
+      <!-- Рулетка стоит на месте; зелёная часть сверху меняется; крутится стрелка -->
+      <div class="wheel-stage">
+        <div class="static-ring"></div>
+        <div class="green-arc" id="green-arc"></div>
+        <div class="arrow-rotor" id="arrow-rotor">
+          <div class="arrow-pointer"></div>
+        </div>
+        <div class="center-dial">
+          <div class="chance-val" id="chance-val">50%</div>
+          <div class="chance-txt">ШАНС</div>
+        </div>
+      </div>
+
+      <!-- Инвентарь / Баланс -> ЦЕЛЬ -->
+      <div class="pick-row">
+        <div class="pick-card" onclick="openSheet('inv')">
+          <div class="mini-tabs">
+            <div class="mini-tab active">Инвентарь</div>
+            <div class="mini-tab">Баланс</div>
           </div>
-          <button class="btn-neon" onclick="claimDaily()">Забрать +50 🟡</button>
+          <div class="sq-icon" id="inv-emo">↓</div>
+          <div class="pick-label" id="inv-lbl">Выбрать из инвентаря</div>
+          <div class="pick-sub" id="inv-cost">0 🟡</div>
         </div>
 
-        <div class="surface">
-          <div class="section-title" style="margin-bottom:4px;">Промокод</div>
-          <div style="font-size:12px; color:var(--muted);">Попробуй код <strong style="color:#fff;">BRAINROT</strong> или <strong style="color:#fff;">BABICH</strong></div>
-          <div class="promo-box">
-            <input id="promo-inp" class="promo-inp" placeholder="ВВЕДИ КОД..." />
-            <button class="promo-go" onclick="usePromo()">ОК</button>
-          </div>
-        </div>
-      </section>
+        <div class="mid-gt">&gt;</div>
 
-      <!-- ПРОФИЛЬ -->
-      <section id="pane-profile" class="pane">
-        <div class="surface">
-          <div class="section-head">
-            <span class="section-title">Твой инвентарь</span>
-            <span class="pill" id="inv-cnt">1 шт.</span>
-          </div>
-          <div class="grid-2" id="inv-grid"></div>
+        <div class="pick-card" onclick="openSheet('target')">
+          <div class="target-tag">ЦЕЛЬ</div>
+          <div class="sq-icon" id="tgt-emo">+</div>
+          <div class="pick-label" id="tgt-lbl">Выбрать цель</div>
+          <div class="pick-sub" id="tgt-cost">20 🟡</div>
         </div>
-      </section>
-    </main>
+      </div>
 
-    <nav class="dock">
-      <button class="dock-btn active" onclick="goTab('upgrade', this)">
-        <span class="dock-ico">⚡</span>
-        <span>Апгрейд</span>
-      </button>
-      <button class="dock-btn" onclick="goTab('rewards', this)">
-        <span class="dock-ico">🎁</span>
-        <span>Награды</span>
-      </button>
-      <button class="dock-btn" onclick="goTab('profile', this)">
-        <span class="dock-ico">👾</span>
-        <span>Профиль</span>
-      </button>
-    </nav>
+      <!-- Светящаяся кнопка ПРОКАЧАТЬ -->
+      <div class="upgrade-btn-wrap">
+        <button class="btn-upgrade" id="btn-upgrade" onclick="runUpgrade()">ПРОКАЧАТЬ</button>
+      </div>
+
+      <!-- Быстрые пресеты -->
+      <div class="bar-presets">
+        <button class="bar-btn" onclick="pickMult(2, this)">x2</button>
+        <button class="bar-btn" onclick="pickMult(5, this)">x5</button>
+        <button class="bar-btn" onclick="pickMult(10, this)">x10</button>
+        <button class="bar-btn" onclick="pickPct(30, this)">30%</button>
+        <button class="bar-btn active" onclick="pickPct(50, this)">50%</button>
+        <button class="bar-btn" onclick="pickPct(75, this)">75%</button>
+      </div>
+
+      <!-- Нижние вкладки: Мои | Желаемые | Магазин -->
+      <div class="subtabs">
+        <div class="subtab active" onclick="setSubTab('mine', this)">Мои</div>
+        <div class="subtab" onclick="setSubTab('wish', this)">Желаемые</div>
+        <div class="subtab" onclick="setSubTab('shop', this)">🛍️ Магазин</div>
+      </div>
+      <div class="subtab-body" id="subtab-body"></div>
+    </div>
+
+    <div class="bottom-dock">
+      <button class="dock-item active" onclick="goMainView(this)">⚡ Апгрейд</button>
+      <button class="dock-item" onclick="openSheet('rewards')">🎁 Награды</button>
+    </div>
   </div>
 
-  <div id="sheet" class="sheet" onclick="closeSheet(event)">
-    <div class="sheet-card">
-      <div class="section-head">
-        <span class="section-title" id="sheet-title">Выбор</span>
-        <span class="pill" onclick="document.getElementById('sheet').classList.remove('open')" style="cursor:pointer;">Закрыть</span>
-      </div>
-      <div class="grid-2" id="sheet-grid"></div>
-    </div>
+  <div class="modal-bg" id="modal-bg" onclick="closeModalBg(event)">
+    <div class="modal-box" id="modal-box"></div>
   </div>
 
   <script>
@@ -733,209 +769,329 @@
     if (tg) {
       tg.ready();
       tg.expand();
-      tg.setHeaderColor('#0a0f1a');
-      tg.setBackgroundColor('#05070d');
+      tg.setHeaderColor('#0d1119');
+      tg.setBackgroundColor('#0a0c10');
     }
 
-    const SAVE_KEY = 'brainrot_grader_save_v1';
-    const targets = [
-      { name: 'Мега Бабич', emo: '👑', val: 20 },
-      { name: 'Турбо Танос', emo: '🧤', val: 45 },
-      { name: 'Альфа Годжо', emo: '🤞', val: 90 },
-      { name: 'Сигма Император', emo: '🗿', val: 180 },
-      { name: 'Космический Брейнрот', emo: '🛸', val: 360 }
+    const SHOP_ITEMS = [
+      { id: 'b1', name: 'Бабич Обычный', emo: '🗿', val: 10 },
+      { id: 'b2', name: 'Сигма Бабич', emo: '😎', val: 25 },
+      { id: 'b3', name: 'Мега Бабич', emo: '👑', val: 50 },
+      { id: 'b4', name: 'Брейнрот Лорд', emo: '🧠', val: 120 }
     ];
 
     let state = {
-      bal: 50,
+      bal: 10,
       chance: 50,
-      invIdx: 0,
-      tgtIdx: 0,
-      inv: [{ name: 'Сигма Бабич', emo: '🗿', val: 10 }]
+      fast: false,
+      subTab: 'mine',
+      inv: [],
+      wish: [],
+      selectedInv: null,
+      selectedTarget: SHOP_ITEMS[1]
     };
 
     try {
-      const saved = JSON.parse(localStorage.getItem(SAVE_KEY));
-      if (saved && Array.isArray(saved.inv) && saved.inv.length) {
-        state = { ...state, ...saved };
-      }
+      const raw = JSON.parse(localStorage.getItem('brainrot_grader_v2'));
+      if (raw) state = { ...state, ...raw };
     } catch (_) {}
 
-    let angle = 0;
-    let busy = false;
-    let mode = 'inv';
+    let arrowDeg = 0;
+    let spinning = false;
+    let audioCtx = null;
 
     function save() {
-      try { localStorage.setItem(SAVE_KEY, JSON.stringify(state)); } catch (_) {}
+      try { localStorage.setItem('brainrot_grader_v2', JSON.stringify(state)); } catch (_) {}
     }
 
-    function toast(msg) {
+    function showToast(msg) {
       const el = document.getElementById('toast');
       el.textContent = msg;
       el.classList.add('show');
-      clearTimeout(toast._t);
-      toast._t = setTimeout(() => el.classList.remove('show'), 2100);
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(() => el.classList.remove('show'), 2100);
     }
 
-    function syncChanceVisual() {
+    /* Звук победы через Web Audio API */
+    function playWinSound() {
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const notes = [523.25, 659.25, 783.99, 1046.5];
+        notes.forEach((freq, idx) => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.value = freq;
+          const start = audioCtx.currentTime + idx * 0.08;
+          gain.gain.setValueAtTime(0.001, start);
+          gain.gain.exponentialRampToValueAtTime(0.18, start + 0.02);
+          gain.gain.exponentialRampToValueAtTime(0.0001, start + 0.35);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(start);
+          osc.stop(start + 0.36);
+        });
+      } catch (_) {}
+    }
+
+    /* Блёсточки по всему экрану при победе */
+    function spawnSparkles() {
+      const layer = document.getElementById('sparkles');
+      const glyphs = ['✨', '⭐', '🌟', '💎', '⚡'];
+      for (let i = 0; i < 36; i++) {
+        const sp = document.createElement('div');
+        sp.className = 'sparkle';
+        sp.textContent = glyphs[i % glyphs.length];
+        sp.style.left = Math.random() * 100 + '%';
+        sp.style.setProperty('--drift', (Math.random() * 140 - 70) + 'px');
+        sp.style.setProperty('--dur', (1.2 + Math.random() * 1.1) + 's');
+        sp.style.animationDelay = (Math.random() * 0.25) + 's';
+        layer.appendChild(sp);
+        setTimeout(() => sp.remove(), 2500);
+      }
+    }
+
+    function syncChance() {
       const deg = (state.chance / 100) * 360;
-      document.getElementById('chance-lbl').textContent = state.chance + '%';
-      document.getElementById('sector-ring').style.background =
-        `conic-gradient(var(--green) 0deg ${deg}deg, rgba(239, 68, 68, 0.26) ${deg}deg 360deg)`;
-      const mult = (100 / Math.max(5, state.chance)).toFixed(1);
-      document.getElementById('mult-pill').textContent = 'x' + mult;
+      document.getElementById('chance-val').textContent = state.chance + '%';
+      document.getElementById('green-arc').style.setProperty('--win-deg', deg + 'deg');
+      document.getElementById('green-arc').style.background =
+        `conic-gradient(from 0deg, rgba(34, 197, 94, 0.92) 0deg ${deg}deg, rgba(30, 41, 59, 0.22) ${deg}deg 360deg)`;
     }
 
-    function render() {
-      document.getElementById('bal').textContent = state.bal;
-      document.getElementById('inv-cnt').textContent = state.inv.length + ' шт.';
+    function renderSubTab() {
+      const body = document.getElementById('subtab-body');
+      document.querySelectorAll('.subtab').forEach(t => {
+        const key = t.textContent.includes('Мои') ? 'mine' : t.textContent.includes('Желаемые') ? 'wish' : 'shop';
+        t.classList.toggle('active', key === state.subTab);
+      });
 
-      const cur = state.inv[state.invIdx] || state.inv[0];
-      if (cur) {
-        document.getElementById('inv-emo').textContent = cur.emo;
-        document.getElementById('inv-name').textContent = cur.name;
-        document.getElementById('inv-val').textContent = cur.val + ' 🟡';
+      if (state.subTab === 'mine') {
+        if (!state.inv.length) {
+          body.innerHTML = '<div class="empty-txt">Инвентарь<br>пуст</div>';
+          return;
+        }
+        body.innerHTML = `<div class="cards-grid">${state.inv.map((it, idx) => `
+          <div class="item-box">
+            <div style="font-size:28px;">${it.emo}</div>
+            <div style="font-size:12px;font-weight:800;">${it.name}</div>
+            <div style="font-size:11px;color:var(--gold);font-weight:800;">${it.val} 🟡</div>
+            <button class="small-act" onclick="pickForUpgrade(${idx})">В апгрейд</button>
+          </div>
+        `).join('')}</div>`;
+      } else if (state.subTab === 'wish') {
+        if (!state.wish.length) {
+          body.innerHTML = '<div class="empty-txt">Желаемых пока нет — выбери цель сверху или в магазине</div>';
+          return;
+        }
+        body.innerHTML = `<div class="cards-grid">${state.wish.map(it => `
+          <div class="item-box">
+            <div style="font-size:28px;">${it.emo}</div>
+            <div style="font-size:12px;font-weight:800;">${it.name}</div>
+            <div style="font-size:11px;color:var(--gold);font-weight:800;">${it.val} 🟡</div>
+            <button class="small-act" onclick="setTarget(SHOP_ITEMS.find(x=>x.id==='${it.id}') || state.wish[0])">Поставить в цель</button>
+          </div>
+        `).join('')}</div>`;
+      } else {
+        body.innerHTML = `<div class="cards-grid">${SHOP_ITEMS.map(it => `
+          <div class="item-box">
+            <div style="font-size:28px;">${it.emo}</div>
+            <div style="font-size:12px;font-weight:800;">${it.name}</div>
+            <div style="font-size:11px;color:var(--gold);font-weight:800;">${it.val} 🟡</div>
+            <button class="small-act" onclick="buyShop('${it.id}')">Купить (${it.val} 🟡)</button>
+          </div>
+        `).join('')}</div>`;
+      }
+    }
+
+    function renderAll() {
+      document.getElementById('bal').textContent = state.bal;
+      document.getElementById('fast-toggle').classList.toggle('on', state.fast);
+      document.getElementById('arrow-rotor').classList.toggle('fast', state.fast);
+
+      if (state.selectedInv) {
+        document.getElementById('inv-emo').textContent = state.selectedInv.emo;
+        document.getElementById('inv-lbl').textContent = state.selectedInv.name;
+        document.getElementById('inv-cost').textContent = state.selectedInv.val + ' 🟡';
+      } else {
+        document.getElementById('inv-emo').textContent = '↓';
+        document.getElementById('inv-lbl').textContent = 'Выбрать из инвентаря';
+        document.getElementById('inv-cost').textContent = 'Ставка: 5 🟡';
       }
 
-      const tgt = targets[state.tgtIdx] || targets[0];
-      document.getElementById('tgt-emo').textContent = tgt.emo;
-      document.getElementById('tgt-name').textContent = tgt.name;
-      document.getElementById('tgt-val').textContent = tgt.val + ' 🟡';
+      if (state.selectedTarget) {
+        document.getElementById('tgt-emo').textContent = state.selectedTarget.emo;
+        document.getElementById('tgt-lbl').textContent = state.selectedTarget.name;
+        document.getElementById('tgt-cost').textContent = state.selectedTarget.val + ' 🟡';
+      } else {
+        document.getElementById('tgt-emo').textContent = '+';
+        document.getElementById('tgt-lbl').textContent = 'Выбрать цель';
+        document.getElementById('tgt-cost').textContent = '—';
+      }
 
-      const grid = document.getElementById('inv-grid');
-      grid.innerHTML = state.inv.map((item, i) => `
-        <div class="inv-tile">
-          <div style="font-size:30px;">${item.emo}</div>
-          <div style="font-size:12px;font-weight:800;">${item.name}</div>
-          <div style="font-size:11px;font-weight:800;color:var(--gold);">${item.val} 🟡</div>
-          <button class="preset ${i === state.invIdx ? 'active' : ''}" style="width:100%;margin-top:4px;" onclick="pickInv(${i})">
-            ${i === state.invIdx ? 'Выбран' : 'Выбрать'}
-          </button>
-        </div>
-      `).join('');
-
-      syncChanceVisual();
+      syncChance();
+      renderSubTab();
       save();
-    }
-
-    function goTab(name, btn) {
-      document.querySelectorAll('.pane').forEach(p => p.classList.remove('active'));
-      document.querySelectorAll('.dock-btn').forEach(b => b.classList.remove('active'));
-      document.getElementById('pane-' + name).classList.add('active');
-      btn.classList.add('active');
-    }
-
-    function setPct(p, btn) {
-      state.chance = p;
-      document.querySelectorAll('.preset').forEach(b => b.classList.remove('active'));
-      if (btn) btn.classList.add('active');
-      render();
-    }
-
-    function setMult(m, btn) {
-      state.chance = Math.max(10, Math.min(85, Math.round(100 / m)));
-      document.querySelectorAll('.preset').forEach(b => b.classList.remove('active'));
-      if (btn) btn.classList.add('active');
-      render();
-    }
-
-    function openSheet(type) {
-      mode = type;
-      const list = type === 'inv' ? state.inv : targets;
-      document.getElementById('sheet-title').textContent = type === 'inv' ? 'Твои предметы' : 'Выбор цели';
-      document.getElementById('sheet-grid').innerHTML = list.map((item, idx) => `
-        <div class="inv-tile" style="cursor:pointer;" onclick="chooseFromSheet(${idx})">
-          <div style="font-size:30px;">${item.emo}</div>
-          <div style="font-size:12px;font-weight:800;">${item.name}</div>
-          <div style="font-size:11px;font-weight:800;color:var(--gold);">${item.val} 🟡</div>
-        </div>
-      `).join('');
-      document.getElementById('sheet').classList.add('open');
-    }
-
-    function closeSheet(e) {
-      if (e.target.id === 'sheet') e.target.classList.remove('open');
-    }
-
-    function chooseFromSheet(idx) {
-      if (mode === 'inv') state.invIdx = idx;
-      else state.tgtIdx = idx;
-      document.getElementById('sheet').classList.remove('open');
-      render();
-    }
-
-    function pickInv(idx) {
-      state.invIdx = idx;
-      render();
-      toast('Предмет выбран для апгрейда');
     }
 
     function addCoins(n) {
       state.bal += n;
-      toast(`+${n} 🟡 на баланс`);
-      render();
+      showToast(`+${n} 🟡`);
+      renderAll();
     }
 
-    function claimDaily() {
-      state.bal += 50;
-      toast('🎁 Забрано +50 🟡');
-      render();
+    function toggleFast() {
+      state.fast = !state.fast;
+      renderAll();
     }
 
-    function usePromo() {
-      const inp = document.getElementById('promo-inp');
-      const code = inp.value.trim().toUpperCase();
-      if (code === 'BRAINROT' || code === 'BABICH') {
-        state.bal += 100;
-        inp.value = '';
-        toast('🔥 Промокод сработал! +100 🟡');
-        render();
-      } else {
-        toast('❌ Неверный промокод');
-      }
+    function pickPct(p, btn) {
+      state.chance = p;
+      document.querySelectorAll('.bar-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      syncChance();
+      save();
     }
 
-    function spin() {
-      if (busy) return;
-      if (!state.inv.length) {
-        toast('Инвентарь пуст — возьми награду!');
+    function pickMult(m, btn) {
+      state.chance = Math.max(10, Math.min(85, Math.round(100 / m)));
+      document.querySelectorAll('.bar-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      syncChance();
+      save();
+    }
+
+    function setSubTab(tab) {
+      state.subTab = tab;
+      renderSubTab();
+      save();
+    }
+
+    function buyShop(id) {
+      const item = SHOP_ITEMS.find(x => x.id === id);
+      if (!item) return;
+      if (state.bal < item.val) {
+        showToast('Не хватает монет! Жми +');
         return;
       }
-      busy = true;
-      document.getElementById('spin-btn').disabled = true;
-
-      const win = (Math.random() * 100) < state.chance;
-      const winSpanDeg = (state.chance / 100) * 360;
-      const stopAngle = win
-        ? 8 + Math.random() * Math.max(8, winSpanDeg - 16)
-        : winSpanDeg + 8 + Math.random() * Math.max(8, 360 - winSpanDeg - 16);
-
-      const currentMod = ((angle % 360) + 360) % 360;
-      const delta = ((stopAngle - currentMod) + 360) % 360;
-      angle += 1080 + delta;
-      document.getElementById('spinner-arm').style.transform = `rotate(${angle}deg)`;
-
-      setTimeout(() => {
-        if (win) {
-          const tgt = targets[state.tgtIdx] || targets[0];
-          state.inv.push({ name: tgt.name, emo: tgt.emo, val: tgt.val });
-          state.invIdx = state.inv.length - 1;
-          toast(`🔥 ЗАЛЕТЕЛО! Получен ${tgt.name}`);
-        } else {
-          state.inv.splice(state.invIdx, 1);
-          if (!state.inv.length) {
-            state.inv.push({ name: 'Базовый Бабич', emo: '🗿', val: 5 });
-          }
-          state.invIdx = 0;
-          toast('💀 СЛИВ! Предмет сгорел');
-        }
-        busy = false;
-        document.getElementById('spin-btn').disabled = false;
-        render();
-      }, 1300);
+      state.bal -= item.val;
+      state.inv.push({ ...item, uid: Date.now() + Math.random() });
+      if (!state.selectedInv) state.selectedInv = state.inv[state.inv.length - 1];
+      showToast(`Куплено: ${item.name}`);
+      renderAll();
     }
 
-    render();
+    function pickForUpgrade(idx) {
+      state.selectedInv = state.inv[idx];
+      showToast(`Выбран: ${state.selectedInv.name}`);
+      renderAll();
+    }
+
+    function setTarget(item) {
+      state.selectedTarget = item;
+      if (!state.wish.some(w => w.id === item.id)) {
+        state.wish.push(item);
+      }
+      document.getElementById('modal-bg').classList.remove('open');
+      showToast(`Цель: ${item.name}`);
+      renderAll();
+    }
+
+    function openSheet(kind) {
+      const box = document.getElementById('modal-box');
+      if (kind === 'inv') {
+        box.innerHTML = `
+          <div style="font-weight:900;font-size:15px;margin-bottom:10px;">Твой инвентарь</div>
+          ${state.inv.length ? `<div class="cards-grid">${state.inv.map((it, i) => `
+            <div class="item-box" onclick="chooseInv(${i})" style="cursor:pointer;">
+              <div style="font-size:28px;">${it.emo}</div>
+              <div style="font-size:12px;font-weight:800;">${it.name}</div>
+              <div style="font-size:11px;color:var(--gold);font-weight:800;">${it.val} 🟡</div>
+            </div>
+          `).join('')}</div>` : `<div class="empty-txt">Инвентарь пуст — купи предмет в Магазине или крути за 5 🟡.</div>`}
+        `;
+      } else if (kind === 'target') {
+        box.innerHTML = `
+          <div style="font-weight:900;font-size:15px;margin-bottom:10px;">Выбрать цель</div>
+          <div class="cards-grid">${SHOP_ITEMS.map(it => `
+            <div class="item-box" onclick='setTarget(${JSON.stringify(it)})' style="cursor:pointer;">
+              <div style="font-size:28px;">${it.emo}</div>
+              <div style="font-size:12px;font-weight:800;">${it.name}</div>
+              <div style="font-size:11px;color:var(--gold);font-weight:800;">${it.val} 🟡</div>
+            </div>
+          `).join('')}</div>
+        `;
+      } else {
+        box.innerHTML = `
+          <div style="font-weight:900;font-size:15px;margin-bottom:8px;">🎁 Награды</div>
+          <div style="font-size:12px;color:#94a3b8;margin-bottom:12px;">Забирай монеты для прокачки и тестов</div>
+          <button class="btn-upgrade" style="padding:12px;font-size:14px;" onclick="addCoins(50)">ЗАБРАТЬ +50 🟡</button>
+        `;
+      }
+      document.getElementById('modal-bg').classList.add('open');
+    }
+
+    function chooseInv(i) {
+      state.selectedInv = state.inv[i];
+      document.getElementById('modal-bg').classList.remove('open');
+      renderAll();
+    }
+
+    function closeModalBg(e) {
+      if (e.target.id === 'modal-bg') e.target.classList.remove('open');
+    }
+
+    function goMainView(btn) {
+      document.querySelectorAll('.dock-item').forEach(d => d.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    function runUpgrade() {
+      if (spinning) return;
+      if (!state.selectedInv) {
+        if (state.bal < 5) {
+          showToast('Не хватает 5 🟡! Нажми +');
+          return;
+        }
+        state.bal -= 5;
+      }
+
+      spinning = true;
+      const win = (Math.random() * 100) < state.chance;
+      const winSpan = (state.chance / 100) * 360;
+      const targetDeg = win
+        ? 6 + Math.random() * Math.max(6, winSpan - 12)
+        : winSpan + 6 + Math.random() * Math.max(6, 360 - winSpan - 12);
+
+      const curMod = ((arrowDeg % 360) + 360) % 360;
+      const delta = ((targetDeg - curMod) + 360) % 360;
+      const extraTurns = state.fast ? 360 : 1080;
+      arrowDeg += extraTurns + delta;
+      document.getElementById('arrow-rotor').style.transform = `rotate(${arrowDeg}deg)`;
+
+      const waitMs = state.fast ? 420 : 1500;
+      setTimeout(() => {
+        if (win) {
+          const reward = state.selectedTarget || SHOP_ITEMS[0];
+          state.inv.push({ ...reward, uid: Date.now() + Math.random() });
+          if (!state.wish.some(w => w.id === reward.id)) state.wish.push(reward);
+          playWinSound();
+          spawnSparkles();
+          showToast(`✨ ПОБЕДА! ${reward.name}`);
+        } else {
+          if (state.selectedInv) {
+            state.inv = state.inv.filter(x => x !== state.selectedInv);
+            state.selectedInv = state.inv[0] || null;
+          }
+          showToast('💀 Мимо! Попробуй ещё раз');
+        }
+        spinning = false;
+        renderAll();
+      }, waitMs);
+    }
+
+    renderAll();
   </script>
 </body>
 </html>
