@@ -128,11 +128,18 @@
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 14px 30px rgba(0, 0, 0, 0.5);
     }
 
+    .card-yellow-glow {
+      background: linear-gradient(160deg, rgba(133, 77, 14, 0.78), rgba(28, 22, 11, 0.97));
+      border: 1px solid rgba(250, 204, 21, 0.72);
+      box-shadow: 0 0 26px rgba(250, 204, 21, 0.25), inset 0 1px 0 rgba(254, 240, 138, 0.24);
+    }
+
     .card-head {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 12px;
+      gap: 8px;
     }
 
     .card-title {
@@ -151,6 +158,13 @@
       background: var(--bg-2);
       border: 1px solid var(--line);
       color: #cbd5e1;
+      white-space: nowrap;
+    }
+
+    .badge-yellow {
+      background: rgba(250, 204, 21, 0.18);
+      border-color: rgba(250, 204, 21, 0.65);
+      color: #fde047;
     }
 
     .wheel-stage {
@@ -259,30 +273,33 @@
       margin-top: 2px;
     }
 
-    .wheel-boost-btn {
+    .wheel-turbo-btn {
       position: absolute;
       right: -4px;
       bottom: 4px;
       z-index: 8;
       padding: 7px 11px;
       border-radius: 10px;
-      border: 1px solid rgba(251, 146, 60, 0.85);
-      background: linear-gradient(135deg, #ea580c, #475569);
-      color: #fff;
+      border: 1px solid rgba(56, 189, 248, 0.75);
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      color: #e2e8f0;
       font-size: 10px;
       font-weight: 950;
       letter-spacing: 0.7px;
       text-transform: uppercase;
       cursor: pointer;
-      box-shadow: 0 6px 20px rgba(234, 88, 12, 0.5);
-      transition: transform 0.12s ease, box-shadow 0.15s ease;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.55);
+      transition: transform 0.12s ease, all 0.15s ease;
     }
 
-    .wheel-boost-btn:hover {
-      box-shadow: 0 8px 24px rgba(251, 146, 60, 0.65);
+    .wheel-turbo-btn.active {
+      border-color: rgba(250, 204, 21, 0.95);
+      background: linear-gradient(135deg, #ca8a04, #ea580c);
+      color: #fff;
+      box-shadow: 0 0 18px rgba(250, 204, 21, 0.55);
     }
 
-    .wheel-boost-btn:active {
+    .wheel-turbo-btn:active {
       transform: scale(0.95);
     }
 
@@ -431,6 +448,31 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
     }
 
+    .action-row {
+      display: grid;
+      grid-template-columns: 0.72fr 1.28fr;
+      gap: 8px;
+    }
+
+    .btn-boost-dock {
+      padding: 15px 10px;
+      border-radius: 13px;
+      border: 1px solid rgba(251, 146, 60, 0.85);
+      background: linear-gradient(135deg, #c2410c, #ea580c, #475569);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 950;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(234, 88, 12, 0.42);
+      transition: transform 0.12s ease;
+    }
+
+    .btn-boost-dock:active {
+      transform: scale(0.97);
+    }
+
     .btn-upgrade {
       width: 100%;
       padding: 15px;
@@ -458,7 +500,8 @@
       transform: scale(0.98);
     }
 
-    .btn-upgrade:disabled {
+    .btn-upgrade:disabled,
+    .btn-boost-dock:disabled {
       opacity: 0.55;
       cursor: not-allowed;
     }
@@ -525,6 +568,18 @@
 
     .btn-mini:active {
       transform: scale(0.97);
+    }
+
+    .btn-mini:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    .btn-yellow-claim {
+      background: linear-gradient(180deg, #eab308, #ca8a04);
+      border-color: rgba(254, 240, 138, 0.8);
+      color: #161102;
+      font-weight: 950;
     }
 
     .btn-sell {
@@ -740,7 +795,7 @@
               <div class="chance-value" id="chance-value">50%</div>
               <div class="chance-label">Шанс</div>
             </div>
-            <button class="wheel-boost-btn" onclick="openBoostModal()">УЛУЧШИТЬ</button>
+            <button class="wheel-turbo-btn" id="btn-turbo" onclick="toggleTurbo()">4X СПИД</button>
           </div>
 
           <div class="slots">
@@ -748,7 +803,7 @@
               <div class="slot-top">МОЕ</div>
               <div class="pic-box" id="slot-mine-pic">ФОТО</div>
               <div class="slot-title" id="slot-mine-title">Не выбрано</div>
-              <div class="slot-coins" id="slot-mine-val">0 МОНЕТ</div>
+              <div class="slot-coins" id="slot-mine-val">0 А-БИЧЕЙ</div>
             </div>
 
             <div class="gt-mid">&gt;</div>
@@ -757,7 +812,7 @@
               <div class="slot-top">ЖЕЛАЕМОЕ</div>
               <div class="pic-box" id="slot-wish-pic">ФОТО</div>
               <div class="slot-title" id="slot-wish-title">Выбери цель</div>
-              <div class="slot-coins" id="slot-wish-val">0 МОНЕТ</div>
+              <div class="slot-coins" id="slot-wish-val">0 А-БИЧЕЙ</div>
             </div>
           </div>
 
@@ -770,7 +825,10 @@
             <button class="preset" onclick="setChance(75, this)">75%</button>
           </div>
 
-          <button class="btn-upgrade" id="btn-upgrade" onclick="startUpgrade()">ПРОКАЧАТЬ</button>
+          <div class="action-row">
+            <button class="btn-boost-dock" id="btn-boost-dock" onclick="openBoostModal()">УЛУЧШИТЬ</button>
+            <button class="btn-upgrade" id="btn-upgrade" onclick="startUpgrade()">ПРОКАЧАТЬ</button>
+          </div>
         </div>
 
         <div class="card">
@@ -794,32 +852,77 @@
       </section>
 
       <section id="pane-rewards" class="pane">
-        <div class="card">
+        <div class="card card-yellow-glow">
           <div class="card-head">
-            <span class="card-title">Бонус за заход (тест без КД)</span>
-            <span class="badge">+7 МОНЕТ</span>
+            <span class="card-title" style="color:#fef08a;">Бонус за 3 часа (светится для теста)</span>
+            <span class="badge badge-yellow">+7 А-БИЧИ</span>
           </div>
-          <div style="font-size:13px;color:var(--muted);margin-bottom:12px;" id="hourly-status">
+          <div style="font-size:13px;color:#fde68a;margin-bottom:12px;" id="hourly-status">
             Кулдаун отключён для тестов — жми сколько нужно
           </div>
-          <button class="btn-mini" style="padding:11px;font-size:12px;" id="btn-claim-3h" onclick="claim3h()">
-            ЗАБРАТЬ 7 МОНЕТ
+          <button class="btn-mini btn-yellow-claim" style="padding:11px;font-size:12px;" id="btn-claim-3h" onclick="claim3h()">
+            ЗАБРАТЬ 7 А-БИЧИ
           </button>
         </div>
 
         <div class="card">
           <div class="card-head">
-            <span class="card-title">За каждые 25 успешных круток</span>
-            <span class="badge">+10 МОНЕТ</span>
+            <span class="card-title">За каждые 15 удачных круток</span>
+            <span class="badge">+10 А-БИЧИ</span>
           </div>
           <div style="font-size:13px;color:var(--muted);" id="wins-progress-txt">
-            Успешных круток: 0 / 25
+            Удачных круток: 0 / 15
           </div>
           <div class="progress-track">
             <div class="progress-fill" id="wins-bar"></div>
           </div>
-          <button class="btn-mini" style="padding:11px;font-size:12px;" id="btn-claim-25w" onclick="claim25Wins()">
-            ЗАБРАТЬ 10 МОНЕТ
+          <button class="btn-mini" style="padding:11px;font-size:12px;" id="btn-claim-15w" onclick="claim15Wins()">
+            ЗАБРАТЬ 10 А-БИЧИ
+          </button>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <span class="card-title">За каждые 100 проигрышей</span>
+            <span class="badge">+12 А-БИЧИ</span>
+          </div>
+          <div style="font-size:13px;color:var(--muted);" id="losses-progress-txt">
+            Проигрышей: 0 / 100
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="losses-bar"></div>
+          </div>
+          <button class="btn-mini" style="padding:11px;font-size:12px;" id="btn-claim-100l" onclick="claim100Losses()">
+            ЗАБРАТЬ 12 А-БИЧИ
+          </button>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <span class="card-title">Раз в 24 часа: выпал Бабич &gt; 100 А-БИЧЕЙ</span>
+            <span class="badge">+20 А-БИЧИ</span>
+          </div>
+          <div style="font-size:13px;color:var(--muted);margin-bottom:12px;" id="quest-24h-txt">
+            Выбей Бабича дороже 100 А-БИЧЕЙ, чтобы открыть приз
+          </div>
+          <button class="btn-mini" style="padding:11px;font-size:12px;" id="btn-claim-24h" onclick="claim24hHighDrop()">
+            ЗАБРАТЬ 20 А-БИЧИ
+          </button>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <span class="card-title">За каждые 40 улучшений колеса</span>
+            <span class="badge">+14 А-БИЧИ</span>
+          </div>
+          <div style="font-size:13px;color:var(--muted);" id="boost40-progress-txt">
+            Улучшений колеса: 0 / 40
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="boost40-bar"></div>
+          </div>
+          <button class="btn-mini" style="padding:11px;font-size:12px;" id="btn-claim-40b" onclick="claim40Boosts()">
+            ЗАБРАТЬ 14 А-БИЧИ
           </button>
         </div>
       </section>
@@ -857,7 +960,7 @@
     }
 
     const RAW_BABICH_LIST = [
-      { id: 'b_1', name: 'Бабич', val: 5, img: 'ObichniBabich.jpg' },
+      { id: 'b_1', name: 'Бабич', val: 5, img: 'babich.jpg' },
       { id: 'b_23', name: 'Киррил', val: 5, img: 'kirril.jpg' },
       { id: 'b_2', name: 'ОмгБабич', val: 8, img: 'omg_babich.jpg' },
       { id: 'b_3', name: 'Бибич', val: 12, img: 'bibich.jpg' },
@@ -905,20 +1008,28 @@
 
     const MAX_CHANCE = 79;
     const MAX_BOOST_CLICKS = 6;
-    const STORAGE_KEY = 'babich_grader_v10_burgundy_new_babichi';
+    const DAY_MS = 24 * 60 * 60 * 1000;
+    const STORAGE_KEY = 'babich_grader_v11_abichi_quests_4x';
 
     let state = {
       bal: 0,
       chance: 50,
       activeMult: 2,
       boostCoinsUsed: 0,
+      turbo4x: false,
       subTab: 'mine',
       inv: [],
       wishIds: ['b_2', 'b_24', 'b_27', 'b_32', 'b_40'],
       selectedInvUid: null,
       selectedWishId: 'b_2',
       successfulSpins: 0,
-      claimed25Batches: 0
+      claimed15Batches: 0,
+      failedSpins: 0,
+      claimed100LossBatches: 0,
+      totalWheelBoosts: 0,
+      claimed40BoostBatches: 0,
+      highDropReadyAt: 0,
+      lastHighDropName: ''
     };
 
     try {
@@ -995,15 +1106,15 @@
     function playBuySound() { playTone(520, 'triangle', 0.08, 0.13, 0); playTone(780, 'triangle', 0.12, 0.13, 0.07); }
     function playSellSound() { playTone(700, 'sine', 0.08, 0.12, 0); playTone(500, 'sine', 0.12, 0.12, 0.07); }
     function playSpinStartSound() {
-      playTone(190, 'sawtooth', 0.18, 0.1, 0);
-      playTone(285, 'sawtooth', 0.18, 0.1, 0.08);
-      playTone(380, 'triangle', 0.2, 0.11, 0.16);
-      playTone(540, 'sine', 0.22, 0.1, 0.24);
+      playTone(190, 'sawtooth', 0.16, 0.1, 0);
+      playTone(285, 'sawtooth', 0.16, 0.1, 0.07);
+      playTone(380, 'triangle', 0.18, 0.11, 0.14);
+      playTone(540, 'sine', 0.2, 0.1, 0.21);
     }
     function playTickSound(speedRatio) {
       const clamped = Math.max(0.05, Math.min(1, speedRatio));
-      playTone(440 + clamped * 520, 'triangle', 0.032, 0.055);
-      playTone(880 + clamped * 400, 'sine', 0.018, 0.025, 0.006);
+      playTone(440 + clamped * 520, 'triangle', 0.03, 0.05);
+      playTone(880 + clamped * 400, 'sine', 0.016, 0.022, 0.005);
     }
     function playWinSound() {
       [523.25, 659.25, 783.99, 1046.5, 1318.5, 1567.98].forEach((f, idx) => {
@@ -1093,14 +1204,11 @@
 
     function getCoinStepPercent() {
       const mine = state.inv.find(x => x.uid === state.selectedInvUid) || null;
-      const wish = BABICH_LIST.find(x => x.id === state.selectedWishId) || BABICH_LIST[1];
-      if (!mine || !wish) return 6;
-      if (wish.id === 'b_32' && mine.id === 'b_27') return 1;
-      const diffRatio = wish.val / Math.max(1, mine.val);
-      if (diffRatio >= 1.7) return 1;
-      if (diffRatio >= 1.4) return 2;
-      if (diffRatio >= 1.15) return 4;
-      return 6;
+      if (!mine) return 7;
+      const theme = resolveTheme(mine.name, mine.val, mine.theme);
+      if (theme === 'grey') return 7;
+      if (theme === 'purple') return 3;
+      return 1;
     }
 
     function computeEffectiveChance() {
@@ -1109,10 +1217,27 @@
       return Math.min(MAX_CHANCE, Math.max(1, total));
     }
 
+    function syncTurboButton() {
+      const btn = document.getElementById('btn-turbo');
+      if (!btn) return;
+      btn.classList.toggle('active', Boolean(state.turbo4x));
+      btn.textContent = state.turbo4x ? '4X ВКЛ' : '4X СПИД';
+    }
+
+    function toggleTurbo() {
+      if (isSpinning) return;
+      playClickSound();
+      state.turbo4x = !state.turbo4x;
+      syncTurboButton();
+      toast(state.turbo4x ? 'Быстрый режим x4 включён' : 'Обычная скорость крутки');
+      saveState();
+    }
+
     function syncChanceDisplay() {
       const eff = computeEffectiveChance();
       document.getElementById('chance-value').textContent = eff + '%';
       document.getElementById('mult-badge').textContent = 'x' + state.activeMult.toFixed(1);
+      syncTurboButton();
       animateGreenChanceTo(eff);
     }
 
@@ -1132,7 +1257,7 @@
           <div class="item-card ${getThemeClass(it)}">
             <div class="pic-box" data-sub-mine="${it.uid}">ФОТО</div>
             <div style="font-size:12px;font-weight:800;">${it.name}</div>
-            <div style="font-size:11px;font-weight:800;color:var(--gold);">${it.val} МОНЕТ</div>
+            <div style="font-size:11px;font-weight:800;color:var(--gold);">${it.val} А-БИЧЕЙ</div>
             <button class="btn-mini" onclick="selectMine(${it.uid})">${it.uid === state.selectedInvUid ? 'Выбран' : 'Выбрать'}</button>
           </div>
         `).join('')}</div>`;
@@ -1146,7 +1271,7 @@
           <div class="item-card ${getThemeClass(it)}">
             <div class="pic-box" data-sub-wish="${it.id}">ФОТО</div>
             <div style="font-size:12px;font-weight:800;">${it.name}</div>
-            <div style="font-size:11px;font-weight:800;color:var(--gold);">${it.val} МОНЕТ</div>
+            <div style="font-size:11px;font-weight:800;color:var(--gold);">${it.val} А-БИЧЕЙ</div>
             <button class="btn-mini" onclick="selectWish('${it.id}')">${it.id === state.selectedWishId ? 'Цель выбрана' : 'В желаемое'}</button>
           </div>
         `).join('')}</div>`;
@@ -1156,7 +1281,7 @@
           <div class="item-card ${getThemeClass(it)}">
             <div class="pic-box" data-sub-shop="${it.id}">ФОТО</div>
             <div style="font-size:12px;font-weight:800;">${it.name}</div>
-            <div style="font-size:11px;font-weight:800;color:var(--gold);">${it.val} МОНЕТ</div>
+            <div style="font-size:11px;font-weight:800;color:var(--gold);">${it.val} А-БИЧЕЙ</div>
             <button class="btn-mini" onclick="buyBabich('${it.id}')">Купить (${it.val})</button>
           </div>
         `).join('')}</div>`;
@@ -1176,32 +1301,91 @@
         <div class="item-card ${getThemeClass(it)}">
           <div class="pic-box" data-inv-sell="${it.uid}">ФОТО</div>
           <div style="font-size:12px;font-weight:800;">${it.name}</div>
-          <div style="font-size:11px;font-weight:800;color:var(--gold);">Цена: ${it.val} МОНЕТ</div>
+          <div style="font-size:11px;font-weight:800;color:var(--gold);">Цена: ${it.val} А-БИЧЕЙ</div>
           <button class="btn-mini btn-sell" onclick="sellBabich(${it.uid})">Продать (+${it.val})</button>
         </div>
       `).join('')}</div>`;
       sortedInv.forEach(it => attachPic(wrap.querySelector(`[data-inv-sell="${it.uid}"]`), it));
     }
 
+    function formatRemaining(ms) {
+      const totalSec = Math.max(0, Math.ceil(ms / 1000));
+      const h = Math.floor(totalSec / 3600);
+      const m = Math.floor((totalSec % 3600) / 60);
+      const s = totalSec % 60;
+      return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+    }
+
     function renderRewardsTab() {
       document.getElementById('hourly-status').textContent = 'Кулдаун отключён для тестов — жми сколько нужно';
       const btn3h = document.getElementById('btn-claim-3h');
       btn3h.disabled = false;
-      btn3h.textContent = 'ЗАБРАТЬ 7 МОНЕТ';
+      btn3h.textContent = 'ЗАБРАТЬ 7 А-БИЧИ';
 
-      const availableBatches = Math.floor(state.successfulSpins / 25) - state.claimed25Batches;
-      const inCycle = state.successfulSpins % 25;
+      // 15 удачных круток -> +10 А-БИЧИ
+      const avail15 = Math.floor(state.successfulSpins / 15) - state.claimed15Batches;
+      const inCycle15 = state.successfulSpins % 15;
       document.getElementById('wins-progress-txt').textContent =
-        `Успешных круток: ${state.successfulSpins} (текущий цикл: ${inCycle} / 25)`;
-      document.getElementById('wins-bar').style.width = ((inCycle / 25) * 100) + '%';
-
-      const btn25 = document.getElementById('btn-claim-25w');
-      if (availableBatches > 0) {
-        btn25.disabled = false;
-        btn25.textContent = `ЗАБРАТЬ ${availableBatches * 10} МОНЕТ`;
+        `Удачных круток: ${state.successfulSpins} (текущий цикл: ${inCycle15} / 15)`;
+      document.getElementById('wins-bar').style.width = ((inCycle15 / 15) * 100) + '%';
+      const btn15 = document.getElementById('btn-claim-15w');
+      if (avail15 > 0) {
+        btn15.disabled = false;
+        btn15.textContent = `ЗАБРАТЬ ${avail15 * 10} А-БИЧИ`;
       } else {
-        btn25.disabled = true;
-        btn25.textContent = `НУЖНО ЕЩЁ ${25 - inCycle} УСПЕХОВ`;
+        btn15.disabled = true;
+        btn15.textContent = `НУЖНО ЕЩЁ ${15 - inCycle15} УСПЕХОВ`;
+      }
+
+      // 100 проигрышей -> +12 А-БИЧИ
+      const avail100 = Math.floor(state.failedSpins / 100) - state.claimed100LossBatches;
+      const inCycle100 = state.failedSpins % 100;
+      document.getElementById('losses-progress-txt').textContent =
+        `Проигрышей: ${state.failedSpins} (текущий цикл: ${inCycle100} / 100)`;
+      document.getElementById('losses-bar').style.width = ((inCycle100 / 100) * 100) + '%';
+      const btn100 = document.getElementById('btn-claim-100l');
+      if (avail100 > 0) {
+        btn100.disabled = false;
+        btn100.textContent = `ЗАБРАТЬ ${avail100 * 12} А-БИЧИ`;
+      } else {
+        btn100.disabled = true;
+        btn100.textContent = `НУЖНО ЕЩЁ ${100 - inCycle100} ПРОИГРЫШЕЙ`;
+      }
+
+      // Раз в 24 часа за Бабича > 100 А-БИЧЕЙ -> +20 А-БИЧИ
+      const now = Date.now();
+      const btn24 = document.getElementById('btn-claim-24h');
+      const txt24 = document.getElementById('quest-24h-txt');
+      if (state.highDropReadyAt > 0) {
+        const rem = state.highDropReadyAt - now;
+        if (rem <= 0) {
+          btn24.disabled = false;
+          btn24.textContent = 'ЗАБРАТЬ 20 А-БИЧИ';
+          txt24.textContent = `Выпал ${state.lastHighDropName || 'топ Бабич (>100)'} — приз готов!`;
+        } else {
+          btn24.disabled = true;
+          btn24.textContent = `КД 24Ч: ${formatRemaining(rem)}`;
+          txt24.textContent = `Квест выполнен (${state.lastHighDropName || '>100 А-БИЧЕЙ'}). Следующий через ${formatRemaining(rem)}`;
+        }
+      } else {
+        btn24.disabled = true;
+        btn24.textContent = 'НУЖЕН ДРОП > 100 А-БИЧЕЙ';
+        txt24.textContent = 'Выбей Бабича дороже 100 А-БИЧЕЙ, чтобы открыть приз';
+      }
+
+      // 40 улучшений колеса -> +14 А-БИЧИ
+      const avail40 = Math.floor(state.totalWheelBoosts / 40) - state.claimed40BoostBatches;
+      const inCycle40 = state.totalWheelBoosts % 40;
+      document.getElementById('boost40-progress-txt').textContent =
+        `Улучшений колеса: ${state.totalWheelBoosts} (текущий цикл: ${inCycle40} / 40)`;
+      document.getElementById('boost40-bar').style.width = ((inCycle40 / 40) * 100) + '%';
+      const btn40 = document.getElementById('btn-claim-40b');
+      if (avail40 > 0) {
+        btn40.disabled = false;
+        btn40.textContent = `ЗАБРАТЬ ${avail40 * 14} А-БИЧИ`;
+      } else {
+        btn40.disabled = true;
+        btn40.textContent = `НУЖНО ЕЩЁ ${40 - inCycle40} УЛУЧШЕНИЙ`;
       }
     }
 
@@ -1213,11 +1397,11 @@
       applyThemeClass(mineCard, mine);
       if (mine) {
         document.getElementById('slot-mine-title').textContent = mine.name;
-        document.getElementById('slot-mine-val').textContent = mine.val + ' МОНЕТ';
+        document.getElementById('slot-mine-val').textContent = mine.val + ' А-БИЧЕЙ';
         attachPic(document.getElementById('slot-mine-pic'), mine);
       } else {
         document.getElementById('slot-mine-title').textContent = 'Не выбрано';
-        document.getElementById('slot-mine-val').textContent = '0 МОНЕТ';
+        document.getElementById('slot-mine-val').textContent = '0 А-БИЧЕЙ';
         attachPic(document.getElementById('slot-mine-pic'), null);
       }
 
@@ -1225,7 +1409,7 @@
       const wishCard = document.getElementById('slot-wish-card');
       applyThemeClass(wishCard, wish);
       document.getElementById('slot-wish-title').textContent = wish.name;
-      document.getElementById('slot-wish-val').textContent = wish.val + ' МОНЕТ';
+      document.getElementById('slot-wish-val').textContent = wish.val + ' А-БИЧЕЙ';
       attachPic(document.getElementById('slot-wish-pic'), wish);
 
       syncChanceDisplay();
@@ -1278,7 +1462,7 @@
       if (!item) return;
       if (state.bal < item.val) {
         playLoseSound();
-        toast('Не хватает монет');
+        toast('Не хватает А-БИЧЕЙ');
         return;
       }
       state.bal -= item.val;
@@ -1310,7 +1494,7 @@
         state.boostCoinsUsed = 0;
       }
       playSellSound();
-      toast('Продано: ' + item.name + ' (+' + item.val + ' монет)');
+      toast('Продано: ' + item.name + ' (+' + item.val + ' А-БИЧИ)');
       renderAll();
     }
 
@@ -1344,11 +1528,12 @@
       }
       if (state.bal < 1) {
         playLoseSound();
-        toast('Нет монет А-БИЧИ на балансе');
+        toast('Нет А-БИЧЕЙ на балансе');
         return;
       }
       state.bal -= 1;
       state.boostCoinsUsed += 1;
+      state.totalWheelBoosts += 1;
       playBuySound();
       renderAll();
       openBoostModal();
@@ -1357,6 +1542,7 @@
     function resetBoostCoins() {
       if (state.boostCoinsUsed <= 0) return;
       state.bal += state.boostCoinsUsed;
+      state.totalWheelBoosts = Math.max(0, state.totalWheelBoosts - state.boostCoinsUsed);
       state.boostCoinsUsed = 0;
       playSellSound();
       renderAll();
@@ -1364,6 +1550,7 @@
     }
 
     function openBoostModal() {
+      if (isSpinning) return;
       playClickSound();
       const sheet = document.getElementById('modal-sheet');
       sheet.classList.add('boost-sheet');
@@ -1377,13 +1564,13 @@
         </div>
         <div class="boost-stat-box">
           <div class="boost-row"><span>Твои А-БИЧИ:</span><span class="boost-val">${state.bal}</span></div>
-          <div class="boost-row"><span>За 1 монету сейчас:</span><span class="boost-val">+${step}%</span></div>
+          <div class="boost-row"><span>За 1 А-БИЧ сейчас:</span><span class="boost-val">+${step}%</span></div>
           <div class="boost-row"><span>Улучшений использовано:</span><span class="boost-val">${state.boostCoinsUsed} / ${MAX_BOOST_CLICKS}</span></div>
           <div class="boost-row"><span>Итоговый шанс (макс. 79%):</span><span class="boost-val">${curChance}%</span></div>
         </div>
         <div style="display:flex;flex-direction:column;gap:8px;">
           <button class="btn-boost-action" onclick="depOneBoostCoin()">ДЕПНУТЬ 1 А-БИЧ (+${step}%)</button>
-          <button class="btn-mini" onclick="resetBoostCoins()">ВЕРНУТЬ ДЕПНУТЫЕ МОНЕТЫ</button>
+          <button class="btn-mini" onclick="resetBoostCoins()">ВЕРНУТЬ ДЕПНУТЫЕ А-БИЧИ</button>
         </div>
       `;
       document.getElementById('modal').classList.add('open');
@@ -1398,24 +1585,64 @@
     function claim3h() {
       state.bal += 7;
       playWinSound();
-      toast('Получено +7 монет (тест без КД)');
+      toast('Получено +7 А-БИЧИ (тест без КД)');
       renderAll();
     }
 
-    function claim25Wins() {
-      const available = Math.floor(state.successfulSpins / 25) - state.claimed25Batches;
+    function claim15Wins() {
+      const available = Math.floor(state.successfulSpins / 15) - state.claimed15Batches;
       if (available <= 0) {
-        toast('Пока нет доступной награды за 25 успехов');
+        toast('Пока нет доступной награды за 15 успехов');
         return;
       }
-      state.claimed25Batches += available;
+      state.claimed15Batches += available;
       state.bal += available * 10;
       playWinSound();
-      toast('Получено +' + (available * 10) + ' монет');
+      toast('Получено +' + (available * 10) + ' А-БИЧИ');
+      renderAll();
+    }
+
+    function claim100Losses() {
+      const available = Math.floor(state.failedSpins / 100) - state.claimed100LossBatches;
+      if (available <= 0) {
+        toast('Пока нет доступной награды за 100 проигрышей');
+        return;
+      }
+      state.claimed100LossBatches += available;
+      state.bal += available * 12;
+      playWinSound();
+      toast('Получено +' + (available * 12) + ' А-БИЧИ');
+      renderAll();
+    }
+
+    function claim24hHighDrop() {
+      if (!state.highDropReadyAt || Date.now() < state.highDropReadyAt) {
+        toast('Приз ещё недоступен');
+        return;
+      }
+      state.bal += 20;
+      state.highDropReadyAt = Date.now() + DAY_MS;
+      playWinSound();
+      spawnSparkles();
+      toast('Квест выполнен: +20 А-БИЧИ!');
+      renderAll();
+    }
+
+    function claim40Boosts() {
+      const available = Math.floor(state.totalWheelBoosts / 40) - state.claimed40BoostBatches;
+      if (available <= 0) {
+        toast('Пока нет доступной награды за 40 улучшений');
+        return;
+      }
+      state.claimed40BoostBatches += available;
+      state.bal += available * 14;
+      playWinSound();
+      toast('Получено +' + (available * 14) + ' А-БИЧИ');
       renderAll();
     }
 
     function openPicker(kind) {
+      if (isSpinning) return;
       playClickSound();
       const sheet = document.getElementById('modal-sheet');
       sheet.classList.remove('boost-sheet');
@@ -1430,7 +1657,7 @@
             <div class="item-card ${getThemeClass(it)}" style="cursor:pointer;" onclick="selectMine(${it.uid}); document.getElementById('modal').classList.remove('open');">
               <div class="pic-box" data-pick-mine="${it.uid}">ФОТО</div>
               <div style="font-size:12px;font-weight:800;">${it.name}</div>
-              <div style="font-size:11px;color:var(--gold);font-weight:800;">${it.val} МОНЕТ</div>
+              <div style="font-size:11px;color:var(--gold);font-weight:800;">${it.val} А-БИЧЕЙ</div>
             </div>
           `).join('')}</div>` : `<div style="font-size:13px;color:var(--muted);">В МОЕ пусто. Купи Бабича в МАГАЗИНЕ.</div>`}
         `;
@@ -1445,7 +1672,7 @@
             <div class="item-card ${getThemeClass(it)}" style="cursor:pointer;" onclick="selectWish('${it.id}'); document.getElementById('modal').classList.remove('open');">
               <div class="pic-box" data-pick-wish="${it.id}">ФОТО</div>
               <div style="font-size:12px;font-weight:800;">${it.name}</div>
-              <div style="font-size:11px;color:var(--gold);font-weight:800;">${it.val} МОНЕТ</div>
+              <div style="font-size:11px;color:var(--gold);font-weight:800;">${it.val} А-БИЧЕЙ</div>
             </div>
           `).join('')}</div>
         `;
@@ -1509,6 +1736,7 @@
 
       isSpinning = true;
       document.getElementById('btn-upgrade').disabled = true;
+      document.getElementById('btn-boost-dock').disabled = true;
       state.boostCoinsUsed = 0;
       playSpinStartSound();
 
@@ -1520,9 +1748,11 @@
 
       const curMod = ((arrowAngle % 360) + 360) % 360;
       const deltaToStop = ((stopAngle - curMod) + 360) % 360;
-      const targetAngle = arrowAngle + 6 * 360 + deltaToStop;
+      const turns = state.turbo4x ? 2 : 6;
+      const durationMs = state.turbo4x ? 1750 : 7000;
+      const targetAngle = arrowAngle + turns * 360 + deltaToStop;
 
-      spinArrow(targetAngle, 7000, () => {
+      spinArrow(targetAngle, durationMs, () => {
         if (win) {
           const upgraded = {
             uid: mine.uid,
@@ -1535,6 +1765,12 @@
           state.inv[mineIdx] = upgraded;
           state.selectedInvUid = upgraded.uid;
           state.successfulSpins += 1;
+
+          if (upgraded.val > 100 && !state.highDropReadyAt) {
+            state.highDropReadyAt = Date.now();
+            state.lastHighDropName = upgraded.name;
+          }
+
           autoPickWishForCurrentSetup();
           playWinSound();
           spawnSparkles();
@@ -1542,14 +1778,22 @@
         } else {
           state.inv.splice(mineIdx, 1);
           state.selectedInvUid = state.inv[0] ? state.inv[0].uid : null;
+          state.failedSpins += 1;
           playLoseSound();
           toast('Неудача! ' + mine.name + ' сгорел');
         }
         isSpinning = false;
         document.getElementById('btn-upgrade').disabled = false;
+        document.getElementById('btn-boost-dock').disabled = false;
         renderAll();
       });
     }
+
+    setInterval(() => {
+      if (document.getElementById('pane-rewards')?.classList.contains('active')) {
+        renderRewardsTab();
+      }
+    }, 1000);
 
     renderAll();
   </script>
