@@ -341,7 +341,6 @@
       transform: scale(0.95);
     }
 
-    /* ТЕМЫ БАБИЧЕЙ */
     .theme-red {
       background: linear-gradient(160deg, rgba(153, 27, 27, 0.85), rgba(26, 14, 18, 0.97)) !important;
       border-color: rgba(248, 113, 113, 0.65) !important;
@@ -412,14 +411,8 @@
 
     .slot-pick-prompt {
       border-style: dashed !important;
-      border-color: rgba(250, 204, 21, 0.72) !important;
-      box-shadow: 0 0 18px rgba(250, 204, 21, 0.16), inset 0 0 12px rgba(250, 204, 21, 0.08) !important;
-    }
-
-    .slot-hint-tap {
-      font-size: 10px;
-      font-weight: 800;
-      color: #fde047;
+      border-color: rgba(250, 204, 21, 0.78) !important;
+      box-shadow: 0 0 18px rgba(250, 204, 21, 0.18), inset 0 0 12px rgba(250, 204, 21, 0.08) !important;
     }
 
     .slot-top {
@@ -1102,7 +1095,7 @@
     const MAX_CHANCE = 79;
     const MAX_BOOST_CLICKS = 6;
     const DAY_MS = 24 * 60 * 60 * 1000;
-    const STORAGE_KEY = 'babich_grader_v13_no_auto_equip_pick_prompt';
+    const STORAGE_KEY = 'babich_grader_v14_preset_resets_wish';
 
     let state = {
       bal: 0,
@@ -1531,20 +1524,19 @@
 
       const wish = BABICH_LIST.find(x => x.id === state.selectedWishId) || null;
       const wishCard = document.getElementById('slot-wish-card');
-      const needPickPrompt = Boolean(mine && (!wish || !state.presetChosen));
+      const needPickPrompt = Boolean(mine && !wish);
 
       wishCard.classList.toggle('slot-pick-prompt', needPickPrompt);
 
       if (wish) {
         applyThemeClass(wishCard, wish);
         document.getElementById('slot-wish-title').textContent = wish.name;
-        document.getElementById('slot-wish-val').textContent =
-          !state.presetChosen && mine ? 'Выбери X/% или цель' : (wish.val + ' А-БИЧЕЙ');
+        document.getElementById('slot-wish-val').textContent = wish.val + ' А-БИЧЕЙ';
         attachPic(document.getElementById('slot-wish-pic'), wish);
       } else {
         applyThemeClass(wishCard, null);
         document.getElementById('slot-wish-title').textContent = 'Выберите кого хотите';
-        document.getElementById('slot-wish-val').textContent = mine ? 'Нажми сюда' : '0 А-БИЧЕЙ';
+        document.getElementById('slot-wish-val').textContent = 'Нажми сюда';
         attachPic(document.getElementById('slot-wish-pic'), null);
       }
 
@@ -1571,12 +1563,17 @@
       saveState();
     }
 
+    function resetWishOnPresetChange() {
+      state.selectedWishId = null;
+      state.boostCoinsUsed = 0;
+    }
+
     function setChance(pct, btn) {
       playClickSound();
       state.chance = Math.min(MAX_CHANCE, pct);
       state.presetChosen = true;
-      state.boostCoinsUsed = 0;
       state.activeMult = Number((100 / Math.max(5, state.chance)).toFixed(1));
+      resetWishOnPresetChange();
       document.querySelectorAll('.preset').forEach(b => b.classList.remove('active'));
       if (btn) btn.classList.add('active');
       renderAll();
@@ -1587,7 +1584,7 @@
       state.activeMult = mult;
       state.presetChosen = true;
       state.chance = Math.max(5, Math.min(MAX_CHANCE, Math.round(100 / mult)));
-      state.boostCoinsUsed = 0;
+      resetWishOnPresetChange();
       document.querySelectorAll('.preset').forEach(b => b.classList.remove('active'));
       if (btn) btn.classList.add('active');
       renderAll();
