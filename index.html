@@ -11,10 +11,10 @@
       --bg-1: #0e131c;
       --bg-2: #151c29;
       --bg-3: #1d2738;
-      --line: rgba(255, 255, 255, 0.1);
-      --line-hi: rgba(226, 232, 240, 0.36);
+      --line: rgba(255, 255, 255, 0.12);
+      --line-hi: rgba(226, 232, 240, 0.42);
       --txt: #f8fafc;
-      --muted: #94a3b8;
+      --muted: #cbd5e1;
       --gold: #facc15;
       --green: #22c55e;
       --green-soft: #4ade80;
@@ -267,17 +267,20 @@
       will-change: transform;
     }
 
-    .arrow-head {
+    .arrow-pointer {
       position: absolute;
-      top: -3px;
+      top: -9px;
       left: 50%;
       transform: translateX(-50%);
-      width: 0;
-      height: 0;
-      border-left: 11px solid transparent;
-      border-right: 11px solid transparent;
-      border-top: 22px solid #ffffff;
-      filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.92));
+      width: 28px;
+      height: 32px;
+      filter: drop-shadow(0 0 10px rgba(74, 222, 128, 0.85)) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.9));
+    }
+
+    .arrow-pointer svg {
+      width: 100%;
+      height: 100%;
+      display: block;
     }
 
     .wheel-hub {
@@ -286,29 +289,58 @@
       width: 148px;
       height: 148px;
       border-radius: 50%;
+      overflow: hidden;
       background: linear-gradient(160deg, #1d2536, #0b0e14);
-      border: 1px solid var(--line-hi);
+      border: 1.5px solid var(--line-hi);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      box-shadow: inset 0 4px 18px rgba(0, 0, 0, 0.9), 0 0 24px rgba(0, 0, 0, 0.5);
+      box-shadow: inset 0 4px 18px rgba(0, 0, 0, 0.9), 0 0 24px rgba(0, 0, 0, 0.55);
+    }
+
+    .wheel-hub-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 14%;
+      transform: scale(1.28);
+      opacity: 0.24;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wheel-hub-scrim {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, rgba(11, 14, 20, 0.48) 0%, rgba(11, 14, 20, 0.84) 100%);
+      pointer-events: none;
+      z-index: 1;
     }
 
     .chance-value {
+      position: relative;
+      z-index: 2;
       font-size: 27px;
       font-weight: 950;
       color: var(--green-soft);
-      text-shadow: 0 0 18px rgba(74, 222, 128, 0.55);
+      text-shadow: 0 0 18px rgba(74, 222, 128, 0.65), 0 2px 8px rgba(0, 0, 0, 0.95);
     }
 
     .chance-label {
+      position: relative;
+      z-index: 2;
       font-size: 10px;
-      font-weight: 800;
+      font-weight: 900;
       letter-spacing: 1.3px;
       text-transform: uppercase;
-      color: var(--muted);
+      color: #e2e8f0;
       margin-top: 2px;
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.95);
     }
 
     .wheel-turbo-btn {
@@ -342,43 +374,36 @@
     }
 
     .theme-red {
-      background: linear-gradient(160deg, rgba(153, 27, 27, 0.85), rgba(26, 14, 18, 0.97)) !important;
-      border-color: rgba(248, 113, 113, 0.65) !important;
-      box-shadow: 0 10px 24px rgba(220, 38, 38, 0.28), inset 0 1px 0 rgba(254, 202, 202, 0.14) !important;
+      border-color: rgba(248, 113, 113, 0.72) !important;
+      box-shadow: 0 10px 24px rgba(220, 38, 38, 0.28) !important;
     }
 
     .theme-burgundy {
-      background: linear-gradient(160deg, rgba(120, 16, 44, 0.9), rgba(25, 10, 16, 0.98)) !important;
-      border-color: rgba(244, 63, 94, 0.68) !important;
-      box-shadow: 0 10px 26px rgba(159, 18, 57, 0.36), inset 0 1px 0 rgba(254, 205, 211, 0.16) !important;
+      border-color: rgba(244, 63, 94, 0.78) !important;
+      box-shadow: 0 10px 26px rgba(159, 18, 57, 0.36) !important;
     }
 
     .theme-green {
-      background: linear-gradient(160deg, rgba(20, 83, 45, 0.84), rgba(13, 25, 19, 0.97)) !important;
-      border-color: rgba(74, 222, 128, 0.62) !important;
-      box-shadow: 0 10px 24px rgba(34, 197, 94, 0.26), inset 0 1px 0 rgba(187, 247, 208, 0.14) !important;
+      border-color: rgba(74, 222, 128, 0.72) !important;
+      box-shadow: 0 10px 24px rgba(34, 197, 94, 0.26) !important;
     }
 
     .theme-blue {
-      background: linear-gradient(160deg, rgba(30, 58, 138, 0.84), rgba(13, 20, 34, 0.97)) !important;
-      border-color: rgba(96, 165, 250, 0.62) !important;
-      box-shadow: 0 10px 24px rgba(59, 130, 246, 0.26), inset 0 1px 0 rgba(191, 219, 254, 0.14) !important;
+      border-color: rgba(96, 165, 250, 0.72) !important;
+      box-shadow: 0 10px 24px rgba(59, 130, 246, 0.26) !important;
     }
 
     .theme-purple {
-      background: linear-gradient(160deg, rgba(88, 28, 135, 0.8), rgba(20, 15, 30, 0.97)) !important;
-      border-color: rgba(192, 132, 252, 0.52) !important;
-      box-shadow: 0 8px 20px rgba(147, 51, 234, 0.22), inset 0 1px 0 rgba(233, 213, 255, 0.12) !important;
+      border-color: rgba(192, 132, 252, 0.65) !important;
+      box-shadow: 0 8px 20px rgba(147, 51, 234, 0.24) !important;
     }
 
     .theme-gold {
-      background: linear-gradient(160deg, rgba(133, 77, 14, 0.82), rgba(26, 20, 12, 0.97)) !important;
-      border-color: rgba(250, 204, 21, 0.55) !important;
-      box-shadow: 0 8px 22px rgba(234, 179, 8, 0.24), inset 0 1px 0 rgba(254, 240, 138, 0.15) !important;
+      border-color: rgba(250, 204, 21, 0.72) !important;
+      box-shadow: 0 8px 22px rgba(234, 179, 8, 0.25) !important;
     }
 
     .theme-grey {
-      background: linear-gradient(160deg, rgba(30, 37, 50, 0.92), rgba(18, 22, 31, 0.96));
       border-color: var(--line);
     }
 
@@ -392,46 +417,68 @@
 
     .slot {
       position: relative;
+      overflow: hidden;
       background: var(--bg-2);
       border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 11px 8px;
-      min-height: 124px;
+      border-radius: 15px;
+      padding: 9px;
+      min-height: 146px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: transform 0.14s ease, border-color 0.15s ease;
+    }
+
+    .slot:active {
+      transform: scale(0.98);
+    }
+
+    .slot-bg-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: 0;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .slot-scrim {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      min-height: 128px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
       gap: 4px;
-      cursor: pointer;
-      transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
-    }
-
-    .slot:hover {
-      transform: translateY(-1px);
+      padding: 6px;
+      border-radius: 11px;
+      background: linear-gradient(180deg, rgba(7, 10, 16, 0.45) 0%, rgba(7, 10, 16, 0.2) 48%, rgba(7, 10, 16, 0.68) 100%);
     }
 
     .slot-clear-btn {
       position: absolute;
-      top: 6px;
-      right: 6px;
-      width: 22px;
-      height: 22px;
-      border-radius: 7px;
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      background: rgba(10, 13, 20, 0.82);
+      top: 7px;
+      right: 7px;
+      width: 24px;
+      height: 24px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.32);
+      background: rgba(10, 13, 20, 0.85);
       color: #f8fafc;
       font-size: 11px;
       font-weight: 900;
       display: grid;
       place-items: center;
       cursor: pointer;
-      z-index: 3;
+      z-index: 4;
       transition: transform 0.1s ease, background 0.15s ease;
-    }
-
-    .slot-clear-btn:hover {
-      background: rgba(185, 28, 28, 0.85);
-      border-color: rgba(254, 202, 202, 0.7);
     }
 
     .slot-clear-btn:active {
@@ -440,53 +487,42 @@
 
     .slot-top {
       font-size: 10px;
-      font-weight: 900;
+      font-weight: 950;
       letter-spacing: 0.75px;
       text-transform: uppercase;
-      color: #cbd5e1;
-    }
-
-    .pic-box {
-      width: 50px;
-      height: 50px;
-      border-radius: 11px;
-      background: rgba(9, 12, 18, 0.72);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-      font-size: 10px;
-      font-weight: 800;
-      color: var(--muted);
-    }
-
-    .pic-box img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
+      color: #f8fafc;
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.95);
     }
 
     .slot-title {
       font-size: 12px;
-      font-weight: 800;
-      max-width: 124px;
+      font-weight: 900;
+      max-width: 128px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       text-align: center;
+      color: #fff;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
     }
 
     .slot-coins {
       font-size: 11px;
-      font-weight: 900;
+      font-weight: 950;
       color: var(--gold);
+      background: rgba(9, 12, 18, 0.82);
+      border: 1px solid rgba(250, 204, 21, 0.45);
+      padding: 3px 8px;
+      border-radius: 8px;
     }
 
     .slot-hint-sub {
       font-size: 10px;
       font-weight: 800;
-      color: #cbd5e1;
+      color: #e2e8f0;
+      background: rgba(15, 23, 42, 0.78);
+      padding: 2px 7px;
+      border-radius: 6px;
     }
 
     .gt-mid {
@@ -610,52 +646,111 @@
       gap: 10px;
     }
 
-    .item-card {
+    .babich-tile {
       position: relative;
+      overflow: hidden;
+      min-height: 168px;
       background: var(--bg-2);
       border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 12px 10px;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: transform 0.14s ease, border-color 0.15s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .babich-tile:active {
+      transform: scale(0.97);
+    }
+
+    .babich-tile-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      z-index: 0;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .babich-tile-overlay {
+      position: relative;
+      z-index: 1;
+      padding: 28px 9px 9px;
+      width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       text-align: center;
-      transition: transform 0.14s ease;
+      background: linear-gradient(180deg, rgba(6, 9, 15, 0.05) 0%, rgba(6, 9, 15, 0.56) 48%, rgba(6, 9, 15, 0.88) 100%);
     }
 
-    .item-card:hover {
-      transform: translateY(-1px);
+    .babich-tile-name {
+      font-size: 12px;
+      font-weight: 900;
+      color: #ffffff;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
+      line-height: 1.15;
+    }
+
+    .babich-tile-price {
+      font-size: 11px;
+      font-weight: 900;
+      color: var(--gold);
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.95);
     }
 
     .heart-btn {
       position: absolute;
       top: 7px;
       right: 7px;
-      width: 26px;
-      height: 26px;
+      width: 28px;
+      height: 28px;
       border-radius: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      background: rgba(10, 13, 20, 0.72);
-      color: #94a3b8;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(10, 13, 20, 0.78);
+      color: #e2e8f0;
       font-size: 14px;
       line-height: 1;
       display: grid;
       place-items: center;
       cursor: pointer;
       transition: transform 0.12s ease, all 0.15s ease;
-      z-index: 2;
+      z-index: 3;
     }
 
     .heart-btn.active {
-      border-color: rgba(251, 113, 133, 0.8);
-      background: rgba(159, 18, 57, 0.45);
-      color: #fb7185;
-      box-shadow: 0 0 12px rgba(244, 63, 94, 0.35);
+      border-color: rgba(251, 113, 133, 0.9);
+      background: rgba(159, 18, 57, 0.72);
+      color: #fda4af;
+      box-shadow: 0 0 12px rgba(244, 63, 94, 0.45);
     }
 
     .heart-btn:active {
       transform: scale(0.9);
+    }
+
+    .btn-tile-action {
+      width: 100%;
+      padding: 7px 8px;
+      border-radius: 9px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      background: rgba(24, 31, 45, 0.88);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 900;
+      cursor: pointer;
+      backdrop-filter: blur(4px);
+    }
+
+    .btn-tile-action.active-choice {
+      background: rgba(34, 197, 94, 0.9);
+      border-color: rgba(187, 247, 208, 0.9);
+      color: #051209;
     }
 
     .btn-mini {
@@ -695,8 +790,8 @@
     }
 
     .btn-sell {
-      background: linear-gradient(180deg, #452328, #261417);
-      border-color: rgba(239, 68, 68, 0.5);
+      background: rgba(127, 29, 29, 0.86);
+      border-color: rgba(248, 113, 113, 0.65);
       color: #fecaca;
     }
 
@@ -939,9 +1034,23 @@
             <div class="wheel-green-fill" id="green-fill"></div>
             <div class="wheel-green-shimmer" id="green-shimmer"></div>
             <div class="arrow-rotator" id="arrow-rotator">
-              <div class="arrow-head"></div>
+              <div class="arrow-pointer">
+                <svg viewBox="0 0 32 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="arrowGrad" x1="16" y1="2" x2="16" y2="34" gradientUnits="userSpaceOnUse">
+                      <stop offset="0%" stop-color="#ffffff" />
+                      <stop offset="55%" stop-color="#bbf7d0" />
+                      <stop offset="100%" stop-color="#22c55e" />
+                    </linearGradient>
+                  </defs>
+                  <path d="M16 33L3.5 9.5C2.5 7.6 3.9 5.3 6.1 5.3H25.9C28.1 5.3 29.5 7.6 28.5 9.5L16 33Z" fill="url(#arrowGrad)" stroke="#052e16" stroke-width="1.8" stroke-linejoin="round" />
+                  <path d="M16 28.5L7.2 11.5H16V28.5Z" fill="rgba(255,255,255,0.45)" />
+                </svg>
+              </div>
             </div>
             <div class="wheel-hub">
+              <img class="wheel-hub-bg" src="babich.jpg" alt="" />
+              <div class="wheel-hub-scrim"></div>
               <div class="chance-value" id="chance-value">50%</div>
               <div class="chance-label">Шанс</div>
             </div>
@@ -950,23 +1059,27 @@
 
           <div class="slots">
             <div class="slot theme-grey" id="slot-mine-card" onclick="handleMineSlotClick()">
+              <img class="slot-bg-img" id="slot-mine-bg" style="display:none;" alt="" />
               <button class="slot-clear-btn" id="clear-mine-btn" style="display:none;" onclick="clearMineSlot(event)" title="Убрать из МОЕ">✕</button>
-              <div class="slot-top">МОЕ</div>
-              <div class="pic-box" id="slot-mine-pic">ФОТО</div>
-              <div class="slot-title" id="slot-mine-title">Не выбрано</div>
-              <div class="slot-coins" id="slot-mine-val">0 А-БИЧЕЙ</div>
-              <div class="slot-hint-sub" id="slot-mine-hint">Выбери в МОЕ</div>
+              <div class="slot-scrim">
+                <div class="slot-top">МОЕ</div>
+                <div class="slot-title" id="slot-mine-title">Не выбрано</div>
+                <div class="slot-coins" id="slot-mine-val">0 А-БИЧЕЙ</div>
+                <div class="slot-hint-sub" id="slot-mine-hint">Выбери в МОЕ</div>
+              </div>
             </div>
 
             <div class="gt-mid">&gt;</div>
 
             <div class="slot theme-grey" id="slot-wish-card" onclick="handleWishSlotClick()">
+              <img class="slot-bg-img" id="slot-wish-bg" style="display:none;" alt="" />
               <button class="slot-clear-btn" id="clear-wish-btn" style="display:none;" onclick="clearWishSlot(event)" title="Убрать цель">✕</button>
-              <div class="slot-top">ЖЕЛАЕМОЕ</div>
-              <div class="pic-box" id="slot-wish-pic">ФОТО</div>
-              <div class="slot-title" id="slot-wish-title">Не выбрано</div>
-              <div class="slot-coins" id="slot-wish-val">0 А-БИЧЕЙ</div>
-              <div class="slot-hint-sub" id="slot-wish-hint">Вкладка ЖЕЛАЕМОЕ</div>
+              <div class="slot-scrim">
+                <div class="slot-top">ЖЕЛАЕМОЕ</div>
+                <div class="slot-title" id="slot-wish-title">Не выбрано</div>
+                <div class="slot-coins" id="slot-wish-val">0 А-БИЧЕЙ</div>
+                <div class="slot-hint-sub" id="slot-wish-hint">Вкладка ЖЕЛАЕМОЕ</div>
+              </div>
             </div>
           </div>
 
@@ -1110,58 +1223,59 @@
       if (name === 'AHLELELE BABICHNAS' || name === 'граберчик') return 'burgundy';
       if (name === 'HIJNIAK' || name === 'Буберчик') return 'red';
       if (name === 'Бабич Прайм' || name === 'бабичниииииик') return 'green';
-      if (name === 'Киррил БАБИЧ' || name === 'Эгьр') return 'blue';
+      if (name === 'КИРИЛЛ БАБИЧ' || name === 'Эгьр') return 'blue';
       if (val > 67) return 'gold';
       if (val > 34) return 'purple';
       return 'grey';
     }
 
+    // Точные имена файлов из папки + повторы + КИРИЛЛ (6) + Квадратлон (GRABABICH.jpg) + бабичниииииик
     const RAW_BABICH_LIST = [
       { id: 'b_1', name: 'Бабич', val: 5, img: 'babich.jpg' },
-      { id: 'b_23', name: 'Киррил', val: 5, img: 'kiril.jpg' },
+      { id: 'b_23', name: 'КИРИЛЛ', val: 6, img: 'kiril.jpg' },
       { id: 'b_2', name: 'ОмгБабич', val: 8, img: 'omg_babich.jpg' },
       { id: 'b_3', name: 'Бибич', val: 12, img: 'babiich.jpg' },
-      { id: 'b_25', name: 'бубич', val: 13, img: 'babush.jpg' },
-      { id: 'b_4', name: 'Бибач', val: 16, img: 'bibach.jpg' },
-      { id: 'b_5', name: 'Квадрат', val: 19, img: 'kvadrat.jpg' },
-      { id: 'b_6', name: 'Квадрачлен', val: 20, img: 'kvadrachlen.jpg' },
-      { id: 'b_7', name: 'Квадратлон', val: 24, img: 'kvadratlon.jpg' },
-      { id: 'b_8', name: 'Бабичтрон', val: 26, img: 'babichtron.jpg' },
-      { id: 'b_9', name: 'МегаБАБИЧ', val: 30, img: 'mega_babich.jpg' },
-      { id: 'b_41', name: 'Бубенчик', val: 32, img: 'bubenchik.jpg' },
-      { id: 'b_10', name: 'Грабабич', val: 34, img: 'grababich.jpg' },
-      { id: 'b_11', name: 'БЕДБИЧ', val: 37, img: 'bedbich.jpg' },
-      { id: 'b_12', name: 'О.К.С.Бабич', val: 40, img: 'oks_babich.jpg' },
+      { id: 'b_25', name: 'бубич', val: 13, img: 'babich6.jpg' },
+      { id: 'b_4', name: 'Бибач', val: 16, img: 'babich8.jpg' },
+      { id: 'b_5', name: 'Квадрат', val: 19, img: 'babush.jpg' },
+      { id: 'b_6', name: 'Квадрачлен', val: 20, img: 'babich6.jpg' },
+      { id: 'b_7', name: 'Квадратлон', val: 24, img: 'GRABABICH.jpg' },
+      { id: 'b_8', name: 'Бабичтрон', val: 26, img: 'INFBabich.jpg' },
+      { id: 'b_9', name: 'МегаБАБИЧ', val: 30, img: 'AuraPurple.jpg' },
+      { id: 'b_41', name: 'Бубенчик', val: 32, img: 'babush.jpg' },
+      { id: 'b_10', name: 'Грабабич', val: 34, img: 'GRABABICH.jpg' },
+      { id: 'b_11', name: 'БЕДБИЧ', val: 37, img: 'babichNULL.jpg' },
+      { id: 'b_12', name: 'О.К.С.Бабич', val: 40, img: 'KARABABICH.jpg' },
       { id: 'b_13', name: 'БАРАБАН', val: 42, img: 'baraban.jpg' },
-      { id: 'b_14', name: 'БАБИЧ БАРАБАН', val: 46, img: 'babich_baraban.jpg' },
+      { id: 'b_14', name: 'БАБИЧ БАРАБАН', val: 46, img: 'BARABANBABICH.jpg' },
       { id: 'b_33', name: 'Гроза Бабичей', val: 46, img: 'laserbabich.jpg' },
-      { id: 'b_15', name: 'ГРИНЕВИЧ', val: 50, img: 'grinevich.jpg' },
-      { id: 'b_26', name: 'бубичненко', val: 50, img: 'bubichnenko.jpg' },
+      { id: 'b_15', name: 'ГРИНЕВИЧ', val: 50, img: 'SUgrenevich.jpg' },
+      { id: 'b_26', name: 'бубичненко', val: 50, img: 'OGO.jpg' },
       { id: 'b_16', name: 'АЛЛАХ БАБИЧ', val: 52, img: 'HallahBabich.jpg' },
-      { id: 'b_30', name: 'Бабич тянка', val: 54, img: 'babich_tyanka.jpg' },
-      { id: 'b_17', name: 'Грибабич', val: 60, img: 'gribabich.jpg' },
-      { id: 'b_24', name: 'Киррил БАБИЧ', val: 64, img: 'kirril_babich.jpg', theme: 'blue' },
-      { id: 'b_38', name: 'Грибатрон', val: 64, img: 'gribatron.jpg' },
+      { id: 'b_30', name: 'Бабич тянка', val: 54, img: 'BabichTyanka.jpg' },
+      { id: 'b_17', name: 'Грибабич', val: 60, img: 'INFBabich.jpg' },
+      { id: 'b_24', name: 'КИРИЛЛ БАБИЧ', val: 64, img: 'light_babich.jpg', theme: 'blue' },
+      { id: 'b_38', name: 'Грибатрон', val: 64, img: 'AuraPurple.jpg' },
       { id: 'b_18', name: '67Бабич', val: 67, img: '67babich.jpg' },
-      { id: 'b_29', name: 'Бабич хуесос', val: 67, img: 'babich_huesos.jpg' },
+      { id: 'b_29', name: 'Бабич хуесос', val: 67, img: 'BABECHAKN.jpg' },
       { id: 'b_35', name: 'Бабучка', val: 74, img: 'babkababich.jpg' },
-      { id: 'b_19', name: 'квадриллион', val: 75, img: 'kvadrillion.jpg' },
-      { id: 'b_20', name: 'ультрабабич', val: 80, img: 'light_babich.jpg' },
-      { id: 'b_36', name: 'Бабник', val: 84, img: 'babnik.jpg' },
-      { id: 'b_21', name: 'Сиксиллион', val: 90, img: 'siksillion.jpg' },
-      { id: 'b_28', name: 'Фуфел Бабич', val: 95, img: 'fufel_babich.jpg' },
-      { id: 'b_22', name: 'TRUE BABICH', val: 100, img: 'true_babich.jpg' },
-      { id: 'b_37', name: 'Грибабник', val: 111, img: 'gribabnik.jpg' },
-      { id: 'b_44', name: 'Эгьр', val: 117, img: 'egyr.jpg', theme: 'blue' },
-      { id: 'b_27', name: 'Бабич Прайм', val: 134, img: 'babich_prime.jpg', theme: 'green' },
+      { id: 'b_19', name: 'квадриллион', val: 75, img: 'light_babich.jpg' },
+      { id: 'b_20', name: 'ультрабабич', val: 80, img: 'OGO.jpg' },
+      { id: 'b_36', name: 'Бабник', val: 84, img: 'AuraPurple.jpg' },
+      { id: 'b_21', name: 'Сиксиллион', val: 90, img: 'supergrenevich.jpg' },
+      { id: 'b_28', name: 'Фуфел Бабич', val: 95, img: 'BABECHAKN.jpg' },
+      { id: 'b_22', name: 'TRUE BABICH', val: 100, img: 'TRUEBABICH.jpg' },
+      { id: 'b_37', name: 'Грибабник', val: 111, img: 'supergrenevich.jpg' },
+      { id: 'b_44', name: 'Эгьр', val: 117, img: 'light_babich.jpg', theme: 'blue' },
+      { id: 'b_27', name: 'Бабич Прайм', val: 134, img: 'primebabich.jpg', theme: 'green' },
       { id: 'b_31', name: 'МГЕ бабич', val: 150, img: 'MGEBABICH.jpg' },
-      { id: 'b_45', name: 'бабичниииииик', val: 165, img: 'babichniiiiiik.jpg', theme: 'green' },
-      { id: 'b_39', name: 'ГРАБАТРОН', val: 175, img: 'grabitron.jpg' },
-      { id: 'b_34', name: 'Бабичанос', val: 195, img: 'babichanos.jpg' },
-      { id: 'b_32', name: 'HIJNIAK', val: 240, img: 'hijniak.jpg', theme: 'red' },
-      { id: 'b_42', name: 'Буберчик', val: 255, img: 'buberchik.jpg', theme: 'red' },
-      { id: 'b_43', name: 'граберчик', val: 270, img: 'graberchik.jpg', theme: 'burgundy' },
-      { id: 'b_40', name: 'AHLELELE BABICHNAS', val: 300, img: 'ahlelele_babichnas.jpg', theme: 'burgundy' }
+      { id: 'b_45', name: 'бабичниииииик', val: 165, img: 'primebabich.jpg', theme: 'green' },
+      { id: 'b_39', name: 'ГРАБАТРОН', val: 175, img: 'GRABATRON.jpg' },
+      { id: 'b_34', name: 'Бабичанос', val: 195, img: 'BABECHAKN.jpg' },
+      { id: 'b_32', name: 'HIJNIAK', val: 240, img: 'HIJNIAK.jpg', theme: 'red' },
+      { id: 'b_42', name: 'Буберчик', val: 255, img: 'babichNULL.jpg', theme: 'red' },
+      { id: 'b_43', name: 'граберчик', val: 270, img: 'GRABATRON.jpg', theme: 'burgundy' },
+      { id: 'b_40', name: 'AHLELELE BABICHNAS', val: 300, img: 'AHLELELEBABICHNAS.jpg', theme: 'burgundy' }
     ];
 
     const BABICH_LIST = RAW_BABICH_LIST
@@ -1174,10 +1288,12 @@
       'b_45', 'b_34', 'b_32', 'b_42', 'b_43', 'b_40'
     ];
 
-    const MAX_CHANCE = 79;
+    // Максимум 1.5x по цене (например 8 -> макс 12, шанс 8/12 = 66.7%, в пределах 75%)
+    const MAX_PRICE_MULT = 1.5;
+    const MAX_CHANCE = 75;
     const MAX_BOOST_CLICKS = 6;
     const DAY_MS = 24 * 60 * 60 * 1000;
-    const STORAGE_KEY = 'babich_grader_v19_no_rarity_badges_and_dynamic_odds';
+    const STORAGE_KEY = 'babich_grader_v22_kirill6_quadratlon_15x_cap';
 
     let state = {
       bal: 0,
@@ -1216,6 +1332,16 @@
     let visualChance = 50;
     let chanceAnimFrame = null;
     let audioCtx = null;
+
+    function getMaxAllowedWishVal(mine) {
+      if (!mine) return Infinity;
+      return Math.floor(mine.val * MAX_PRICE_MULT);
+    }
+
+    function isWishAllowedForMine(mine, wish) {
+      if (!mine || !wish) return false;
+      return wish.val <= getMaxAllowedWishVal(mine);
+    }
 
     function getThemeClass(item) {
       return 'theme-' + resolveTheme(item?.name, item?.val || 0, item?.theme);
@@ -1300,29 +1426,28 @@
 
     function createFallbackSvg(item) {
       const initials = (item?.name || 'B').slice(0, 2).toUpperCase();
-      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80"><rect width="80" height="80" rx="14" fill="#182030"/><text x="40" y="46" text-anchor="middle" fill="#e2e8f0" font-family="Arial,sans-serif" font-size="22" font-weight="bold">${initials}</text></svg>`;
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="120" height="160" viewBox="0 0 120 160"><rect width="120" height="160" fill="#182030"/><text x="60" y="88" text-anchor="middle" fill="#e2e8f0" font-family="Arial,sans-serif" font-size="28" font-weight="bold">${initials}</text></svg>`;
       return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
     }
 
-    function attachPic(box, item) {
-      if (!box) return;
-      box.innerHTML = '';
+    function setBgImage(imgEl, item) {
+      if (!imgEl) return;
       if (!item) {
-        box.textContent = 'ФОТО';
+        imgEl.style.display = 'none';
+        imgEl.removeAttribute('src');
         return;
       }
-      const img = document.createElement('img');
-      img.alt = item.name;
-      img.src = item.img || createFallbackSvg(item);
-      img.onerror = () => {
-        if (!img.dataset.fb) {
-          img.dataset.fb = '1';
-          img.src = createFallbackSvg(item);
+      imgEl.style.display = 'block';
+      imgEl.dataset.fb = '';
+      imgEl.src = item.img || createFallbackSvg(item);
+      imgEl.onerror = () => {
+        if (!imgEl.dataset.fb) {
+          imgEl.dataset.fb = '1';
+          imgEl.src = createFallbackSvg(item);
         } else {
-          box.textContent = 'ФОТО';
+          imgEl.style.display = 'none';
         }
       };
-      box.appendChild(img);
     }
 
     function animateGreenChanceTo(targetChance) {
@@ -1378,6 +1503,12 @@
         state.selectedInvUid = null;
         state.selectedWishId = null;
         state.boostCoinsUsed = 0;
+        return;
+      }
+      const wish = BABICH_LIST.find(x => x.id === state.selectedWishId) || null;
+      if (wish && !isWishAllowedForMine(mine, wish)) {
+        state.selectedWishId = null;
+        state.boostCoinsUsed = 0;
       }
     }
 
@@ -1396,18 +1527,6 @@
 
       const ratio = mine.val / wish.val;
       const ratioPct = Math.round(ratio * 100);
-
-      // Если пресет выбран, но цель заметно дороже твоего Бабича — шанс снижается пропорционально крутизне цели
-      if (state.presetMode) {
-        const gap = wish.val - mine.val;
-        if (gap <= 5) return Math.min(state.baseChance, MAX_CHANCE);
-        const scaled = Math.min(state.baseChance, Math.max(2, Math.round(ratioPct + (state.baseChance - ratioPct) * 0.35)));
-        if (wish.val >= 200) return Math.max(1, Math.min(14, Math.round(ratioPct * 1.4)));
-        if (wish.val >= 120) return Math.max(2, Math.min(35, scaled));
-        return Math.max(3, Math.min(state.baseChance, scaled));
-      }
-
-      if (wish.val >= 200) return Math.max(1, Math.min(12, Math.round(ratioPct * 1.2)));
       return Math.min(MAX_CHANCE, Math.max(1, ratioPct));
     }
 
@@ -1426,13 +1545,16 @@
 
     function pickReplacementWishForPreset(mine, targetChance) {
       if (!mine) return null;
-      const desiredRatio = Math.max(0.15, targetChance / 100);
-      const targetVal = mine.val / desiredRatio;
-      const candidates = BABICH_LIST.filter(x => x.val > mine.val);
-      const pool = candidates.length ? candidates : BABICH_LIST;
+      const maxVal = getMaxAllowedWishVal(mine);
+      const allowed = BABICH_LIST.filter(x => x.val <= maxVal && x.val > mine.val);
+      const pool = allowed.length ? allowed : BABICH_LIST.filter(x => x.val <= maxVal);
+      if (!pool.length) return null;
+
+      const desiredRatio = Math.max(0.67, targetChance / 100);
+      const targetVal = Math.min(maxVal, mine.val / desiredRatio);
 
       const sorted = [...pool].sort((a, b) => Math.abs(a.val - targetVal) - Math.abs(b.val - targetVal));
-      const topSlice = sorted.slice(0, Math.min(5, sorted.length));
+      const topSlice = sorted.slice(0, Math.min(4, sorted.length));
       if (!topSlice.length) return null;
 
       let idx = state.presetRotateIdx % topSlice.length;
@@ -1461,13 +1583,15 @@
     }
 
     function setChance(pct, btn) {
-      const mult = Number((100 / Math.max(5, pct)).toFixed(1));
-      applyPresetSelection(pct, mult, btn);
+      const cappedPct = Math.min(MAX_CHANCE, pct);
+      const mult = Number((100 / Math.max(5, cappedPct)).toFixed(1));
+      applyPresetSelection(cappedPct, mult, btn);
     }
 
     function setMult(mult, btn) {
-      const pct = Math.max(5, Math.min(MAX_CHANCE, Math.round(100 / mult)));
-      applyPresetSelection(pct, mult, btn);
+      const safeMult = Math.min(MAX_PRICE_MULT, mult);
+      const pct = Math.max(5, Math.min(MAX_CHANCE, Math.round(100 / safeMult)));
+      applyPresetSelection(pct, safeMult, btn);
     }
 
     function clearMineSlot(ev) {
@@ -1585,46 +1709,67 @@
         document.getElementById('sub-' + k).classList.toggle('active', state.subTab === k);
       });
 
+      const mine = state.inv.find(x => x.uid === state.selectedInvUid) || null;
+
       if (state.subTab === 'mine') {
         if (!state.inv.length) {
-          box.innerHTML = '<div style="font-size:13px;color:var(--muted);">В МОЕ пока пусто. Купи Бабича в МАГАЗИНЕ.</div>';
+          box.innerHTML = '<div style="font-size:13px;color:var(--muted);">В МОЕ пока пусто. Нажми на Бабича в МАГАЗИНЕ.</div>';
           return;
         }
         const sortedInv = [...state.inv].sort((a, b) => a.val - b.val);
-        box.innerHTML = `<div class="grid-2">${sortedInv.map(it => `
-          <div class="item-card ${getThemeClass(it)}">
-            <button class="heart-btn ${it.locked ? 'active' : ''}" onclick="toggleHeart(${it.uid}, event)" title="Защита">${it.locked ? '♥' : '♡'}</button>
-            <div class="pic-box" data-sub-mine="${it.uid}">ФОТО</div>
-            <div style="font-size:12px;font-weight:800;">${it.name}</div>
-            <div style="font-size:11px;font-weight:800;color:var(--gold);">${it.val} А-БИЧЕЙ</div>
-            <button class="btn-mini" onclick="selectMine(${it.uid})">${it.uid === state.selectedInvUid ? 'Убрать из МОЕ' : 'Выбрать'}</button>
-          </div>
-        `).join('')}</div>`;
-        sortedInv.forEach(it => attachPic(box.querySelector(`[data-sub-mine="${it.uid}"]`), it));
+        box.innerHTML = `<div class="grid-2">${sortedInv.map(it => {
+          const picked = it.uid === state.selectedInvUid;
+          return `
+            <div class="babich-tile ${getThemeClass(it)}" onclick="selectMine(${it.uid})">
+              <img class="babich-tile-bg" data-sub-mine="${it.uid}" alt="${it.name}" />
+              <button class="heart-btn ${it.locked ? 'active' : ''}" onclick="toggleHeart(${it.uid}, event)" title="Защита">${it.locked ? '♥' : '♡'}</button>
+              <div class="babich-tile-overlay">
+                <div class="babich-tile-name">${it.name}</div>
+                <div class="babich-tile-price">${it.val} А-БИЧЕЙ</div>
+                <button class="btn-tile-action ${picked ? 'active-choice' : ''}" onclick="event.stopPropagation(); selectMine(${it.uid})">${picked ? 'Убрать' : 'Выбрать'}</button>
+              </div>
+            </div>
+          `;
+        }).join('')}</div>`;
+        sortedInv.forEach(it => setBgImage(box.querySelector(`[data-sub-mine="${it.uid}"]`), it));
       } else if (state.subTab === 'wish') {
+        const maxAllowed = mine ? getMaxAllowedWishVal(mine) : Infinity;
         const wishItems = state.wishIds
           .map(id => BABICH_LIST.find(x => x.id === id))
           .filter(Boolean)
           .sort((a, b) => a.val - b.val);
-        box.innerHTML = `<div class="grid-2">${wishItems.map(it => `
-          <div class="item-card ${getThemeClass(it)}">
-            <div class="pic-box" data-sub-wish="${it.id}">ФОТО</div>
-            <div style="font-size:12px;font-weight:800;">${it.name}</div>
-            <div style="font-size:11px;font-weight:800;color:var(--gold);">${it.val} А-БИЧЕЙ</div>
-            <button class="btn-mini" onclick="selectWish('${it.id}')">${it.id === state.selectedWishId ? 'Цель выбрана' : 'Выбрать цель'}</button>
-          </div>
-        `).join('')}</div>`;
-        wishItems.forEach(it => attachPic(box.querySelector(`[data-sub-wish="${it.id}"]`), it));
+
+        const capBanner = mine
+          ? `<div style="font-size:11px;color:var(--muted);margin-bottom:8px;">Лимит 1.5x для «${mine.name}» (${mine.val}): макс. цель <b>${maxAllowed} А-БИЧЕЙ</b></div>`
+          : `<div style="font-size:11px;color:var(--muted);margin-bottom:8px;">Выбери Бабича в МОЕ — цель не сможет быть дороже 1.5x от него</div>`;
+
+        box.innerHTML = capBanner + `<div class="grid-2">${wishItems.map(it => {
+          const picked = it.id === state.selectedWishId;
+          const lockedByCap = mine ? (it.val > maxAllowed) : false;
+          return `
+            <div class="babich-tile ${getThemeClass(it)}" style="${lockedByCap ? 'opacity:0.42;' : ''}" onclick="selectWish('${it.id}')">
+              <img class="babich-tile-bg" data-sub-wish="${it.id}" alt="${it.name}" />
+              <div class="babich-tile-overlay">
+                <div class="babich-tile-name">${it.name}</div>
+                <div class="babich-tile-price">${it.val} А-БИЧЕЙ</div>
+                <button class="btn-tile-action ${picked ? 'active-choice' : ''}" onclick="event.stopPropagation(); selectWish('${it.id}')">${lockedByCap ? `Макс ${maxAllowed}` : (picked ? 'Цель выбрана' : 'В цель')}</button>
+              </div>
+            </div>
+          `;
+        }).join('')}</div>`;
+        wishItems.forEach(it => setBgImage(box.querySelector(`[data-sub-wish="${it.id}"]`), it));
       } else {
         box.innerHTML = `<div class="grid-2">${BABICH_LIST.map(it => `
-          <div class="item-card ${getThemeClass(it)}">
-            <div class="pic-box" data-sub-shop="${it.id}">ФОТО</div>
-            <div style="font-size:12px;font-weight:800;">${it.name}</div>
-            <div style="font-size:11px;font-weight:800;color:var(--gold);">${it.val} А-БИЧЕЙ</div>
-            <button class="btn-mini" onclick="buyBabich('${it.id}')">Купить (${it.val})</button>
+          <div class="babich-tile ${getThemeClass(it)}" onclick="buyBabich('${it.id}')">
+            <img class="babich-tile-bg" data-sub-shop="${it.id}" alt="${it.name}" />
+            <div class="babich-tile-overlay">
+              <div class="babich-tile-name">${it.name}</div>
+              <div class="babich-tile-price">${it.val} А-БИЧЕЙ</div>
+              <button class="btn-tile-action" onclick="event.stopPropagation(); buyBabich('${it.id}')">Купить (${it.val})</button>
+            </div>
           </div>
         `).join('')}</div>`;
-        BABICH_LIST.forEach(it => attachPic(box.querySelector(`[data-sub-shop="${it.id}"]`), it));
+        BABICH_LIST.forEach(it => setBgImage(box.querySelector(`[data-sub-shop="${it.id}"]`), it));
       }
     }
 
@@ -1645,15 +1790,17 @@
       }
       const sortedInv = [...state.inv].sort((a, b) => a.val - b.val);
       wrap.innerHTML = `<div class="grid-2">${sortedInv.map(it => `
-        <div class="item-card ${getThemeClass(it)}">
+        <div class="babich-tile ${getThemeClass(it)}" onclick="sellBabich(${it.uid})">
+          <img class="babich-tile-bg" data-inv-sell="${it.uid}" alt="${it.name}" />
           <button class="heart-btn ${it.locked ? 'active' : ''}" onclick="toggleHeart(${it.uid}, event)" title="Защита">${it.locked ? '♥' : '♡'}</button>
-          <div class="pic-box" data-inv-sell="${it.uid}">ФОТО</div>
-          <div style="font-size:12px;font-weight:800;">${it.name}</div>
-          <div style="font-size:11px;font-weight:800;color:var(--gold);">Цена: ${it.val} А-БИЧЕЙ</div>
-          <button class="btn-mini btn-sell" onclick="sellBabich(${it.uid})">${it.locked ? '♥ Защищён' : `Продать (+${it.val})`}</button>
+          <div class="babich-tile-overlay">
+            <div class="babich-tile-name">${it.name}</div>
+            <div class="babich-tile-price">${it.val} А-БИЧЕЙ</div>
+            <button class="btn-tile-action btn-sell" onclick="event.stopPropagation(); sellBabich(${it.uid})">${it.locked ? '♥ Защищён' : `Продать (+${it.val})`}</button>
+          </div>
         </div>
       `).join('')}</div>`;
-      sortedInv.forEach(it => attachPic(wrap.querySelector(`[data-inv-sell="${it.uid}"]`), it));
+      sortedInv.forEach(it => setBgImage(wrap.querySelector(`[data-inv-sell="${it.uid}"]`), it));
     }
 
     function formatRemaining(ms) {
@@ -1751,19 +1898,18 @@
       const mineCard = document.getElementById('slot-mine-card');
       const clearMineBtn = document.getElementById('clear-mine-btn');
       applyThemeClass(mineCard, mine);
+      setBgImage(document.getElementById('slot-mine-bg'), mine);
 
       if (mine) {
         clearMineBtn.style.display = 'grid';
         document.getElementById('slot-mine-title').textContent = mine.name;
         document.getElementById('slot-mine-val').textContent = mine.val + ' А-БИЧЕЙ';
         document.getElementById('slot-mine-hint').textContent = 'Нажми чтобы снять';
-        attachPic(document.getElementById('slot-mine-pic'), mine);
       } else {
         clearMineBtn.style.display = 'none';
         document.getElementById('slot-mine-title').textContent = 'Не выбрано';
         document.getElementById('slot-mine-val').textContent = '0 А-БИЧЕЙ';
         document.getElementById('slot-mine-hint').textContent = 'Выбери в МОЕ';
-        attachPic(document.getElementById('slot-mine-pic'), null);
       }
 
       const wish = (mine && state.selectedWishId)
@@ -1774,19 +1920,18 @@
       const wishCard = document.getElementById('slot-wish-card');
       const clearWishBtn = document.getElementById('clear-wish-btn');
       applyThemeClass(wishCard, wish);
+      setBgImage(document.getElementById('slot-wish-bg'), wish);
 
       if (wish) {
         clearWishBtn.style.display = 'grid';
         document.getElementById('slot-wish-title').textContent = wish.name;
         document.getElementById('slot-wish-val').textContent = wish.val + ' А-БИЧЕЙ';
         document.getElementById('slot-wish-hint').textContent = 'Нажми чтобы убрать';
-        attachPic(document.getElementById('slot-wish-pic'), wish);
       } else {
         clearWishBtn.style.display = 'none';
         document.getElementById('slot-wish-title').textContent = mine ? 'Не выбрано' : 'Пусто';
         document.getElementById('slot-wish-val').textContent = '0 А-БИЧЕЙ';
         document.getElementById('slot-wish-hint').textContent = mine ? 'Вкладка ЖЕЛАЕМОЕ' : 'Сначала поставь МОЕ';
-        attachPic(document.getElementById('slot-wish-pic'), null);
       }
 
       syncChanceDisplay();
@@ -1835,6 +1980,11 @@
       state.boostCoinsUsed = 0;
       if (state.presetMode) {
         state.selectedWishId = pickReplacementWishForPreset(owned, state.baseChance);
+      } else {
+        const curWish = BABICH_LIST.find(x => x.id === state.selectedWishId);
+        if (curWish && !isWishAllowedForMine(owned, curWish)) {
+          state.selectedWishId = null;
+        }
       }
       playBuySound();
       toast('Куплено: ' + item.name + ' -> добавлено в МОЕ');
@@ -1873,6 +2023,11 @@
       const mine = state.inv.find(x => x.uid === uid) || null;
       if (state.presetMode && mine) {
         state.selectedWishId = pickReplacementWishForPreset(mine, state.baseChance);
+      } else if (mine) {
+        const curWish = BABICH_LIST.find(x => x.id === state.selectedWishId);
+        if (curWish && !isWishAllowedForMine(mine, curWish)) {
+          state.selectedWishId = null;
+        }
       }
       toast('Выбрано в МОЕ');
       renderAll();
@@ -1885,14 +2040,23 @@
         toast('Сначала выбери Бабича в МОЕ');
         return;
       }
+      const item = BABICH_LIST.find(x => x.id === id);
+      if (!item) return;
+
+      const maxAllowed = getMaxAllowedWishVal(mine);
+      if (item.val > maxAllowed) {
+        playLoseSound();
+        toast(`Нельзя дороже 1.5x (макс. ${maxAllowed} для ${mine.name})`);
+        return;
+      }
+
       playClickSound();
       state.presetMode = false;
       document.querySelectorAll('.preset').forEach(b => b.classList.remove('active'));
       state.selectedWishId = id;
       state.boostCoinsUsed = 0;
       if (!state.wishIds.includes(id)) state.wishIds.push(id);
-      const item = BABICH_LIST.find(x => x.id === id);
-      toast('Желаемое: ' + (item ? item.name : id));
+      toast('Желаемое: ' + item.name);
       renderAll();
     }
 
@@ -1904,7 +2068,7 @@
         return;
       }
       if (computeEffectiveChance() >= MAX_CHANCE) {
-        toast('Достигнут лимит шанса: 79%');
+        toast('Достигнут лимит шанса: 75%');
         return;
       }
       if (state.bal < 1) {
@@ -1949,7 +2113,7 @@
           <div class="boost-row"><span>Твои А-БИЧИ:</span><span class="boost-val">${state.bal}</span></div>
           <div class="boost-row"><span>За 1 А-БИЧ сейчас:</span><span class="boost-val">+${step}%</span></div>
           <div class="boost-row"><span>Улучшений использовано:</span><span class="boost-val">${state.boostCoinsUsed} / ${MAX_BOOST_CLICKS}</span></div>
-          <div class="boost-row"><span>Итоговый шанс (макс. 79%):</span><span class="boost-val">${formatChanceText(curChance)}</span></div>
+          <div class="boost-row"><span>Итоговый шанс (макс. 75%):</span><span class="boost-val">${formatChanceText(curChance)}</span></div>
         </div>
         <div style="display:flex;flex-direction:column;gap:8px;">
           <button class="btn-boost-action" onclick="depOneBoostCoin()">ДЕПНУТЬ 1 А-БИЧ (+${step}%)</button>
@@ -2036,18 +2200,21 @@
       const sortedInv = [...state.inv].sort((a, b) => a.val - b.val);
       sheet.innerHTML = `
         <div class="card-head">
-          <span class="card-title">МОЕ (от дешёвых к топам)</span>
-          <span class="badge" style="cursor:pointer;" onclick="document.getElementById('modal').classList.remove('open')">Закрыть</span>
+          <span class="card-title">МОЕ (нажми на окошко)</span>
+          <span class="badge" style="cursor:pointer;" onclick="closeBoostModal()">Закрыть</span>
         </div>
         ${sortedInv.length ? `<div class="grid-2">${sortedInv.map(it => `
-          <div class="item-card ${getThemeClass(it)}" style="cursor:pointer;" onclick="selectMine(${it.uid}); document.getElementById('modal').classList.remove('open');">
-            <div class="pic-box" data-pick-mine="${it.uid}">ФОТО</div>
-            <div style="font-size:12px;font-weight:800;">${it.name}</div>
-            <div style="font-size:11px;color:var(--gold);font-weight:800;">${it.val} А-БИЧЕЙ</div>
+          <div class="babich-tile ${getThemeClass(it)}" onclick="selectMine(${it.uid}); closeBoostModal();">
+            <img class="babich-tile-bg" data-pick-mine="${it.uid}" alt="${it.name}" />
+            <div class="babich-tile-overlay">
+              <div class="babich-tile-name">${it.name}</div>
+              <div class="babich-tile-price">${it.val} А-БИЧЕЙ</div>
+              <button class="btn-tile-action">Выбрать</button>
+            </div>
           </div>
         `).join('')}</div>` : `<div style="font-size:13px;color:var(--muted);">В МОЕ пусто. Купи Бабича в МАГАЗИНЕ.</div>`}
       `;
-      sortedInv.forEach(it => attachPic(sheet.querySelector(`[data-pick-mine="${it.uid}"]`), it));
+      sortedInv.forEach(it => setBgImage(sheet.querySelector(`[data-pick-mine="${it.uid}"]`), it));
       document.getElementById('modal').classList.add('open');
     }
 
@@ -2108,8 +2275,16 @@
       }
 
       const mine = state.inv[mineIdx];
-      const effChance = computeEffectiveChance();
+      const maxAllowed = getMaxAllowedWishVal(mine);
+      if (wish.val > maxAllowed) {
+        playLoseSound();
+        toast(`Цель дороже 1.5x (макс. ${maxAllowed} А-БИЧЕЙ)`);
+        state.selectedWishId = null;
+        renderAll();
+        return;
+      }
 
+      const effChance = computeEffectiveChance();
       if (effChance <= 0) {
         playLoseSound();
         toast('Шанс 0%: выбери пресет или подними шанс');
