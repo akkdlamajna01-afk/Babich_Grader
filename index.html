@@ -281,8 +281,8 @@
 
     .wheel-stage {
       position: relative;
-      width: 232px;
-      height: 232px;
+      width: 242px;
+      height: 242px;
       margin: 4px auto 14px;
       display: grid;
       place-items: center;
@@ -360,8 +360,8 @@
     .wheel-hub {
       position: relative;
       z-index: 4;
-      width: 152px;
-      height: 152px;
+      width: 156px;
+      height: 156px;
       border-radius: 50%;
       overflow: hidden;
       background: linear-gradient(160deg, #1d2536, #0b0e14);
@@ -425,28 +425,53 @@
 
     .wheel-turbo-btn {
       position: absolute;
-      right: -4px;
-      bottom: 4px;
+      right: -10px;
+      bottom: -2px;
       z-index: 8;
-      padding: 7px 11px;
-      border-radius: 10px;
-      border: 1px solid rgba(56, 189, 248, 0.75);
-      background: linear-gradient(135deg, #1e293b, #0f172a);
-      color: #e2e8f0;
-      font-size: 10px;
+      min-width: 76px;
+      padding: 10px 14px;
+      border-radius: 13px;
+      font-size: 12px;
       font-weight: 950;
       letter-spacing: 0.7px;
       text-transform: uppercase;
       cursor: pointer;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.55);
-      transition: transform 0.12s ease, all 0.15s ease;
+      transition: transform 0.12s ease, all 0.18s ease;
     }
 
-    .wheel-turbo-btn.active {
-      border-color: rgba(250, 204, 21, 0.95);
-      background: linear-gradient(135deg, #ca8a04, #ea580c);
-      color: #fff;
-      box-shadow: 0 0 18px rgba(250, 204, 21, 0.55);
+    .speed-1x {
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      background: linear-gradient(135deg, #334155, #1e293b);
+      color: #e2e8f0;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+    }
+
+    .speed-1_5x {
+      border: 1px solid rgba(125, 211, 252, 0.85);
+      background: linear-gradient(135deg, #0284c7, #38bdf8);
+      color: #041521;
+      box-shadow: 0 0 16px rgba(56, 189, 248, 0.5);
+    }
+
+    .speed-2x {
+      border: 1px solid rgba(147, 197, 253, 0.9);
+      background: linear-gradient(135deg, #1d4ed8, #2563eb);
+      color: #ffffff;
+      box-shadow: 0 0 18px rgba(37, 99, 235, 0.65);
+    }
+
+    .speed-3x {
+      border: 1px solid rgba(196, 181, 253, 0.9);
+      background: linear-gradient(135deg, #1d4ed8 0%, #3730a3 62%, #7e22ce 100%);
+      color: #ffffff;
+      box-shadow: 0 0 20px rgba(99, 102, 241, 0.7);
+    }
+
+    .speed-4x {
+      border: 1px solid rgba(233, 213, 255, 0.95);
+      background: linear-gradient(135deg, #7e22ce, #9333ea, #a855f7);
+      color: #ffffff;
+      box-shadow: 0 0 22px rgba(168, 85, 247, 0.82);
     }
 
     .wheel-turbo-btn:active {
@@ -1154,13 +1179,13 @@
               <div class="arrow-pointer">
                 <svg viewBox="0 0 36 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <defs>
-                    <linearGradient id="arrowGradV25" x1="18" y1="2" x2="18" y2="39" gradientUnits="userSpaceOnUse">
+                    <linearGradient id="arrowGradV26" x1="18" y1="2" x2="18" y2="39" gradientUnits="userSpaceOnUse">
                       <stop offset="0%" stop-color="#ffffff" />
                       <stop offset="48%" stop-color="#86efac" />
                       <stop offset="100%" stop-color="#16a34a" />
                     </linearGradient>
                   </defs>
-                  <path d="M18 39L3 10.5C2.1 8.8 3.3 6.7 5.2 6.7H30.8C32.7 6.7 33.9 8.8 33 10.5L18 39Z" fill="url(#arrowGradV25)" stroke="#ffffff" stroke-width="1.6" stroke-linejoin="round" />
+                  <path d="M18 39L3 10.5C2.1 8.8 3.3 6.7 5.2 6.7H30.8C32.7 6.7 33.9 8.8 33 10.5L18 39Z" fill="url(#arrowGradV26)" stroke="#ffffff" stroke-width="1.6" stroke-linejoin="round" />
                   <path d="M18 34.5L7.5 13.5H18V34.5Z" fill="rgba(255,255,255,0.42)" />
                   <circle cx="18" cy="11.5" r="2.3" fill="#ffffff" />
                 </svg>
@@ -1172,7 +1197,7 @@
               <div class="chance-value" id="chance-value">50%</div>
               <div class="chance-label">Шанс</div>
             </div>
-            <button class="wheel-turbo-btn" id="btn-turbo" onclick="toggleTurbo()">4X СПИД</button>
+            <button class="wheel-turbo-btn speed-1x" id="btn-turbo" onclick="toggleTurbo()">1X</button>
           </div>
 
           <div class="slots">
@@ -1355,18 +1380,18 @@
     function getAccountStorageKey() {
       const tgUser = tg?.initDataUnsafe?.user;
       if (tgUser && tgUser.id) {
-        return `babich_grader_v25_acc_tg_${tgUser.id}`;
+        return `babich_grader_v26_acc_tg_${tgUser.id}`;
       }
-      return 'babich_grader_v25_acc_guest';
+      return 'babich_grader_v26_acc_guest';
     }
 
     const ACCOUNT_KEY = getAccountStorageKey();
-    const BACKUP_KEY = 'babich_grader_v25_backup_latest';
+    const BACKUP_KEY = 'babich_grader_v26_backup_latest';
 
     function resolveTheme(name, val, customTheme) {
       if (customTheme) return customTheme;
-      if (name === 'AHLELELE BABICHNAS' || name === 'граберчик') return 'burgundy';
-      if (name === 'HIJNIAK' || name === 'Буберчик') return 'red';
+      if (name === 'AHLELELE BABICHNAS' || name === 'граберчик' || name === 'TITAN Babich') return 'burgundy';
+      if (name === 'HIJNIAK' || name === 'Буберчик' || name === 'БОГ МОЛНИЙ БАБИЧ') return 'red';
       if (name === 'Бабич Прайм' || name === 'бабичниииииик') return 'green';
       if (name === 'КИРИЛЛ БАБИЧ' || name === 'Эгьр') return 'blue';
       if (val > 67) return 'gold';
@@ -1382,7 +1407,7 @@
       { id: 'b_25', name: 'бубич', val: 13, img: 'babich6.jpg' },
       { id: 'b_4', name: 'Бибач', val: 16, img: 'babich8.jpg' },
       { id: 'b_5', name: 'Квадрат', val: 19, img: 'KVADRAT.jpg', square: true },
-      { id: 'b_6', name: 'Квадрачлен', val: 20, img: 'babich6.jpg' },
+      { id: 'b_6', name: 'Квадрачлен', val: 20, img: 'SIDITBABICH.jpg' },
       { id: 'b_7', name: 'Квадратлон', val: 24, img: 'GRABABICH.jpg' },
       { id: 'b_8', name: 'Бабичтрон', val: 26, img: 'INFBabich.jpg' },
       { id: 'b_9', name: 'МегаБАБИЧ', val: 30, img: 'AuraPurple.jpg' },
@@ -1400,6 +1425,7 @@
       { id: 'b_17', name: 'Грибабич', val: 60, img: 'INFBabich.jpg' },
       { id: 'b_24', name: 'КИРИЛЛ БАБИЧ', val: 64, img: 'light_babich.jpg', theme: 'blue' },
       { id: 'b_38', name: 'Грибатрон', val: 64, img: 'AuraPurple.jpg' },
+      { id: 'b_46', name: 'STILL LIFE Бабич', val: 66, img: 'still_life_babich.jpg' },
       { id: 'b_18', name: '67Бабич', val: 67, img: '67babich.jpg' },
       { id: 'b_29', name: 'Бабич хуесос', val: 67, img: 'BABECHAKN.jpg' },
       { id: 'b_35', name: 'Бабучка', val: 74, img: 'babkababich.jpg' },
@@ -1408,6 +1434,7 @@
       { id: 'b_36', name: 'Бабник', val: 84, img: 'AuraPurple.jpg' },
       { id: 'b_21', name: 'Сиксиллион', val: 90, img: 'supergrenevich.jpg' },
       { id: 'b_28', name: 'Фуфел Бабич', val: 95, img: 'BABECHAKN.jpg' },
+      { id: 'b_47', name: 'Брейнрот бабич', val: 99, img: 'brainrot_babich.jpg' },
       { id: 'b_22', name: 'TRUE BABICH', val: 100, img: 'TRUEBABICH.jpg' },
       { id: 'b_37', name: 'Грибабник', val: 111, img: 'supergrenevich.jpg' },
       { id: 'b_44', name: 'Эгьр', val: 117, img: 'light_babich.jpg', theme: 'blue' },
@@ -1417,9 +1444,11 @@
       { id: 'b_39', name: 'ГРАБАТРОН', val: 175, img: 'GRABATRON.jpg' },
       { id: 'b_34', name: 'Бабичанос', val: 195, img: 'BABECHAKN.jpg' },
       { id: 'b_32', name: 'HIJNIAK', val: 240, img: 'HIJNIAK.jpg', theme: 'red' },
+      { id: 'b_48', name: 'БОГ МОЛНИЙ БАБИЧ', val: 250, img: 'bog_molnii_babich.jpg', theme: 'red' },
       { id: 'b_42', name: 'Буберчик', val: 255, img: 'babichNULL.jpg', theme: 'red' },
       { id: 'b_43', name: 'граберчик', val: 270, img: 'GRABATRON.jpg', theme: 'burgundy' },
-      { id: 'b_40', name: 'AHLELELE BABICHNAS', val: 300, img: 'AHLELELEBABICHNAS.jpg', theme: 'burgundy' }
+      { id: 'b_40', name: 'AHLELELE BABICHNAS', val: 300, img: 'AHLELELEBABICHNAS.jpg', theme: 'burgundy' },
+      { id: 'b_49', name: 'TITAN Babich', val: 375, img: 'titan_babich.jpg', theme: 'burgundy' }
     ];
 
     const BABICH_LIST = RAW_BABICH_LIST
@@ -1427,6 +1456,14 @@
       .sort((a, b) => a.val - b.val);
 
     const DEFAULT_WISH_IDS = BABICH_LIST.map(x => x.id);
+
+    const SPEED_STEPS = [
+      { mult: 1, label: '1X', cls: 'speed-1x', turns: 6, dur: 7000 },
+      { mult: 1.5, label: '1.5X', cls: 'speed-1_5x', turns: 4, dur: 4600 },
+      { mult: 2, label: '2X', cls: 'speed-2x', turns: 3, dur: 3400 },
+      { mult: 3, label: '3X', cls: 'speed-3x', turns: 2.5, dur: 2400 },
+      { mult: 4, label: '4X', cls: 'speed-4x', turns: 2, dur: 1750 }
+    ];
 
     const MAX_CHANCE = 75;
     const MAX_BOOST_CLICKS = 6;
@@ -1440,7 +1477,7 @@
       selectionMode: 'none',
       presetRotateIdx: 0,
       boostCoinsUsed: 0,
-      turbo4x: false,
+      speedStepIdx: 0,
       subTab: 'mine',
       inv: [],
       wishIds: [...DEFAULT_WISH_IDS],
@@ -1466,6 +1503,9 @@
           const parsed = JSON.parse(rawAcc);
           if (parsed && typeof parsed === 'object') {
             state = { ...state, ...parsed };
+            if (typeof parsed.speedStepIdx !== 'number') {
+              state.speedStepIdx = parsed.turbo4x ? 4 : 0;
+            }
             state.wishIds = Array.from(new Set([...DEFAULT_WISH_IDS, ...(parsed.wishIds || [])]));
           }
         }
@@ -1479,6 +1519,11 @@
     let visualChance = 50;
     let chanceAnimFrame = null;
     let audioCtx = null;
+
+    function getSpeedConfig() {
+      const idx = ((state.speedStepIdx % SPEED_STEPS.length) + SPEED_STEPS.length) % SPEED_STEPS.length;
+      return SPEED_STEPS[idx];
+    }
 
     function getAllowedWishRange(mine) {
       if (!mine) return { minVal: 0, maxVal: Infinity };
@@ -1829,16 +1874,19 @@
     function syncTurboButton() {
       const btn = document.getElementById('btn-turbo');
       if (!btn) return;
-      btn.classList.toggle('active', Boolean(state.turbo4x));
-      btn.textContent = state.turbo4x ? '4X ВКЛ' : '4X СПИД';
+      const cfg = getSpeedConfig();
+      btn.classList.remove('speed-1x', 'speed-1_5x', 'speed-2x', 'speed-3x', 'speed-4x');
+      btn.classList.add(cfg.cls);
+      btn.textContent = cfg.label;
     }
 
     function toggleTurbo() {
       if (isSpinning) return;
       playClickSound();
-      state.turbo4x = !state.turbo4x;
+      state.speedStepIdx = (state.speedStepIdx + 1) % SPEED_STEPS.length;
+      const cfg = getSpeedConfig();
       syncTurboButton();
-      toast(state.turbo4x ? 'Быстрый режим x4 включён' : 'Обычная скорость крутки');
+      toast('Скорость колеса: ' + cfg.label);
       saveState();
     }
 
@@ -2517,11 +2565,10 @@
 
       const curMod = ((arrowAngle % 360) + 360) % 360;
       const deltaToStop = ((stopAngle - curMod) + 360) % 360;
-      const turns = state.turbo4x ? 2 : 6;
-      const durationMs = state.turbo4x ? 1750 : 7000;
-      const targetAngle = arrowAngle + turns * 360 + deltaToStop;
+      const speedCfg = getSpeedConfig();
+      const targetAngle = arrowAngle + speedCfg.turns * 360 + deltaToStop;
 
-      spinArrow(targetAngle, durationMs, () => {
+      spinArrow(targetAngle, speedCfg.dur, () => {
         if (win) {
           const upgraded = {
             uid: mine.uid,
