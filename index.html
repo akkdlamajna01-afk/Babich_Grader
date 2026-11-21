@@ -7,12 +7,12 @@
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
     :root {
-      --bg-0: #06080c;
-      --bg-1: #0e131c;
-      --bg-2: #151c29;
-      --bg-3: #1d2738;
-      --line: rgba(255, 255, 255, 0.12);
-      --line-hi: rgba(226, 232, 40, 0.42);
+      --bg-0: #05070b;
+      --bg-1: #0c1119;
+      --bg-2: #141b27;
+      --bg-3: #1c2638;
+      --line: rgba(255, 255, 255, 0.11);
+      --line-hi: rgba(250, 204, 21, 0.45);
       --txt: #f8fafc;
       --muted: #cbd5e1;
       --gold: #facc15;
@@ -32,12 +32,12 @@
     body {
       min-height: 100vh;
       background:
-        radial-gradient(circle at 12% 8%, rgba(56, 189, 248, 0.12), transparent 42%),
-        radial-gradient(circle at 88% 18%, rgba(239, 68, 68, 0.1), transparent 46%),
-        radial-gradient(circle at 50% 92%, rgba(250, 204, 21, 0.08), transparent 55%),
-        linear-gradient(140deg, #05070b 0%, #111722 50%, #07090e 100%);
+        radial-gradient(circle at 15% 6%, rgba(56, 189, 248, 0.13), transparent 44%),
+        radial-gradient(circle at 86% 16%, rgba(244, 63, 94, 0.12), transparent 48%),
+        radial-gradient(circle at 50% 94%, rgba(250, 204, 21, 0.09), transparent 56%),
+        linear-gradient(145deg, #040609 0%, #101622 50%, #06080d 100%);
       background-size: 220% 220%;
-      animation: greyGradFlow 12s ease-in-out infinite alternate;
+      animation: greyGradFlow 13s ease-in-out infinite alternate;
       color: var(--txt);
       display: flex;
       justify-content: center;
@@ -58,13 +58,13 @@
       width: 100%;
       max-width: 430px;
       min-height: 100vh;
-      background: linear-gradient(180deg, rgba(16, 21, 31, 0.98) 0%, rgba(8, 10, 15, 0.995) 100%);
+      background: linear-gradient(180deg, rgba(15, 20, 30, 0.985) 0%, rgba(7, 9, 14, 0.998) 100%);
       border-left: 1px solid var(--line);
       border-right: 1px solid var(--line);
       display: flex;
       flex-direction: column;
       padding-bottom: 88px;
-      box-shadow: 0 0 80px rgba(0, 0, 0, 0.95);
+      box-shadow: 0 0 84px rgba(0, 0, 0, 0.96);
     }
 
     .topbar {
@@ -75,8 +75,8 @@
       align-items: center;
       justify-content: space-between;
       padding: 12px 15px;
-      background: rgba(11, 15, 22, 0.95);
-      backdrop-filter: blur(16px);
+      background: rgba(10, 14, 21, 0.94);
+      backdrop-filter: blur(18px);
       border-bottom: 1px solid var(--line);
       gap: 10px;
     }
@@ -106,7 +106,7 @@
       border-radius: 13px;
       background:
         linear-gradient(145deg, rgba(250, 204, 21, 0.22), rgba(30, 38, 54, 0.95) 42%, rgba(14, 18, 27, 0.98) 100%);
-      border: 1px solid rgba(250, 204, 21, 0.65);
+      border: 1px solid rgba(250, 204, 21, 0.68);
       box-shadow:
         0 0 18px rgba(250, 204, 21, 0.2),
         0 6px 16px rgba(0, 0, 0, 0.45),
@@ -175,11 +175,11 @@
     }
 
     .card {
-      background: linear-gradient(160deg, rgba(28, 36, 51, 0.95), rgba(13, 17, 25, 0.98));
+      background: linear-gradient(165deg, rgba(28, 37, 54, 0.94), rgba(12, 16, 24, 0.985));
       border: 1px solid var(--line);
-      border-radius: 18px;
+      border-radius: 19px;
       padding: 16px;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 14px 30px rgba(0, 0, 0, 0.52);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.09), 0 14px 32px rgba(0, 0, 0, 0.56);
     }
 
     .card-yellow-glow {
@@ -239,6 +239,172 @@
       background: rgba(74, 222, 128, 0.2);
       border-color: rgba(74, 222, 128, 0.72);
       color: #bbf7d0;
+    }
+
+    .profile-hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 90% 10%, rgba(250, 204, 21, 0.18), transparent 45%),
+        radial-gradient(circle at 10% 90%, rgba(96, 165, 250, 0.16), transparent 48%),
+        linear-gradient(160deg, rgba(31, 41, 61, 0.96), rgba(11, 15, 23, 0.99));
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 20px;
+      padding: 16px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 16px 34px rgba(0, 0, 0, 0.62);
+    }
+
+    .profile-top-row {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      margin-bottom: 14px;
+    }
+
+    .profile-avatar-wrap {
+      position: relative;
+      width: 68px;
+      height: 68px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 2px solid rgba(250, 204, 21, 0.75);
+      background: #141b27;
+      box-shadow: 0 0 22px rgba(250, 204, 21, 0.25);
+      flex-shrink: 0;
+    }
+
+    .profile-avatar-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    .profile-lvl-pill {
+      position: absolute;
+      bottom: 4px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 1px 7px;
+      border-radius: 999px;
+      background: rgba(6, 9, 15, 0.88);
+      border: 1px solid rgba(250, 204, 21, 0.85);
+      color: #fef08a;
+      font-size: 9px;
+      font-weight: 950;
+      letter-spacing: 0.6px;
+      white-space: nowrap;
+    }
+
+    .profile-identity {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .profile-nick-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+
+    .profile-nick {
+      font-size: 17px;
+      font-weight: 950;
+      color: #ffffff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      cursor: pointer;
+    }
+
+    .profile-edit-btn {
+      padding: 3px 8px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.08);
+      color: #e2e8f0;
+      font-size: 10px;
+      font-weight: 800;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .profile-sub-line {
+      font-size: 11px;
+      font-weight: 700;
+      color: #94a3b8;
+    }
+
+    .profile-xp-bar {
+      width: 100%;
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(5, 7, 11, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+      margin-top: 6px;
+    }
+
+    .profile-xp-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #38bdf8, #facc15);
+      transition: width 0.25s ease;
+    }
+
+    .profile-top-babich-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 11px 12px;
+      border-radius: 14px;
+      background: rgba(7, 10, 16, 0.65);
+      border: 1px solid rgba(250, 204, 21, 0.34);
+    }
+
+    .profile-top-babich-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .profile-top-babich-thumb {
+      width: 44px;
+      height: 44px;
+      border-radius: 11px;
+      object-fit: cover;
+      object-position: center top;
+      border: 1px solid rgba(250, 204, 21, 0.55);
+      background: #182030;
+      flex-shrink: 0;
+    }
+
+    .profile-top-label {
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.7px;
+      text-transform: uppercase;
+      color: #fde68a;
+    }
+
+    .profile-top-name {
+      font-size: 13px;
+      font-weight: 950;
+      color: #ffffff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .profile-top-val {
+      font-size: 11px;
+      font-weight: 900;
+      color: var(--gold);
+      white-space: nowrap;
     }
 
     .inv-toolbar {
@@ -930,8 +1096,8 @@
       bottom: 0;
       width: 100%;
       max-width: 430px;
-      background: rgba(11, 14, 21, 0.98);
-      backdrop-filter: blur(16px);
+      background: rgba(10, 13, 20, 0.98);
+      backdrop-filter: blur(18px);
       border-top: 1px solid var(--line);
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -995,12 +1161,12 @@
       text-shadow: 0 0 12px rgba(96, 165, 250, 1), 0 0 24px rgba(37, 99, 235, 0.85);
     }
 
-    .nav-inventory {
+    .nav-profile {
       color: #f87171;
       text-shadow: 0 0 10px rgba(239, 68, 68, 0.85), 0 0 20px rgba(220, 38, 38, 0.6);
     }
 
-    .nav-inventory.active {
+    .nav-profile.active {
       color: #fca5a5;
       border-color: rgba(248, 113, 113, 0.72);
       background: linear-gradient(180deg, #323b4c, #1e2430);
@@ -1179,13 +1345,13 @@
               <div class="arrow-pointer">
                 <svg viewBox="0 0 36 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <defs>
-                    <linearGradient id="arrowGradV26" x1="18" y1="2" x2="18" y2="39" gradientUnits="userSpaceOnUse">
+                    <linearGradient id="arrowGradV30" x1="18" y1="2" x2="18" y2="39" gradientUnits="userSpaceOnUse">
                       <stop offset="0%" stop-color="#ffffff" />
                       <stop offset="48%" stop-color="#86efac" />
                       <stop offset="100%" stop-color="#16a34a" />
                     </linearGradient>
                   </defs>
-                  <path d="M18 39L3 10.5C2.1 8.8 3.3 6.7 5.2 6.7H30.8C32.7 6.7 33.9 8.8 33 10.5L18 39Z" fill="url(#arrowGradV26)" stroke="#ffffff" stroke-width="1.6" stroke-linejoin="round" />
+                  <path d="M18 39L3 10.5C2.1 8.8 3.3 6.7 5.2 6.7H30.8C32.7 6.7 33.9 8.8 33 10.5L18 39Z" fill="url(#arrowGradV30)" stroke="#ffffff" stroke-width="1.6" stroke-linejoin="round" />
                   <path d="M18 34.5L7.5 13.5H18V34.5Z" fill="rgba(255,255,255,0.42)" />
                   <circle cx="18" cy="11.5" r="2.3" fill="#ffffff" />
                 </svg>
@@ -1251,7 +1417,37 @@
         </div>
       </section>
 
-      <section id="pane-inventory" class="pane">
+      <section id="pane-profile" class="pane">
+        <div class="profile-hero">
+          <div class="profile-top-row">
+            <div class="profile-avatar-wrap">
+              <img class="profile-avatar-img" id="profile-avatar" src="babichAVA.jpg" alt="Аватар" />
+              <span class="profile-lvl-pill" id="profile-lvl-pill">LVL 1</span>
+            </div>
+            <div class="profile-identity">
+              <div class="profile-nick-row">
+                <span class="profile-nick" id="profile-nick" onclick="editNickname()">BABICH_PLAYER</span>
+                <button class="profile-edit-btn" onclick="editNickname()">НИК</button>
+              </div>
+              <div class="profile-sub-line" id="profile-xp-txt">Опыт: 0 / 120 XP</div>
+              <div class="profile-xp-bar">
+                <div class="profile-xp-fill" id="profile-xp-fill"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="profile-top-babich-box">
+            <div class="profile-top-babich-left">
+              <img class="profile-top-babich-thumb" id="profile-top-img" src="babich.jpg" alt="" />
+              <div style="min-width:0;">
+                <div class="profile-top-label">Топовый бабич</div>
+                <div class="profile-top-name" id="profile-top-name">Нет бабичей</div>
+              </div>
+            </div>
+            <div class="profile-top-val" id="profile-top-val">0 А-БИЧЕЙ</div>
+          </div>
+        </div>
+
         <div class="card">
           <div class="inv-toolbar">
             <span class="card-title">Инвентарь (♥ защищает от удаления)</span>
@@ -1267,14 +1463,14 @@
       <section id="pane-rewards" class="pane">
         <div class="card card-yellow-glow">
           <div class="card-head">
-            <span class="card-title" style="color:#fef08a;">Бонус за 9 часов</span>
-            <span class="badge badge-yellow">+7 А-БИЧИ</span>
+            <span class="card-title" style="color:#fef08a;">Бонус за 12 часов</span>
+            <span class="badge badge-yellow">+5 А-БИЧИ</span>
           </div>
-          <div style="font-size:13px;color:#fde68a;margin-bottom:12px;" id="nine-hour-status">
-            Доступно! Жми чтобы забрать 7 А-БИЧИ
+          <div style="font-size:13px;color:#fde68a;margin-bottom:12px;" id="twelve-hour-status">
+            Доступно! Жми чтобы забрать 5 А-БИЧИ
           </div>
-          <button class="btn-mini btn-yellow-claim" style="padding:11px;font-size:12px;" id="btn-claim-9h" onclick="claim9h()">
-            ЗАБРАТЬ 7 А-БИЧИ
+          <button class="btn-mini btn-yellow-claim" style="padding:11px;font-size:12px;" id="btn-claim-12h" onclick="claim12h()">
+            ЗАБРАТЬ 5 А-БИЧИ
           </button>
         </div>
 
@@ -1356,7 +1552,7 @@
 
     <nav class="bottom-nav">
       <button class="nav-btn nav-upgrader active" onclick="goMainTab('upgrader', this)">АПГРЕЙДЕР</button>
-      <button class="nav-btn nav-inventory" onclick="goMainTab('inventory', this)">ИНВЕНТАРЬ</button>
+      <button class="nav-btn nav-profile" onclick="goMainTab('profile', this)">ПРОФИЛЬ</button>
       <button class="nav-btn nav-rewards" id="nav-btn-rewards" onclick="goMainTab('rewards', this)">
         НАГРАДЫ
         <span class="rewards-alert-dot" id="rewards-alert-dot"></span>
@@ -1380,20 +1576,24 @@
     function getAccountStorageKey() {
       const tgUser = tg?.initDataUnsafe?.user;
       if (tgUser && tgUser.id) {
-        return `babich_grader_v26_acc_tg_${tgUser.id}`;
+        return `babich_grader_v30_acc_tg_${tgUser.id}`;
       }
-      return 'babich_grader_v26_acc_guest';
+      return 'babich_grader_v30_acc_guest';
     }
 
     const ACCOUNT_KEY = getAccountStorageKey();
-    const BACKUP_KEY = 'babich_grader_v26_backup_latest';
+    const BACKUP_KEY = 'babich_grader_v30_backup_latest';
+    const LEGACY_V29_KEY = (tg?.initDataUnsafe?.user?.id)
+      ? `babich_grader_v29_acc_tg_${tg.initDataUnsafe.user.id}`
+      : 'babich_grader_v29_acc_guest';
+    const LEGACY_V29_BACKUP = 'babich_grader_v29_backup_latest';
 
     function resolveTheme(name, val, customTheme) {
       if (customTheme) return customTheme;
       if (name === 'AHLELELE BABICHNAS' || name === 'граберчик' || name === 'TITAN Babich') return 'burgundy';
       if (name === 'HIJNIAK' || name === 'Буберчик' || name === 'БОГ МОЛНИЙ БАБИЧ') return 'red';
-      if (name === 'Бабич Прайм' || name === 'бабичниииииик') return 'green';
-      if (name === 'КИРИЛЛ БАБИЧ' || name === 'Эгьр') return 'blue';
+      if (name === 'Бабич Прайм' || name === 'бабичниииииик' || name === 'Зелёный Бабич') return 'green';
+      if (name === 'КИРИЛЛ БАБИЧ' || name === 'Эгьр' || name === 'Хоумлендер Бабич') return 'blue';
       if (val > 67) return 'gold';
       if (val > 34) return 'purple';
       return 'grey';
@@ -1410,45 +1610,52 @@
       { id: 'b_6', name: 'Квадрачлен', val: 20, img: 'SIDITBABICH.jpg' },
       { id: 'b_7', name: 'Квадратлон', val: 24, img: 'GRABABICH.jpg' },
       { id: 'b_8', name: 'Бабичтрон', val: 26, img: 'INFBabich.jpg' },
+      { id: 'b_50', name: 'Клоун бабич', val: 27, img: 'Clown.jpg' },
       { id: 'b_9', name: 'МегаБАБИЧ', val: 30, img: 'AuraPurple.jpg' },
       { id: 'b_41', name: 'Бубенчик', val: 32, img: 'babush.jpg' },
       { id: 'b_10', name: 'Грабабич', val: 34, img: 'GRABABICH.jpg' },
       { id: 'b_11', name: 'БЕДБИЧ', val: 37, img: 'babichNULL.jpg' },
       { id: 'b_12', name: 'О.К.С.Бабич', val: 40, img: 'KARABABICH.jpg' },
       { id: 'b_13', name: 'БАРАБАН', val: 42, img: 'baraban.jpg' },
+      { id: 'b_51', name: 'Бандана Бабич', val: 44, img: 'BandanaBabich.jpg' },
       { id: 'b_14', name: 'БАБИЧ БАРАБАН', val: 46, img: 'BARABANBABICH.jpg' },
       { id: 'b_33', name: 'Гроза Бабичей', val: 46, img: 'laserbabich.jpg' },
       { id: 'b_15', name: 'ГРИНЕВИЧ', val: 50, img: 'SUgrenevich.jpg' },
       { id: 'b_26', name: 'бубичненко', val: 50, img: 'OGO.jpg' },
       { id: 'b_16', name: 'АЛЛАХ БАБИЧ', val: 52, img: 'HallahBabich.jpg' },
       { id: 'b_30', name: 'Бабич тянка', val: 54, img: 'BabichTyanka.jpg' },
+      { id: 'b_52', name: 'ЖЫРОВОЙ бабич', val: 55, img: 'SHIR.jpg' },
       { id: 'b_17', name: 'Грибабич', val: 60, img: 'INFBabich.jpg' },
+      { id: 'b_47', name: 'Брейнрот бабич', val: 62, img: 'BabichBrainrot.jpg' },
       { id: 'b_24', name: 'КИРИЛЛ БАБИЧ', val: 64, img: 'light_babich.jpg', theme: 'blue' },
       { id: 'b_38', name: 'Грибатрон', val: 64, img: 'AuraPurple.jpg' },
-      { id: 'b_46', name: 'STILL LIFE Бабич', val: 66, img: 'still_life_babich.jpg' },
+      { id: 'b_46', name: 'STILL LIFE Бабич', val: 66, img: 'STILLLIFE.jpg' },
       { id: 'b_18', name: '67Бабич', val: 67, img: '67babich.jpg' },
       { id: 'b_29', name: 'Бабич хуесос', val: 67, img: 'BABECHAKN.jpg' },
+      { id: 'b_53', name: 'Патапим Бабич', val: 69, img: 'Patapim.jpg' },
       { id: 'b_35', name: 'Бабучка', val: 74, img: 'babkababich.jpg' },
       { id: 'b_19', name: 'квадриллион', val: 75, img: 'light_babich.jpg' },
       { id: 'b_20', name: 'ультрабабич', val: 80, img: 'OGO.jpg' },
       { id: 'b_36', name: 'Бабник', val: 84, img: 'AuraPurple.jpg' },
+      { id: 'b_54', name: 'АУРА Бабич', val: 88, img: 'AURABabich.jpg' },
       { id: 'b_21', name: 'Сиксиллион', val: 90, img: 'supergrenevich.jpg' },
       { id: 'b_28', name: 'Фуфел Бабич', val: 95, img: 'BABECHAKN.jpg' },
-      { id: 'b_47', name: 'Брейнрот бабич', val: 99, img: 'brainrot_babich.jpg' },
       { id: 'b_22', name: 'TRUE BABICH', val: 100, img: 'TRUEBABICH.jpg' },
       { id: 'b_37', name: 'Грибабник', val: 111, img: 'supergrenevich.jpg' },
       { id: 'b_44', name: 'Эгьр', val: 117, img: 'light_babich.jpg', theme: 'blue' },
       { id: 'b_27', name: 'Бабич Прайм', val: 134, img: 'primebabich.jpg', theme: 'green' },
+      { id: 'b_55', name: 'Зелёный Бабич', val: 142, img: 'GreenBabich.jpg', theme: 'green' },
       { id: 'b_31', name: 'МГЕ бабич', val: 150, img: 'MGEBABICH.jpg' },
       { id: 'b_45', name: 'бабичниииииик', val: 165, img: 'primebabich.jpg', theme: 'green' },
       { id: 'b_39', name: 'ГРАБАТРОН', val: 175, img: 'GRABATRON.jpg' },
-      { id: 'b_34', name: 'Бабичанос', val: 195, img: 'BABECHAKN.jpg' },
+      { id: 'b_34', name: 'Бабичанос', val: 195, img: 'Babichanos.jpg' },
+      { id: 'b_56', name: 'Хоумлендер Бабич', val: 235, img: 'houmlander.jpg', theme: 'blue' },
       { id: 'b_32', name: 'HIJNIAK', val: 240, img: 'HIJNIAK.jpg', theme: 'red' },
       { id: 'b_48', name: 'БОГ МОЛНИЙ БАБИЧ', val: 250, img: 'bog_molnii_babich.jpg', theme: 'red' },
       { id: 'b_42', name: 'Буберчик', val: 255, img: 'babichNULL.jpg', theme: 'red' },
       { id: 'b_43', name: 'граберчик', val: 270, img: 'GRABATRON.jpg', theme: 'burgundy' },
       { id: 'b_40', name: 'AHLELELE BABICHNAS', val: 300, img: 'AHLELELEBABICHNAS.jpg', theme: 'burgundy' },
-      { id: 'b_49', name: 'TITAN Babich', val: 375, img: 'titan_babich.jpg', theme: 'burgundy' }
+      { id: 'b_49', name: 'TITAN Babich', val: 375, img: 'BabichTITAN.jpg', theme: 'burgundy' }
     ];
 
     const BABICH_LIST = RAW_BABICH_LIST
@@ -1467,10 +1674,19 @@
 
     const MAX_CHANCE = 75;
     const MAX_BOOST_CLICKS = 6;
-    const NINE_HOURS_MS = 9 * 60 * 60 * 1000;
+    const TWELVE_HOURS_MS = 12 * 60 * 60 * 1000;
     const DAY_MS = 24 * 60 * 60 * 1000;
 
+    function defaultNickname() {
+      const u = tg?.initDataUnsafe?.user;
+      if (u?.username) return '@' + u.username;
+      if (u?.first_name) return u.first_name;
+      return 'BABICH_PLAYER';
+    }
+
     let state = {
+      nickname: defaultNickname(),
+      xp: 0,
       bal: 0,
       baseChance: 50,
       activeMult: 2,
@@ -1484,7 +1700,7 @@
       selectedInvUid: null,
       selectedWishId: null,
       welcomeClaimed: false,
-      nineHourNextAt: 0,
+      twelveHourNextAt: 0,
       successfulSpins: 0,
       claimed15Batches: 0,
       failedSpins: 0,
@@ -1496,20 +1712,60 @@
       lastHighDropName: ''
     };
 
-    function loadAccountState() {
+    function safeParseState(raw) {
+      if (!raw) return null;
       try {
-        const rawAcc = localStorage.getItem(ACCOUNT_KEY) || localStorage.getItem(BACKUP_KEY);
-        if (rawAcc) {
-          const parsed = JSON.parse(rawAcc);
-          if (parsed && typeof parsed === 'object') {
-            state = { ...state, ...parsed };
-            if (typeof parsed.speedStepIdx !== 'number') {
-              state.speedStepIdx = parsed.turbo4x ? 4 : 0;
-            }
-            state.wishIds = Array.from(new Set([...DEFAULT_WISH_IDS, ...(parsed.wishIds || [])]));
-          }
+        const parsed = JSON.parse(raw);
+        if (parsed && typeof parsed === 'object' && Array.isArray(parsed.inv)) {
+          return parsed;
         }
       } catch (_) {}
+      return null;
+    }
+
+    function loadAccountState() {
+      const candidates = [
+        localStorage.getItem(ACCOUNT_KEY),
+        localStorage.getItem(BACKUP_KEY),
+        localStorage.getItem(LEGACY_V29_KEY),
+        localStorage.getItem(LEGACY_V29_BACKUP),
+        sessionStorage.getItem(ACCOUNT_KEY),
+        sessionStorage.getItem(BACKUP_KEY)
+      ];
+
+      let best = null;
+      let bestScore = -1;
+
+      for (const raw of candidates) {
+        const p = safeParseState(raw);
+        if (!p) continue;
+        const score =
+          (p.bal || 0) * 2 +
+          (p.inv?.length || 0) * 15 +
+          (p.xp || 0) +
+          (p.successfulSpins || 0) * 10 +
+          (p.failedSpins || 0) * 2;
+        if (score >= bestScore) {
+          bestScore = score;
+          best = p;
+        }
+      }
+
+      if (best) {
+        state = { ...state, ...best };
+        if (typeof best.speedStepIdx !== 'number') {
+          state.speedStepIdx = best.turbo4x ? 4 : 0;
+        }
+        if (typeof best.twelveHourNextAt !== 'number' && typeof best.nineHourNextAt === 'number') {
+          state.twelveHourNextAt = best.nineHourNextAt;
+        }
+        state.nickname = (typeof best.nickname === 'string' && best.nickname.trim())
+          ? best.nickname.trim().slice(0, 22)
+          : defaultNickname();
+        state.xp = Math.max(0, Number(best.xp) || 0);
+        state.wishIds = Array.from(new Set([...DEFAULT_WISH_IDS, ...(best.wishIds || [])]));
+        saveState();
+      }
     }
 
     loadAccountState();
@@ -1523,33 +1779,6 @@
     function getSpeedConfig() {
       const idx = ((state.speedStepIdx % SPEED_STEPS.length) + SPEED_STEPS.length) % SPEED_STEPS.length;
       return SPEED_STEPS[idx];
-    }
-
-    function getAllowedWishRange(mine) {
-      if (!mine) return { minVal: 0, maxVal: Infinity };
-      const base = mine.val;
-
-      if (state.selectionMode === 'chance') {
-        if (state.baseChance >= 75) return { minVal: base * 1.15, maxVal: base * 1.65 };
-        if (state.baseChance >= 50) return { minVal: base * 1.65, maxVal: base * 2.5 };
-        if (state.baseChance >= 30) return { minVal: base * 2.5, maxVal: base * 3.8 };
-        return { minVal: base * 1.5, maxVal: base * 3.0 };
-      }
-
-      if (state.selectionMode === 'mult') {
-        if (state.activeMult <= 2) return { minVal: base * 1.6, maxVal: base * 2.7 };
-        if (state.activeMult <= 5) return { minVal: base * 3.8, maxVal: base * 6.0 };
-        if (state.activeMult <= 10) return { minVal: base * 8.0, maxVal: base * 13.0 };
-        return { minVal: base * 8.0, maxVal: base * 13.0 };
-      }
-
-      return { minVal: 1, maxVal: base * 2.7 };
-    }
-
-    function isWishAllowedForMine(mine, wish) {
-      if (!mine || !wish) return true;
-      const { minVal, maxVal } = getAllowedWishRange(mine);
-      return wish.val >= minVal && wish.val <= maxVal;
     }
 
     function getThemeClass(item) {
@@ -1575,6 +1804,8 @@
         const serialized = JSON.stringify(state);
         localStorage.setItem(ACCOUNT_KEY, serialized);
         localStorage.setItem(BACKUP_KEY, serialized);
+        sessionStorage.setItem(ACCOUNT_KEY, serialized);
+        sessionStorage.setItem(BACKUP_KEY, serialized);
       } catch (_) {}
     }
 
@@ -1583,7 +1814,7 @@
       el.textContent = msg;
       el.classList.add('show');
       clearTimeout(toast._t);
-      toast._t = setTimeout(() => el.classList.remove('show'), 2200);
+      toast._t = setTimeout(() => el.classList.remove('show'), 2300);
     }
 
     function ensureAudio() {
@@ -1643,6 +1874,12 @@
       return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
     }
 
+    function getItemImageSrc(item) {
+      if (!item) return '';
+      if (item.id === 'b_34') return 'Babichanos.jpg';
+      return item.img || createFallbackSvg(item);
+    }
+
     function setBgImage(imgEl, item) {
       if (!imgEl) return;
       if (!item) {
@@ -1654,7 +1891,7 @@
       imgEl.classList.toggle('square-fit', Boolean(item.square));
       imgEl.style.display = 'block';
       imgEl.dataset.fb = '';
-      imgEl.src = item.img || createFallbackSvg(item);
+      imgEl.src = getItemImageSrc(item);
       imgEl.onerror = () => {
         if (!imgEl.dataset.fb) {
           imgEl.dataset.fb = '1';
@@ -1665,28 +1902,47 @@
       };
     }
 
+    function setWheelArcImmediate(pct) {
+      const deg = (Math.max(0, Math.min(100, pct)) / 100) * 360;
+      const fill = document.getElementById('green-fill');
+      const shim = document.getElementById('green-shimmer');
+      if (fill) {
+        fill.style.setProperty('--arc-deg', deg + 'deg');
+        fill.style.background = `conic-gradient(from 0deg, var(--green) 0deg ${deg}deg, rgba(30, 41, 59, 0.25) ${deg}deg 360deg)`;
+      }
+      if (shim) {
+        shim.style.setProperty('--arc-deg', deg + 'deg');
+      }
+    }
+
     function animateGreenChanceTo(targetChance) {
-      if (chanceAnimFrame) cancelAnimationFrame(chanceAnimFrame);
+      if (chanceAnimFrame) {
+        cancelAnimationFrame(chanceAnimFrame);
+        chanceAnimFrame = null;
+      }
       const fromChance = visualChance;
       const diff = targetChance - fromChance;
+      if (Math.abs(diff) < 0.05) {
+        visualChance = targetChance;
+        setWheelArcImmediate(targetChance);
+        return;
+      }
       const start = performance.now();
-      const dur = 420;
+      const dur = 360;
 
       function step(now) {
         const p = Math.min(1, (now - start) / dur);
         const eased = 1 - Math.pow(1 - p, 3);
-        visualChance = fromChance + diff * eased;
-        const deg = (visualChance / 100) * 360;
-        const fill = document.getElementById('green-fill');
-        const shim = document.getElementById('green-shimmer');
-        fill.style.setProperty('--arc-deg', deg + 'deg');
-        fill.style.background = `conic-gradient(from 0deg, var(--green) 0deg ${deg}deg, rgba(30, 41, 59, 0.25) ${deg}deg 360deg)`;
-        shim.style.setProperty('--arc-deg', deg + 'deg');
+        const cur = fromChance + diff * eased;
+        visualChance = cur;
+        setWheelArcImmediate(cur);
 
         if (p < 1) {
           chanceAnimFrame = requestAnimationFrame(step);
         } else {
           visualChance = targetChance;
+          setWheelArcImmediate(targetChance);
+          chanceAnimFrame = null;
         }
       }
 
@@ -1724,34 +1980,64 @@
       if (!mine) {
         state.selectedInvUid = null;
         refundActiveBoostCoins();
-        return;
-      }
-      const wish = BABICH_LIST.find(x => x.id === state.selectedWishId) || null;
-      if (wish && state.selectionMode !== 'none' && !isWishAllowedForMine(mine, wish)) {
-        state.selectedWishId = pickReplacementWishForPreset(mine);
       }
     }
 
     function getBoostStepPercent(wish) {
-      if (!wish) return 2;
-      if (wish.val > 150) return 0.5;
-      if (wish.val > 67) return 2;
-      if (wish.val > 34) return 0.4;
-      return 2;
+      if (!wish) return 1.2;
+      if (wish.val >= 235) return 0.22;
+      if (wish.val >= 110) return 0.55;
+      if (wish.val >= 60) return 0.95;
+      return 1.4;
+    }
+
+    function getGoalRarityRatio(wish) {
+      if (!wish) return 0.35;
+      const minVal = 5;
+      const maxVal = 375;
+      return Math.min(1, Math.max(0, (wish.val - minVal) / (maxVal - minVal)));
+    }
+
+    function getJumpPenalty(mine, wish) {
+      if (!mine || !wish || mine.val <= 0) return 0;
+      const mult = wish.val / mine.val;
+      if (mult <= 1.2) return 0;
+      return Math.min(18, (mult - 1.2) * 3.8);
     }
 
     function getBaseChanceForPair(mine, wish) {
+      const r = getGoalRarityRatio(wish);
+      const jumpPen = getJumpPenalty(mine, wish);
+
       if (state.selectionMode === 'chance') {
-        return Math.min(MAX_CHANCE, Math.max(5, state.baseChance));
+        if (state.baseChance >= 75) {
+          return Number(Math.max(52, 75 - r * 12 - jumpPen * 0.45).toFixed(1));
+        }
+        if (state.baseChance >= 50) {
+          return Number(Math.max(46, Math.min(59, 58.5 - r * 12 - jumpPen * 0.35)).toFixed(1));
+        }
+        return Number(Math.max(18, 29.5 - r * 11 - jumpPen * 0.4).toFixed(1));
       }
+
       if (state.selectionMode === 'mult') {
-        const raw = Math.round(100 / Math.max(1.1, state.activeMult));
-        return Math.min(MAX_CHANCE, Math.max(5, raw));
+        const multPenalty = state.activeMult >= 10 ? 0.52 : state.activeMult >= 5 ? 0.66 : 0.78;
+        const raw = (100 / Math.max(1.2, state.activeMult)) * multPenalty - r * 7 - jumpPen * 0.5;
+        return Number(Math.min(65, Math.max(9, raw)).toFixed(1));
       }
-      if (!mine || !wish) return 50;
-      if (wish.val <= mine.val) return MAX_CHANCE;
-      const ratioPct = Math.round((mine.val / wish.val) * 100);
-      return Math.min(MAX_CHANCE, Math.max(5, ratioPct));
+
+      if (!mine || !wish) {
+        return Number((52 - r * 8).toFixed(1));
+      }
+
+      const ratio = mine.val / Math.max(1, wish.val);
+      let raw;
+      if (ratio >= 1) {
+        raw = 70 - r * 9;
+      } else {
+        raw = Math.pow(ratio, 0.88) * 76 - r * 5 - jumpPen * 0.4;
+      }
+
+      return Number(Math.min(70, Math.max(10, raw)).toFixed(1));
     }
 
     function computeEffectiveChance() {
@@ -1760,7 +2046,7 @@
       const base = getBaseChanceForPair(mine, wish);
       const step = getBoostStepPercent(wish);
       const total = base + state.boostCoinsUsed * step;
-      return Number(Math.min(MAX_CHANCE, Math.max(0, total)).toFixed(1));
+      return Number(Math.min(MAX_CHANCE, Math.max(5, total)).toFixed(1));
     }
 
     function formatChanceText(val) {
@@ -1768,24 +2054,46 @@
     }
 
     function pickReplacementWishForPreset(mine) {
-      const baseVal = mine ? mine.val : 12;
-      let targetMult = 1.4;
+      const baseVal = mine ? mine.val : 8;
+      let minFactor = 1.3;
+      let targetMult = 1.65;
+
       if (state.selectionMode === 'chance') {
-        if (state.baseChance >= 75) targetMult = 1.35;
-        else if (state.baseChance >= 50) targetMult = 2.0;
-        else targetMult = 3.2;
+        if (state.baseChance >= 75) {
+          minFactor = 1.25;
+          targetMult = 1.45;
+        } else if (state.baseChance >= 50) {
+          minFactor = 1.75;
+          targetMult = 2.25;
+        } else {
+          minFactor = 2.6;
+          targetMult = 3.6;
+        }
       } else if (state.selectionMode === 'mult') {
-        if (state.activeMult <= 2) targetMult = 2.0;
-        else if (state.activeMult <= 5) targetMult = 5.0;
-        else targetMult = 10.0;
+        if (state.activeMult <= 2) {
+          minFactor = 1.75;
+          targetMult = 2.1;
+        } else if (state.activeMult <= 5) {
+          minFactor = 3.4;
+          targetMult = 4.8;
+        } else {
+          minFactor = 6.2;
+          targetMult = 9.5;
+        }
       }
 
+      const minVal = baseVal * minFactor;
       const targetVal = baseVal * targetMult;
-      const candidates = BABICH_LIST.filter(x => x.val > baseVal);
-      if (!candidates.length) return BABICH_LIST[BABICH_LIST.length - 1]?.id || null;
+      let candidates = BABICH_LIST.filter(x => x.val >= minVal);
+      if (!candidates.length) {
+        candidates = BABICH_LIST.filter(x => x.val > baseVal);
+      }
+      if (!candidates.length) {
+        return BABICH_LIST[BABICH_LIST.length - 1]?.id || null;
+      }
 
       const sorted = [...candidates].sort((a, b) => Math.abs(a.val - targetVal) - Math.abs(b.val - targetVal));
-      const pool = sorted.slice(0, Math.min(5, sorted.length));
+      const pool = sorted.slice(0, Math.min(4, sorted.length));
       if (!pool.length) return null;
 
       let idx = state.presetRotateIdx % pool.length;
@@ -1833,7 +2141,7 @@
       playClickSound();
       refundActiveBoostCoins();
       state.selectedInvUid = null;
-      toast('Бабич убран из МОЕ (ЦЕЛЬ остаётся доступной)');
+      toast('Бабич убран из МОЕ');
       renderAll();
     }
 
@@ -1899,12 +2207,12 @@
       let multDisplay = state.activeMult;
       if (state.selectionMode === 'mult') {
         multDisplay = state.activeMult;
-      } else if (state.selectionMode === 'chance') {
-        if (state.baseChance >= 75) multDisplay = 1.4;
-        else if (state.baseChance >= 50) multDisplay = 2.0;
-        else multDisplay = 3.2;
       } else if (mine && wish && mine.val > 0) {
-        multDisplay = Number((wish.val / mine.val).toFixed(1));
+        multDisplay = Number(Math.max(1, wish.val / mine.val).toFixed(1));
+      } else if (state.selectionMode === 'chance') {
+        if (state.baseChance >= 75) multDisplay = 1.5;
+        else if (state.baseChance >= 50) multDisplay = 2.2;
+        else multDisplay = 3.6;
       }
       document.getElementById('mult-badge').textContent = 'x' + multDisplay.toFixed(1);
       syncTurboButton();
@@ -1978,8 +2286,8 @@
           .sort((a, b) => a.val - b.val);
 
         const capBanner = mine
-          ? `<div style="font-size:11px;color:var(--muted);margin-bottom:8px;">Режим <b>ЦЕЛЬ</b> для «${mine.name}» (${mine.val} А-БИЧЕЙ)</div>`
-          : `<div style="font-size:11px;color:#86efac;margin-bottom:8px;">Бабич в МОЕ не выбран — выбери любого Бабича как <b>ЦЕЛЬ</b></div>`;
+          ? `<div style="font-size:11px;color:var(--muted);margin-bottom:8px;">Цель для «${mine.name}» (${mine.val} А-БИЧЕЙ) — чем круче цель и скачок цены, тем ниже шанс</div>`
+          : `<div style="font-size:11px;color:#86efac;margin-bottom:8px;">Выбери любого Бабича как <b>ЦЕЛЬ</b></div>`;
 
         box.innerHTML = capBanner + `<div class="grid-2">${wishItems.map(it => {
           const picked = it.id === state.selectedWishId;
@@ -2010,7 +2318,56 @@
       }
     }
 
-    function renderInventoryTab() {
+    function getTopBabich() {
+      if (!state.inv.length) return null;
+      return [...state.inv].sort((a, b) => b.val - a.val)[0];
+    }
+
+    function getLevelInfo() {
+      const xpPerLevel = 120;
+      const level = Math.floor(state.xp / xpPerLevel) + 1;
+      const curXp = state.xp % xpPerLevel;
+      return { level, curXp, xpPerLevel, pct: Math.min(100, (curXp / xpPerLevel) * 100) };
+    }
+
+    function editNickname() {
+      if (isSpinning) return;
+      playClickSound();
+      const next = prompt('Введи новый никнейм:', state.nickname);
+      if (next !== null) {
+        const clean = next.trim().slice(0, 22);
+        if (clean.length > 0) {
+          state.nickname = clean;
+          toast('Ник обновлён: ' + clean);
+          renderAll();
+        }
+      }
+    }
+
+    function renderProfileTab() {
+      const lvl = getLevelInfo();
+      document.getElementById('profile-nick').textContent = state.nickname;
+      document.getElementById('profile-lvl-pill').textContent = `LVL ${lvl.level}`;
+      document.getElementById('profile-xp-txt').textContent = `Опыт: ${lvl.curXp} / ${lvl.xpPerLevel} XP`;
+      document.getElementById('profile-xp-fill').style.width = lvl.pct + '%';
+
+      const topB = getTopBabich();
+      const topImg = document.getElementById('profile-top-img');
+      const topName = document.getElementById('profile-top-name');
+      const topVal = document.getElementById('profile-top-val');
+
+      if (topB) {
+        topName.textContent = topB.name;
+        topVal.textContent = topB.val + ' А-БИЧЕЙ';
+        topImg.src = getItemImageSrc(topB);
+        topImg.onerror = () => { topImg.src = createFallbackSvg(topB); };
+      } else {
+        topName.textContent = 'Нет бабичей';
+        topVal.textContent = '0 А-БИЧЕЙ';
+        topImg.src = 'babich.jpg';
+        topImg.onerror = () => { topImg.src = createFallbackSvg({ name: 'B' }); };
+      }
+
       const lockedCount = state.inv.filter(x => Boolean(x.locked)).length;
       document.getElementById('inv-badge').textContent =
         lockedCount > 0 ? `${state.inv.length} ШТ. (♥ ${lockedCount})` : `${state.inv.length} ШТ.`;
@@ -2025,7 +2382,7 @@
         wrap.innerHTML = '<div style="font-size:13px;color:var(--muted);">Инвентарь пуст. Купи Бабича в Апгрейдере.</div>';
         return;
       }
-      const sortedInv = [...state.inv].sort((a, b) => a.val - b.val);
+      const sortedInv = [...state.inv].sort((a, b) => b.val - a.val);
       wrap.innerHTML = `<div class="grid-2">${sortedInv.map(it => `
         <div class="babich-tile ${getThemeClass(it)}" onclick="sellBabich(${it.uid})">
           <img class="babich-tile-bg" data-inv-sell="${it.uid}" alt="${it.name}" />
@@ -2050,13 +2407,13 @@
 
     function hasAnyAvailableReward() {
       const now = Date.now();
-      const nineReady = now >= (state.nineHourNextAt || 0);
+      const twelveReady = now >= (state.twelveHourNextAt || 0);
       const welcomeReady = !state.welcomeClaimed;
       const winsReady = (Math.floor(state.successfulSpins / 15) - state.claimed15Batches) > 0;
       const lossReady = (Math.floor(state.failedSpins / 100) - state.claimed100LossBatches) > 0;
       const highDropReady = state.highDropQuestState === 'ready';
       const boost40Ready = (Math.floor(state.totalWheelBoosts / 40) - state.claimed40BoostBatches) > 0;
-      return nineReady || welcomeReady || winsReady || lossReady || highDropReady || boost40Ready;
+      return twelveReady || welcomeReady || winsReady || lossReady || highDropReady || boost40Ready;
     }
 
     function syncRewardsDot() {
@@ -2068,18 +2425,18 @@
     function renderRewardsTab() {
       const now = Date.now();
 
-      const nineReady = now >= (state.nineHourNextAt || 0);
-      const btn9h = document.getElementById('btn-claim-9h');
-      const status9h = document.getElementById('nine-hour-status');
-      if (nineReady) {
-        btn9h.disabled = false;
-        btn9h.textContent = 'ЗАБРАТЬ 7 А-БИЧИ';
-        status9h.textContent = 'Бонус за 9 часов готов! Жми чтобы забрать';
+      const twelveReady = now >= (state.twelveHourNextAt || 0);
+      const btn12h = document.getElementById('btn-claim-12h');
+      const status12h = document.getElementById('twelve-hour-status');
+      if (twelveReady) {
+        btn12h.disabled = false;
+        btn12h.textContent = 'ЗАБРАТЬ 5 А-БИЧИ';
+        status12h.textContent = 'Бонус за 12 часов готов! Жми чтобы забрать';
       } else {
-        const rem9 = Math.max(0, state.nineHourNextAt - now);
-        btn9h.disabled = true;
-        btn9h.textContent = `КД 9Ч: ${formatRemaining(rem9)}`;
-        status9h.textContent = `Следующий бонус за 9 часов через ${formatRemaining(rem9)}`;
+        const rem12 = Math.max(0, state.twelveHourNextAt - now);
+        btn12h.disabled = true;
+        btn12h.textContent = `КД 12Ч: ${formatRemaining(rem12)}`;
+        status12h.textContent = `Следующий бонус за 12 часов через ${formatRemaining(rem12)}`;
       }
 
       const welcomeCard = document.getElementById('welcome-reward-card');
@@ -2207,7 +2564,7 @@
 
       syncChanceDisplay();
       renderSubTab();
-      renderInventoryTab();
+      renderProfileTab();
       renderRewardsTab();
       saveState();
     }
@@ -2239,12 +2596,13 @@
       }
       refundActiveBoostCoins();
       state.bal -= item.val;
+      state.xp += Math.max(8, Math.round(item.val * 0.4));
       const owned = {
         uid: Date.now() + Math.floor(Math.random() * 100000),
         id: item.id,
         name: item.name,
         val: item.val,
-        img: item.img,
+        img: getItemImageSrc(item),
         square: Boolean(item.square),
         theme: item.theme,
         locked: false
@@ -2307,6 +2665,8 @@
       playClickSound();
       refundActiveBoostCoins();
       state.selectedWishId = id;
+      state.selectionMode = 'none';
+      document.querySelectorAll('.preset').forEach(b => b.classList.remove('active'));
       if (!state.wishIds.includes(id)) state.wishIds.push(id);
       toast('Цель: ' + item.name);
       renderAll();
@@ -2331,10 +2691,13 @@
       state.bal -= 1;
       state.boostCoinsUsed += 1;
       state.totalWheelBoosts += 1;
+      state.xp += 4;
       playBuySound();
       toast(`+${step}% к шансу`);
       renderAll();
-      openBoostModal();
+      if (document.getElementById('modal').classList.contains('open')) {
+        openBoostModal();
+      }
     }
 
     function resetBoostCoins() {
@@ -2342,7 +2705,9 @@
       refundActiveBoostCoins();
       playSellSound();
       renderAll();
-      openBoostModal();
+      if (document.getElementById('modal').classList.contains('open')) {
+        openBoostModal();
+      }
     }
 
     function openBoostModal() {
@@ -2381,16 +2746,16 @@
       document.body.classList.remove('modal-open');
     }
 
-    function claim9h() {
+    function claim12h() {
       const now = Date.now();
-      if (now < (state.nineHourNextAt || 0)) {
-        toast('Бонус за 9 часов ещё на кулдауне');
+      if (now < (state.twelveHourNextAt || 0)) {
+        toast('Бонус за 12 часов ещё на кулдауне');
         return;
       }
-      state.bal += 7;
-      state.nineHourNextAt = now + NINE_HOURS_MS;
+      state.bal += 5;
+      state.twelveHourNextAt = now + TWELVE_HOURS_MS;
       playWinSound();
-      toast('Забрано +7 А-БИЧИ! Следующий через 9ч');
+      toast('Забрано +5 А-БИЧИ! Следующий через 12ч');
       renderAll();
     }
 
@@ -2527,6 +2892,14 @@
       requestAnimationFrame(tick);
     }
 
+    function unlockSpinControls() {
+      isSpinning = false;
+      const upgBtn = document.getElementById('btn-upgrade');
+      const boostBtn = document.getElementById('btn-boost-dock');
+      if (upgBtn) upgBtn.disabled = false;
+      if (boostBtn) boostBtn.disabled = false;
+    }
+
     function startUpgrade() {
       if (isSpinning) return;
       const mineIdx = state.inv.findIndex(x => x.uid === state.selectedInvUid);
@@ -2551,6 +2924,13 @@
         return;
       }
 
+      if (chanceAnimFrame) {
+        cancelAnimationFrame(chanceAnimFrame);
+        chanceAnimFrame = null;
+      }
+      visualChance = effChance;
+      setWheelArcImmediate(effChance);
+
       isSpinning = true;
       document.getElementById('btn-upgrade').disabled = true;
       document.getElementById('btn-boost-dock').disabled = true;
@@ -2569,46 +2949,56 @@
       const targetAngle = arrowAngle + speedCfg.turns * 360 + deltaToStop;
 
       spinArrow(targetAngle, speedCfg.dur, () => {
-        if (win) {
-          const upgraded = {
-            uid: mine.uid,
-            id: wish.id,
-            name: wish.name,
-            val: wish.val,
-            img: wish.img,
-            square: Boolean(wish.square),
-            theme: wish.theme,
-            locked: Boolean(mine.locked)
-          };
-          state.inv[mineIdx] = upgraded;
-          state.selectedInvUid = upgraded.uid;
-          state.selectedWishId = null;
-          state.selectionMode = 'none';
-          document.querySelectorAll('.preset').forEach(b => b.classList.remove('active'));
-          state.successfulSpins += 1;
+        try {
+          const curIdx = state.inv.findIndex(x => x.uid === mine.uid);
+          if (win) {
+            const upgraded = {
+              uid: mine.uid,
+              id: wish.id,
+              name: wish.name,
+              val: wish.val,
+              img: getItemImageSrc(wish),
+              square: Boolean(wish.square),
+              theme: wish.theme,
+              locked: curIdx !== -1 ? Boolean(state.inv[curIdx].locked) : Boolean(mine.locked)
+            };
+            if (curIdx !== -1) {
+              state.inv[curIdx] = upgraded;
+            } else {
+              state.inv.push(upgraded);
+            }
+            state.selectedInvUid = upgraded.uid;
+            state.selectedWishId = null;
+            state.selectionMode = 'none';
+            document.querySelectorAll('.preset').forEach(b => b.classList.remove('active'));
+            state.successfulSpins += 1;
+            state.xp += Math.max(15, Math.round(wish.val * 0.65));
 
-          if (upgraded.val > 100 && state.highDropQuestState === 'idle') {
-            state.highDropQuestState = 'ready';
-            state.lastHighDropName = upgraded.name;
+            if (upgraded.val > 100 && state.highDropQuestState === 'idle') {
+              state.highDropQuestState = 'ready';
+              state.lastHighDropName = upgraded.name;
+            }
+
+            playWinSound();
+            spawnSparkles();
+            toast('Успех! В МОЕ теперь: ' + wish.name);
+          } else {
+            if (curIdx !== -1) {
+              state.inv.splice(curIdx, 1);
+            }
+            state.selectedInvUid = null;
+            state.selectedWishId = null;
+            state.selectionMode = 'none';
+            document.querySelectorAll('.preset').forEach(b => b.classList.remove('active'));
+            state.failedSpins += 1;
+            state.xp += 6;
+            playLoseSound();
+            toast('Неудача! ' + mine.name + ' удалён');
           }
-
-          playWinSound();
-          spawnSparkles();
-          toast('Успех! В МОЕ теперь: ' + wish.name);
-        } else {
-          state.inv.splice(mineIdx, 1);
-          state.selectedInvUid = null;
-          state.selectedWishId = null;
-          state.selectionMode = 'none';
-          document.querySelectorAll('.preset').forEach(b => b.classList.remove('active'));
-          state.failedSpins += 1;
-          playLoseSound();
-          toast('Неудача! ' + mine.name + ' удалён');
+        } finally {
+          unlockSpinControls();
+          renderAll();
         }
-        isSpinning = false;
-        document.getElementById('btn-upgrade').disabled = false;
-        document.getElementById('btn-boost-dock').disabled = false;
-        renderAll();
       });
     }
 
@@ -2622,6 +3012,18 @@
         toast(`ХЕХЕХЕ! Выдано +${cheatAmount} А-БИЧЕЙ (Shift+P)`);
         renderAll();
       }
+    });
+
+    document.addEventListener('visibilitychange', () => {
+      saveState();
+    });
+
+    window.addEventListener('pagehide', () => {
+      saveState();
+    });
+
+    window.addEventListener('beforeunload', () => {
+      saveState();
     });
 
     setInterval(() => {
