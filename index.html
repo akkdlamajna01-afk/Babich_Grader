@@ -182,6 +182,116 @@
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.09), 0 14px 32px rgba(0, 0, 0, 0.56);
     }
 
+    .card-auction-dark-green {
+      background:
+        radial-gradient(circle at 88% 12%, rgba(22, 163, 74, 0.24), transparent 52%),
+        linear-gradient(160deg, rgba(14, 54, 34, 0.95), rgba(6, 23, 15, 0.99));
+      border: 1px solid rgba(34, 197, 94, 0.55);
+      box-shadow: 0 0 28px rgba(20, 83, 45, 0.45), inset 0 1px 0 rgba(134, 239, 172, 0.22);
+    }
+
+    .auction-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 186px;
+      background: linear-gradient(170deg, rgba(16, 62, 39, 0.92), rgba(7, 26, 17, 0.98));
+      border: 1px solid rgba(52, 211, 153, 0.48);
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.55);
+    }
+
+    .auction-card-overlay {
+      position: relative;
+      z-index: 1;
+      padding: 36px 10px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      text-align: center;
+      background: linear-gradient(180deg, rgba(5, 20, 13, 0.08) 0%, rgba(5, 20, 13, 0.66) 46%, rgba(4, 15, 10, 0.94) 100%);
+    }
+
+    .auction-buy-btn {
+      width: 100%;
+      padding: 8px 8px;
+      border-radius: 10px;
+      border: 1px solid rgba(134, 239, 172, 0.72);
+      background: linear-gradient(180deg, #15803d, #064e3b);
+      color: #ecfdf5;
+      font-size: 11px;
+      font-weight: 950;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
+    }
+
+    .auction-buy-btn:active {
+      transform: scale(0.97);
+    }
+
+    .lb-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .lb-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 13px;
+      background: rgba(15, 22, 34, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .lb-row.is-me {
+      border-color: rgba(250, 204, 21, 0.72);
+      background: linear-gradient(90deg, rgba(133, 77, 14, 0.28), rgba(15, 22, 34, 0.92));
+    }
+
+    .lb-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .lb-rank {
+      width: 24px;
+      font-size: 12px;
+      font-weight: 950;
+      color: var(--gold);
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .lb-name {
+      font-size: 13px;
+      font-weight: 900;
+      color: #ffffff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .lb-sub {
+      font-size: 10px;
+      font-weight: 700;
+      color: #94a3b8;
+    }
+
+    .lb-score {
+      font-size: 12px;
+      font-weight: 950;
+      color: #fde047;
+      white-space: nowrap;
+    }
+
     .card-yellow-glow {
       background: linear-gradient(160deg, rgba(133, 77, 14, 0.8), rgba(28, 22, 11, 0.98));
       border: 1px solid rgba(250, 204, 21, 0.75);
@@ -227,6 +337,12 @@
       border: 1px solid var(--line);
       color: #cbd5e1;
       white-space: nowrap;
+    }
+
+    .badge-dark-green {
+      background: rgba(6, 78, 59, 0.85);
+      border-color: rgba(52, 211, 153, 0.55);
+      color: #a7f3d0;
     }
 
     .badge-yellow {
@@ -1100,21 +1216,21 @@
       backdrop-filter: blur(18px);
       border-top: 1px solid var(--line);
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      padding: 8px 10px 15px;
-      gap: 7px;
+      grid-template-columns: repeat(4, 1fr);
+      padding: 8px 8px 15px;
+      gap: 6px;
       z-index: 30;
     }
 
     .nav-btn {
       position: relative;
-      padding: 10px 6px;
+      padding: 10px 4px;
       border-radius: 12px;
       border: 1px solid rgba(148, 163, 184, 0.28);
       background: linear-gradient(180deg, #272e3b, #181d26);
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 950;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.35px;
       text-transform: uppercase;
       cursor: pointer;
       transition: transform 0.12s ease, box-shadow 0.16s ease, border-color 0.16s ease, background 0.16s ease;
@@ -1159,6 +1275,21 @@
       background: linear-gradient(180deg, #323b4c, #1e2430);
       box-shadow: 0 0 16px rgba(59, 130, 246, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.12);
       text-shadow: 0 0 12px rgba(96, 165, 250, 1), 0 0 24px rgba(37, 99, 235, 0.85);
+    }
+
+    .nav-shop {
+      color: #6ee7b7;
+      border-color: rgba(16, 185, 129, 0.42);
+      background: linear-gradient(180deg, #0d3b27, #062116);
+      text-shadow: 0 0 10px rgba(16, 185, 129, 0.7);
+    }
+
+    .nav-shop.active {
+      color: #a7f3d0;
+      border-color: rgba(52, 211, 153, 0.85);
+      background: linear-gradient(180deg, #145338, #07291b);
+      box-shadow: 0 0 16px rgba(16, 185, 129, 0.35), inset 0 1px 0 rgba(167, 243, 208, 0.2);
+      text-shadow: 0 0 12px rgba(110, 231, 183, 0.95);
     }
 
     .nav-profile {
@@ -1345,13 +1476,13 @@
               <div class="arrow-pointer">
                 <svg viewBox="0 0 36 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <defs>
-                    <linearGradient id="arrowGradV30" x1="18" y1="2" x2="18" y2="39" gradientUnits="userSpaceOnUse">
+                    <linearGradient id="arrowGradV31" x1="18" y1="2" x2="18" y2="39" gradientUnits="userSpaceOnUse">
                       <stop offset="0%" stop-color="#ffffff" />
                       <stop offset="48%" stop-color="#86efac" />
                       <stop offset="100%" stop-color="#16a34a" />
                     </linearGradient>
                   </defs>
-                  <path d="M18 39L3 10.5C2.1 8.8 3.3 6.7 5.2 6.7H30.8C32.7 6.7 33.9 8.8 33 10.5L18 39Z" fill="url(#arrowGradV30)" stroke="#ffffff" stroke-width="1.6" stroke-linejoin="round" />
+                  <path d="M18 39L3 10.5C2.1 8.8 3.3 6.7 5.2 6.7H30.8C32.7 6.7 33.9 8.8 33 10.5L18 39Z" fill="url(#arrowGradV31)" stroke="#ffffff" stroke-width="1.6" stroke-linejoin="round" />
                   <path d="M18 34.5L7.5 13.5H18V34.5Z" fill="rgba(255,255,255,0.42)" />
                   <circle cx="18" cy="11.5" r="2.3" fill="#ffffff" />
                 </svg>
@@ -1417,6 +1548,27 @@
         </div>
       </section>
 
+      <section id="pane-shop" class="pane">
+        <div class="card card-auction-dark-green">
+          <div class="card-head">
+            <span class="card-title" style="color:#a7f3d0;">Аукцион Бабичей</span>
+            <span class="badge badge-dark-green" id="auction-timer-badge">ОБНОВЛЕНИЕ: 30:00</span>
+          </div>
+          <div style="font-size:12px;color:#a7f3d0;margin-bottom:12px;">
+            2 случайных лота из 4 уникальных Бабичей (без повторов). Обновляется каждые 30 минут.
+          </div>
+          <div class="grid-2" id="auction-slots-grid"></div>
+        </div>
+
+        <div class="card card-auction-dark-green">
+          <div class="card-head">
+            <span class="card-title" style="color:#a7f3d0;">Список аукциона (4 лота)</span>
+            <span class="badge badge-dark-green">ЭКСКЛЮЗИВ</span>
+          </div>
+          <div class="lb-list" id="auction-catalog-list"></div>
+        </div>
+      </section>
+
       <section id="pane-profile" class="pane">
         <div class="profile-hero">
           <div class="profile-top-row">
@@ -1457,6 +1609,14 @@
             </div>
           </div>
           <div id="inv-sell-list"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <span class="card-title">Топ игроков</span>
+            <span class="badge badge-yellow" id="player-rank-badge">МЕСТО #?</span>
+          </div>
+          <div class="lb-list" id="leaderboard-list"></div>
         </div>
       </section>
 
@@ -1552,6 +1712,7 @@
 
     <nav class="bottom-nav">
       <button class="nav-btn nav-upgrader active" onclick="goMainTab('upgrader', this)">АПГРЕЙДЕР</button>
+      <button class="nav-btn nav-shop" onclick="goMainTab('shop', this)">МАГАЗИН</button>
       <button class="nav-btn nav-profile" onclick="goMainTab('profile', this)">ПРОФИЛЬ</button>
       <button class="nav-btn nav-rewards" id="nav-btn-rewards" onclick="goMainTab('rewards', this)">
         НАГРАДЫ
@@ -1576,28 +1737,35 @@
     function getAccountStorageKey() {
       const tgUser = tg?.initDataUnsafe?.user;
       if (tgUser && tgUser.id) {
-        return `babich_grader_v30_acc_tg_${tgUser.id}`;
+        return `babich_grader_v31_acc_tg_${tgUser.id}`;
       }
-      return 'babich_grader_v30_acc_guest';
+      return 'babich_grader_v31_acc_guest';
     }
 
     const ACCOUNT_KEY = getAccountStorageKey();
-    const BACKUP_KEY = 'babich_grader_v30_backup_latest';
-    const LEGACY_V29_KEY = (tg?.initDataUnsafe?.user?.id)
-      ? `babich_grader_v29_acc_tg_${tg.initDataUnsafe.user.id}`
-      : 'babich_grader_v29_acc_guest';
-    const LEGACY_V29_BACKUP = 'babich_grader_v29_backup_latest';
+    const BACKUP_KEY = 'babich_grader_v31_backup_latest';
+    const LEGACY_V30_KEY = (tg?.initDataUnsafe?.user?.id)
+      ? `babich_grader_v30_acc_tg_${tg.initDataUnsafe.user.id}`
+      : 'babich_grader_v30_acc_guest';
+    const LEGACY_V30_BACKUP = 'babich_grader_v30_backup_latest';
 
     function resolveTheme(name, val, customTheme) {
       if (customTheme) return customTheme;
-      if (name === 'AHLELELE BABICHNAS' || name === 'граберчик' || name === 'TITAN Babich') return 'burgundy';
-      if (name === 'HIJNIAK' || name === 'Буберчик' || name === 'БОГ МОЛНИЙ БАБИЧ') return 'red';
+      if (name === 'Бабич Эпштейн' || name === 'ДУМ БАБИЧ' || name === 'AHLELELE BABICHNAS' || name === 'граберчик' || name === 'TITAN Babich') return 'burgundy';
+      if (name === 'Fake БРАЖНИК' || name === 'ГАЗАН' || name === 'HIJNIAK' || name === 'Буберчик' || name === 'БОГ МОЛНИЙ БАБИЧ') return 'red';
       if (name === 'Бабич Прайм' || name === 'бабичниииииик' || name === 'Зелёный Бабич') return 'green';
       if (name === 'КИРИЛЛ БАБИЧ' || name === 'Эгьр' || name === 'Хоумлендер Бабич') return 'blue';
       if (val > 67) return 'gold';
       if (val > 34) return 'purple';
       return 'grey';
     }
+
+    const AUCTION_BABICH_LIST = [
+      { id: 'auc_gazan', name: 'ГАЗАН', val: 16000, img: 'GAZAN.jpg', theme: 'red', auction: true },
+      { id: 'auc_fake_brashnik', name: 'Fake БРАЖНИК', val: 17500, img: 'FAKEbrashnik.jpg', theme: 'red', auction: true },
+      { id: 'auc_doom', name: 'ДУМ БАБИЧ', val: 22800, img: 'DUMBABICH.jpg', theme: 'burgundy', auction: true },
+      { id: 'auc_epstein', name: 'Бабич Эпштейн', val: 24600, img: 'EpsteinBabich.jpg', theme: 'burgundy', auction: true }
+    ];
 
     const RAW_BABICH_LIST = [
       { id: 'b_1', name: 'Бабич', val: 5, img: 'babich.jpg' },
@@ -1655,14 +1823,16 @@
       { id: 'b_42', name: 'Буберчик', val: 255, img: 'babichNULL.jpg', theme: 'red' },
       { id: 'b_43', name: 'граберчик', val: 270, img: 'GRABATRON.jpg', theme: 'burgundy' },
       { id: 'b_40', name: 'AHLELELE BABICHNAS', val: 300, img: 'AHLELELEBABICHNAS.jpg', theme: 'burgundy' },
-      { id: 'b_49', name: 'TITAN Babich', val: 375, img: 'BabichTITAN.jpg', theme: 'burgundy' }
+      { id: 'b_49', name: 'TITAN Babich', val: 375, img: 'BabichTITAN.jpg', theme: 'burgundy' },
+      ...AUCTION_BABICH_LIST
     ];
 
     const BABICH_LIST = RAW_BABICH_LIST
       .map(it => ({ ...it, theme: resolveTheme(it.name, it.val, it.theme) }))
       .sort((a, b) => a.val - b.val);
 
-    const DEFAULT_WISH_IDS = BABICH_LIST.map(x => x.id);
+    const UPGRADE_POOL = BABICH_LIST.filter(x => !x.auction);
+    const DEFAULT_WISH_IDS = UPGRADE_POOL.map(x => x.id);
 
     const SPEED_STEPS = [
       { mult: 1, label: '1X', cls: 'speed-1x', turns: 6, dur: 7000 },
@@ -1676,6 +1846,15 @@
     const MAX_BOOST_CLICKS = 6;
     const TWELVE_HOURS_MS = 12 * 60 * 60 * 1000;
     const DAY_MS = 24 * 60 * 60 * 1000;
+    const THIRTY_MIN_MS = 30 * 60 * 1000;
+
+    function getTelegramAvatarUrl() {
+      const photoUrl = tg?.initDataUnsafe?.user?.photo_url;
+      if (typeof photoUrl === 'string' && photoUrl.startsWith('http')) {
+        return photoUrl;
+      }
+      return 'babichAVA.jpg';
+    }
 
     function defaultNickname() {
       const u = tg?.initDataUnsafe?.user;
@@ -1709,7 +1888,10 @@
       claimed40BoostBatches: 0,
       highDropQuestState: 'idle',
       highDropNextAt: 0,
-      lastHighDropName: ''
+      lastHighDropName: '',
+      auctionSeed: 0,
+      auctionNextRefreshAt: 0,
+      auctionPairIds: []
     };
 
     function safeParseState(raw) {
@@ -1723,12 +1905,43 @@
       return null;
     }
 
+    function generateUniqueAuctionPair(seed) {
+      const pool = [...AUCTION_BABICH_LIST];
+      let s = (Math.abs(Number(seed) || 1) * 9301 + 49297) % 233280;
+      function nextRand() {
+        s = (s * 9301 + 49297) % 233280;
+        return s / 233280;
+      }
+      for (let i = pool.length - 1; i > 0; i--) {
+        const j = Math.floor(nextRand() * (i + 1));
+        const tmp = pool[i];
+        pool[i] = pool[j];
+        pool[j] = tmp;
+      }
+      return [pool[0].id, pool[1].id];
+    }
+
+    function ensureAuctionRotation() {
+      const now = Date.now();
+      if (!state.auctionNextRefreshAt || now >= state.auctionNextRefreshAt) {
+        const bucket = Math.floor(now / THIRTY_MIN_MS);
+        state.auctionSeed = bucket;
+        state.auctionNextRefreshAt = (bucket + 1) * THIRTY_MIN_MS;
+        state.auctionPairIds = generateUniqueAuctionPair(bucket);
+      }
+      const validIds = new Set(AUCTION_BABICH_LIST.map(x => x.id));
+      const clean = (state.auctionPairIds || []).filter(id => validIds.has(id));
+      if (clean.length < 2 || clean[0] === clean[1]) {
+        state.auctionPairIds = generateUniqueAuctionPair(state.auctionSeed || Math.floor(now / THIRTY_MIN_MS));
+      }
+    }
+
     function loadAccountState() {
       const candidates = [
         localStorage.getItem(ACCOUNT_KEY),
         localStorage.getItem(BACKUP_KEY),
-        localStorage.getItem(LEGACY_V29_KEY),
-        localStorage.getItem(LEGACY_V29_BACKUP),
+        localStorage.getItem(LEGACY_V30_KEY),
+        localStorage.getItem(LEGACY_V30_BACKUP),
         sessionStorage.getItem(ACCOUNT_KEY),
         sessionStorage.getItem(BACKUP_KEY)
       ];
@@ -1764,7 +1977,10 @@
           : defaultNickname();
         state.xp = Math.max(0, Number(best.xp) || 0);
         state.wishIds = Array.from(new Set([...DEFAULT_WISH_IDS, ...(best.wishIds || [])]));
+        ensureAuctionRotation();
         saveState();
+      } else {
+        ensureAuctionRotation();
       }
     }
 
@@ -1984,11 +2200,11 @@
     }
 
     function getBoostStepPercent(wish) {
-      if (!wish) return 1.2;
-      if (wish.val >= 235) return 0.22;
-      if (wish.val >= 110) return 0.55;
-      if (wish.val >= 60) return 0.95;
-      return 1.4;
+      if (!wish) return 0.9;
+      if (wish.val >= 235) return 0.16;
+      if (wish.val >= 110) return 0.42;
+      if (wish.val >= 60) return 0.72;
+      return 1.15;
     }
 
     function getGoalRarityRatio(wish) {
@@ -2001,8 +2217,8 @@
     function getJumpPenalty(mine, wish) {
       if (!mine || !wish || mine.val <= 0) return 0;
       const mult = wish.val / mine.val;
-      if (mult <= 1.2) return 0;
-      return Math.min(18, (mult - 1.2) * 3.8);
+      if (mult <= 1.15) return 0;
+      return Math.min(34, Math.pow(mult - 1.15, 0.92) * 5.2);
     }
 
     function getBaseChanceForPair(mine, wish) {
@@ -2011,33 +2227,33 @@
 
       if (state.selectionMode === 'chance') {
         if (state.baseChance >= 75) {
-          return Number(Math.max(52, 75 - r * 12 - jumpPen * 0.45).toFixed(1));
+          return Number(Math.max(38, 74 - r * 14 - jumpPen * 0.65).toFixed(1));
         }
         if (state.baseChance >= 50) {
-          return Number(Math.max(46, Math.min(59, 58.5 - r * 12 - jumpPen * 0.35)).toFixed(1));
+          return Number(Math.max(24, Math.min(55, 55 - r * 14 - jumpPen * 0.6)).toFixed(1));
         }
-        return Number(Math.max(18, 29.5 - r * 11 - jumpPen * 0.4).toFixed(1));
+        return Number(Math.max(8, 28 - r * 11 - jumpPen * 0.55).toFixed(1));
       }
 
       if (state.selectionMode === 'mult') {
-        const multPenalty = state.activeMult >= 10 ? 0.52 : state.activeMult >= 5 ? 0.66 : 0.78;
-        const raw = (100 / Math.max(1.2, state.activeMult)) * multPenalty - r * 7 - jumpPen * 0.5;
-        return Number(Math.min(65, Math.max(9, raw)).toFixed(1));
+        const multFactor = state.activeMult >= 10 ? 0.42 : state.activeMult >= 5 ? 0.56 : 0.7;
+        const raw = (100 / Math.max(1.2, state.activeMult)) * multFactor - r * 8 - jumpPen * 0.65;
+        return Number(Math.min(58, Math.max(5, raw)).toFixed(1));
       }
 
       if (!mine || !wish) {
-        return Number((52 - r * 8).toFixed(1));
+        return Number((46 - r * 10).toFixed(1));
       }
 
       const ratio = mine.val / Math.max(1, wish.val);
       let raw;
       if (ratio >= 1) {
-        raw = 70 - r * 9;
+        raw = 66 - r * 12;
       } else {
-        raw = Math.pow(ratio, 0.88) * 76 - r * 5 - jumpPen * 0.4;
+        raw = Math.pow(ratio, 1.05) * 70 - r * 6 - jumpPen * 0.55;
       }
 
-      return Number(Math.min(70, Math.max(10, raw)).toFixed(1));
+      return Number(Math.min(66, Math.max(5, raw)).toFixed(1));
     }
 
     function computeEffectiveChance() {
@@ -2055,45 +2271,45 @@
 
     function pickReplacementWishForPreset(mine) {
       const baseVal = mine ? mine.val : 8;
-      let minFactor = 1.3;
-      let targetMult = 1.65;
+      let minFactor = 1.25;
+      let targetMult = 1.5;
 
       if (state.selectionMode === 'chance') {
         if (state.baseChance >= 75) {
-          minFactor = 1.25;
-          targetMult = 1.45;
+          minFactor = 1.2;
+          targetMult = 1.35;
         } else if (state.baseChance >= 50) {
-          minFactor = 1.75;
-          targetMult = 2.25;
+          minFactor = 1.65;
+          targetMult = 2.05;
         } else {
-          minFactor = 2.6;
-          targetMult = 3.6;
+          minFactor = 2.4;
+          targetMult = 3.2;
         }
       } else if (state.selectionMode === 'mult') {
         if (state.activeMult <= 2) {
-          minFactor = 1.75;
-          targetMult = 2.1;
+          minFactor = 1.7;
+          targetMult = 2.0;
         } else if (state.activeMult <= 5) {
-          minFactor = 3.4;
-          targetMult = 4.8;
+          minFactor = 3.2;
+          targetMult = 4.4;
         } else {
-          minFactor = 6.2;
-          targetMult = 9.5;
+          minFactor = 5.5;
+          targetMult = 8.0;
         }
       }
 
       const minVal = baseVal * minFactor;
       const targetVal = baseVal * targetMult;
-      let candidates = BABICH_LIST.filter(x => x.val >= minVal);
+      let candidates = UPGRADE_POOL.filter(x => x.val >= minVal);
       if (!candidates.length) {
-        candidates = BABICH_LIST.filter(x => x.val > baseVal);
+        candidates = UPGRADE_POOL.filter(x => x.val > baseVal);
       }
       if (!candidates.length) {
-        return BABICH_LIST[BABICH_LIST.length - 1]?.id || null;
+        return UPGRADE_POOL[UPGRADE_POOL.length - 1]?.id || null;
       }
 
       const sorted = [...candidates].sort((a, b) => Math.abs(a.val - targetVal) - Math.abs(b.val - targetVal));
-      const pool = sorted.slice(0, Math.min(4, sorted.length));
+      const pool = sorted.slice(0, Math.min(3, sorted.length));
       if (!pool.length) return null;
 
       let idx = state.presetRotateIdx % pool.length;
@@ -2210,9 +2426,9 @@
       } else if (mine && wish && mine.val > 0) {
         multDisplay = Number(Math.max(1, wish.val / mine.val).toFixed(1));
       } else if (state.selectionMode === 'chance') {
-        if (state.baseChance >= 75) multDisplay = 1.5;
-        else if (state.baseChance >= 50) multDisplay = 2.2;
-        else multDisplay = 3.6;
+        if (state.baseChance >= 75) multDisplay = 1.4;
+        else if (state.baseChance >= 50) multDisplay = 2.1;
+        else multDisplay = 3.2;
       }
       document.getElementById('mult-badge').textContent = 'x' + multDisplay.toFixed(1);
       syncTurboButton();
@@ -2280,13 +2496,10 @@
         }).join('')}</div>`;
         sortedInv.forEach(it => setBgImage(box.querySelector(`[data-sub-mine="${it.uid}"]`), it));
       } else if (state.subTab === 'wish') {
-        const wishItems = state.wishIds
-          .map(id => BABICH_LIST.find(x => x.id === id))
-          .filter(Boolean)
-          .sort((a, b) => a.val - b.val);
+        const wishItems = UPGRADE_POOL.sort((a, b) => a.val - b.val);
 
         const capBanner = mine
-          ? `<div style="font-size:11px;color:var(--muted);margin-bottom:8px;">Цель для «${mine.name}» (${mine.val} А-БИЧЕЙ) — чем круче цель и скачок цены, тем ниже шанс</div>`
+          ? `<div style="font-size:11px;color:var(--muted);margin-bottom:8px;">Цель для «${mine.name}» (${mine.val} А-БИЧЕЙ) — большой прыжок цены жёстко режет шанс</div>`
           : `<div style="font-size:11px;color:#86efac;margin-bottom:8px;">Выбери любого Бабича как <b>ЦЕЛЬ</b></div>`;
 
         box.innerHTML = capBanner + `<div class="grid-2">${wishItems.map(it => {
@@ -2304,7 +2517,7 @@
         }).join('')}</div>`;
         wishItems.forEach(it => setBgImage(box.querySelector(`[data-sub-wish="${it.id}"]`), it));
       } else {
-        box.innerHTML = `<div class="grid-2">${BABICH_LIST.map(it => `
+        box.innerHTML = `<div class="grid-2">${UPGRADE_POOL.map(it => `
           <div class="babich-tile ${getThemeClass(it)}" onclick="buyBabich('${it.id}')">
             <img class="babich-tile-bg" data-sub-shop="${it.id}" alt="${it.name}" />
             <div class="babich-tile-overlay">
@@ -2314,7 +2527,104 @@
             </div>
           </div>
         `).join('')}</div>`;
-        BABICH_LIST.forEach(it => setBgImage(box.querySelector(`[data-sub-shop="${it.id}"]`), it));
+        UPGRADE_POOL.forEach(it => setBgImage(box.querySelector(`[data-sub-shop="${it.id}"]`), it));
+      }
+    }
+
+    function formatMinSec(ms) {
+      const totalSec = Math.max(0, Math.ceil(ms / 1000));
+      const m = Math.floor(totalSec / 60);
+      const s = totalSec % 60;
+      return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+    }
+
+    function buyAuctionLot(id) {
+      if (isSpinning) return;
+      ensureAuctionRotation();
+      if (!state.auctionPairIds.includes(id)) {
+        toast('Этот лот сейчас не на витрине аукциона');
+        renderShopTab();
+        return;
+      }
+      const item = AUCTION_BABICH_LIST.find(x => x.id === id);
+      if (!item) return;
+      if (state.bal < item.val) {
+        playLoseSound();
+        toast(`Не хватает ${item.val - state.bal} А-БИЧЕЙ`);
+        return;
+      }
+      refundActiveBoostCoins();
+      state.bal -= item.val;
+      state.xp += 120;
+      const owned = {
+        uid: Date.now() + Math.floor(Math.random() * 100000),
+        id: item.id,
+        name: item.name,
+        val: item.val,
+        img: getItemImageSrc(item),
+        square: false,
+        theme: item.theme,
+        locked: true
+      };
+      state.inv.push(owned);
+      state.selectedInvUid = owned.uid;
+      if (item.val > 100 && state.highDropQuestState === 'idle') {
+        state.highDropQuestState = 'ready';
+        state.lastHighDropName = item.name;
+      }
+      playWinSound();
+      spawnSparkles();
+      toast(`Куплен с аукциона: ${item.name} (${item.val} А-БИЧЕЙ)`);
+      renderAll();
+    }
+
+    function renderShopTab() {
+      ensureAuctionRotation();
+      const now = Date.now();
+      const rem = Math.max(0, state.auctionNextRefreshAt - now);
+      const timerBadge = document.getElementById('auction-timer-badge');
+      if (timerBadge) {
+        timerBadge.textContent = `ОБНОВЛЕНИЕ: ${formatMinSec(rem)}`;
+      }
+
+      const slotsGrid = document.getElementById('auction-slots-grid');
+      if (slotsGrid) {
+        const pairItems = state.auctionPairIds
+          .map(id => AUCTION_BABICH_LIST.find(x => x.id === id))
+          .filter(Boolean)
+          .slice(0, 2);
+
+        slotsGrid.innerHTML = pairItems.map(it => `
+          <div class="auction-card" onclick="buyAuctionLot('${it.id}')">
+            <img class="babich-tile-bg" data-auc-slot="${it.id}" alt="${it.name}" />
+            <div class="auction-card-overlay">
+              <div class="babich-tile-name">${it.name}</div>
+              <div class="babich-tile-price">${it.val.toLocaleString('ru-RU')} А-БИЧЕЙ</div>
+              <button class="auction-buy-btn" onclick="event.stopPropagation(); buyAuctionLot('${it.id}')">КУПИТЬ</button>
+            </div>
+          </div>
+        `).join('');
+        pairItems.forEach(it => setBgImage(slotsGrid.querySelector(`[data-auc-slot="${it.id}"]`), it));
+      }
+
+      const catList = document.getElementById('auction-catalog-list');
+      if (catList) {
+        const sortedAuc = [...AUCTION_BABICH_LIST].sort((a, b) => b.val - a.val);
+        catList.innerHTML = sortedAuc.map(it => {
+          const activeNow = state.auctionPairIds.includes(it.id);
+          return `
+            <div class="lb-row ${activeNow ? 'is-me' : ''}">
+              <div class="lb-left">
+                <span class="lb-rank">${activeNow ? 'LIVE' : '—'}</span>
+                <div style="min-width:0;">
+                  <div class="lb-name">${it.name}</div>
+                  <div class="lb-sub">${activeNow ? 'Сейчас в 2 слотах аукциона' : 'В ротации каждые 30 мин'}</div>
+                </div>
+              </div>
+              <div class="lb-score">${it.val.toLocaleString('ru-RU')}</div>
+            </div>
+          `;
+        }).join('');
       }
     }
 
@@ -2328,6 +2638,59 @@
       const level = Math.floor(state.xp / xpPerLevel) + 1;
       const curXp = state.xp % xpPerLevel;
       return { level, curXp, xpPerLevel, pct: Math.min(100, (curXp / xpPerLevel) * 100) };
+    }
+
+    function getPlayerPowerScore() {
+      const invSum = state.inv.reduce((acc, x) => acc + (Number(x.val) || 0), 0);
+      return state.bal + invSum;
+    }
+
+    function renderLeaderboard() {
+      const listEl = document.getElementById('leaderboard-list');
+      const rankBadge = document.getElementById('player-rank-badge');
+      if (!listEl) return;
+
+      const myScore = getPlayerPowerScore();
+      const myTop = getTopBabich();
+
+      const rivals = [
+        { name: 'Костя_Мултиверс', score: 28450, top: 'Бабич Эпштейн' },
+        { name: 'ДумМаша_99', score: 21900, top: 'ДУМ БАБИЧ' },
+        { name: 'GullBlox_Fan', score: 16400, top: 'ГАЗАН' },
+        { name: 'BabichHunter', score: 4200, top: 'TITAN Babich' },
+        { name: 'Астра_Спидран', score: 1450, top: 'HIJNIAK' },
+        { name: 'Крутилка_07', score: 480, top: 'Бабич Прайм' },
+        { name: 'Новичок_А-БИЧ', score: 120, top: 'Бабич' }
+      ];
+
+      const allEntries = [
+        ...rivals.map((r, i) => ({ ...r, isMe: false, id: 'r_' + i })),
+        {
+          id: 'me',
+          name: state.nickname,
+          score: myScore,
+          top: myTop ? myTop.name : 'Нет бабичей',
+          isMe: true
+        }
+      ].sort((a, b) => b.score - a.score);
+
+      const myPos = allEntries.findIndex(x => x.isMe) + 1;
+      if (rankBadge) {
+        rankBadge.textContent = `МЕСТО #${myPos}`;
+      }
+
+      listEl.innerHTML = allEntries.map((row, idx) => `
+        <div class="lb-row ${row.isMe ? 'is-me' : ''}">
+          <div class="lb-left">
+            <span class="lb-rank">#${idx + 1}</span>
+            <div style="min-width:0;">
+              <div class="lb-name">${row.name} ${row.isMe ? '(ТЫ)' : ''}</div>
+              <div class="lb-sub">Топ: ${row.top}</div>
+            </div>
+          </div>
+          <div class="lb-score">${row.score.toLocaleString('ru-RU')}</div>
+        </div>
+      `).join('');
     }
 
     function editNickname() {
@@ -2345,6 +2708,19 @@
     }
 
     function renderProfileTab() {
+      const avatarEl = document.getElementById('profile-avatar');
+      if (avatarEl) {
+        const tgAvatar = getTelegramAvatarUrl();
+        avatarEl.src = tgAvatar;
+        avatarEl.onerror = () => {
+          if (avatarEl.src.indexOf('babichAVA.jpg') === -1) {
+            avatarEl.src = 'babichAVA.jpg';
+          } else {
+            avatarEl.src = createFallbackSvg({ name: state.nickname || 'BG' });
+          }
+        };
+      }
+
       const lvl = getLevelInfo();
       document.getElementById('profile-nick').textContent = state.nickname;
       document.getElementById('profile-lvl-pill').textContent = `LVL ${lvl.level}`;
@@ -2358,7 +2734,7 @@
 
       if (topB) {
         topName.textContent = topB.name;
-        topVal.textContent = topB.val + ' А-БИЧЕЙ';
+        topVal.textContent = topB.val.toLocaleString('ru-RU') + ' А-БИЧЕЙ';
         topImg.src = getItemImageSrc(topB);
         topImg.onerror = () => { topImg.src = createFallbackSvg(topB); };
       } else {
@@ -2379,22 +2755,24 @@
 
       const wrap = document.getElementById('inv-sell-list');
       if (!state.inv.length) {
-        wrap.innerHTML = '<div style="font-size:13px;color:var(--muted);">Инвентарь пуст. Купи Бабича в Апгрейдере.</div>';
-        return;
-      }
-      const sortedInv = [...state.inv].sort((a, b) => b.val - a.val);
-      wrap.innerHTML = `<div class="grid-2">${sortedInv.map(it => `
-        <div class="babich-tile ${getThemeClass(it)}" onclick="sellBabich(${it.uid})">
-          <img class="babich-tile-bg" data-inv-sell="${it.uid}" alt="${it.name}" />
-          <button class="heart-btn ${it.locked ? 'active' : ''}" onclick="toggleHeart(${it.uid}, event)" title="Защита">${it.locked ? '♥' : '♡'}</button>
-          <div class="babich-tile-overlay">
-            <div class="babich-tile-name">${it.name}</div>
-            <div class="babich-tile-price">${it.val} А-БИЧЕЙ</div>
-            <button class="btn-tile-action btn-sell" onclick="event.stopPropagation(); sellBabich(${it.uid})">${it.locked ? '♥ Защищён' : `Продать (+${it.val})`}</button>
+        wrap.innerHTML = '<div style="font-size:13px;color:var(--muted);">Инвентарь пуст. Купи Бабича в Апгрейдере или Магазине.</div>';
+      } else {
+        const sortedInv = [...state.inv].sort((a, b) => b.val - a.val);
+        wrap.innerHTML = `<div class="grid-2">${sortedInv.map(it => `
+          <div class="babich-tile ${getThemeClass(it)}" onclick="sellBabich(${it.uid})">
+            <img class="babich-tile-bg" data-inv-sell="${it.uid}" alt="${it.name}" />
+            <button class="heart-btn ${it.locked ? 'active' : ''}" onclick="toggleHeart(${it.uid}, event)" title="Защита">${it.locked ? '♥' : '♡'}</button>
+            <div class="babich-tile-overlay">
+              <div class="babich-tile-name">${it.name}</div>
+              <div class="babich-tile-price">${it.val.toLocaleString('ru-RU')} А-БИЧЕЙ</div>
+              <button class="btn-tile-action btn-sell" onclick="event.stopPropagation(); sellBabich(${it.uid})">${it.locked ? '♥ Защищён' : `Продать (+${it.val})`}</button>
+            </div>
           </div>
-        </div>
-      `).join('')}</div>`;
-      sortedInv.forEach(it => setBgImage(wrap.querySelector(`[data-inv-sell="${it.uid}"]`), it));
+        `).join('')}</div>`;
+        sortedInv.forEach(it => setBgImage(wrap.querySelector(`[data-inv-sell="${it.uid}"]`), it));
+      }
+
+      renderLeaderboard();
     }
 
     function formatRemaining(ms) {
@@ -2520,7 +2898,8 @@
 
     function renderAll() {
       enforceMinePresence();
-      document.getElementById('bal').textContent = state.bal;
+      ensureAuctionRotation();
+      document.getElementById('bal').textContent = state.bal.toLocaleString('ru-RU');
 
       const mine = state.selectedInvUid ? (state.inv.find(x => x.uid === state.selectedInvUid) || null) : null;
       const mineCard = document.getElementById('slot-mine-card');
@@ -2531,7 +2910,7 @@
       if (mine) {
         clearMineBtn.style.display = 'grid';
         document.getElementById('slot-mine-title').textContent = mine.name;
-        document.getElementById('slot-mine-val').textContent = mine.val + ' А-БИЧЕЙ';
+        document.getElementById('slot-mine-val').textContent = mine.val.toLocaleString('ru-RU') + ' А-БИЧЕЙ';
         document.getElementById('slot-mine-hint').textContent = 'Нажми чтобы снять';
       } else {
         clearMineBtn.style.display = 'none';
@@ -2553,7 +2932,7 @@
       if (wish) {
         clearWishBtn.style.display = 'grid';
         document.getElementById('slot-wish-title').textContent = wish.name;
-        document.getElementById('slot-wish-val').textContent = wish.val + ' А-БИЧЕЙ';
+        document.getElementById('slot-wish-val').textContent = wish.val.toLocaleString('ru-RU') + ' А-БИЧЕЙ';
         document.getElementById('slot-wish-hint').textContent = 'Нажми чтобы убрать';
       } else {
         clearWishBtn.style.display = 'none';
@@ -2564,6 +2943,7 @@
 
       syncChanceDisplay();
       renderSubTab();
+      renderShopTab();
       renderProfileTab();
       renderRewardsTab();
       saveState();
@@ -2587,7 +2967,7 @@
 
     function buyBabich(id) {
       if (isSpinning) return;
-      const item = BABICH_LIST.find(x => x.id === id);
+      const item = UPGRADE_POOL.find(x => x.id === id);
       if (!item) return;
       if (state.bal < item.val) {
         playLoseSound();
@@ -2725,7 +3105,7 @@
           <span class="badge" style="cursor:pointer;" onclick="closeBoostModal()">Закрыть</span>
         </div>
         <div class="boost-stat-box">
-          <div class="boost-row"><span>Твои А-БИЧИ:</span><span class="boost-val">${state.bal}</span></div>
+          <div class="boost-row"><span>Твои А-БИЧИ:</span><span class="boost-val">${state.bal.toLocaleString('ru-RU')}</span></div>
           <div class="boost-row"><span>За 1 А-БИЧ сейчас:</span><span class="boost-val">+${step}%</span></div>
           <div class="boost-row"><span>Улучшений использовано:</span><span class="boost-val">${state.boostCoinsUsed} / ${MAX_BOOST_CLICKS}</span></div>
           <div class="boost-row"><span>Итоговый шанс (макс. 75%):</span><span class="boost-val">${formatChanceText(curChance)}</span></div>
@@ -2841,7 +3221,7 @@
             <img class="babich-tile-bg" data-pick-mine="${it.uid}" alt="${it.name}" />
             <div class="babich-tile-overlay">
               <div class="babich-tile-name">${it.name}</div>
-              <div class="babich-tile-price">${it.val} А-БИЧЕЙ</div>
+              <div class="babich-tile-price">${it.val.toLocaleString('ru-RU')} А-БИЧЕЙ</div>
               <button class="btn-tile-action">Выбрать</button>
             </div>
           </div>
@@ -3027,6 +3407,17 @@
     });
 
     setInterval(() => {
+      const prevSeed = state.auctionSeed;
+      ensureAuctionRotation();
+      if (prevSeed !== state.auctionSeed) {
+        renderShopTab();
+        saveState();
+      } else if (document.getElementById('pane-shop')?.classList.contains('active')) {
+        const timerBadge = document.getElementById('auction-timer-badge');
+        if (timerBadge) {
+          timerBadge.textContent = `ОБНОВЛЕНИЕ: ${formatMinSec(Math.max(0, state.auctionNextRefreshAt - Date.now()))}`;
+        }
+      }
       syncRewardsDot();
       if (document.getElementById('pane-rewards')?.classList.contains('active')) {
         renderRewardsTab();
