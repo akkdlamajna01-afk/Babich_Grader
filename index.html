@@ -182,54 +182,87 @@
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.09), 0 14px 32px rgba(0, 0, 0, 0.56);
     }
 
-    .card-auction-dark-green {
-      background:
-        radial-gradient(circle at 88% 12%, rgba(22, 163, 74, 0.24), transparent 52%),
-        linear-gradient(160deg, rgba(14, 54, 34, 0.95), rgba(6, 23, 15, 0.99));
-      border: 1px solid rgba(34, 197, 94, 0.55);
-      box-shadow: 0 0 28px rgba(20, 83, 45, 0.45), inset 0 1px 0 rgba(134, 239, 172, 0.22);
-    }
-
-    .auction-card {
+    /* Магазин в зелёно-фиолетовом стиле на обычных карточках сайта */
+    .shop-offer-gp {
       position: relative;
-      overflow: hidden;
-      min-height: 186px;
-      background: linear-gradient(170deg, rgba(16, 62, 39, 0.92), rgba(7, 26, 17, 0.98));
-      border: 1px solid rgba(52, 211, 153, 0.48);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 14px;
       border-radius: 16px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.55);
+      background:
+        radial-gradient(circle at 92% 14%, rgba(168, 85, 247, 0.24), transparent 52%),
+        radial-gradient(circle at 10% 88%, rgba(34, 197, 94, 0.18), transparent 55%),
+        linear-gradient(160deg, rgba(23, 34, 48, 0.96), rgba(13, 17, 27, 0.99));
+      border: 1px solid rgba(168, 85, 247, 0.45);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(134, 239, 172, 0.18);
     }
 
-    .auction-card-overlay {
-      position: relative;
-      z-index: 1;
-      padding: 36px 10px 10px;
+    .shop-offer-gp + .shop-offer-gp {
+      margin-top: 12px;
+    }
+
+    .shop-offer-gp.green-accent {
+      border-color: rgba(74, 222, 128, 0.52);
+    }
+
+    .shop-offer-top {
       display: flex;
-      flex-direction: column;
       align-items: center;
-      gap: 6px;
-      text-align: center;
-      background: linear-gradient(180deg, rgba(5, 20, 13, 0.08) 0%, rgba(5, 20, 13, 0.66) 46%, rgba(4, 15, 10, 0.94) 100%);
+      justify-content: space-between;
+      gap: 8px;
     }
 
-    .auction-buy-btn {
-      width: 100%;
-      padding: 8px 8px;
-      border-radius: 10px;
-      border: 1px solid rgba(134, 239, 172, 0.72);
-      background: linear-gradient(180deg, #15803d, #064e3b);
-      color: #ecfdf5;
-      font-size: 11px;
+    .shop-offer-title-gp {
+      font-size: 14px;
       font-weight: 950;
-      cursor: pointer;
-      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
+      background: linear-gradient(90deg, #4ade80, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    .auction-buy-btn:active {
+    .badge-gp {
+      background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(147, 51, 234, 0.28));
+      border: 1px solid rgba(192, 132, 252, 0.55);
+      color: #e9d5ff;
+    }
+
+    .shop-offer-desc-gp {
+      font-size: 12px;
+      font-weight: 700;
+      color: #cbd5e1;
+      line-height: 1.4;
+    }
+
+    .shop-offer-status-gp {
+      font-size: 12px;
+      font-weight: 900;
+      color: #86efac;
+    }
+
+    .btn-gp-buy {
+      width: 100%;
+      padding: 11px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(216, 180, 254, 0.72);
+      background: linear-gradient(105deg, #16a34a 0%, #6d28d9 55%, #9333ea 100%);
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(126, 34, 206, 0.35);
+      transition: transform 0.12s ease, filter 0.15s ease;
+    }
+
+    .btn-gp-buy:active {
       transform: scale(0.97);
+    }
+
+    .btn-gp-buy:disabled {
+      opacity: 0.52;
+      cursor: not-allowed;
     }
 
     .lb-list {
@@ -320,6 +353,12 @@
       gap: 8px;
     }
 
+    .head-badges {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
     .card-title {
       font-size: 12px;
       font-weight: 900;
@@ -337,12 +376,6 @@
       border: 1px solid var(--line);
       color: #cbd5e1;
       white-space: nowrap;
-    }
-
-    .badge-dark-green {
-      background: rgba(6, 78, 59, 0.85);
-      border-color: rgba(52, 211, 153, 0.55);
-      color: #a7f3d0;
     }
 
     .badge-yellow {
@@ -561,21 +594,49 @@
       cursor: not-allowed;
     }
 
+    /* Улучшенный вид колеса апгрейдера */
     .wheel-stage {
       position: relative;
-      width: 242px;
-      height: 242px;
-      margin: 4px auto 14px;
+      width: 254px;
+      height: 254px;
+      margin: 6px auto 16px;
       display: grid;
       place-items: center;
     }
 
+    .wheel-outer-halo {
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 0deg,
+        rgba(74, 222, 128, 0.42),
+        rgba(56, 189, 248, 0.25),
+        rgba(192, 132, 252, 0.35),
+        rgba(250, 204, 21, 0.28),
+        rgba(74, 222, 128, 0.42)
+      );
+      filter: blur(8px);
+      opacity: 0.72;
+      pointer-events: none;
+    }
+
     .wheel-housing {
       position: absolute;
-      inset: 4px;
+      inset: 3px;
       border-radius: 50%;
-      background: radial-gradient(circle at center, transparent 63%, #1e2636 64%, #0f131b 93%, #334155 100%);
-      box-shadow: 0 0 34px rgba(0, 0, 0, 0.88), inset 0 0 18px rgba(255, 255, 255, 0.06);
+      background:
+        repeating-conic-gradient(
+          from -0.7deg,
+          rgba(255, 255, 255, 0.26) 0deg 1.4deg,
+          transparent 1.4deg 30deg
+        ),
+        radial-gradient(circle at center, transparent 61%, #263146 62%, #111622 88%, #07090e 95%, #475569 100%);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      box-shadow:
+        0 0 38px rgba(0, 0, 0, 0.92),
+        inset 0 0 22px rgba(255, 255, 255, 0.08),
+        inset 0 0 38px rgba(0, 0, 0, 0.85);
     }
 
     .wheel-green-fill {
@@ -585,12 +646,13 @@
       background:
         conic-gradient(
           from 0deg,
-          var(--green) 0deg var(--arc-deg, 180deg),
-          rgba(30, 41, 59, 0.25) var(--arc-deg, 180deg) 360deg
+          #16a34a 0deg calc(var(--arc-deg, 180deg) * 0.65),
+          #4ade80 var(--arc-deg, 180deg),
+          rgba(30, 41, 59, 0.22) var(--arc-deg, 180deg) 360deg
         );
-      -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 14px), #000 calc(100% - 13px));
-      mask: radial-gradient(farthest-side, transparent calc(100% - 14px), #000 calc(100% - 13px));
-      filter: drop-shadow(0 0 14px rgba(34, 197, 94, 0.48));
+      -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 16px), #000 calc(100% - 15px));
+      mask: radial-gradient(farthest-side, transparent calc(100% - 16px), #000 calc(100% - 15px));
+      filter: drop-shadow(0 0 15px rgba(74, 222, 128, 0.55));
     }
 
     .wheel-green-shimmer {
@@ -599,24 +661,24 @@
       border-radius: 50%;
       background: conic-gradient(
         from 0deg,
-        rgba(255, 255, 255, 0.36) 0deg calc(var(--arc-deg, 180deg) * 0.5),
-        rgba(74, 222, 128, 0.16) var(--arc-deg, 180deg),
+        rgba(255, 255, 255, 0.42) 0deg calc(var(--arc-deg, 180deg) * 0.45),
+        rgba(187, 247, 208, 0.2) var(--arc-deg, 180deg),
         transparent var(--arc-deg, 180deg) 360deg
       );
-      animation: greenPulseShimmer 2.5s ease-in-out infinite alternate;
-      -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 14px), #000 calc(100% - 13px));
-      mask: radial-gradient(farthest-side, transparent calc(100% - 14px), #000 calc(100% - 13px));
+      animation: greenPulseShimmer 2.4s ease-in-out infinite alternate;
+      -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 16px), #000 calc(100% - 15px));
+      mask: radial-gradient(farthest-side, transparent calc(100% - 16px), #000 calc(100% - 15px));
       pointer-events: none;
     }
 
     @keyframes greenPulseShimmer {
-      0% { opacity: 0.55; }
+      0% { opacity: 0.5; }
       100% { opacity: 1; }
     }
 
     .arrow-rotator {
       position: absolute;
-      inset: 4px;
+      inset: 3px;
       border-radius: 50%;
       z-index: 6;
       pointer-events: none;
@@ -625,12 +687,12 @@
 
     .arrow-pointer {
       position: absolute;
-      top: -12px;
+      top: -14px;
       left: 50%;
       transform: translateX(-50%);
-      width: 32px;
-      height: 38px;
-      filter: drop-shadow(0 0 12px rgba(74, 222, 128, 0.95)) drop-shadow(0 0 4px rgba(255, 255, 255, 0.9)) drop-shadow(0 5px 10px rgba(0, 0, 0, 0.95));
+      width: 34px;
+      height: 40px;
+      filter: drop-shadow(0 0 12px rgba(74, 222, 128, 0.95)) drop-shadow(0 0 4px rgba(255, 255, 255, 0.95)) drop-shadow(0 6px 10px rgba(0, 0, 0, 0.95));
     }
 
     .arrow-pointer svg {
@@ -642,17 +704,20 @@
     .wheel-hub {
       position: relative;
       z-index: 4;
-      width: 156px;
-      height: 156px;
+      width: 162px;
+      height: 162px;
       border-radius: 50%;
       overflow: hidden;
-      background: linear-gradient(160deg, #1d2536, #0b0e14);
-      border: 2px solid rgba(255, 255, 255, 0.45);
+      background: linear-gradient(160deg, #1f293d, #090c12);
+      border: 2.5px solid rgba(255, 255, 255, 0.55);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      box-shadow: inset 0 0 22px rgba(0, 0, 0, 0.85), 0 0 26px rgba(0, 0, 0, 0.65);
+      box-shadow:
+        inset 0 0 24px rgba(0, 0, 0, 0.9),
+        0 0 0 4px rgba(15, 23, 42, 0.85),
+        0 0 28px rgba(0, 0, 0, 0.75);
     }
 
     .wheel-hub-bg {
@@ -664,7 +729,7 @@
       object-fit: cover;
       object-position: center 14%;
       transform: scale(1.26);
-      opacity: 0.56;
+      opacity: 0.58;
       pointer-events: none;
       z-index: 0;
     }
@@ -673,7 +738,7 @@
       position: absolute;
       inset: 0;
       border-radius: 50%;
-      background: radial-gradient(circle at center, rgba(6, 9, 15, 0.16) 28%, rgba(6, 9, 15, 0.72) 100%);
+      background: radial-gradient(circle at center, rgba(6, 9, 15, 0.14) 26%, rgba(6, 9, 15, 0.76) 100%);
       pointer-events: none;
       z-index: 1;
     }
@@ -681,13 +746,14 @@
     .chance-value {
       position: relative;
       z-index: 2;
-      font-size: 28px;
+      font-size: 29px;
       font-weight: 950;
-      padding: 2px 10px;
+      padding: 2px 11px;
       border-radius: 12px;
-      background: rgba(6, 10, 16, 0.58);
+      background: rgba(6, 10, 16, 0.62);
+      border: 1px solid rgba(74, 222, 128, 0.35);
       color: var(--green-soft);
-      text-shadow: 0 0 18px rgba(74, 222, 128, 0.8), 0 2px 8px rgba(0, 0, 0, 1);
+      text-shadow: 0 0 18px rgba(74, 222, 128, 0.85), 0 2px 8px rgba(0, 0, 0, 1);
     }
 
     .chance-label {
@@ -695,12 +761,12 @@
       z-index: 2;
       font-size: 10px;
       font-weight: 950;
-      letter-spacing: 1.4px;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
-      margin-top: 3px;
-      padding: 1px 7px;
+      margin-top: 4px;
+      padding: 1px 8px;
       border-radius: 7px;
-      background: rgba(6, 10, 16, 0.65);
+      background: rgba(6, 10, 16, 0.68);
       color: #f8fafc;
       text-shadow: 0 2px 6px rgba(0, 0, 0, 1);
     }
@@ -1277,19 +1343,18 @@
       text-shadow: 0 0 12px rgba(96, 165, 250, 1), 0 0 24px rgba(37, 99, 235, 0.85);
     }
 
+    /* Только текст МАГАЗИН зелёный, сама кнопка обычная */
     .nav-shop {
-      color: #6ee7b7;
-      border-color: rgba(16, 185, 129, 0.42);
-      background: linear-gradient(180deg, #0d3b27, #062116);
-      text-shadow: 0 0 10px rgba(16, 185, 129, 0.7);
+      color: #4ade80;
+      text-shadow: 0 0 10px rgba(74, 222, 128, 0.75);
     }
 
     .nav-shop.active {
-      color: #a7f3d0;
-      border-color: rgba(52, 211, 153, 0.85);
-      background: linear-gradient(180deg, #145338, #07291b);
-      box-shadow: 0 0 16px rgba(16, 185, 129, 0.35), inset 0 1px 0 rgba(167, 243, 208, 0.2);
-      text-shadow: 0 0 12px rgba(110, 231, 183, 0.95);
+      color: #86efac;
+      border-color: rgba(148, 163, 184, 0.42);
+      background: linear-gradient(180deg, #323b4c, #1e2430);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      text-shadow: 0 0 12px rgba(74, 222, 128, 0.95);
     }
 
     .nav-profile {
@@ -1465,10 +1530,14 @@
         <div class="card">
           <div class="card-head">
             <span class="card-title">Апгрейдер</span>
-            <span class="badge" id="mult-badge">x2.0</span>
+            <div class="head-badges">
+              <span class="badge badge-yellow" id="boost-active-badge" style="display:none;">2X 15:00</span>
+              <span class="badge" id="mult-badge">x2.0</span>
+            </div>
           </div>
 
           <div class="wheel-stage">
+            <div class="wheel-outer-halo"></div>
             <div class="wheel-housing"></div>
             <div class="wheel-green-fill" id="green-fill"></div>
             <div class="wheel-green-shimmer" id="green-shimmer"></div>
@@ -1476,13 +1545,13 @@
               <div class="arrow-pointer">
                 <svg viewBox="0 0 36 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <defs>
-                    <linearGradient id="arrowGradV31" x1="18" y1="2" x2="18" y2="39" gradientUnits="userSpaceOnUse">
+                    <linearGradient id="arrowGradV32" x1="18" y1="2" x2="18" y2="39" gradientUnits="userSpaceOnUse">
                       <stop offset="0%" stop-color="#ffffff" />
                       <stop offset="48%" stop-color="#86efac" />
                       <stop offset="100%" stop-color="#16a34a" />
                     </linearGradient>
                   </defs>
-                  <path d="M18 39L3 10.5C2.1 8.8 3.3 6.7 5.2 6.7H30.8C32.7 6.7 33.9 8.8 33 10.5L18 39Z" fill="url(#arrowGradV31)" stroke="#ffffff" stroke-width="1.6" stroke-linejoin="round" />
+                  <path d="M18 39L3 10.5C2.1 8.8 3.3 6.7 5.2 6.7H30.8C32.7 6.7 33.9 8.8 33 10.5L18 39Z" fill="url(#arrowGradV32)" stroke="#ffffff" stroke-width="1.6" stroke-linejoin="round" />
                   <path d="M18 34.5L7.5 13.5H18V34.5Z" fill="rgba(255,255,255,0.42)" />
                   <circle cx="18" cy="11.5" r="2.3" fill="#ffffff" />
                 </svg>
@@ -1491,7 +1560,7 @@
             <div class="wheel-hub">
               <img class="wheel-hub-bg" src="babichAVA.jpg" alt="" />
               <div class="wheel-hub-scrim"></div>
-              <div class="chance-value" id="chance-value">50%</div>
+              <div class="chance-value" id="chance-value">48%</div>
               <div class="chance-label">Шанс</div>
             </div>
             <button class="wheel-turbo-btn speed-1x" id="btn-turbo" onclick="toggleTurbo()">1X</button>
@@ -1549,23 +1618,35 @@
       </section>
 
       <section id="pane-shop" class="pane">
-        <div class="card card-auction-dark-green">
+        <div class="card">
           <div class="card-head">
-            <span class="card-title" style="color:#a7f3d0;">Аукцион Бабичей</span>
-            <span class="badge badge-dark-green" id="auction-timer-badge">ОБНОВЛЕНИЕ: 30:00</span>
+            <span class="card-title">Магазин улучшений</span>
+            <span class="badge badge-gp">2X И 3–4X</span>
           </div>
-          <div style="font-size:12px;color:#a7f3d0;margin-bottom:12px;">
-            2 случайных лота из 4 уникальных Бабичей (без повторов). Обновляется каждые 30 минут.
-          </div>
-          <div class="grid-2" id="auction-slots-grid"></div>
-        </div>
 
-        <div class="card card-auction-dark-green">
-          <div class="card-head">
-            <span class="card-title" style="color:#a7f3d0;">Список аукциона (4 лота)</span>
-            <span class="badge badge-dark-green">ЭКСКЛЮЗИВ</span>
+          <div class="shop-offer-gp green-accent">
+            <div class="shop-offer-top">
+              <div class="shop-offer-title-gp">2X удачи на 15 минут</div>
+              <span class="badge badge-gp">7 500</span>
+            </div>
+            <div class="shop-offer-desc-gp">
+              Удваивает все шансы на колесе на 15 минут. Без буста потолок шанса 75%, с бустом 2X — до 100%.
+            </div>
+            <div class="shop-offer-status-gp" id="chance-boost-status">Не активен</div>
+            <button class="btn-gp-buy" id="btn-buy-chance-boost" onclick="buyChanceBoost()">КУПИТЬ 2X УДАЧИ ЗА 7 500</button>
           </div>
-          <div class="lb-list" id="auction-catalog-list"></div>
+
+          <div class="shop-offer-gp">
+            <div class="shop-offer-top">
+              <div class="shop-offer-title-gp">3–4X скорости колеса</div>
+              <span class="badge badge-gp">2 000</span>
+            </div>
+            <div class="shop-offer-desc-gp">
+              Навсегда открывает ускорения крутки 3X и 4X. До покупки доступны только скорости 1X, 1.5X и 2X.
+            </div>
+            <div class="shop-offer-status-gp" id="turbo-unlock-status">Заблокировано</div>
+            <button class="btn-gp-buy" id="btn-buy-turbo" onclick="buyTurboUnlock()">ОТКРЫТЬ 3–4X СКОРОСТИ ЗА 2 000</button>
+          </div>
         </div>
       </section>
 
@@ -1737,22 +1818,24 @@
     function getAccountStorageKey() {
       const tgUser = tg?.initDataUnsafe?.user;
       if (tgUser && tgUser.id) {
-        return `babich_grader_v31_acc_tg_${tgUser.id}`;
+        return `babich_grader_v32_acc_tg_${tgUser.id}`;
       }
-      return 'babich_grader_v31_acc_guest';
+      return 'babich_grader_v32_acc_guest';
     }
 
     const ACCOUNT_KEY = getAccountStorageKey();
-    const BACKUP_KEY = 'babich_grader_v31_backup_latest';
-    const LEGACY_V30_KEY = (tg?.initDataUnsafe?.user?.id)
-      ? `babich_grader_v30_acc_tg_${tg.initDataUnsafe.user.id}`
-      : 'babich_grader_v30_acc_guest';
-    const LEGACY_V30_BACKUP = 'babich_grader_v30_backup_latest';
+    const BACKUP_KEY = 'babich_grader_v32_backup_latest';
+    const LEGACY_KEYS = [
+      (tg?.initDataUnsafe?.user?.id) ? `babich_grader_v31_acc_tg_${tg.initDataUnsafe.user.id}` : 'babich_grader_v31_acc_guest',
+      'babich_grader_v31_backup_latest',
+      (tg?.initDataUnsafe?.user?.id) ? `babich_grader_v30_acc_tg_${tg.initDataUnsafe.user.id}` : 'babich_grader_v30_acc_guest',
+      'babich_grader_v30_backup_latest'
+    ];
 
     function resolveTheme(name, val, customTheme) {
       if (customTheme) return customTheme;
-      if (name === 'Бабич Эпштейн' || name === 'ДУМ БАБИЧ' || name === 'AHLELELE BABICHNAS' || name === 'граберчик' || name === 'TITAN Babich') return 'burgundy';
-      if (name === 'Fake БРАЖНИК' || name === 'ГАЗАН' || name === 'HIJNIAK' || name === 'Буберчик' || name === 'БОГ МОЛНИЙ БАБИЧ') return 'red';
+      if (name === 'AHLELELE BABICHNAS' || name === 'граберчик' || name === 'TITAN Babich') return 'burgundy';
+      if (name === 'HIJNIAK' || name === 'Буберчик' || name === 'БОГ МОЛНИЙ БАБИЧ') return 'red';
       if (name === 'Бабич Прайм' || name === 'бабичниииииик' || name === 'Зелёный Бабич') return 'green';
       if (name === 'КИРИЛЛ БАБИЧ' || name === 'Эгьр' || name === 'Хоумлендер Бабич') return 'blue';
       if (val > 67) return 'gold';
@@ -1760,17 +1843,11 @@
       return 'grey';
     }
 
-    const AUCTION_BABICH_LIST = [
-      { id: 'auc_gazan', name: 'ГАЗАН', val: 16000, img: 'GAZAN.jpg', theme: 'red', auction: true },
-      { id: 'auc_fake_brashnik', name: 'Fake БРАЖНИК', val: 17500, img: 'FAKEbrashnik.jpg', theme: 'red', auction: true },
-      { id: 'auc_doom', name: 'ДУМ БАБИЧ', val: 22800, img: 'DUMBABICH.jpg', theme: 'burgundy', auction: true },
-      { id: 'auc_epstein', name: 'Бабич Эпштейн', val: 24600, img: 'EpsteinBabich.jpg', theme: 'burgundy', auction: true }
-    ];
-
     const RAW_BABICH_LIST = [
       { id: 'b_1', name: 'Бабич', val: 5, img: 'babich.jpg' },
       { id: 'b_23', name: 'КИРИЛЛ', val: 6, img: 'kiril.jpg' },
       { id: 'b_2', name: 'ОмгБабич', val: 8, img: 'omg_babich.jpg' },
+      { id: 'b_57', name: 'ОБЫЧ. СОБАКА', val: 11, img: 'SOBAKA.jpg' },
       { id: 'b_3', name: 'Бибич', val: 12, img: 'babiich.jpg' },
       { id: 'b_25', name: 'бубич', val: 13, img: 'babich6.jpg' },
       { id: 'b_4', name: 'Бибач', val: 16, img: 'babich8.jpg' },
@@ -1803,12 +1880,14 @@
       { id: 'b_53', name: 'Патапим Бабич', val: 69, img: 'Patapim.jpg' },
       { id: 'b_35', name: 'Бабучка', val: 74, img: 'babkababich.jpg' },
       { id: 'b_19', name: 'квадриллион', val: 75, img: 'light_babich.jpg' },
+      { id: 'b_58', name: 'Бражник', val: 77, img: 'Brashnik.jpg' },
       { id: 'b_20', name: 'ультрабабич', val: 80, img: 'OGO.jpg' },
       { id: 'b_36', name: 'Бабник', val: 84, img: 'AuraPurple.jpg' },
       { id: 'b_54', name: 'АУРА Бабич', val: 88, img: 'AURABabich.jpg' },
       { id: 'b_21', name: 'Сиксиллион', val: 90, img: 'supergrenevich.jpg' },
       { id: 'b_28', name: 'Фуфел Бабич', val: 95, img: 'BABECHAKN.jpg' },
       { id: 'b_22', name: 'TRUE BABICH', val: 100, img: 'TRUEBABICH.jpg' },
+      { id: 'b_59', name: 'СУПЕР СОБАКА', val: 102, img: 'SUPERSOBAKA.jpg' },
       { id: 'b_37', name: 'Грибабник', val: 111, img: 'supergrenevich.jpg' },
       { id: 'b_44', name: 'Эгьр', val: 117, img: 'light_babich.jpg', theme: 'blue' },
       { id: 'b_27', name: 'Бабич Прайм', val: 134, img: 'primebabich.jpg', theme: 'green' },
@@ -1823,16 +1902,14 @@
       { id: 'b_42', name: 'Буберчик', val: 255, img: 'babichNULL.jpg', theme: 'red' },
       { id: 'b_43', name: 'граберчик', val: 270, img: 'GRABATRON.jpg', theme: 'burgundy' },
       { id: 'b_40', name: 'AHLELELE BABICHNAS', val: 300, img: 'AHLELELEBABICHNAS.jpg', theme: 'burgundy' },
-      { id: 'b_49', name: 'TITAN Babich', val: 375, img: 'BabichTITAN.jpg', theme: 'burgundy' },
-      ...AUCTION_BABICH_LIST
+      { id: 'b_49', name: 'TITAN Babich', val: 375, img: 'BabichTITAN.jpg', theme: 'burgundy' }
     ];
 
     const BABICH_LIST = RAW_BABICH_LIST
       .map(it => ({ ...it, theme: resolveTheme(it.name, it.val, it.theme) }))
       .sort((a, b) => a.val - b.val);
 
-    const UPGRADE_POOL = BABICH_LIST.filter(x => !x.auction);
-    const DEFAULT_WISH_IDS = UPGRADE_POOL.map(x => x.id);
+    const DEFAULT_WISH_IDS = BABICH_LIST.map(x => x.id);
 
     const SPEED_STEPS = [
       { mult: 1, label: '1X', cls: 'speed-1x', turns: 6, dur: 7000 },
@@ -1843,10 +1920,13 @@
     ];
 
     const MAX_CHANCE = 75;
+    const MAX_CHANCE_BOOSTED = 100;
     const MAX_BOOST_CLICKS = 6;
+    const CHANCE_BOOST_PRICE = 7500;
+    const CHANCE_BOOST_MS = 15 * 60 * 1000;
+    const TURBO_UNLOCK_PRICE = 2000;
     const TWELVE_HOURS_MS = 12 * 60 * 60 * 1000;
     const DAY_MS = 24 * 60 * 60 * 1000;
-    const THIRTY_MIN_MS = 30 * 60 * 1000;
 
     function getTelegramAvatarUrl() {
       const photoUrl = tg?.initDataUnsafe?.user?.photo_url;
@@ -1867,12 +1947,14 @@
       nickname: defaultNickname(),
       xp: 0,
       bal: 0,
-      baseChance: 50,
+      baseChance: 48,
       activeMult: 2,
       selectionMode: 'none',
       presetRotateIdx: 0,
       boostCoinsUsed: 0,
       speedStepIdx: 0,
+      turboUnlocked: false,
+      chanceBoostUntil: 0,
       subTab: 'mine',
       inv: [],
       wishIds: [...DEFAULT_WISH_IDS],
@@ -1888,10 +1970,7 @@
       claimed40BoostBatches: 0,
       highDropQuestState: 'idle',
       highDropNextAt: 0,
-      lastHighDropName: '',
-      auctionSeed: 0,
-      auctionNextRefreshAt: 0,
-      auctionPairIds: []
+      lastHighDropName: ''
     };
 
     function safeParseState(raw) {
@@ -1905,43 +1984,11 @@
       return null;
     }
 
-    function generateUniqueAuctionPair(seed) {
-      const pool = [...AUCTION_BABICH_LIST];
-      let s = (Math.abs(Number(seed) || 1) * 9301 + 49297) % 233280;
-      function nextRand() {
-        s = (s * 9301 + 49297) % 233280;
-        return s / 233280;
-      }
-      for (let i = pool.length - 1; i > 0; i--) {
-        const j = Math.floor(nextRand() * (i + 1));
-        const tmp = pool[i];
-        pool[i] = pool[j];
-        pool[j] = tmp;
-      }
-      return [pool[0].id, pool[1].id];
-    }
-
-    function ensureAuctionRotation() {
-      const now = Date.now();
-      if (!state.auctionNextRefreshAt || now >= state.auctionNextRefreshAt) {
-        const bucket = Math.floor(now / THIRTY_MIN_MS);
-        state.auctionSeed = bucket;
-        state.auctionNextRefreshAt = (bucket + 1) * THIRTY_MIN_MS;
-        state.auctionPairIds = generateUniqueAuctionPair(bucket);
-      }
-      const validIds = new Set(AUCTION_BABICH_LIST.map(x => x.id));
-      const clean = (state.auctionPairIds || []).filter(id => validIds.has(id));
-      if (clean.length < 2 || clean[0] === clean[1]) {
-        state.auctionPairIds = generateUniqueAuctionPair(state.auctionSeed || Math.floor(now / THIRTY_MIN_MS));
-      }
-    }
-
     function loadAccountState() {
       const candidates = [
         localStorage.getItem(ACCOUNT_KEY),
         localStorage.getItem(BACKUP_KEY),
-        localStorage.getItem(LEGACY_V30_KEY),
-        localStorage.getItem(LEGACY_V30_BACKUP),
+        ...LEGACY_KEYS.map(k => localStorage.getItem(k)),
         sessionStorage.getItem(ACCOUNT_KEY),
         sessionStorage.getItem(BACKUP_KEY)
       ];
@@ -1967,8 +2014,10 @@
       if (best) {
         state = { ...state, ...best };
         if (typeof best.speedStepIdx !== 'number') {
-          state.speedStepIdx = best.turbo4x ? 4 : 0;
+          state.speedStepIdx = 0;
         }
+        state.turboUnlocked = Boolean(best.turboUnlocked);
+        state.chanceBoostUntil = Number(best.chanceBoostUntil) || 0;
         if (typeof best.twelveHourNextAt !== 'number' && typeof best.nineHourNextAt === 'number') {
           state.twelveHourNextAt = best.nineHourNextAt;
         }
@@ -1977,10 +2026,7 @@
           : defaultNickname();
         state.xp = Math.max(0, Number(best.xp) || 0);
         state.wishIds = Array.from(new Set([...DEFAULT_WISH_IDS, ...(best.wishIds || [])]));
-        ensureAuctionRotation();
         saveState();
-      } else {
-        ensureAuctionRotation();
       }
     }
 
@@ -1988,13 +2034,27 @@
 
     let isSpinning = false;
     let arrowAngle = 0;
-    let visualChance = 50;
+    let visualChance = 48;
     let chanceAnimFrame = null;
     let audioCtx = null;
 
+    function isChanceBoostActive() {
+      return Date.now() < (state.chanceBoostUntil || 0);
+    }
+
+    function getChanceCap() {
+      return isChanceBoostActive() ? MAX_CHANCE_BOOSTED : MAX_CHANCE;
+    }
+
+    function getAvailableSpeedSteps() {
+      return state.turboUnlocked ? SPEED_STEPS : SPEED_STEPS.filter(s => s.mult <= 2);
+    }
+
     function getSpeedConfig() {
-      const idx = ((state.speedStepIdx % SPEED_STEPS.length) + SPEED_STEPS.length) % SPEED_STEPS.length;
-      return SPEED_STEPS[idx];
+      const steps = getAvailableSpeedSteps();
+      let idx = Number(state.speedStepIdx) || 0;
+      if (idx < 0 || idx >= steps.length) idx = 0;
+      return steps[idx];
     }
 
     function getThemeClass(item) {
@@ -2124,7 +2184,7 @@
       const shim = document.getElementById('green-shimmer');
       if (fill) {
         fill.style.setProperty('--arc-deg', deg + 'deg');
-        fill.style.background = `conic-gradient(from 0deg, var(--green) 0deg ${deg}deg, rgba(30, 41, 59, 0.25) ${deg}deg 360deg)`;
+        fill.style.background = `conic-gradient(from 0deg, #16a34a 0deg ${deg * 0.62}deg, #4ade80 ${deg}deg, rgba(30, 41, 59, 0.22) ${deg}deg 360deg)`;
       }
       if (shim) {
         shim.style.setProperty('--arc-deg', deg + 'deg');
@@ -2200,60 +2260,64 @@
     }
 
     function getBoostStepPercent(wish) {
-      if (!wish) return 0.9;
-      if (wish.val >= 235) return 0.16;
-      if (wish.val >= 110) return 0.42;
-      if (wish.val >= 60) return 0.72;
-      return 1.15;
+      if (!wish) return 1.0;
+      if (wish.val >= 235) return 0.55;
+      if (wish.val >= 110) return 0.75;
+      if (wish.val >= 60) return 0.9;
+      return 1.2;
     }
 
-    function getGoalRarityRatio(wish) {
-      if (!wish) return 0.35;
-      const minVal = 5;
-      const maxVal = 375;
-      return Math.min(1, Math.max(0, (wish.val - minVal) / (maxVal - minVal)));
-    }
-
-    function getJumpPenalty(mine, wish) {
-      if (!mine || !wish || mine.val <= 0) return 0;
-      const mult = wish.val / mine.val;
-      if (mult <= 1.15) return 0;
-      return Math.min(34, Math.pow(mult - 1.15, 0.92) * 5.2);
-    }
-
+    // Полностью переработанный баланс шансов:
+    // x2 -> 45% - 50%
+    // x5 -> 17% - 22%
+    // x10 -> ~9% (8.5% - 10%)
     function getBaseChanceForPair(mine, wish) {
-      const r = getGoalRarityRatio(wish);
-      const jumpPen = getJumpPenalty(mine, wish);
-
-      if (state.selectionMode === 'chance') {
-        if (state.baseChance >= 75) {
-          return Number(Math.max(38, 74 - r * 14 - jumpPen * 0.65).toFixed(1));
+      if (state.selectionMode === 'mult') {
+        if (state.activeMult <= 2) {
+          const ratio = (mine && wish && mine.val > 0) ? (wish.val / mine.val) : 2;
+          const offset = Math.max(-2.5, Math.min(2.5, (2.2 - ratio) * 1.2));
+          return Number((47.5 + offset).toFixed(1));
         }
-        if (state.baseChance >= 50) {
-          return Number(Math.max(24, Math.min(55, 55 - r * 14 - jumpPen * 0.6)).toFixed(1));
+        if (state.activeMult <= 5) {
+          const ratio = (mine && wish && mine.val > 0) ? (wish.val / mine.val) : 5;
+          const offset = Math.max(-2.5, Math.min(2.5, (5.5 - ratio) * 0.8));
+          return Number((19.5 + offset).toFixed(1));
         }
-        return Number(Math.max(8, 28 - r * 11 - jumpPen * 0.55).toFixed(1));
+        // x10 -> около 9%
+        return 9.0;
       }
 
-      if (state.selectionMode === 'mult') {
-        const multFactor = state.activeMult >= 10 ? 0.42 : state.activeMult >= 5 ? 0.56 : 0.7;
-        const raw = (100 / Math.max(1.2, state.activeMult)) * multFactor - r * 8 - jumpPen * 0.65;
-        return Number(Math.min(58, Math.max(5, raw)).toFixed(1));
+      if (state.selectionMode === 'chance') {
+        const target = Math.min(MAX_CHANCE, Number(state.baseChance) || 48);
+        return Number(target.toFixed(1));
       }
 
       if (!mine || !wish) {
-        return Number((46 - r * 10).toFixed(1));
+        return 48.0;
       }
 
-      const ratio = mine.val / Math.max(1, wish.val);
-      let raw;
-      if (ratio >= 1) {
-        raw = 66 - r * 12;
-      } else {
-        raw = Math.pow(ratio, 1.05) * 70 - r * 6 - jumpPen * 0.55;
+      const mult = wish.val / Math.max(1, mine.val);
+      if (mult <= 1.0) {
+        return 72.0;
       }
-
-      return Number(Math.min(66, Math.max(5, raw)).toFixed(1));
+      if (mult <= 2.0) {
+        // от 72% при 1x до ~48% при 2x
+        const t = (mult - 1.0) / 1.0;
+        return Number((72 - t * 24).toFixed(1));
+      }
+      if (mult <= 5.0) {
+        // от ~48% при 2x до ~19.5% при 5x
+        const t = (mult - 2.0) / 3.0;
+        return Number((48 - t * 28.5).toFixed(1));
+      }
+      if (mult <= 10.0) {
+        // от ~19.5% при 5x до ~9.0% при 10x
+        const t = (mult - 5.0) / 5.0;
+        return Number((19.5 - t * 10.5).toFixed(1));
+      }
+      // при разрыве > 10x плавно спускается до ~4.5%
+      const extra = Math.min(4.5, (mult - 10.0) * 0.25);
+      return Number(Math.max(4.5, 9.0 - extra).toFixed(1));
     }
 
     function computeEffectiveChance() {
@@ -2261,8 +2325,9 @@
       const wish = BABICH_LIST.find(x => x.id === state.selectedWishId) || null;
       const base = getBaseChanceForPair(mine, wish);
       const step = getBoostStepPercent(wish);
-      const total = base + state.boostCoinsUsed * step;
-      return Number(Math.min(MAX_CHANCE, Math.max(5, total)).toFixed(1));
+      let total = base + state.boostCoinsUsed * step;
+      if (isChanceBoostActive()) total *= 2;
+      return Number(Math.min(getChanceCap(), Math.max(4.5, total)).toFixed(1));
     }
 
     function formatChanceText(val) {
@@ -2271,41 +2336,22 @@
 
     function pickReplacementWishForPreset(mine) {
       const baseVal = mine ? mine.val : 8;
-      let minFactor = 1.25;
-      let targetMult = 1.5;
+      let targetMult = 2.0;
 
       if (state.selectionMode === 'chance') {
-        if (state.baseChance >= 75) {
-          minFactor = 1.2;
-          targetMult = 1.35;
-        } else if (state.baseChance >= 50) {
-          minFactor = 1.65;
-          targetMult = 2.05;
-        } else {
-          minFactor = 2.4;
-          targetMult = 3.2;
-        }
+        if (state.baseChance >= 75) targetMult = 1.25;
+        else if (state.baseChance >= 50) targetMult = 1.9;
+        else targetMult = 3.2;
       } else if (state.selectionMode === 'mult') {
-        if (state.activeMult <= 2) {
-          minFactor = 1.7;
-          targetMult = 2.0;
-        } else if (state.activeMult <= 5) {
-          minFactor = 3.2;
-          targetMult = 4.4;
-        } else {
-          minFactor = 5.5;
-          targetMult = 8.0;
-        }
+        if (state.activeMult <= 2) targetMult = 2.0;
+        else if (state.activeMult <= 5) targetMult = 5.0;
+        else targetMult = 10.0;
       }
 
-      const minVal = baseVal * minFactor;
       const targetVal = baseVal * targetMult;
-      let candidates = UPGRADE_POOL.filter(x => x.val >= minVal);
+      let candidates = BABICH_LIST.filter(x => x.val > baseVal);
       if (!candidates.length) {
-        candidates = UPGRADE_POOL.filter(x => x.val > baseVal);
-      }
-      if (!candidates.length) {
-        return UPGRADE_POOL[UPGRADE_POOL.length - 1]?.id || null;
+        return BABICH_LIST[BABICH_LIST.length - 1]?.id || null;
       }
 
       const sorted = [...candidates].sort((a, b) => Math.abs(a.val - targetVal) - Math.abs(b.val - targetVal));
@@ -2407,11 +2453,36 @@
     function toggleTurbo() {
       if (isSpinning) return;
       playClickSound();
-      state.speedStepIdx = (state.speedStepIdx + 1) % SPEED_STEPS.length;
+      const steps = getAvailableSpeedSteps();
+      const cur = Math.min(Math.max(0, Number(state.speedStepIdx) || 0), steps.length - 1);
+      const next = (cur + 1) % steps.length;
+      state.speedStepIdx = next;
       const cfg = getSpeedConfig();
       syncTurboButton();
-      toast('Скорость колеса: ' + cfg.label);
+      if (!state.turboUnlocked && next === 0) {
+        toast('Скорость: ' + cfg.label + ' (3–4X открываются в МАГАЗИНЕ)');
+      } else {
+        toast('Скорость колеса: ' + cfg.label);
+      }
       saveState();
+    }
+
+    function formatMinSec(ms) {
+      const totalSec = Math.max(0, Math.ceil(ms / 1000));
+      const m = Math.floor(totalSec / 60);
+      const s = totalSec % 60;
+      return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+    }
+
+    function updateBoostBadge() {
+      const badge = document.getElementById('boost-active-badge');
+      if (!badge) return;
+      if (isChanceBoostActive()) {
+        badge.style.display = 'inline-block';
+        badge.textContent = '2X ' + formatMinSec(state.chanceBoostUntil - Date.now());
+      } else {
+        badge.style.display = 'none';
+      }
     }
 
     function syncChanceDisplay() {
@@ -2426,12 +2497,13 @@
       } else if (mine && wish && mine.val > 0) {
         multDisplay = Number(Math.max(1, wish.val / mine.val).toFixed(1));
       } else if (state.selectionMode === 'chance') {
-        if (state.baseChance >= 75) multDisplay = 1.4;
-        else if (state.baseChance >= 50) multDisplay = 2.1;
+        if (state.baseChance >= 75) multDisplay = 1.3;
+        else if (state.baseChance >= 50) multDisplay = 1.9;
         else multDisplay = 3.2;
       }
       document.getElementById('mult-badge').textContent = 'x' + multDisplay.toFixed(1);
       syncTurboButton();
+      updateBoostBadge();
       animateGreenChanceTo(eff);
     }
 
@@ -2496,10 +2568,9 @@
         }).join('')}</div>`;
         sortedInv.forEach(it => setBgImage(box.querySelector(`[data-sub-mine="${it.uid}"]`), it));
       } else if (state.subTab === 'wish') {
-        const wishItems = UPGRADE_POOL.sort((a, b) => a.val - b.val);
-
+        const wishItems = [...BABICH_LIST].sort((a, b) => a.val - b.val);
         const capBanner = mine
-          ? `<div style="font-size:11px;color:var(--muted);margin-bottom:8px;">Цель для «${mine.name}» (${mine.val} А-БИЧЕЙ) — большой прыжок цены жёстко режет шанс</div>`
+          ? `<div style="font-size:11px;color:var(--muted);margin-bottom:8px;">Цель для «${mine.name}» (${mine.val} А-БИЧЕЙ) — шанс зависит от множителя цели</div>`
           : `<div style="font-size:11px;color:#86efac;margin-bottom:8px;">Выбери любого Бабича как <b>ЦЕЛЬ</b></div>`;
 
         box.innerHTML = capBanner + `<div class="grid-2">${wishItems.map(it => {
@@ -2517,7 +2588,7 @@
         }).join('')}</div>`;
         wishItems.forEach(it => setBgImage(box.querySelector(`[data-sub-wish="${it.id}"]`), it));
       } else {
-        box.innerHTML = `<div class="grid-2">${UPGRADE_POOL.map(it => `
+        box.innerHTML = `<div class="grid-2">${BABICH_LIST.map(it => `
           <div class="babich-tile ${getThemeClass(it)}" onclick="buyBabich('${it.id}')">
             <img class="babich-tile-bg" data-sub-shop="${it.id}" alt="${it.name}" />
             <div class="babich-tile-overlay">
@@ -2527,104 +2598,77 @@
             </div>
           </div>
         `).join('')}</div>`;
-        UPGRADE_POOL.forEach(it => setBgImage(box.querySelector(`[data-sub-shop="${it.id}"]`), it));
+        BABICH_LIST.forEach(it => setBgImage(box.querySelector(`[data-sub-shop="${it.id}"]`), it));
       }
     }
 
-    function formatMinSec(ms) {
-      const totalSec = Math.max(0, Math.ceil(ms / 1000));
-      const m = Math.floor(totalSec / 60);
-      const s = totalSec % 60;
-      return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
-    }
-
-    function buyAuctionLot(id) {
+    function buyChanceBoost() {
       if (isSpinning) return;
-      ensureAuctionRotation();
-      if (!state.auctionPairIds.includes(id)) {
-        toast('Этот лот сейчас не на витрине аукциона');
-        renderShopTab();
+      if (isChanceBoostActive()) {
+        toast('2X удачи уже активно: ' + formatMinSec(state.chanceBoostUntil - Date.now()));
         return;
       }
-      const item = AUCTION_BABICH_LIST.find(x => x.id === id);
-      if (!item) return;
-      if (state.bal < item.val) {
+      if (state.bal < CHANCE_BOOST_PRICE) {
         playLoseSound();
-        toast(`Не хватает ${item.val - state.bal} А-БИЧЕЙ`);
+        toast(`Не хватает ${(CHANCE_BOOST_PRICE - state.bal).toLocaleString('ru-RU')} А-БИЧЕЙ`);
         return;
       }
-      refundActiveBoostCoins();
-      state.bal -= item.val;
-      state.xp += 120;
-      const owned = {
-        uid: Date.now() + Math.floor(Math.random() * 100000),
-        id: item.id,
-        name: item.name,
-        val: item.val,
-        img: getItemImageSrc(item),
-        square: false,
-        theme: item.theme,
-        locked: true
-      };
-      state.inv.push(owned);
-      state.selectedInvUid = owned.uid;
-      if (item.val > 100 && state.highDropQuestState === 'idle') {
-        state.highDropQuestState = 'ready';
-        state.lastHighDropName = item.name;
-      }
+      state.bal -= CHANCE_BOOST_PRICE;
+      state.chanceBoostUntil = Date.now() + CHANCE_BOOST_MS;
+      state.xp += 60;
       playWinSound();
       spawnSparkles();
-      toast(`Куплен с аукциона: ${item.name} (${item.val} А-БИЧЕЙ)`);
+      toast('2X удачи активировано на 15 минут!');
+      renderAll();
+    }
+
+    function buyTurboUnlock() {
+      if (isSpinning) return;
+      if (state.turboUnlocked) {
+        toast('3–4X скорости уже открыты');
+        return;
+      }
+      if (state.bal < TURBO_UNLOCK_PRICE) {
+        playLoseSound();
+        toast(`Не хватает ${(TURBO_UNLOCK_PRICE - state.bal).toLocaleString('ru-RU')} А-БИЧЕЙ`);
+        return;
+      }
+      state.bal -= TURBO_UNLOCK_PRICE;
+      state.turboUnlocked = true;
+      state.xp += 40;
+      playWinSound();
+      spawnSparkles();
+      toast('Открыты 3X и 4X скорости колеса!');
       renderAll();
     }
 
     function renderShopTab() {
-      ensureAuctionRotation();
-      const now = Date.now();
-      const rem = Math.max(0, state.auctionNextRefreshAt - now);
-      const timerBadge = document.getElementById('auction-timer-badge');
-      if (timerBadge) {
-        timerBadge.textContent = `ОБНОВЛЕНИЕ: ${formatMinSec(rem)}`;
+      const status = document.getElementById('chance-boost-status');
+      const btn = document.getElementById('btn-buy-chance-boost');
+      if (status && btn) {
+        if (isChanceBoostActive()) {
+          status.textContent = 'АКТИВНО: ' + formatMinSec(state.chanceBoostUntil - Date.now());
+          btn.disabled = true;
+          btn.textContent = '2X УДАЧИ АКТИВНО';
+        } else {
+          status.textContent = 'Не активно';
+          btn.disabled = false;
+          btn.textContent = `КУПИТЬ 2X УДАЧИ ЗА ${CHANCE_BOOST_PRICE.toLocaleString('ru-RU')}`;
+        }
       }
 
-      const slotsGrid = document.getElementById('auction-slots-grid');
-      if (slotsGrid) {
-        const pairItems = state.auctionPairIds
-          .map(id => AUCTION_BABICH_LIST.find(x => x.id === id))
-          .filter(Boolean)
-          .slice(0, 2);
-
-        slotsGrid.innerHTML = pairItems.map(it => `
-          <div class="auction-card" onclick="buyAuctionLot('${it.id}')">
-            <img class="babich-tile-bg" data-auc-slot="${it.id}" alt="${it.name}" />
-            <div class="auction-card-overlay">
-              <div class="babich-tile-name">${it.name}</div>
-              <div class="babich-tile-price">${it.val.toLocaleString('ru-RU')} А-БИЧЕЙ</div>
-              <button class="auction-buy-btn" onclick="event.stopPropagation(); buyAuctionLot('${it.id}')">КУПИТЬ</button>
-            </div>
-          </div>
-        `).join('');
-        pairItems.forEach(it => setBgImage(slotsGrid.querySelector(`[data-auc-slot="${it.id}"]`), it));
-      }
-
-      const catList = document.getElementById('auction-catalog-list');
-      if (catList) {
-        const sortedAuc = [...AUCTION_BABICH_LIST].sort((a, b) => b.val - a.val);
-        catList.innerHTML = sortedAuc.map(it => {
-          const activeNow = state.auctionPairIds.includes(it.id);
-          return `
-            <div class="lb-row ${activeNow ? 'is-me' : ''}">
-              <div class="lb-left">
-                <span class="lb-rank">${activeNow ? 'LIVE' : '—'}</span>
-                <div style="min-width:0;">
-                  <div class="lb-name">${it.name}</div>
-                  <div class="lb-sub">${activeNow ? 'Сейчас в 2 слотах аукциона' : 'В ротации каждые 30 мин'}</div>
-                </div>
-              </div>
-              <div class="lb-score">${it.val.toLocaleString('ru-RU')}</div>
-            </div>
-          `;
-        }).join('');
+      const tStatus = document.getElementById('turbo-unlock-status');
+      const tBtn = document.getElementById('btn-buy-turbo');
+      if (tStatus && tBtn) {
+        if (state.turboUnlocked) {
+          tStatus.textContent = 'ОТКРЫТО: доступны 1X, 1.5X, 2X, 3X, 4X';
+          tBtn.disabled = true;
+          tBtn.textContent = '3–4X УЖЕ ОТКРЫТЫ';
+        } else {
+          tStatus.textContent = 'Заблокировано (доступны 1X, 1.5X, 2X)';
+          tBtn.disabled = false;
+          tBtn.textContent = `ОТКРЫТЬ 3–4X СКОРОСТИ ЗА ${TURBO_UNLOCK_PRICE.toLocaleString('ru-RU')}`;
+        }
       }
     }
 
@@ -2654,9 +2698,9 @@
       const myTop = getTopBabich();
 
       const rivals = [
-        { name: 'Костя_Мултиверс', score: 28450, top: 'Бабич Эпштейн' },
-        { name: 'ДумМаша_99', score: 21900, top: 'ДУМ БАБИЧ' },
-        { name: 'GullBlox_Fan', score: 16400, top: 'ГАЗАН' },
+        { name: 'Костя_Мултиверс', score: 28450, top: 'TITAN Babich' },
+        { name: 'ДумМаша_99', score: 14200, top: 'AHLELELE BABICHNAS' },
+        { name: 'GullBlox_Fan', score: 8600, top: 'граберчик' },
         { name: 'BabichHunter', score: 4200, top: 'TITAN Babich' },
         { name: 'Астра_Спидран', score: 1450, top: 'HIJNIAK' },
         { name: 'Крутилка_07', score: 480, top: 'Бабич Прайм' },
@@ -2755,7 +2799,7 @@
 
       const wrap = document.getElementById('inv-sell-list');
       if (!state.inv.length) {
-        wrap.innerHTML = '<div style="font-size:13px;color:var(--muted);">Инвентарь пуст. Купи Бабича в Апгрейдере или Магазине.</div>';
+        wrap.innerHTML = '<div style="font-size:13px;color:var(--muted);">Инвентарь пуст. Купи Бабича в Апгрейдере.</div>';
       } else {
         const sortedInv = [...state.inv].sort((a, b) => b.val - a.val);
         wrap.innerHTML = `<div class="grid-2">${sortedInv.map(it => `
@@ -2898,7 +2942,6 @@
 
     function renderAll() {
       enforceMinePresence();
-      ensureAuctionRotation();
       document.getElementById('bal').textContent = state.bal.toLocaleString('ru-RU');
 
       const mine = state.selectedInvUid ? (state.inv.find(x => x.uid === state.selectedInvUid) || null) : null;
@@ -2967,7 +3010,7 @@
 
     function buyBabich(id) {
       if (isSpinning) return;
-      const item = UPGRADE_POOL.find(x => x.id === id);
+      const item = BABICH_LIST.find(x => x.id === id);
       if (!item) return;
       if (state.bal < item.val) {
         playLoseSound();
@@ -3059,8 +3102,8 @@
         toast('Лимит улучшений: максимум 6 раз');
         return;
       }
-      if (computeEffectiveChance() >= MAX_CHANCE) {
-        toast('Достигнут лимит шанса: 75%');
+      if (computeEffectiveChance() >= getChanceCap()) {
+        toast('Достигнут лимит шанса: ' + getChanceCap() + '%');
         return;
       }
       if (state.bal < 1) {
@@ -3073,7 +3116,7 @@
       state.totalWheelBoosts += 1;
       state.xp += 4;
       playBuySound();
-      toast(`+${step}% к шансу`);
+      toast(`+${step}% к шансу${isChanceBoostActive() ? ' (x2 буст)' : ''}`);
       renderAll();
       if (document.getElementById('modal').classList.contains('open')) {
         openBoostModal();
@@ -3108,7 +3151,7 @@
           <div class="boost-row"><span>Твои А-БИЧИ:</span><span class="boost-val">${state.bal.toLocaleString('ru-RU')}</span></div>
           <div class="boost-row"><span>За 1 А-БИЧ сейчас:</span><span class="boost-val">+${step}%</span></div>
           <div class="boost-row"><span>Улучшений использовано:</span><span class="boost-val">${state.boostCoinsUsed} / ${MAX_BOOST_CLICKS}</span></div>
-          <div class="boost-row"><span>Итоговый шанс (макс. 75%):</span><span class="boost-val">${formatChanceText(curChance)}</span></div>
+          <div class="boost-row"><span>Итоговый шанс (макс. ${getChanceCap()}%):</span><span class="boost-val">${formatChanceText(curChance)}</span></div>
         </div>
         <div style="display:flex;flex-direction:column;gap:8px;">
           <button class="btn-boost-action" onclick="depOneBoostCoin()">ДЕПНУТЬ 1 А-БИЧ (+${step}%)</button>
@@ -3407,16 +3450,14 @@
     });
 
     setInterval(() => {
-      const prevSeed = state.auctionSeed;
-      ensureAuctionRotation();
-      if (prevSeed !== state.auctionSeed) {
+      if (state.chanceBoostUntil && Date.now() >= state.chanceBoostUntil && !isSpinning) {
+        state.chanceBoostUntil = 0;
+        toast('2X удачи закончилось');
+        renderAll();
+      }
+      updateBoostBadge();
+      if (document.getElementById('pane-shop')?.classList.contains('active')) {
         renderShopTab();
-        saveState();
-      } else if (document.getElementById('pane-shop')?.classList.contains('active')) {
-        const timerBadge = document.getElementById('auction-timer-badge');
-        if (timerBadge) {
-          timerBadge.textContent = `ОБНОВЛЕНИЕ: ${formatMinSec(Math.max(0, state.auctionNextRefreshAt - Date.now()))}`;
-        }
       }
       syncRewardsDot();
       if (document.getElementById('pane-rewards')?.classList.contains('active')) {
