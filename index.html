@@ -182,7 +182,87 @@
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.09), 0 14px 32px rgba(0, 0, 0, 0.56);
     }
 
-    /* Магазин в зелёно-фиолетовом стиле на обычных карточках сайта */
+    /* Красочные карточки квестов */
+    .quest-card-win {
+      background:
+        radial-gradient(circle at 92% 14%, rgba(34, 197, 94, 0.25), transparent 52%),
+        linear-gradient(160deg, rgba(20, 56, 42, 0.92), rgba(11, 20, 26, 0.99));
+      border: 1px solid rgba(74, 222, 128, 0.55);
+      box-shadow: 0 12px 28px rgba(16, 185, 129, 0.16), inset 0 1px 0 rgba(187, 247, 208, 0.18);
+    }
+
+    .quest-card-loss {
+      background:
+        radial-gradient(circle at 92% 14%, rgba(244, 63, 94, 0.25), transparent 52%),
+        linear-gradient(160deg, rgba(62, 22, 36, 0.92), rgba(15, 13, 24, 0.99));
+      border: 1px solid rgba(251, 113, 133, 0.55);
+      box-shadow: 0 12px 28px rgba(244, 63, 94, 0.16), inset 0 1px 0 rgba(254, 205, 211, 0.18);
+    }
+
+    .quest-card-highdrop {
+      background:
+        radial-gradient(circle at 92% 14%, rgba(168, 85, 247, 0.28), transparent 52%),
+        linear-gradient(160deg, rgba(52, 24, 78, 0.92), rgba(13, 14, 26, 0.99));
+      border: 1px solid rgba(192, 132, 252, 0.6);
+      box-shadow: 0 12px 28px rgba(147, 51, 234, 0.18), inset 0 1px 0 rgba(233, 213, 255, 0.2);
+    }
+
+    .quest-card-boost {
+      background:
+        radial-gradient(circle at 92% 14%, rgba(56, 189, 248, 0.26), transparent 52%),
+        linear-gradient(160deg, rgba(19, 44, 74, 0.92), rgba(11, 16, 26, 0.99));
+      border: 1px solid rgba(125, 211, 252, 0.55);
+      box-shadow: 0 12px 28px rgba(56, 189, 248, 0.16), inset 0 1px 0 rgba(224, 242, 254, 0.18);
+    }
+
+    .quest-card-auction {
+      background:
+        radial-gradient(circle at 88% 12%, rgba(251, 146, 60, 0.28), transparent 50%),
+        radial-gradient(circle at 12% 90%, rgba(250, 204, 21, 0.2), transparent 55%),
+        linear-gradient(160deg, rgba(78, 37, 16, 0.94), rgba(18, 14, 18, 0.99));
+      border: 1px solid rgba(251, 146, 60, 0.72);
+      box-shadow: 0 14px 32px rgba(234, 88, 12, 0.24), inset 0 1px 0 rgba(254, 215, 170, 0.25);
+    }
+
+    .badge-neon-green {
+      background: rgba(34, 197, 94, 0.22);
+      border-color: rgba(74, 222, 128, 0.75);
+      color: #86efac;
+    }
+
+    .badge-neon-rose {
+      background: rgba(244, 63, 94, 0.22);
+      border-color: rgba(251, 113, 133, 0.75);
+      color: #fda4af;
+    }
+
+    .badge-neon-purple {
+      background: rgba(168, 85, 247, 0.24);
+      border-color: rgba(192, 132, 252, 0.78);
+      color: #e9d5ff;
+    }
+
+    .badge-neon-sky {
+      background: rgba(56, 189, 248, 0.22);
+      border-color: rgba(125, 211, 252, 0.75);
+      color: #bae6fd;
+    }
+
+    .badge-neon-orange {
+      background: linear-gradient(135deg, rgba(234, 88, 12, 0.34), rgba(250, 204, 21, 0.24));
+      border-color: rgba(253, 186, 116, 0.85);
+      color: #fed7aa;
+    }
+
+    .btn-auction-claim {
+      background: linear-gradient(95deg, #ea580c, #facc15);
+      border: 1px solid rgba(254, 240, 138, 0.9);
+      color: #161102;
+      font-weight: 950;
+      box-shadow: 0 0 18px rgba(250, 204, 21, 0.45);
+    }
+
+    /* Бусты в зелёно-фиолетовом стиле на обычном фоне магазина */
     .shop-offer-gp {
       position: relative;
       display: flex;
@@ -1273,6 +1353,14 @@
       transition: width 0.25s ease;
     }
 
+    .progress-fill-rose {
+      background: linear-gradient(90deg, #e11d48, #fb7185);
+    }
+
+    .progress-fill-sky {
+      background: linear-gradient(90deg, #0284c7, #38bdf8);
+    }
+
     .bottom-nav {
       position: fixed;
       bottom: 0;
@@ -1545,13 +1633,13 @@
               <div class="arrow-pointer">
                 <svg viewBox="0 0 36 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <defs>
-                    <linearGradient id="arrowGradV32" x1="18" y1="2" x2="18" y2="39" gradientUnits="userSpaceOnUse">
+                    <linearGradient id="arrowGradV34" x1="18" y1="2" x2="18" y2="39" gradientUnits="userSpaceOnUse">
                       <stop offset="0%" stop-color="#ffffff" />
                       <stop offset="48%" stop-color="#86efac" />
                       <stop offset="100%" stop-color="#16a34a" />
                     </linearGradient>
                   </defs>
-                  <path d="M18 39L3 10.5C2.1 8.8 3.3 6.7 5.2 6.7H30.8C32.7 6.7 33.9 8.8 33 10.5L18 39Z" fill="url(#arrowGradV32)" stroke="#ffffff" stroke-width="1.6" stroke-linejoin="round" />
+                  <path d="M18 39L3 10.5C2.1 8.8 3.3 6.7 5.2 6.7H30.8C32.7 6.7 33.9 8.8 33 10.5L18 39Z" fill="url(#arrowGradV34)" stroke="#ffffff" stroke-width="1.6" stroke-linejoin="round" />
                   <path d="M18 34.5L7.5 13.5H18V34.5Z" fill="rgba(255,255,255,0.42)" />
                   <circle cx="18" cy="11.5" r="2.3" fill="#ffffff" />
                 </svg>
@@ -1620,7 +1708,18 @@
       <section id="pane-shop" class="pane">
         <div class="card">
           <div class="card-head">
-            <span class="card-title">Магазин улучшений</span>
+            <span class="card-title">Аукцион Бабичей</span>
+            <span class="badge badge-yellow" id="auction-timer-badge">30:00</span>
+          </div>
+          <div style="font-size:12px;color:var(--muted);margin-bottom:12px;">
+            2 уникальных лота из пула — обновляется каждые 30 минут.
+          </div>
+          <div class="grid-2" id="auction-grid"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <span class="card-title">Улучшения</span>
             <span class="badge badge-gp">2X И 3–4X</span>
           </div>
 
@@ -1728,12 +1827,25 @@
           </button>
         </div>
 
-        <div class="card">
+        <div class="card quest-card-auction">
           <div class="card-head">
-            <span class="card-title">Квест: 15 удачных круток</span>
-            <span class="badge">+10 А-БИЧИ</span>
+            <span class="card-title" style="color:#fed7aa;">Квест раз в 42ч: покупка на аукционе</span>
+            <span class="badge badge-neon-orange">+3 400 А-БИЧИ</span>
           </div>
-          <div style="font-size:13px;color:var(--muted);" id="wins-progress-txt">
+          <div style="font-size:13px;color:#ffedd5;margin-bottom:12px;" id="quest-auction-txt">
+            Купи любой лот во вкладке «МАГАЗИН» в разделе Аукциона (доступно раз в 42 часа)
+          </div>
+          <button class="btn-mini" style="padding:11px;font-size:12px;" id="btn-claim-auction" onclick="claimAuctionQuest()">
+            ЗАБРАТЬ 3 400 А-БИЧИ
+          </button>
+        </div>
+
+        <div class="card quest-card-win">
+          <div class="card-head">
+            <span class="card-title" style="color:#86efac;">Квест: 15 удачных круток</span>
+            <span class="badge badge-neon-green">+10 А-БИЧИ</span>
+          </div>
+          <div style="font-size:13px;color:#dcfce7;" id="wins-progress-txt">
             Удачных круток: 0 / 15
           </div>
           <div class="progress-track">
@@ -1744,28 +1856,28 @@
           </button>
         </div>
 
-        <div class="card">
+        <div class="card quest-card-loss">
           <div class="card-head">
-            <span class="card-title">Квест: 100 проигрышей</span>
-            <span class="badge">+12 А-БИЧИ</span>
+            <span class="card-title" style="color:#fda4af;">Квест: 100 проигрышей</span>
+            <span class="badge badge-neon-rose">+12 А-БИЧИ</span>
           </div>
-          <div style="font-size:13px;color:var(--muted);" id="losses-progress-txt">
+          <div style="font-size:13px;color:#ffe4e6;" id="losses-progress-txt">
             Проигрышей: 0 / 100
           </div>
           <div class="progress-track">
-            <div class="progress-fill" id="losses-bar"></div>
+            <div class="progress-fill progress-fill-rose" id="losses-bar"></div>
           </div>
           <button class="btn-mini" style="padding:11px;font-size:12px;" id="btn-claim-100l" onclick="claim100Losses()">
             ЗАБРАТЬ НАГРАДУ
           </button>
         </div>
 
-        <div class="card">
+        <div class="card quest-card-highdrop">
           <div class="card-head">
-            <span class="card-title">Квест раз в 24ч: дроп &gt; 100 А-БИЧЕЙ</span>
-            <span class="badge">+20 А-БИЧИ</span>
+            <span class="card-title" style="color:#e9d5ff;">Квест раз в 24ч: дроп &gt; 100 А-БИЧЕЙ</span>
+            <span class="badge badge-neon-purple">+20 А-БИЧИ</span>
           </div>
-          <div style="font-size:13px;color:var(--muted);margin-bottom:12px;" id="quest-24h-txt">
+          <div style="font-size:13px;color:#f3e8ff;margin-bottom:12px;" id="quest-24h-txt">
             Выбей Бабича дороже 100 А-БИЧЕЙ, чтобы открыть кнопку «Забрать»
           </div>
           <button class="btn-mini" style="padding:11px;font-size:12px;" id="btn-claim-24h" onclick="claim24hHighDrop()">
@@ -1773,16 +1885,16 @@
           </button>
         </div>
 
-        <div class="card">
+        <div class="card quest-card-boost">
           <div class="card-head">
-            <span class="card-title">Квест: 40 улучшений колеса</span>
-            <span class="badge">+14 А-БИЧИ</span>
+            <span class="card-title" style="color:#bae6fd;">Квест: 40 улучшений колеса</span>
+            <span class="badge badge-neon-sky">+14 А-БИЧИ</span>
           </div>
-          <div style="font-size:13px;color:var(--muted);" id="boost40-progress-txt">
+          <div style="font-size:13px;color:#e0f2fe;" id="boost40-progress-txt">
             Улучшений колеса: 0 / 40
           </div>
           <div class="progress-track">
-            <div class="progress-fill" id="boost40-bar"></div>
+            <div class="progress-fill progress-fill-sky" id="boost40-bar"></div>
           </div>
           <button class="btn-mini" style="padding:11px;font-size:12px;" id="btn-claim-40b" onclick="claim40Boosts()">
             ЗАБРАТЬ НАГРАДУ
@@ -1818,26 +1930,26 @@
     function getAccountStorageKey() {
       const tgUser = tg?.initDataUnsafe?.user;
       if (tgUser && tgUser.id) {
-        return `babich_grader_v32_acc_tg_${tgUser.id}`;
+        return `babich_grader_v34_acc_tg_${tgUser.id}`;
       }
-      return 'babich_grader_v32_acc_guest';
+      return 'babich_grader_v34_acc_guest';
     }
 
     const ACCOUNT_KEY = getAccountStorageKey();
-    const BACKUP_KEY = 'babich_grader_v32_backup_latest';
+    const BACKUP_KEY = 'babich_grader_v34_backup_latest';
     const LEGACY_KEYS = [
-      (tg?.initDataUnsafe?.user?.id) ? `babich_grader_v31_acc_tg_${tg.initDataUnsafe.user.id}` : 'babich_grader_v31_acc_guest',
-      'babich_grader_v31_backup_latest',
-      (tg?.initDataUnsafe?.user?.id) ? `babich_grader_v30_acc_tg_${tg.initDataUnsafe.user.id}` : 'babich_grader_v30_acc_guest',
-      'babich_grader_v30_backup_latest'
+      (tg?.initDataUnsafe?.user?.id) ? `babich_grader_v33_acc_tg_${tg.initDataUnsafe.user.id}` : 'babich_grader_v33_acc_guest',
+      'babich_grader_v33_backup_latest',
+      (tg?.initDataUnsafe?.user?.id) ? `babich_grader_v32_acc_tg_${tg.initDataUnsafe.user.id}` : 'babich_grader_v32_acc_guest',
+      'babich_grader_v32_backup_latest'
     ];
 
     function resolveTheme(name, val, customTheme) {
       if (customTheme) return customTheme;
-      if (name === 'AHLELELE BABICHNAS' || name === 'граберчик' || name === 'TITAN Babich') return 'burgundy';
-      if (name === 'HIJNIAK' || name === 'Буберчик' || name === 'БОГ МОЛНИЙ БАБИЧ') return 'red';
-      if (name === 'Бабич Прайм' || name === 'бабичниииииик' || name === 'Зелёный Бабич') return 'green';
-      if (name === 'КИРИЛЛ БАБИЧ' || name === 'Эгьр' || name === 'Хоумлендер Бабич') return 'blue';
+      if (name === 'AHLELELE BABICHNAS' || name === 'граберчик' || name === 'TITAN Babich' || name === 'ДУМ БАБИЧ') return 'burgundy';
+      if (name === 'HIJNIAK' || name === 'Буберчик' || name === 'БОГ МОЛНИЙ БАБИЧ' || name === 'Бабич Эпштейн') return 'red';
+      if (name === 'Бабич Прайм' || name === 'бабичниииииик' || name === 'Зелёный Бабич' || name === 'ГАЗАН') return 'green';
+      if (name === 'КИРИЛЛ БАБИЧ' || name === 'Эгьр' || name === 'Хоумлендер Бабич' || name === 'Fake БРАЖНИК') return 'blue';
       if (val > 67) return 'gold';
       if (val > 34) return 'purple';
       return 'grey';
@@ -1898,7 +2010,7 @@
       { id: 'b_34', name: 'Бабичанос', val: 195, img: 'Babichanos.jpg' },
       { id: 'b_56', name: 'Хоумлендер Бабич', val: 235, img: 'houmlander.jpg', theme: 'blue' },
       { id: 'b_32', name: 'HIJNIAK', val: 240, img: 'HIJNIAK.jpg', theme: 'red' },
-      { id: 'b_48', name: 'БОГ МОЛНИЙ БАБИЧ', val: 250, img: 'bog_molnii_babich.jpg', theme: 'red' },
+      { id: 'b_48', name: 'БОГ МОЛНИЙ БАБИЧ', val: 250, img: 'GODLIGHTBABICH.jpg', theme: 'red' },
       { id: 'b_42', name: 'Буберчик', val: 255, img: 'babichNULL.jpg', theme: 'red' },
       { id: 'b_43', name: 'граберчик', val: 270, img: 'GRABATRON.jpg', theme: 'burgundy' },
       { id: 'b_40', name: 'AHLELELE BABICHNAS', val: 300, img: 'AHLELELEBABICHNAS.jpg', theme: 'burgundy' },
@@ -1909,6 +2021,15 @@
       .map(it => ({ ...it, theme: resolveTheme(it.name, it.val, it.theme) }))
       .sort((a, b) => a.val - b.val);
 
+    // Строго 4 уникальных лота аукциона (из них в каждом слоте показываются 2 уникальные карточки без повторов)
+    const AUCTION_ONLY_LIST = [
+      { id: 'auc_epstein', name: 'Бабич Эпштейн', val: 24600, img: 'EpsteinBabich.jpg', theme: 'red', auctionOnly: true },
+      { id: 'auc_fake_brashnik', name: 'Fake БРАЖНИК', val: 17500, img: 'FAKEbrashnik.jpg', theme: 'blue', auctionOnly: true },
+      { id: 'auc_gazan', name: 'ГАЗАН', val: 16000, img: 'GAZAN.jpg', theme: 'green', auctionOnly: true },
+      { id: 'auc_dum_babich', name: 'ДУМ БАБИЧ', val: 22800, img: 'DUMBABICH.jpg', theme: 'burgundy', auctionOnly: true }
+    ];
+
+    const ALL_BABICH_MAP = new Map([...BABICH_LIST, ...AUCTION_ONLY_LIST].map(x => [x.id, x]));
     const DEFAULT_WISH_IDS = BABICH_LIST.map(x => x.id);
 
     const SPEED_STEPS = [
@@ -1927,6 +2048,9 @@
     const TURBO_UNLOCK_PRICE = 2000;
     const TWELVE_HOURS_MS = 12 * 60 * 60 * 1000;
     const DAY_MS = 24 * 60 * 60 * 1000;
+    const AUCTION_ROTATION_MS = 30 * 60 * 1000;
+    const AUCTION_QUEST_COOLDOWN_MS = 42 * 60 * 60 * 1000;
+    const AUCTION_QUEST_REWARD = 3400;
 
     function getTelegramAvatarUrl() {
       const photoUrl = tg?.initDataUnsafe?.user?.photo_url;
@@ -1970,7 +2094,12 @@
       claimed40BoostBatches: 0,
       highDropQuestState: 'idle',
       highDropNextAt: 0,
-      lastHighDropName: ''
+      lastHighDropName: '',
+      auctionQuestState: 'idle',
+      auctionQuestNextAt: 0,
+      auctionNextAt: 0,
+      auctionOfferIds: [],
+      auctionBoughtIds: []
     };
 
     function safeParseState(raw) {
@@ -2026,6 +2155,10 @@
           : defaultNickname();
         state.xp = Math.max(0, Number(best.xp) || 0);
         state.wishIds = Array.from(new Set([...DEFAULT_WISH_IDS, ...(best.wishIds || [])]));
+        const validIds = new Set(AUCTION_ONLY_LIST.map(x => x.id));
+        const rawOffers = Array.isArray(best.auctionOfferIds) ? best.auctionOfferIds.filter(id => validIds.has(id)) : [];
+        state.auctionOfferIds = Array.from(new Set(rawOffers)).slice(0, 2);
+        state.auctionBoughtIds = Array.isArray(best.auctionBoughtIds) ? best.auctionBoughtIds : [];
         saveState();
       }
     }
@@ -2267,10 +2400,10 @@
       return 1.2;
     }
 
-    // Полностью переработанный баланс шансов:
+    // Баланс шансов:
     // x2 -> 45% - 50%
     // x5 -> 17% - 22%
-    // x10 -> ~9% (8.5% - 10%)
+    // x10 -> ~9%
     function getBaseChanceForPair(mine, wish) {
       if (state.selectionMode === 'mult') {
         if (state.activeMult <= 2) {
@@ -2283,7 +2416,6 @@
           const offset = Math.max(-2.5, Math.min(2.5, (5.5 - ratio) * 0.8));
           return Number((19.5 + offset).toFixed(1));
         }
-        // x10 -> около 9%
         return 9.0;
       }
 
@@ -2301,28 +2433,24 @@
         return 72.0;
       }
       if (mult <= 2.0) {
-        // от 72% при 1x до ~48% при 2x
         const t = (mult - 1.0) / 1.0;
         return Number((72 - t * 24).toFixed(1));
       }
       if (mult <= 5.0) {
-        // от ~48% при 2x до ~19.5% при 5x
         const t = (mult - 2.0) / 3.0;
         return Number((48 - t * 28.5).toFixed(1));
       }
       if (mult <= 10.0) {
-        // от ~19.5% при 5x до ~9.0% при 10x
         const t = (mult - 5.0) / 5.0;
         return Number((19.5 - t * 10.5).toFixed(1));
       }
-      // при разрыве > 10x плавно спускается до ~4.5%
       const extra = Math.min(4.5, (mult - 10.0) * 0.25);
       return Number(Math.max(4.5, 9.0 - extra).toFixed(1));
     }
 
     function computeEffectiveChance() {
       const mine = state.inv.find(x => x.uid === state.selectedInvUid) || null;
-      const wish = BABICH_LIST.find(x => x.id === state.selectedWishId) || null;
+      const wish = ALL_BABICH_MAP.get(state.selectedWishId) || null;
       const base = getBaseChanceForPair(mine, wish);
       const step = getBoostStepPercent(wish);
       let total = base + state.boostCoinsUsed * step;
@@ -2487,7 +2615,7 @@
 
     function syncChanceDisplay() {
       const mine = state.inv.find(x => x.uid === state.selectedInvUid) || null;
-      const wish = BABICH_LIST.find(x => x.id === state.selectedWishId) || null;
+      const wish = ALL_BABICH_MAP.get(state.selectedWishId) || null;
       const eff = computeEffectiveChance();
       document.getElementById('chance-value').textContent = formatChanceText(eff);
 
@@ -2602,6 +2730,74 @@
       }
     }
 
+    function ensureAuctionRotation() {
+      const now = Date.now();
+      const validIds = new Set(AUCTION_ONLY_LIST.map(x => x.id));
+      const cleanOffers = Array.isArray(state.auctionOfferIds)
+        ? Array.from(new Set(state.auctionOfferIds.filter(id => validIds.has(id))))
+        : [];
+
+      if (!state.auctionNextAt || now >= state.auctionNextAt || cleanOffers.length !== 2) {
+        const pool = [...AUCTION_ONLY_LIST];
+        for (let i = pool.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [pool[i], pool[j]] = [pool[j], pool[i]];
+        }
+        state.auctionOfferIds = [pool[0].id, pool[1].id];
+        state.auctionBoughtIds = [];
+        state.auctionNextAt = now + AUCTION_ROTATION_MS;
+        saveState();
+      }
+    }
+
+    function buyAuctionLot(id) {
+      if (isSpinning) return;
+      ensureAuctionRotation();
+      if (!state.auctionOfferIds.includes(id)) return;
+      if (state.auctionBoughtIds.includes(id)) {
+        toast('Этот лот уже выкуплен в текущей ротации');
+        return;
+      }
+      const item = ALL_BABICH_MAP.get(id);
+      if (!item) return;
+      if (state.bal < item.val) {
+        playLoseSound();
+        toast('Не хватает А-БИЧЕЙ для лота аукциона');
+        return;
+      }
+
+      refundActiveBoostCoins();
+      state.bal -= item.val;
+      state.xp += 120;
+      state.auctionBoughtIds.push(id);
+      const owned = {
+        uid: Date.now() + Math.floor(Math.random() * 100000),
+        id: item.id,
+        name: item.name,
+        val: item.val,
+        img: getItemImageSrc(item),
+        square: Boolean(item.square),
+        theme: item.theme,
+        locked: false
+      };
+      state.inv.push(owned);
+      state.selectedInvUid = owned.uid;
+
+      const now = Date.now();
+      if (state.auctionQuestState === 'cooldown' && now >= (state.auctionQuestNextAt || 0)) {
+        state.auctionQuestState = 'idle';
+        state.auctionQuestNextAt = 0;
+      }
+      if (state.auctionQuestState !== 'cooldown') {
+        state.auctionQuestState = 'ready';
+      }
+
+      playWinSound();
+      spawnSparkles();
+      toast(`Аукцион: куплен ${item.name}!`);
+      renderAll();
+    }
+
     function buyChanceBoost() {
       if (isSpinning) return;
       if (isChanceBoostActive()) {
@@ -2643,6 +2839,33 @@
     }
 
     function renderShopTab() {
+      ensureAuctionRotation();
+      const timerBadge = document.getElementById('auction-timer-badge');
+      if (timerBadge) {
+        timerBadge.textContent = formatMinSec(Math.max(0, state.auctionNextAt - Date.now()));
+      }
+
+      const grid = document.getElementById('auction-grid');
+      if (grid) {
+        const lots = state.auctionOfferIds.slice(0, 2).map(id => ALL_BABICH_MAP.get(id)).filter(Boolean);
+        grid.innerHTML = lots.map(it => {
+          const sold = state.auctionBoughtIds.includes(it.id);
+          return `
+            <div class="babich-tile ${getThemeClass(it)}" onclick="${sold ? '' : `buyAuctionLot('${it.id}')`}">
+              <img class="babich-tile-bg" data-auc-img="${it.id}" alt="${it.name}" />
+              <div class="babich-tile-overlay">
+                <div class="babich-tile-name">${it.name}</div>
+                <div class="babich-tile-price">${it.val.toLocaleString('ru-RU')} А-БИЧЕЙ</div>
+                <button class="btn-tile-action ${sold ? 'active-choice' : ''}" ${sold ? 'disabled' : ''} onclick="event.stopPropagation(); buyAuctionLot('${it.id}')">
+                  ${sold ? 'ВЫКУПЛЕНО' : `КУПИТЬ (${it.val.toLocaleString('ru-RU')})`}
+                </button>
+              </div>
+            </div>
+          `;
+        }).join('');
+        lots.forEach(it => setBgImage(grid.querySelector(`[data-auc-img="${it.id}"]`), it));
+      }
+
       const status = document.getElementById('chance-boost-status');
       const btn = document.getElementById('btn-buy-chance-boost');
       if (status && btn) {
@@ -2698,10 +2921,10 @@
       const myTop = getTopBabich();
 
       const rivals = [
-        { name: 'Костя_Мултиверс', score: 28450, top: 'TITAN Babich' },
-        { name: 'ДумМаша_99', score: 14200, top: 'AHLELELE BABICHNAS' },
-        { name: 'GullBlox_Fan', score: 8600, top: 'граберчик' },
-        { name: 'BabichHunter', score: 4200, top: 'TITAN Babich' },
+        { name: 'Костя_Мултиверс', score: 28450, top: 'Бабич Эпштейн' },
+        { name: 'ДумМаша_99', score: 22800, top: 'ДУМ БАБИЧ' },
+        { name: 'GullBlox_Fan', score: 17500, top: 'Fake БРАЖНИК' },
+        { name: 'BabichHunter', score: 16000, top: 'ГАЗАН' },
         { name: 'Астра_Спидран', score: 1450, top: 'HIJNIAK' },
         { name: 'Крутилка_07', score: 480, top: 'Бабич Прайм' },
         { name: 'Новичок_А-БИЧ', score: 120, top: 'Бабич' }
@@ -2831,11 +3054,12 @@
       const now = Date.now();
       const twelveReady = now >= (state.twelveHourNextAt || 0);
       const welcomeReady = !state.welcomeClaimed;
+      const auctionReady = state.auctionQuestState === 'ready';
       const winsReady = (Math.floor(state.successfulSpins / 15) - state.claimed15Batches) > 0;
       const lossReady = (Math.floor(state.failedSpins / 100) - state.claimed100LossBatches) > 0;
       const highDropReady = state.highDropQuestState === 'ready';
       const boost40Ready = (Math.floor(state.totalWheelBoosts / 40) - state.claimed40BoostBatches) > 0;
-      return twelveReady || welcomeReady || winsReady || lossReady || highDropReady || boost40Ready;
+      return twelveReady || welcomeReady || auctionReady || winsReady || lossReady || highDropReady || boost40Ready;
     }
 
     function syncRewardsDot() {
@@ -2864,6 +3088,39 @@
       const welcomeCard = document.getElementById('welcome-reward-card');
       if (welcomeCard) {
         welcomeCard.style.display = state.welcomeClaimed ? 'none' : 'block';
+      }
+
+      const btnAuc = document.getElementById('btn-claim-auction');
+      const txtAuc = document.getElementById('quest-auction-txt');
+      if (state.auctionQuestState === 'cooldown' && now >= (state.auctionQuestNextAt || 0)) {
+        state.auctionQuestState = 'idle';
+        state.auctionQuestNextAt = 0;
+        saveState();
+      }
+      if (btnAuc && txtAuc) {
+        if (state.auctionQuestState === 'ready') {
+          btnAuc.disabled = false;
+          btnAuc.className = 'btn-mini btn-auction-claim';
+          btnAuc.style.padding = '11px';
+          btnAuc.style.fontSize = '12px';
+          btnAuc.textContent = 'ЗАБРАТЬ 3 400 А-БИЧИ';
+          txtAuc.textContent = 'Покупка на аукционе засчитана! Забирай 3 400 А-БИЧЕЙ';
+        } else if (state.auctionQuestState === 'cooldown') {
+          const remAuc = Math.max(0, (state.auctionQuestNextAt || 0) - now);
+          btnAuc.disabled = true;
+          btnAuc.className = 'btn-mini';
+          btnAuc.style.padding = '11px';
+          btnAuc.style.fontSize = '12px';
+          btnAuc.textContent = `КД 42Ч: ${formatRemaining(remAuc)}`;
+          txtAuc.textContent = `Награда получена. Следующий раз квест доступен через ${formatRemaining(remAuc)}`;
+        } else {
+          btnAuc.disabled = true;
+          btnAuc.className = 'btn-mini';
+          btnAuc.style.padding = '11px';
+          btnAuc.style.fontSize = '12px';
+          btnAuc.textContent = 'ЗАБРАТЬ 3 400 А-БИЧИ';
+          txtAuc.textContent = 'Купи любой лот во вкладке «МАГАЗИН» в разделе Аукциона (раз в 42 часа)';
+        }
       }
 
       const avail15 = Math.floor(state.successfulSpins / 15) - state.claimed15Batches;
@@ -2963,7 +3220,7 @@
       }
 
       const wish = state.selectedWishId
-        ? (BABICH_LIST.find(x => x.id === state.selectedWishId) || null)
+        ? (ALL_BABICH_MAP.get(state.selectedWishId) || null)
         : null;
 
       const wishCard = document.getElementById('slot-wish-card');
@@ -3096,7 +3353,7 @@
     }
 
     function depOneBoostCoin() {
-      const wish = BABICH_LIST.find(x => x.id === state.selectedWishId) || null;
+      const wish = ALL_BABICH_MAP.get(state.selectedWishId) || null;
       const step = getBoostStepPercent(wish);
       if (state.boostCoinsUsed >= MAX_BOOST_CLICKS) {
         toast('Лимит улучшений: максимум 6 раз');
@@ -3138,7 +3395,7 @@
       playClickSound();
       const sheet = document.getElementById('modal-sheet');
       sheet.classList.add('boost-sheet');
-      const wish = BABICH_LIST.find(x => x.id === state.selectedWishId) || null;
+      const wish = ALL_BABICH_MAP.get(state.selectedWishId) || null;
       const step = getBoostStepPercent(wish);
       const curChance = computeEffectiveChance();
 
@@ -3189,6 +3446,20 @@
       playWinSound();
       spawnSparkles();
       toast('Забрано +5 А-БИЧИ за вход в бота!');
+      renderAll();
+    }
+
+    function claimAuctionQuest() {
+      if (state.auctionQuestState !== 'ready') {
+        toast('Сначала купи лот на аукционе');
+        return;
+      }
+      state.bal += AUCTION_QUEST_REWARD;
+      state.auctionQuestState = 'cooldown';
+      state.auctionQuestNextAt = Date.now() + AUCTION_QUEST_COOLDOWN_MS;
+      playWinSound();
+      spawnSparkles();
+      toast('Квест выполнен: +3 400 А-БИЧИ! Кулдаун 42ч');
       renderAll();
     }
 
@@ -3332,7 +3603,7 @@
         return;
       }
 
-      const wish = BABICH_LIST.find(x => x.id === state.selectedWishId);
+      const wish = ALL_BABICH_MAP.get(state.selectedWishId);
       if (!wish) {
         playLoseSound();
         toast('Выбери цель во вкладке ЦЕЛЬ');
