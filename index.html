@@ -29,6 +29,11 @@
       -webkit-tap-highlight-color: transparent;
     }
 
+    input, textarea {
+      user-select: text;
+      -webkit-user-select: text;
+    }
+
     body {
       min-height: 100vh;
       background:
@@ -182,7 +187,90 @@
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.09), 0 14px 32px rgba(0, 0, 0, 0.56);
     }
 
-    /* Красочные карточки квестов */
+    .codes-compact-card {
+      background:
+        radial-gradient(circle at 90% 10%, rgba(56, 189, 248, 0.24), transparent 55%),
+        linear-gradient(155deg, rgba(15, 34, 72, 0.96), rgba(8, 17, 38, 0.99));
+      border: 1px solid rgba(96, 165, 250, 0.62);
+      border-radius: 16px;
+      padding: 11px 13px;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.65), inset 0 1px 0 rgba(186, 230, 253, 0.22);
+    }
+
+    .codes-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 5px;
+    }
+
+    .codes-title {
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: #93c5fd;
+    }
+
+    .codes-tg-hint {
+      font-size: 11px;
+      font-weight: 700;
+      color: #cbd5e1;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+
+    .codes-tg-link {
+      color: #60a5fa;
+      font-weight: 900;
+      text-decoration: underline;
+      word-break: break-all;
+    }
+
+    .codes-input-row {
+      display: flex;
+      gap: 7px;
+      align-items: center;
+    }
+
+    .code-input {
+      flex: 1;
+      min-width: 0;
+      padding: 9px 11px;
+      border-radius: 10px;
+      border: 1px solid rgba(147, 197, 253, 0.5);
+      background: rgba(5, 11, 26, 0.88);
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 800;
+      outline: none;
+    }
+
+    .code-input:focus {
+      border-color: #60a5fa;
+      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.28);
+    }
+
+    .btn-code-submit {
+      padding: 9px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(147, 197, 253, 0.85);
+      background: linear-gradient(135deg, #1d4ed8, #2563eb);
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 950;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      cursor: pointer;
+      white-space: nowrap;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.45);
+    }
+
+    .btn-code-submit:active {
+      transform: scale(0.96);
+    }
+
     .quest-card-win {
       background:
         radial-gradient(circle at 92% 14%, rgba(34, 197, 94, 0.25), transparent 52%),
@@ -262,7 +350,6 @@
       box-shadow: 0 0 18px rgba(250, 204, 21, 0.45);
     }
 
-    /* Бусты в зелёно-фиолетовом стиле на обычном фоне магазина */
     .shop-offer-gp {
       position: relative;
       display: flex;
@@ -405,6 +492,24 @@
       white-space: nowrap;
     }
 
+    .top-prize-box {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 14px;
+      background: rgba(8, 12, 20, 0.78);
+      border: 1px solid rgba(250, 204, 21, 0.36);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .top-prize-grid {
+      font-size: 11px;
+      font-weight: 800;
+      color: #e2e8f0;
+      line-height: 1.45;
+    }
+
     .card-yellow-glow {
       background: linear-gradient(160deg, rgba(133, 77, 14, 0.8), rgba(28, 22, 11, 0.98));
       border: 1px solid rgba(250, 204, 21, 0.75);
@@ -418,11 +523,12 @@
     }
 
     .btn-welcome-green {
-      background: linear-gradient(180deg, #4ade80, #16a34a);
-      border: 1px solid rgba(187, 247, 208, 0.9);
-      color: #041309;
-      font-weight: 950;
-      box-shadow: 0 0 18px rgba(74, 222, 128, 0.45);
+      background: linear-gradient(180deg, #4ade80, #16a34a) !important;
+      border: 1px solid rgba(187, 247, 208, 0.95) !important;
+      color: #041309 !important;
+      font-weight: 950 !important;
+      box-shadow: 0 0 18px rgba(74, 222, 128, 0.55) !important;
+      opacity: 1 !important;
     }
 
     .card-head {
@@ -437,6 +543,8 @@
       display: flex;
       align-items: center;
       gap: 6px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
     }
 
     .card-title {
@@ -674,7 +782,6 @@
       cursor: not-allowed;
     }
 
-    /* Улучшенный вид колеса апгрейдера */
     .wheel-stage {
       position: relative;
       width: 254px;
@@ -1431,7 +1538,6 @@
       text-shadow: 0 0 12px rgba(96, 165, 250, 1), 0 0 24px rgba(37, 99, 235, 0.85);
     }
 
-    /* Только текст МАГАЗИН зелёный, сама кнопка обычная */
     .nav-shop {
       color: #4ade80;
       text-shadow: 0 0 10px rgba(74, 222, 128, 0.75);
@@ -1619,6 +1725,7 @@
           <div class="card-head">
             <span class="card-title">Апгрейдер</span>
             <div class="head-badges">
+              <span class="badge badge-green" id="spins15-boost-badge" style="display:none;">+1.5% (8)</span>
               <span class="badge badge-yellow" id="boost-active-badge" style="display:none;">2X 15:00</span>
               <span class="badge" id="mult-badge">x2.0</span>
             </div>
@@ -1633,13 +1740,13 @@
               <div class="arrow-pointer">
                 <svg viewBox="0 0 36 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <defs>
-                    <linearGradient id="arrowGradV34" x1="18" y1="2" x2="18" y2="39" gradientUnits="userSpaceOnUse">
+                    <linearGradient id="arrowGradV35" x1="18" y1="2" x2="18" y2="39" gradientUnits="userSpaceOnUse">
                       <stop offset="0%" stop-color="#ffffff" />
                       <stop offset="48%" stop-color="#86efac" />
                       <stop offset="100%" stop-color="#16a34a" />
                     </linearGradient>
                   </defs>
-                  <path d="M18 39L3 10.5C2.1 8.8 3.3 6.7 5.2 6.7H30.8C32.7 6.7 33.9 8.8 33 10.5L18 39Z" fill="url(#arrowGradV34)" stroke="#ffffff" stroke-width="1.6" stroke-linejoin="round" />
+                  <path d="M18 39L3 10.5C2.1 8.8 3.3 6.7 5.2 6.7H30.8C32.7 6.7 33.9 8.8 33 10.5L18 39Z" fill="url(#arrowGradV35)" stroke="#ffffff" stroke-width="1.6" stroke-linejoin="round" />
                   <path d="M18 34.5L7.5 13.5H18V34.5Z" fill="rgba(255,255,255,0.42)" />
                   <circle cx="18" cy="11.5" r="2.3" fill="#ffffff" />
                 </svg>
@@ -1720,7 +1827,19 @@
         <div class="card">
           <div class="card-head">
             <span class="card-title">Улучшения</span>
-            <span class="badge badge-gp">2X И 3–4X</span>
+            <span class="badge badge-gp">БУСТЫ</span>
+          </div>
+
+          <div class="shop-offer-gp green-accent">
+            <div class="shop-offer-top">
+              <div class="shop-offer-title-gp">+1.5% к шансам на 8 круток</div>
+              <span class="badge badge-gp">1 400</span>
+            </div>
+            <div class="shop-offer-desc-gp">
+              Увеличивает все шансы на колесе на +1.5% на следующие 8 круток (можно стакать).
+            </div>
+            <div class="shop-offer-status-gp" id="eight-spins-boost-status">Осталось круток: 0</div>
+            <button class="btn-gp-buy" id="btn-buy-eight-spins" onclick="buyEightSpinsBoost()">КУПИТЬ ЗА 1 400 А-БИЧЕЙ</button>
           </div>
 
           <div class="shop-offer-gp green-accent">
@@ -1793,57 +1912,79 @@
 
         <div class="card">
           <div class="card-head">
-            <span class="card-title">Топ игроков</span>
-            <span class="badge badge-yellow" id="player-rank-badge">МЕСТО #?</span>
+            <span class="card-title">Топ-10 игроков</span>
+            <span class="badge badge-yellow" id="player-rank-badge">МЕСТО #1</span>
           </div>
           <div class="lb-list" id="leaderboard-list"></div>
+
+          <div class="top-prize-box">
+            <div class="top-prize-grid">
+              <b>Награды за топ:</b> 1 место — <b>10 000</b> · 2 место — <b>5 000</b> · 3 место — <b>2 500</b> · Топ-5 — <b>1 000</b> А-БИЧЕЙ.
+            </div>
+            <div style="font-size:11px;font-weight:800;color:#fde68a;" id="top-reward-status"></div>
+            <button class="btn-mini btn-yellow-claim" id="btn-claim-top" onclick="claimTopReward()">ЗАБРАТЬ НАГРАДУ ЗА ТОП</button>
+          </div>
         </div>
       </section>
 
       <section id="pane-rewards" class="pane">
-        <div class="card card-yellow-glow">
-          <div class="card-head">
-            <span class="card-title" style="color:#fef08a;">Бонус за 12 часов</span>
-            <span class="badge badge-yellow">+5 А-БИЧИ</span>
+        <div class="codes-compact-card">
+          <div class="codes-top-row">
+            <span class="codes-title">КОДЫ</span>
+            <span class="badge" style="background:rgba(30,64,175,0.45);border-color:rgba(147,197,253,0.55);color:#dbeafe;" id="codes-used-badge">0 / 13</span>
           </div>
-          <div style="font-size:13px;color:#fde68a;margin-bottom:12px;" id="twelve-hour-status">
-            Доступно! Жми чтобы забрать 5 А-БИЧИ
+          <div class="codes-tg-hint">
+            Коды можно найти на нашем ТГК <a class="codes-tg-link" href="https://t.me/babichOKSchat" target="_blank" rel="noopener noreferrer">https://t.me/babichOKSchat</a>
           </div>
-          <button class="btn-mini btn-yellow-claim" style="padding:11px;font-size:12px;" id="btn-claim-12h" onclick="claim12h()">
-            ЗАБРАТЬ 5 А-БИЧИ
-          </button>
+          <div class="codes-input-row">
+            <input type="text" class="code-input" id="promo-code-input" placeholder="Введи код..." onkeydown="if(event.key==='Enter') redeemCode();" />
+            <button class="btn-code-submit" onclick="redeemCode()">ВВЕСТИ</button>
+          </div>
         </div>
 
         <div class="card card-welcome-green" id="welcome-reward-card">
           <div class="card-head">
-            <span class="card-title" style="color:#bbf7d0;">Награда за вход в бота</span>
-            <span class="badge badge-green">+5 А-БИЧИ</span>
+            <span class="card-title" style="color:#bbf7d0;">Награда за 1 заход</span>
+            <span class="badge badge-green">+5 А-БИЧЕЙ</span>
           </div>
           <div style="font-size:13px;color:#dcfce7;margin-bottom:12px;">
-            Одноразовая бесплатная награда за первый заход — после получения пропадёт навсегда!
+            Бесплатная стартовая награда при первом входе — после получения пропадёт навсегда!
           </div>
           <button class="btn-mini btn-welcome-green" style="padding:11px;font-size:12px;" id="btn-claim-welcome" onclick="claimWelcome()">
-            ЗАБРАТЬ 5 А-БИЧИ
+            ЗАБРАТЬ 5 А-БИЧЕЙ
+          </button>
+        </div>
+
+        <div class="card card-yellow-glow">
+          <div class="card-head">
+            <span class="card-title" style="color:#fef08a;">Бонус за 12 часов</span>
+            <span class="badge badge-yellow">+35 А-БИЧЕЙ</span>
+          </div>
+          <div style="font-size:13px;color:#fde68a;margin-bottom:12px;" id="twelve-hour-status">
+            Доступно! Жми чтобы забрать 35 А-БИЧЕЙ
+          </div>
+          <button class="btn-mini btn-yellow-claim" style="padding:11px;font-size:12px;" id="btn-claim-12h" onclick="claim12h()">
+            ЗАБРАТЬ 35 А-БИЧЕЙ
           </button>
         </div>
 
         <div class="card quest-card-auction">
           <div class="card-head">
             <span class="card-title" style="color:#fed7aa;">Квест раз в 42ч: покупка на аукционе</span>
-            <span class="badge badge-neon-orange">+3 400 А-БИЧИ</span>
+            <span class="badge badge-neon-orange">+750 А-БИЧЕЙ</span>
           </div>
           <div style="font-size:13px;color:#ffedd5;margin-bottom:12px;" id="quest-auction-txt">
             Купи любой лот во вкладке «МАГАЗИН» в разделе Аукциона (доступно раз в 42 часа)
           </div>
           <button class="btn-mini" style="padding:11px;font-size:12px;" id="btn-claim-auction" onclick="claimAuctionQuest()">
-            ЗАБРАТЬ 3 400 А-БИЧИ
+            ЗАБРАТЬ 750 А-БИЧЕЙ
           </button>
         </div>
 
         <div class="card quest-card-win">
           <div class="card-head">
             <span class="card-title" style="color:#86efac;">Квест: 15 удачных круток</span>
-            <span class="badge badge-neon-green">+10 А-БИЧИ</span>
+            <span class="badge badge-neon-green">+10 А-БИЧЕЙ</span>
           </div>
           <div style="font-size:13px;color:#dcfce7;" id="wins-progress-txt">
             Удачных круток: 0 / 15
@@ -1859,7 +2000,7 @@
         <div class="card quest-card-loss">
           <div class="card-head">
             <span class="card-title" style="color:#fda4af;">Квест: 100 проигрышей</span>
-            <span class="badge badge-neon-rose">+12 А-БИЧИ</span>
+            <span class="badge badge-neon-rose">+12 А-БИЧЕЙ</span>
           </div>
           <div style="font-size:13px;color:#ffe4e6;" id="losses-progress-txt">
             Проигрышей: 0 / 100
@@ -1875,20 +2016,20 @@
         <div class="card quest-card-highdrop">
           <div class="card-head">
             <span class="card-title" style="color:#e9d5ff;">Квест раз в 24ч: дроп &gt; 100 А-БИЧЕЙ</span>
-            <span class="badge badge-neon-purple">+20 А-БИЧИ</span>
+            <span class="badge badge-neon-purple">+20 А-БИЧЕЙ</span>
           </div>
           <div style="font-size:13px;color:#f3e8ff;margin-bottom:12px;" id="quest-24h-txt">
             Выбей Бабича дороже 100 А-БИЧЕЙ, чтобы открыть кнопку «Забрать»
           </div>
           <button class="btn-mini" style="padding:11px;font-size:12px;" id="btn-claim-24h" onclick="claim24hHighDrop()">
-            ЗАБРАТЬ 20 А-БИЧИ
+            ЗАБРАТЬ 20 А-БИЧЕЙ
           </button>
         </div>
 
         <div class="card quest-card-boost">
           <div class="card-head">
             <span class="card-title" style="color:#bae6fd;">Квест: 40 улучшений колеса</span>
-            <span class="badge badge-neon-sky">+14 А-БИЧИ</span>
+            <span class="badge badge-neon-sky">+14 А-БИЧЕЙ</span>
           </div>
           <div style="font-size:13px;color:#e0f2fe;" id="boost40-progress-txt">
             Улучшений колеса: 0 / 40
@@ -1927,22 +2068,49 @@
       tg.setBackgroundColor('#06080c');
     }
 
-    function getAccountStorageKey() {
+    function getUserIdSuffix() {
       const tgUser = tg?.initDataUnsafe?.user;
       if (tgUser && tgUser.id) {
-        return `babich_grader_v34_acc_tg_${tgUser.id}`;
+        return `tg_${tgUser.id}`;
       }
-      return 'babich_grader_v34_acc_guest';
+      return 'guest';
     }
 
-    const ACCOUNT_KEY = getAccountStorageKey();
-    const BACKUP_KEY = 'babich_grader_v34_backup_latest';
-    const LEGACY_KEYS = [
-      (tg?.initDataUnsafe?.user?.id) ? `babich_grader_v33_acc_tg_${tg.initDataUnsafe.user.id}` : 'babich_grader_v33_acc_guest',
+    const USER_SUFFIX = getUserIdSuffix();
+    const ACCOUNT_KEY = `babich_grader_v35_acc_${USER_SUFFIX}`;
+    const BACKUP_KEY = 'babich_grader_v35_backup_latest';
+    const REAL_PLAYERS_KEY = 'babich_grader_real_players_v1';
+
+    const ALL_KNOWN_KEYS = [
+      `babich_grader_v35_acc_${USER_SUFFIX}`,
+      'babich_grader_v35_backup_latest',
+      `babich_grader_v34_acc_${USER_SUFFIX}`,
+      'babich_grader_v34_backup_latest',
+      `babich_grader_v33_acc_${USER_SUFFIX}`,
       'babich_grader_v33_backup_latest',
-      (tg?.initDataUnsafe?.user?.id) ? `babich_grader_v32_acc_tg_${tg.initDataUnsafe.user.id}` : 'babich_grader_v32_acc_guest',
-      'babich_grader_v32_backup_latest'
+      `babich_grader_v32_acc_${USER_SUFFIX}`,
+      'babich_grader_v32_backup_latest',
+      `babich_grader_v31_acc_${USER_SUFFIX}`,
+      'babich_grader_v31_backup_latest',
+      'babich_grader_save',
+      'babich_state'
     ];
+
+    const PROMO_CODES = {
+      RELEASE: 2,
+      'OVER UPD': 1,
+      BABICH: 2,
+      KIRILL: 2,
+      EGOR: 2,
+      KOSTATYANKA: 2,
+      DIMADIMONFEMBOY: 2,
+      MAMA: 5,
+      GRABATRON: 3,
+      '67': 4,
+      FUCKEN: 2,
+      AHLELELE: 2,
+      BYBICH: 2
+    };
 
     function resolveTheme(name, val, customTheme) {
       if (customTheme) return customTheme;
@@ -2010,18 +2178,18 @@
       { id: 'b_34', name: 'Бабичанос', val: 195, img: 'Babichanos.jpg' },
       { id: 'b_56', name: 'Хоумлендер Бабич', val: 235, img: 'houmlander.jpg', theme: 'blue' },
       { id: 'b_32', name: 'HIJNIAK', val: 240, img: 'HIJNIAK.jpg', theme: 'red' },
-      { id: 'b_48', name: 'БОГ МОЛНИЙ БАБИЧ', val: 250, img: 'GODLIGHTBABICH.jpg', theme: 'red' },
+      { id: 'b_48', name: 'БОГ МОЛНИЙ БАБИЧ', val: 250, img: 'bog_molnii_babich.jpg', theme: 'red' },
       { id: 'b_42', name: 'Буберчик', val: 255, img: 'babichNULL.jpg', theme: 'red' },
       { id: 'b_43', name: 'граберчик', val: 270, img: 'GRABATRON.jpg', theme: 'burgundy' },
       { id: 'b_40', name: 'AHLELELE BABICHNAS', val: 300, img: 'AHLELELEBABICHNAS.jpg', theme: 'burgundy' },
-      { id: 'b_49', name: 'TITAN Babich', val: 375, img: 'BabichTITAN.jpg', theme: 'burgundy' }
+      { id: 'b_49', name: 'TITAN Babich', val: 375, img: 'BabichTITAN.jpg', theme: 'burgundy' },
+      { id: 'b_godlight', name: 'GODLIGHTBABICH', val: 420, img: 'GODLIGHTBABICH.jpg', theme: 'gold' }
     ];
 
     const BABICH_LIST = RAW_BABICH_LIST
       .map(it => ({ ...it, theme: resolveTheme(it.name, it.val, it.theme) }))
       .sort((a, b) => a.val - b.val);
 
-    // Строго 4 уникальных лота аукциона (из них в каждом слоте показываются 2 уникальные карточки без повторов)
     const AUCTION_ONLY_LIST = [
       { id: 'auc_epstein', name: 'Бабич Эпштейн', val: 24600, img: 'EpsteinBabich.jpg', theme: 'red', auctionOnly: true },
       { id: 'auc_fake_brashnik', name: 'Fake БРАЖНИК', val: 17500, img: 'FAKEbrashnik.jpg', theme: 'blue', auctionOnly: true },
@@ -2043,6 +2211,9 @@
     const MAX_CHANCE = 75;
     const MAX_CHANCE_BOOSTED = 100;
     const MAX_BOOST_CLICKS = 6;
+    const EIGHT_SPINS_BOOST_PRICE = 1400;
+    const EIGHT_SPINS_BOOST_STEP = 1.5;
+    const EIGHT_SPINS_BOOST_COUNT = 8;
     const CHANCE_BOOST_PRICE = 7500;
     const CHANCE_BOOST_MS = 15 * 60 * 1000;
     const TURBO_UNLOCK_PRICE = 2000;
@@ -2050,7 +2221,7 @@
     const DAY_MS = 24 * 60 * 60 * 1000;
     const AUCTION_ROTATION_MS = 30 * 60 * 1000;
     const AUCTION_QUEST_COOLDOWN_MS = 42 * 60 * 60 * 1000;
-    const AUCTION_QUEST_REWARD = 3400;
+    const AUCTION_QUEST_REWARD = 750;
 
     function getTelegramAvatarUrl() {
       const photoUrl = tg?.initDataUnsafe?.user?.photo_url;
@@ -2068,14 +2239,16 @@
     }
 
     let state = {
+      playerId: USER_SUFFIX,
       nickname: defaultNickname(),
       xp: 0,
-      bal: 0,
+      bal: 25,
       baseChance: 48,
       activeMult: 2,
       selectionMode: 'none',
       presetRotateIdx: 0,
       boostCoinsUsed: 0,
+      eightSpinsLeft: 0,
       speedStepIdx: 0,
       turboUnlocked: false,
       chanceBoostUntil: 0,
@@ -2099,7 +2272,9 @@
       auctionQuestNextAt: 0,
       auctionNextAt: 0,
       auctionOfferIds: [],
-      auctionBoughtIds: []
+      auctionBoughtIds: [],
+      redeemedCodes: [],
+      claimedTopRank: null
     };
 
     function safeParseState(raw) {
@@ -2114,27 +2289,32 @@
     }
 
     function loadAccountState() {
-      const candidates = [
-        localStorage.getItem(ACCOUNT_KEY),
-        localStorage.getItem(BACKUP_KEY),
-        ...LEGACY_KEYS.map(k => localStorage.getItem(k)),
-        sessionStorage.getItem(ACCOUNT_KEY),
-        sessionStorage.getItem(BACKUP_KEY)
-      ];
+      const sources = [];
+      for (const k of ALL_KNOWN_KEYS) {
+        try {
+          const v1 = localStorage.getItem(k);
+          if (v1) sources.push(v1);
+        } catch (_) {}
+        try {
+          const v2 = sessionStorage.getItem(k);
+          if (v2) sources.push(v2);
+        } catch (_) {}
+      }
 
       let best = null;
       let bestScore = -1;
 
-      for (const raw of candidates) {
+      for (const raw of sources) {
         const p = safeParseState(raw);
         if (!p) continue;
         const score =
-          (p.bal || 0) * 2 +
-          (p.inv?.length || 0) * 15 +
-          (p.xp || 0) +
-          (p.successfulSpins || 0) * 10 +
-          (p.failedSpins || 0) * 2;
-        if (score >= bestScore) {
+          (Number(p.bal) || 0) * 2 +
+          (p.inv?.length || 0) * 20 +
+          (Number(p.xp) || 0) +
+          (Number(p.successfulSpins) || 0) * 15 +
+          (Number(p.failedSpins) || 0) * 3 +
+          (Array.isArray(p.redeemedCodes) ? p.redeemedCodes.length * 10 : 0);
+        if (score > bestScore) {
           bestScore = score;
           best = p;
         }
@@ -2142,9 +2322,10 @@
 
       if (best) {
         state = { ...state, ...best };
-        if (typeof best.speedStepIdx !== 'number') {
-          state.speedStepIdx = 0;
-        }
+        state.playerId = USER_SUFFIX;
+        state.bal = Math.max(0, Number(best.bal) || 0);
+        state.xp = Math.max(0, Number(best.xp) || 0);
+        state.eightSpinsLeft = Math.max(0, Number(best.eightSpinsLeft) || 0);
         state.turboUnlocked = Boolean(best.turboUnlocked);
         state.chanceBoostUntil = Number(best.chanceBoostUntil) || 0;
         if (typeof best.twelveHourNextAt !== 'number' && typeof best.nineHourNextAt === 'number') {
@@ -2153,14 +2334,81 @@
         state.nickname = (typeof best.nickname === 'string' && best.nickname.trim())
           ? best.nickname.trim().slice(0, 22)
           : defaultNickname();
-        state.xp = Math.max(0, Number(best.xp) || 0);
         state.wishIds = Array.from(new Set([...DEFAULT_WISH_IDS, ...(best.wishIds || [])]));
         const validIds = new Set(AUCTION_ONLY_LIST.map(x => x.id));
         const rawOffers = Array.isArray(best.auctionOfferIds) ? best.auctionOfferIds.filter(id => validIds.has(id)) : [];
         state.auctionOfferIds = Array.from(new Set(rawOffers)).slice(0, 2);
         state.auctionBoughtIds = Array.isArray(best.auctionBoughtIds) ? best.auctionBoughtIds : [];
-        saveState();
+        state.redeemedCodes = Array.isArray(best.redeemedCodes) ? best.redeemedCodes : [];
+        state.claimedTopRank = best.claimedTopRank ? Number(best.claimedTopRank) : null;
       }
+
+      saveState();
+      syncRealPlayerToRegistry();
+    }
+
+    function getTopBabich() {
+      if (!state.inv.length) return null;
+      return [...state.inv].sort((a, b) => b.val - a.val)[0];
+    }
+
+    function getPlayerPowerScore() {
+      const invSum = state.inv.reduce((acc, x) => acc + (Number(x.val) || 0), 0);
+      return state.bal + invSum;
+    }
+
+    function syncRealPlayerToRegistry() {
+      let list = [];
+      try {
+        const raw = localStorage.getItem(REAL_PLAYERS_KEY);
+        const parsed = raw ? JSON.parse(raw) : [];
+        if (Array.isArray(parsed)) list = parsed;
+      } catch (_) {}
+
+      const topB = getTopBabich();
+      const entry = {
+        id: USER_SUFFIX,
+        name: state.nickname,
+        score: getPlayerPowerScore(),
+        top: topB ? topB.name : 'Нет бабичей',
+        updatedAt: Date.now()
+      };
+
+      const idx = list.findIndex(x => x && x.id === USER_SUFFIX);
+      if (idx !== -1) {
+        list[idx] = entry;
+      } else {
+        list.push(entry);
+      }
+
+      try {
+        localStorage.setItem(REAL_PLAYERS_KEY, JSON.stringify(list));
+      } catch (_) {}
+    }
+
+    function getRealPlayersSorted() {
+      syncRealPlayerToRegistry();
+      let list = [];
+      try {
+        const raw = localStorage.getItem(REAL_PLAYERS_KEY);
+        const parsed = raw ? JSON.parse(raw) : [];
+        if (Array.isArray(parsed)) list = parsed.filter(x => x && x.id);
+      } catch (_) {}
+
+      if (!list.length) {
+        const topB = getTopBabich();
+        list = [{
+          id: USER_SUFFIX,
+          name: state.nickname,
+          score: getPlayerPowerScore(),
+          top: topB ? topB.name : 'Нет бабичей',
+          updatedAt: Date.now()
+        }];
+      }
+
+      return list
+        .sort((a, b) => (Number(b.score) || 0) - (Number(a.score) || 0))
+        .slice(0, 10);
     }
 
     loadAccountState();
@@ -2216,6 +2464,7 @@
         sessionStorage.setItem(ACCOUNT_KEY, serialized);
         sessionStorage.setItem(BACKUP_KEY, serialized);
       } catch (_) {}
+      syncRealPlayerToRegistry();
     }
 
     function toast(msg) {
@@ -2223,7 +2472,7 @@
       el.textContent = msg;
       el.classList.add('show');
       clearTimeout(toast._t);
-      toast._t = setTimeout(() => el.classList.remove('show'), 2300);
+      toast._t = setTimeout(() => el.classList.remove('show'), 2400);
     }
 
     function ensureAudio() {
@@ -2400,10 +2649,6 @@
       return 1.2;
     }
 
-    // Баланс шансов:
-    // x2 -> 45% - 50%
-    // x5 -> 17% - 22%
-    // x10 -> ~9%
     function getBaseChanceForPair(mine, wish) {
       if (state.selectionMode === 'mult') {
         if (state.activeMult <= 2) {
@@ -2454,6 +2699,9 @@
       const base = getBaseChanceForPair(mine, wish);
       const step = getBoostStepPercent(wish);
       let total = base + state.boostCoinsUsed * step;
+      if ((state.eightSpinsLeft || 0) > 0) {
+        total += EIGHT_SPINS_BOOST_STEP;
+      }
       if (isChanceBoostActive()) total *= 2;
       return Number(Math.min(getChanceCap(), Math.max(4.5, total)).toFixed(1));
     }
@@ -2604,12 +2852,23 @@
 
     function updateBoostBadge() {
       const badge = document.getElementById('boost-active-badge');
-      if (!badge) return;
-      if (isChanceBoostActive()) {
-        badge.style.display = 'inline-block';
-        badge.textContent = '2X ' + formatMinSec(state.chanceBoostUntil - Date.now());
-      } else {
-        badge.style.display = 'none';
+      if (badge) {
+        if (isChanceBoostActive()) {
+          badge.style.display = 'inline-block';
+          badge.textContent = '2X ' + formatMinSec(state.chanceBoostUntil - Date.now());
+        } else {
+          badge.style.display = 'none';
+        }
+      }
+
+      const spinsBadge = document.getElementById('spins15-boost-badge');
+      if (spinsBadge) {
+        if ((state.eightSpinsLeft || 0) > 0) {
+          spinsBadge.style.display = 'inline-block';
+          spinsBadge.textContent = `+1.5% (${state.eightSpinsLeft})`;
+        } else {
+          spinsBadge.style.display = 'none';
+        }
       }
     }
 
@@ -2768,7 +3027,7 @@
 
       refundActiveBoostCoins();
       state.bal -= item.val;
-      state.xp += 120;
+      state.xp += 180;
       state.auctionBoughtIds.push(id);
       const owned = {
         uid: Date.now() + Math.floor(Math.random() * 100000),
@@ -2795,6 +3054,22 @@
       playWinSound();
       spawnSparkles();
       toast(`Аукцион: куплен ${item.name}!`);
+      renderAll();
+    }
+
+    function buyEightSpinsBoost() {
+      if (isSpinning) return;
+      if (state.bal < EIGHT_SPINS_BOOST_PRICE) {
+        playLoseSound();
+        toast(`Не хватает ${(EIGHT_SPINS_BOOST_PRICE - state.bal).toLocaleString('ru-RU')} А-БИЧЕЙ`);
+        return;
+      }
+      state.bal -= EIGHT_SPINS_BOOST_PRICE;
+      state.eightSpinsLeft = (Number(state.eightSpinsLeft) || 0) + EIGHT_SPINS_BOOST_COUNT;
+      state.xp += 50;
+      playWinSound();
+      spawnSparkles();
+      toast(`+1.5% к шансам на 8 круток! (осталось: ${state.eightSpinsLeft})`);
       renderAll();
     }
 
@@ -2866,6 +3141,18 @@
         lots.forEach(it => setBgImage(grid.querySelector(`[data-auc-img="${it.id}"]`), it));
       }
 
+      const eightStatus = document.getElementById('eight-spins-boost-status');
+      const eightBtn = document.getElementById('btn-buy-eight-spins');
+      if (eightStatus && eightBtn) {
+        const left = Number(state.eightSpinsLeft) || 0;
+        eightStatus.textContent = left > 0
+          ? `АКТИВНО: +1.5% на ещё ${left} круток`
+          : 'Не активно (0 круток)';
+        eightBtn.textContent = left > 0
+          ? `ДОБАВИТЬ ЕЩЁ 8 КРУТОК ЗА ${EIGHT_SPINS_BOOST_PRICE.toLocaleString('ru-RU')}`
+          : `КУПИТЬ ЗА ${EIGHT_SPINS_BOOST_PRICE.toLocaleString('ru-RU')} А-БИЧЕЙ`;
+      }
+
       const status = document.getElementById('chance-boost-status');
       const btn = document.getElementById('btn-buy-chance-boost');
       if (status && btn) {
@@ -2895,11 +3182,6 @@
       }
     }
 
-    function getTopBabich() {
-      if (!state.inv.length) return null;
-      return [...state.inv].sort((a, b) => b.val - a.val)[0];
-    }
-
     function getLevelInfo() {
       const xpPerLevel = 120;
       const level = Math.floor(state.xp / xpPerLevel) + 1;
@@ -2907,57 +3189,86 @@
       return { level, curXp, xpPerLevel, pct: Math.min(100, (curXp / xpPerLevel) * 100) };
     }
 
-    function getPlayerPowerScore() {
-      const invSum = state.inv.reduce((acc, x) => acc + (Number(x.val) || 0), 0);
-      return state.bal + invSum;
+    function getTopRewardForRank(rank) {
+      if (rank === 1) return 10000;
+      if (rank === 2) return 5000;
+      if (rank === 3) return 2500;
+      if (rank === 4 || rank === 5) return 1000;
+      return 0;
     }
 
     function renderLeaderboard() {
       const listEl = document.getElementById('leaderboard-list');
       const rankBadge = document.getElementById('player-rank-badge');
+      const statusEl = document.getElementById('top-reward-status');
+      const claimBtn = document.getElementById('btn-claim-top');
       if (!listEl) return;
 
-      const myScore = getPlayerPowerScore();
-      const myTop = getTopBabich();
+      const top10 = getRealPlayersSorted();
+      const myIdx = top10.findIndex(x => x.id === USER_SUFFIX);
+      const myPos = myIdx !== -1 ? (myIdx + 1) : 1;
+      const rewardAmt = getTopRewardForRank(myPos);
 
-      const rivals = [
-        { name: 'Костя_Мултиверс', score: 28450, top: 'Бабич Эпштейн' },
-        { name: 'ДумМаша_99', score: 22800, top: 'ДУМ БАБИЧ' },
-        { name: 'GullBlox_Fan', score: 17500, top: 'Fake БРАЖНИК' },
-        { name: 'BabichHunter', score: 16000, top: 'ГАЗАН' },
-        { name: 'Астра_Спидран', score: 1450, top: 'HIJNIAK' },
-        { name: 'Крутилка_07', score: 480, top: 'Бабич Прайм' },
-        { name: 'Новичок_А-БИЧ', score: 120, top: 'Бабич' }
-      ];
-
-      const allEntries = [
-        ...rivals.map((r, i) => ({ ...r, isMe: false, id: 'r_' + i })),
-        {
-          id: 'me',
-          name: state.nickname,
-          score: myScore,
-          top: myTop ? myTop.name : 'Нет бабичей',
-          isMe: true
-        }
-      ].sort((a, b) => b.score - a.score);
-
-      const myPos = allEntries.findIndex(x => x.isMe) + 1;
       if (rankBadge) {
         rankBadge.textContent = `МЕСТО #${myPos}`;
       }
 
-      listEl.innerHTML = allEntries.map((row, idx) => `
-        <div class="lb-row ${row.isMe ? 'is-me' : ''}">
-          <div class="lb-left">
-            <span class="lb-rank">#${idx + 1}</span>
-            <div style="min-width:0;">
-              <div class="lb-name">${row.name} ${row.isMe ? '(ТЫ)' : ''}</div>
-              <div class="lb-sub">Топ: ${row.top}</div>
+      listEl.innerHTML = top10.map((row, idx) => {
+        const isMe = row.id === USER_SUFFIX;
+        const prize = getTopRewardForRank(idx + 1);
+        return `
+          <div class="lb-row ${isMe ? 'is-me' : ''}">
+            <div class="lb-left">
+              <span class="lb-rank">#${idx + 1}</span>
+              <div style="min-width:0;">
+                <div class="lb-name">${row.name} ${isMe ? '(ТЫ)' : ''}</div>
+                <div class="lb-sub">Топ: ${row.top}${prize ? ` · Награда: ${prize.toLocaleString('ru-RU')}` : ''}</div>
+              </div>
             </div>
+            <div class="lb-score">${(Number(row.score) || 0).toLocaleString('ru-RU')}</div>
           </div>
-          <div class="lb-score">${row.score.toLocaleString('ru-RU')}</div>
-        </div>
-      `).join('');
+        `;
+      }).join('');
+
+      if (statusEl && claimBtn) {
+        if (rewardAmt <= 0) {
+          statusEl.textContent = 'Поднимись в Топ-5 по силе баланса + инвентаря, чтобы забрать награду.';
+          claimBtn.disabled = true;
+          claimBtn.textContent = 'НЕДОСТУПНО (НУЖЕН ТОП-5)';
+        } else if (state.claimedTopRank && rewardAmt <= getTopRewardForRank(Number(state.claimedTopRank))) {
+          statusEl.textContent = `Награда за #${myPos} уже получена! Выше место даст больше.`;
+          claimBtn.disabled = true;
+          claimBtn.textContent = 'НАГРАДА ЗА ЭТО МЕСТО ПОЛУЧЕНА';
+        } else {
+          statusEl.textContent = `Твоё место: #${myPos} — доступно ${rewardAmt.toLocaleString('ru-RU')} А-БИЧЕЙ!`;
+          claimBtn.disabled = false;
+          claimBtn.textContent = `ЗАБРАТЬ ${rewardAmt.toLocaleString('ru-RU')} А-БИЧЕЙ`;
+        }
+      }
+    }
+
+    function claimTopReward() {
+      const top10 = getRealPlayersSorted();
+      const myIdx = top10.findIndex(x => x.id === USER_SUFFIX);
+      const myPos = myIdx !== -1 ? (myIdx + 1) : 1;
+      const rewardAmt = getTopRewardForRank(myPos);
+      if (rewardAmt <= 0) {
+        toast('Нужно место в Топ-5');
+        return;
+      }
+      const prevBestReward = state.claimedTopRank ? getTopRewardForRank(Number(state.claimedTopRank)) : 0;
+      if (rewardAmt <= prevBestReward) {
+        toast('Награда за это место уже получена');
+        return;
+      }
+
+      state.bal += rewardAmt;
+      state.claimedTopRank = myPos;
+      state.xp += 150;
+      playWinSound();
+      spawnSparkles();
+      toast(`Топ #${myPos}: получено +${rewardAmt.toLocaleString('ru-RU')} А-БИЧЕЙ!`);
+      renderAll();
     }
 
     function editNickname() {
@@ -3068,16 +3379,57 @@
       dot.classList.toggle('show', hasAnyAvailableReward());
     }
 
+    function redeemCode() {
+      const input = document.getElementById('promo-code-input');
+      if (!input) return;
+      const raw = input.value.trim().toUpperCase().replace(/\s+/g, ' ');
+      if (!raw) {
+        toast('Введи промокод');
+        return;
+      }
+
+      const reward = PROMO_CODES[raw];
+      if (!reward) {
+        playLoseSound();
+        toast('Неверный код');
+        return;
+      }
+
+      if (!Array.isArray(state.redeemedCodes)) {
+        state.redeemedCodes = [];
+      }
+      if (state.redeemedCodes.includes(raw)) {
+        playLoseSound();
+        toast('Этот код уже активирован');
+        return;
+      }
+
+      state.redeemedCodes.push(raw);
+      state.bal += reward;
+      state.xp += 15;
+      input.value = '';
+      playWinSound();
+      spawnSparkles();
+      toast(`Код ${raw}: +${reward} А-БИЧ${reward === 1 ? '' : (reward < 5 ? 'А' : 'ЕЙ')}!`);
+      renderAll();
+    }
+
     function renderRewardsTab() {
       const now = Date.now();
+
+      const usedBadge = document.getElementById('codes-used-badge');
+      if (usedBadge) {
+        const count = Array.isArray(state.redeemedCodes) ? state.redeemedCodes.length : 0;
+        usedBadge.textContent = `${count} / ${Object.keys(PROMO_CODES).length}`;
+      }
 
       const twelveReady = now >= (state.twelveHourNextAt || 0);
       const btn12h = document.getElementById('btn-claim-12h');
       const status12h = document.getElementById('twelve-hour-status');
       if (twelveReady) {
         btn12h.disabled = false;
-        btn12h.textContent = 'ЗАБРАТЬ 5 А-БИЧИ';
-        status12h.textContent = 'Бонус за 12 часов готов! Жми чтобы забрать';
+        btn12h.textContent = 'ЗАБРАТЬ 35 А-БИЧЕЙ';
+        status12h.textContent = 'Бонус за 12 часов готов! Жми чтобы забрать 35 А-БИЧЕЙ';
       } else {
         const rem12 = Math.max(0, state.twelveHourNextAt - now);
         btn12h.disabled = true;
@@ -3086,8 +3438,12 @@
       }
 
       const welcomeCard = document.getElementById('welcome-reward-card');
-      if (welcomeCard) {
+      const welcomeBtn = document.getElementById('btn-claim-welcome');
+      if (welcomeCard && welcomeBtn) {
         welcomeCard.style.display = state.welcomeClaimed ? 'none' : 'block';
+        welcomeBtn.disabled = false;
+        welcomeBtn.classList.add('btn-welcome-green');
+        welcomeBtn.textContent = 'ЗАБРАТЬ 5 А-БИЧЕЙ';
       }
 
       const btnAuc = document.getElementById('btn-claim-auction');
@@ -3103,8 +3459,8 @@
           btnAuc.className = 'btn-mini btn-auction-claim';
           btnAuc.style.padding = '11px';
           btnAuc.style.fontSize = '12px';
-          btnAuc.textContent = 'ЗАБРАТЬ 3 400 А-БИЧИ';
-          txtAuc.textContent = 'Покупка на аукционе засчитана! Забирай 3 400 А-БИЧЕЙ';
+          btnAuc.textContent = 'ЗАБРАТЬ 750 А-БИЧЕЙ';
+          txtAuc.textContent = 'Покупка на аукционе засчитана! Забирай 750 А-БИЧЕЙ';
         } else if (state.auctionQuestState === 'cooldown') {
           const remAuc = Math.max(0, (state.auctionQuestNextAt || 0) - now);
           btnAuc.disabled = true;
@@ -3118,7 +3474,7 @@
           btnAuc.className = 'btn-mini';
           btnAuc.style.padding = '11px';
           btnAuc.style.fontSize = '12px';
-          btnAuc.textContent = 'ЗАБРАТЬ 3 400 А-БИЧИ';
+          btnAuc.textContent = 'ЗАБРАТЬ 750 А-БИЧЕЙ';
           txtAuc.textContent = 'Купи любой лот во вкладке «МАГАЗИН» в разделе Аукциона (раз в 42 часа)';
         }
       }
@@ -3132,7 +3488,7 @@
       btn15.classList.toggle('btn-claim-ready', avail15 > 0);
       if (avail15 > 0) {
         btn15.disabled = false;
-        btn15.textContent = `ЗАБРАТЬ ${avail15 * 10} А-БИЧИ`;
+        btn15.textContent = `ЗАБРАТЬ ${avail15 * 60} А-БИЧЕЙ`;
       } else {
         btn15.disabled = true;
         btn15.textContent = `НЕ ГОТОВО (${inCycle15}/15)`;
@@ -3147,7 +3503,7 @@
       btn100.classList.toggle('btn-claim-ready', avail100 > 0);
       if (avail100 > 0) {
         btn100.disabled = false;
-        btn100.textContent = `ЗАБРАТЬ ${avail100 * 12} А-БИЧИ`;
+        btn100.textContent = `ЗАБРАТЬ ${avail100 * 90} А-БИЧЕЙ`;
       } else {
         btn100.disabled = true;
         btn100.textContent = `НЕ ГОТОВО (${inCycle100}/100)`;
@@ -3164,7 +3520,7 @@
       if (state.highDropQuestState === 'ready') {
         btn24.disabled = false;
         btn24.classList.add('btn-claim-ready');
-        btn24.textContent = 'ЗАБРАТЬ 20 А-БИЧИ';
+        btn24.textContent = 'ЗАБРАТЬ 20 А-БИЧЕЙ';
         txt24.textContent = `Выпал ${state.lastHighDropName || 'топ Бабич (>100)'}! Нажми «Забрать»`;
       } else if (state.highDropQuestState === 'cooldown') {
         const rem = Math.max(0, state.highDropNextAt - now);
@@ -3175,7 +3531,7 @@
       } else {
         btn24.disabled = true;
         btn24.classList.remove('btn-claim-ready');
-        btn24.textContent = 'ЗАБРАТЬ 20 А-БИЧИ';
+        btn24.textContent = 'ЗАБРАТЬ 20 А-БИЧЕЙ';
         txt24.textContent = 'Выбей Бабича дороже 100 А-БИЧЕЙ, чтобы открыть кнопку «Забрать»';
       }
 
@@ -3188,7 +3544,7 @@
       btn40.classList.toggle('btn-claim-ready', avail40 > 0);
       if (avail40 > 0) {
         btn40.disabled = false;
-        btn40.textContent = `ЗАБРАТЬ ${avail40 * 14} А-БИЧИ`;
+        btn40.textContent = `ЗАБРАТЬ ${avail40 * 80} А-БИЧЕЙ`;
       } else {
         btn40.disabled = true;
         btn40.textContent = `НЕ ГОТОВО (${inCycle40}/40)`;
@@ -3276,7 +3632,7 @@
       }
       refundActiveBoostCoins();
       state.bal -= item.val;
-      state.xp += Math.max(8, Math.round(item.val * 0.4));
+      state.xp += Math.max(10, Math.round(item.val * 0.45));
       const owned = {
         uid: Date.now() + Math.floor(Math.random() * 100000),
         id: item.id,
@@ -3309,14 +3665,15 @@
         toast('♥ Сними сердечко, чтобы продать');
         return;
       }
-      state.bal += item.val;
+      const sellPrice = Math.max(1, Math.round(item.val * 1.1));
+      state.bal += sellPrice;
       state.inv.splice(idx, 1);
       if (state.selectedInvUid === uid) {
         refundActiveBoostCoins();
         state.selectedInvUid = null;
       }
       playSellSound();
-      toast('Продано: ' + item.name + ' (+' + item.val + ' А-БИЧИ)');
+      toast('Продано: ' + item.name + ' (+' + sellPrice + ' А-БИЧЕЙ)');
       renderAll();
     }
 
@@ -3371,7 +3728,7 @@
       state.bal -= 1;
       state.boostCoinsUsed += 1;
       state.totalWheelBoosts += 1;
-      state.xp += 4;
+      state.xp += 5;
       playBuySound();
       toast(`+${step}% к шансу${isChanceBoostActive() ? ' (x2 буст)' : ''}`);
       renderAll();
@@ -3432,10 +3789,10 @@
         toast('Бонус за 12 часов ещё на кулдауне');
         return;
       }
-      state.bal += 5;
+      state.bal += 35;
       state.twelveHourNextAt = now + TWELVE_HOURS_MS;
       playWinSound();
-      toast('Забрано +5 А-БИЧИ! Следующий через 12ч');
+      toast('Забрано +35 А-БИЧЕЙ! Следующий через 12ч');
       renderAll();
     }
 
@@ -3445,7 +3802,7 @@
       state.bal += 5;
       playWinSound();
       spawnSparkles();
-      toast('Забрано +5 А-БИЧИ за вход в бота!');
+      toast('Забрано +5 А-БИЧЕЙ за 1 заход!');
       renderAll();
     }
 
@@ -3459,7 +3816,7 @@
       state.auctionQuestNextAt = Date.now() + AUCTION_QUEST_COOLDOWN_MS;
       playWinSound();
       spawnSparkles();
-      toast('Квест выполнен: +3 400 А-БИЧИ! Кулдаун 42ч');
+      toast('Квест выполнен: +750 А-БИЧЕЙ! Кулдаун 42ч');
       renderAll();
     }
 
@@ -3473,7 +3830,7 @@
       state.bal += available * 10;
       playWinSound();
       spawnSparkles();
-      toast('Награда забрана: +' + (available * 10) + ' А-БИЧИ!');
+      toast('Награда забрана: +' + (available * 10) + ' А-БИЧЕЙ!');
       renderAll();
     }
 
@@ -3487,7 +3844,7 @@
       state.bal += available * 12;
       playWinSound();
       spawnSparkles();
-      toast('Награда забрана: +' + (available * 12) + ' А-БИЧИ!');
+      toast('Награда забрана: +' + (available * 12) + ' А-БИЧЕЙ!');
       renderAll();
     }
 
@@ -3496,12 +3853,12 @@
         toast('Награда за дроп >100 А-БИЧЕЙ пока недоступна');
         return;
       }
-      state.bal += 20;
+      state.bal += 120;
       state.highDropQuestState = 'cooldown';
       state.highDropNextAt = Date.now() + DAY_MS;
       playWinSound();
       spawnSparkles();
-      toast('Награда за квест забрана: +20 А-БИЧИ!');
+      toast('Награда за квест забрана: +120 А-БИЧЕЙ!');
       renderAll();
     }
 
@@ -3515,7 +3872,7 @@
       state.bal += available * 14;
       playWinSound();
       spawnSparkles();
-      toast('Награда забрана: +' + (available * 14) + ' А-БИЧИ!');
+      toast('Награда забрана: +' + (available * 14) + ' А-БИЧЕЙ!');
       renderAll();
     }
 
@@ -3629,6 +3986,9 @@
       document.getElementById('btn-upgrade').disabled = true;
       document.getElementById('btn-boost-dock').disabled = true;
       state.boostCoinsUsed = 0;
+      if ((state.eightSpinsLeft || 0) > 0) {
+        state.eightSpinsLeft = Math.max(0, state.eightSpinsLeft - 1);
+      }
       playSpinStartSound();
 
       const win = (Math.random() * 100) < effChance;
@@ -3685,7 +4045,7 @@
             state.selectionMode = 'none';
             document.querySelectorAll('.preset').forEach(b => b.classList.remove('active'));
             state.failedSpins += 1;
-            state.xp += 6;
+            state.xp += 8;
             playLoseSound();
             toast('Неудача! ' + mine.name + ' удалён');
           }
