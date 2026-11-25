@@ -73,13 +73,19 @@
       gap: 10px;
     }
 
-    .brand {
-      font-size: 15px;
+.brand {
+      font-size: 16px;
       font-weight: 900;
-      letter-spacing: 0.8px;
-      background: linear-gradient(90deg, #f8fafc, #cbd5e1, #facc15);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      font-style: italic;
+      letter-spacing: 0.6px;
+      transform: skewX(-8deg);
+      color: #d6dbe2;
+      background: none;
+      -webkit-background-clip: initial;
+      -webkit-text-fill-color: #d6dbe2;
+      text-shadow:
+        2px 2px 0px #2b2d36,
+        3px 3px 6px rgba(0, 0, 0, 0.85);
       white-space: nowrap;
     }
 
@@ -1532,12 +1538,13 @@
     }
 
     const USER_SUFFIX = getUserIdSuffix();
-    const WIPE_VERSION = 'v40_wipe1';
+    const WIPE_VERSION = 'v45_clean_reset';
     const ACCOUNT_KEY = `babich_grader_${WIPE_VERSION}_acc_${USER_SUFFIX}`;
     const REAL_PLAYERS_KEY = `babich_grader_${WIPE_VERSION}_players`;
     const WIPE_DONE_KEY = `babich_grader_${WIPE_VERSION}_wiped`;
 
     const OLD_STORAGE_PREFIXES = [
+      'babich_grader_v40_',
       'babich_grader_v35_',
       'babich_grader_v34_',
       'babich_grader_v33_',
@@ -1748,6 +1755,22 @@
         rankEnteredAt: 0
       };
     }
+
+    (function hardResetOnce() {
+      const marker = 'babich_grader_v45_hard_reset_done';
+      try {
+        if (localStorage.getItem(marker) === '1') return;
+        for (let i = localStorage.length - 1; i >= 0; i--) {
+          const k = localStorage.key(i);
+          if (k && k.startsWith('babich_grader_')) localStorage.removeItem(k);
+        }
+        for (let i = sessionStorage.length - 1; i >= 0; i--) {
+          const k = sessionStorage.key(i);
+          if (k && k.startsWith('babich_grader_')) sessionStorage.removeItem(k);
+        }
+        localStorage.setItem(marker, '1');
+      } catch (_) {}
+    })();
 
     let state = createInitialState();
 
@@ -3469,7 +3492,10 @@
     });
 
     dom.btnClaimWelcome.addEventListener('click', () => {
-      if (state.welcomeClaimed) return;
+      if (state.welcomeClaimed) {
+        showToast('Стартовая награда уже забрана');
+        return;
+      }
       state.welcomeClaimed = true;
       state.bal = (Number(state.bal) || 0) + 5;
       playWin();
