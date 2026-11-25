@@ -1706,7 +1706,7 @@
       return {
         nickname: defaultNickname(),
         xp: 0,
-        bal: 25,
+        bal: 0,
         baseChance: 48,
         activeMult: 2,
         selectionMode: 'none',
@@ -1764,7 +1764,7 @@
           nickname: typeof parsed.nickname === 'string' && parsed.nickname.trim()
             ? parsed.nickname.trim().slice(0, 22)
             : base.nickname,
-          bal: Math.max(0, Number.isFinite(Number(parsed.bal)) ? Math.floor(Number(parsed.bal)) : 25),
+          bal: Math.max(0, Number.isFinite(Number(parsed.bal)) ? Math.floor(Number(parsed.bal)) : 0),
           xp: Math.max(0, Number.isFinite(Number(parsed.xp)) ? Math.floor(Number(parsed.xp)) : 0),
           inv: Array.isArray(parsed.inv) ? parsed.inv : [],
           redeemedCodes: Array.isArray(parsed.redeemedCodes) ? parsed.redeemedCodes : [],
@@ -3457,23 +3457,26 @@
     dom.btnClaimWelcome.addEventListener('click', () => {
       if (state.welcomeClaimed) return;
       state.welcomeClaimed = true;
-      state.bal += 5;
+      state.bal = (Number(state.bal) || 0) + 5;
       playWin();
       showToast('Забрано +5 А-БИЧЕЙ за 1 заход!');
       renderActiveTabView();
+      renderRewards();
     });
 
     dom.btnClaim12h.addEventListener('click', () => {
       const now = Date.now();
-      if (now < (Number(state.twelveHourNextAt) || 0)) {
+      const nextAt = Number(state.twelveHourNextAt) || 0;
+      if (now < nextAt) {
         showToast('Бонус за 12ч ещё не готов');
         return;
       }
-      state.bal += 5;
+      state.bal = (Number(state.bal) || 0) + 5;
       state.twelveHourNextAt = now + TWELVE_HOURS_MS;
       playWin();
       showToast('Забрано +5 А-БИЧЕЙ!');
       renderActiveTabView();
+      renderRewards();
     });
 
     dom.btnClaimAuction.addEventListener('click', () => {
@@ -3481,74 +3484,87 @@
         showToast('Сначала купи лот на аукционе');
         return;
       }
-      state.bal += AUCTION_QUEST_REWARD;
+      state.bal = (Number(state.bal) || 0) + AUCTION_QUEST_REWARD;
       state.auctionQuestState = 'cooldown';
       state.auctionQuestNextAt = Date.now() + AUCTION_QUEST_COOLDOWN_MS;
       playWin();
       showToast('Квест выполнен: +750 А-БИЧЕЙ!');
       renderActiveTabView();
+      renderRewards();
     });
 
     dom.btnClaim15w.addEventListener('click', () => {
-      const avail = Math.floor(state.successfulSpins / 15) - state.claimed15Batches;
+      const wins = Number(state.successfulSpins) || 0;
+      const claimed = Number(state.claimed15Batches) || 0;
+      const avail = Math.floor(wins / 15) - claimed;
       if (avail <= 0) return;
-      state.claimed15Batches += avail;
-      state.bal += avail * 10;
+      state.claimed15Batches = claimed + avail;
+      state.bal = (Number(state.bal) || 0) + avail * 10;
       playWin();
       showToast(`Получено +${avail * 10} А-БИЧЕЙ!`);
       renderActiveTabView();
+      renderRewards();
     });
 
     dom.btnClaim100l.addEventListener('click', () => {
-      const avail = Math.floor(state.failedSpins / 100) - state.claimed100LossBatches;
+      const losses = Number(state.failedSpins) || 0;
+      const claimed = Number(state.claimed100LossBatches) || 0;
+      const avail = Math.floor(losses / 100) - claimed;
       if (avail <= 0) return;
-      state.claimed100LossBatches += avail;
-      state.bal += avail * 12;
+      state.claimed100LossBatches = claimed + avail;
+      state.bal = (Number(state.bal) || 0) + avail * 12;
       playWin();
       showToast(`Получено +${avail * 12} А-БИЧЕЙ!`);
       renderActiveTabView();
+      renderRewards();
     });
 
     dom.btnClaim24h.addEventListener('click', () => {
       if (state.highDropQuestState !== 'ready') return;
-      state.bal += 20;
+      state.bal = (Number(state.bal) || 0) + 20;
       state.highDropQuestState = 'cooldown';
       state.highDropNextAt = Date.now() + DAY_MS;
       playWin();
       showToast('Получено +20 А-БИЧЕЙ!');
       renderActiveTabView();
+      renderRewards();
     });
 
     dom.btnClaim40b.addEventListener('click', () => {
-      const avail = Math.floor(state.totalWheelBoosts / 40) - state.claimed40BoostBatches;
+      const boosts = Number(state.totalWheelBoosts) || 0;
+      const claimed = Number(state.claimed40BoostBatches) || 0;
+      const avail = Math.floor(boosts / 40) - claimed;
       if (avail <= 0) return;
-      state.claimed40BoostBatches += avail;
-      state.bal += avail * 14;
+      state.claimed40BoostBatches = claimed + avail;
+      state.bal = (Number(state.bal) || 0) + avail * 14;
       playWin();
       showToast(`Получено +${avail * 14} А-БИЧЕЙ!`);
       renderActiveTabView();
+      renderRewards();
     });
 
     dom.btnClaim7d.addEventListener('click', () => {
       syncActiveDayTracker();
       if (state.quest7dClaimed || (Number(state.activeDaysCount) || 0) < 7) return;
       state.quest7dClaimed = true;
-      state.bal += 500;
-      state.xp += 150;
+      state.bal = (Number(state.bal) || 0) + 500;
+      state.xp = (Number(state.xp) || 0) + 150;
       playWin();
       showToast('Квест выполнен: +500 А-БИЧЕЙ за 7 дней игры!');
       renderActiveTabView();
+      renderRewards();
     });
 
     dom.btnClaim2h.addEventListener('click', () => {
       tickPlayTime();
       if (state.quest2hClaimed || (Number(state.playTimeMs) || 0) < (2 * 60 * 60 * 1000)) return;
       state.quest2hClaimed = true;
-      state.bal += 400;
-      state.xp += 120;
+      state.bal = (Number(state.bal) || 0) + 400;
+      state.xp = (Number(state.xp) || 0) + 120;
       playWin();
       showToast('Квест выполнен: +400 А-БИЧЕЙ за 2 часа в игре!');
       renderActiveTabView();
+      renderRewards();
     });
 
     setInterval(() => {
@@ -3570,6 +3586,9 @@
     document.addEventListener('visibilitychange', saveState);
     window.addEventListener('pagehide', saveState);
 
+    if (state.bal === 25 && (!Array.isArray(state.inv) || state.inv.length === 0) && (Number(state.xp) || 0) === 0 && !state.welcomeClaimed) {
+      state.bal = 0;
+    }
     syncActiveDayTracker();
     tickPlayTime();
     ensureAuction();
