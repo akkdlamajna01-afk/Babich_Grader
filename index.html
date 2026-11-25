@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>BABICH--GRADER v46</title>
+  <title>BABICH--GRADER v47</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
     :root {
@@ -2682,7 +2682,140 @@
       dom.btnClaim40b.classList.toggle('btn-claim-ready', avail40 > 0);
       dom.btnClaim40b.textContent = avail40 > 0 ? `ЗАБРАТЬ ${avail40 * 14} А-БИЧЕЙ` : `ЗАБРАТЬ 14 А-БИЧЕЙ (${cyc40}/40)`;
 
-      syncActiveDayTracker();
+  
+    // Страховка: глобальное делегирование кликов на случай проблем с привязкой в WebView
+    (function attachGlobalFallbackClicks() {
+      let lastHandledBtnId = '';
+      let lastHandledAt = 0;
+
+      document.addEventListener('click', (e) => {
+        const target = e.target && e.target.closest ? e.target.closest('button, [data-tab], [data-subtab]') : null;
+        if (!target) return;
+
+        const id = target.id || '';
+        const tab = target.getAttribute('data-tab') || '';
+        const subtab = target.getAttribute('data-subtab') || '';
+        const key = id || ('tab:' + tab) || ('sub:' + subtab);
+        const now = Date.now();
+        if (key === lastHandledBtnId && (now - lastHandledAt) < 120) return;
+        lastHandledBtnId = key;
+        lastHandledAt = now;
+
+        if (tab) {
+          switchMainTab(tab);
+          return;
+        }
+        if (subtab && !isSpinning) {
+          playClick();
+          state.subTab = subtab;
+          renderSubtab();
+          saveState();
+          return;
+        }
+        if (id === 'btn-redeem-code') {
+          redeemPromoCode();
+        } else if (id === 'btn-claim-welcome') {
+          if (!state.welcomeClaimed) {
+            state.welcomeClaimed = true;
+            state.bal = (Number(state.bal) || 0) + 5;
+            playWin();
+            showToast('Забрано +5 А-БИЧЕЙ за 1 заход!');
+            renderActiveTabView();
+            renderRewards();
+          }
+        } else if (id === 'btn-claim-12h') {
+          const tNow = Date.now();
+          if (tNow >= (Number(state.twelveHourNextAt) || 0)) {
+            state.bal = (Number(state.bal) || 0) + 5;
+            state.twelveHourNextAt = tNow + TWELVE_HOURS_MS;
+            playWin();
+            showToast('Забрано +5 А-БИЧЕЙ!');
+            renderActiveTabView();
+            renderRewards();
+          }
+        } else if (id === 'btn-claim-auction') {
+          if (state.auctionQuestState === 'ready') {
+            state.bal = (Number(state.bal) || 0) + AUCTION_QUEST_REWARD;
+            state.auctionQuestState = 'cooldown';
+            state.auctionQuestNextAt = Date.now() + AUCTION_QUEST_COOLDOWN_MS;
+            playWin();
+            showToast('Квест выполнен: +750 А-БИЧЕЙ!');
+            renderActiveTabView();
+            renderRewards();
+          }
+        } else if (id === 'btn-claim-15w') {
+          const wins = Number(state.successfulSpins) || 0;
+          const claimed = Number(state.claimed15Batches) || 0;
+          const avail = Math.floor(wins / 15) - claimed;
+          if (avail > 0) {
+            state.claimed15Batches = claimed + avail;
+            state.bal = (Number(state.bal) || 0) + avail * 10;
+            playWin();
+            showToast(`Получено +${avail * 10} А-БИЧЕЙ!`);
+            renderActiveTabView();
+            renderRewards();
+          }
+        } else if (id === 'btn-claim-100l') {
+          const losses = Number(state.failedSpins) || 0;
+          const claimed = Number(state.claimed100LossBatches) || 0;
+          const avail = Math.floor(losses / 100) - claimed;
+          if (avail > 0) {
+            state.claimed100LossBatches = claimed + avail;
+            state.bal = (Number(state.bal) || 0) + avail * 12;
+            playWin();
+            showToast(`Получено +${avail * 12} А-БИЧЕЙ!`);
+            renderActiveTabView();
+            renderRewards();
+          }
+        } else if (id === 'btn-claim-24h') {
+          if (state.highDropQuestState === 'ready') {
+            state.bal = (Number(state.bal) || 0) + 20;
+            state.highDropQuestState = 'cooldown';
+            state.highDropNextAt = Date.now() + DAY_MS;
+            playWin();
+            showToast('Получено +20 А-БИЧЕЙ!');
+            renderActiveTabView();
+            renderRewards();
+          }
+        } else if (id === 'btn-claim-40b') {
+          const boosts = Number(state.totalWheelBoosts) || 0;
+          const claimed = Number(state.claimed40BoostBatches) || 0;
+          const avail = Math.floor(boosts / 40) - claimed;
+          if (avail > 0) {
+            state.claimed40BoostBatches = claimed + avail;
+            state.bal = (Number(state.bal) || 0) + avail * 14;
+            playWin();
+            showToast(`Получено +${avail * 14} А-БИЧЕЙ!`);
+            renderActiveTabView();
+            renderRewards();
+          }
+        } else if (id === 'btn-claim-7d') {
+          syncActiveDayTracker();
+          if (!state.quest7dClaimed && (Number(state.activeDaysCount) || 0) >= 7) {
+            state.quest7dClaimed = true;
+            state.bal = (Number(state.bal) || 0) + 500;
+            state.xp = (Number(state.xp) || 0) + 150;
+            playWin();
+            showToast('Квест выполнен: +500 А-БИЧЕЙ за 7 дней игры!');
+            renderActiveTabView();
+            renderRewards();
+          }
+        } else if (id === 'btn-claim-2h') {
+          tickPlayTime();
+          if (!state.quest2hClaimed && (Number(state.playTimeMs) || 0) >= (2 * 60 * 60 * 1000)) {
+            state.quest2hClaimed = true;
+            state.bal = (Number(state.bal) || 0) + 400;
+            state.xp = (Number(state.xp) || 0) + 120;
+            playWin();
+            showToast('Квест выполнен: +400 А-БИЧЕЙ за 2 часа в игре!');
+            renderActiveTabView();
+            renderRewards();
+          }
+        }
+      });
+    })();
+
+    syncActiveDayTracker();
       const daysCount = Math.min(7, Math.max(0, Number(state.activeDaysCount) || 0));
       dom.days7ProgressTxt.textContent = `Дней захода: ${daysCount} / 7`;
       dom.days7Bar.style.width = `${(daysCount / 7) * 100}%`;
