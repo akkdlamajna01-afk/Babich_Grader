@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>BABICH--GRADER v47</title>
+  <title>BABICH--GRADER v48</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
     :root {
@@ -1769,19 +1769,22 @@
       };
     }
 
-    (function hardResetOnce() {
-      const marker = 'babich_grader_v45_hard_reset_done';
+    const MAIN_SAVE_KEY = 'babich_grader_persistent_save_v1';
+
+    (function migrateAnyExistingSave() {
       try {
-        if (localStorage.getItem(marker) === '1') return;
-        for (let i = localStorage.length - 1; i >= 0; i--) {
+        if (localStorage.getItem(MAIN_SAVE_KEY)) return;
+        const candidates = [];
+        for (let i = 0; i < localStorage.length; i++) {
           const k = localStorage.key(i);
-          if (k && k.startsWith('babich_grader_')) localStorage.removeItem(k);
+          if (k && k.startsWith('babich_grader_') && k.includes('_acc_')) {
+            const val = localStorage.getItem(k);
+            if (val) candidates.push({ key: k, raw: val });
+          }
         }
-        for (let i = sessionStorage.length - 1; i >= 0; i--) {
-          const k = sessionStorage.key(i);
-          if (k && k.startsWith('babich_grader_')) sessionStorage.removeItem(k);
+        if (candidates.length > 0) {
+          localStorage.setItem(MAIN_SAVE_KEY, candidates[candidates.length - 1].raw);
         }
-        localStorage.setItem(marker, '1');
       } catch (_) {}
     })();
 
@@ -1789,7 +1792,10 @@
 
     function loadState() {
       try {
-        const raw = localStorage.getItem(ACCOUNT_KEY) || sessionStorage.getItem(ACCOUNT_KEY);
+        let raw = localStorage.getItem(MAIN_SAVE_KEY) || localStorage.getItem(ACCOUNT_KEY) || sessionStorage.getItem(ACCOUNT_KEY);
+        if (!raw && typeof window.name === 'string' && window.name.startsWith('BABICH_SAVE:')) {
+          raw = window.name.slice('BABICH_SAVE:'.length);
+        }
         if (!raw) return createInitialState();
         const parsed = JSON.parse(raw);
         if (!parsed || typeof parsed !== 'object') return createInitialState();
@@ -2018,8 +2024,14 @@
       state.xp = Math.max(0, Math.floor(Number(state.xp) || 0));
       try {
         const raw = JSON.stringify(state);
+        localStorage.setItem(MAIN_SAVE_KEY, raw);
         localStorage.setItem(ACCOUNT_KEY, raw);
         sessionStorage.setItem(ACCOUNT_KEY, raw);
+        try {
+          if (raw.length < 400000) {
+            window.name = 'BABICH_SAVE:' + raw;
+          }
+        } catch (_) {}
 
         let players = [];
         try {
@@ -2800,6 +2812,8 @@
             renderActiveTabView();
             renderRewards();
           }
+        } else if (id === 'btn-delete-all') {
+          deleteAllUnlocked();
         } else if (id === 'btn-claim-2h') {
           tickPlayTime();
           if (!state.quest2hClaimed && (Number(state.playTimeMs) || 0) >= (2 * 60 * 60 * 1000)) {
@@ -2974,11 +2988,19 @@
     }
 
     function sellBabich(uid) {
-      if (isSpinning || isSellingItem) return;
+      if (isSpinning) {
+        showToast('Дождись окончания крутки');
+        return;
+      }
       isSellingItem = true;
       try {
-        const idx = state.inv.findIndex(x => x.uid === uid);
-        if (idx === -1) return;
+        const targetUid = Number(uid);
+        const idx = state.inv.findIndex(x => Number(x.uid) === targetUid || String(x.uid) === String(uid));
+        if (idx === -1) {
+          showToast('Предмет уже продан или не найден');
+          renderActiveTabView();
+          return;
+        }
         const item = state.inv[idx];
         if (item.locked) {
           playLose();
@@ -2987,42 +3009,52 @@
         }
         const payout = Math.max(1, Math.floor(Number(item.val) || 0));
         state.inv.splice(idx, 1);
-        state.bal = Math.max(0, Math.floor(Number(state.bal) || 0)) + payout;
-        state.xp += Math.max(5, Math.floor(payout * 0.2));
-        if (state.selectedInvUid === uid) {
+        const prevBal = Math.max(0, Math.floor(Number(state.bal) || 0));
+        state.bal = prevBal + payout;
+        state.xp = (Number(state.xp) || 0) + Math.max(5, Math.floor(payout * 0.2));
+        if (Number(state.selectedInvUid) === Number(item.uid)) {
           refundBoostCoins();
           state.selectedInvUid = null;
         }
+        if (dom.bal) {
+          dom.bal.textContent = state.bal.toLocaleString('ru-RU');
+        }
         playSell();
-        showToast(`Продано: ${item.name} (+${payout.toLocaleString('ru-RU')} А-БИЧЕЙ)`);
+        saveState();
         renderActiveTabView();
+        showToast(`+${payout.toLocaleString('ru-RU')} А-БИЧЕЙ за «${item.name}»! Баланс: ${state.bal.toLocaleString('ru-RU')}`);
       } finally {
         isSellingItem = false;
       }
     }
 
     function deleteAllUnlocked() {
-      if (isSpinning || isSellingItem) return;
+      if (isSpinning) {
+        showToast('Дождись окончания крутки');
+        return;
+      }
       isSellingItem = true;
       try {
         if (!state.inv.length) {
-          showToast('Инвентарь пуст');
+          showToast('Инвентарь уже пуст');
           return;
         }
         const kept = state.inv.filter(x => Boolean(x.locked));
-        const removed = state.inv.length - kept.length;
+        const removedList = state.inv.filter(x => !Boolean(x.locked));
+        const removed = removedList.length;
         if (removed <= 0) {
-          showToast('Все предметы защищены ♥');
+          showToast('Все бабичи защищены ♥ — сними сердечко, чтобы удалить');
           return;
         }
         state.inv = kept;
-        if (!state.inv.some(x => x.uid === state.selectedInvUid)) {
+        if (!state.inv.some(x => Number(x.uid) === Number(state.selectedInvUid))) {
           refundBoostCoins();
           state.selectedInvUid = null;
         }
         playSell();
-        showToast(`Удалено предметов: ${removed}`);
+        saveState();
         renderActiveTabView();
+        showToast(`Удалено бабичей: ${removed}`);
       } finally {
         isSellingItem = false;
       }
