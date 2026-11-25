@@ -3497,7 +3497,10 @@
       const wins = Number(state.successfulSpins) || 0;
       const claimed = Number(state.claimed15Batches) || 0;
       const avail = Math.floor(wins / 15) - claimed;
-      if (avail <= 0) return;
+      if (avail <= 0) {
+        showToast(`Нужно ещё ${15 - (wins % 15)} побед`);
+        return;
+      }
       state.claimed15Batches = claimed + avail;
       state.bal = (Number(state.bal) || 0) + avail * 10;
       playWin();
@@ -3510,7 +3513,10 @@
       const losses = Number(state.failedSpins) || 0;
       const claimed = Number(state.claimed100LossBatches) || 0;
       const avail = Math.floor(losses / 100) - claimed;
-      if (avail <= 0) return;
+      if (avail <= 0) {
+        showToast(`Нужно ещё ${100 - (losses % 100)} проигрышей`);
+        return;
+      }
       state.claimed100LossBatches = claimed + avail;
       state.bal = (Number(state.bal) || 0) + avail * 12;
       playWin();
@@ -3520,7 +3526,10 @@
     });
 
     dom.btnClaim24h.addEventListener('click', () => {
-      if (state.highDropQuestState !== 'ready') return;
+      if (state.highDropQuestState !== 'ready') {
+        showToast(state.highDropQuestState === 'cooldown' ? 'Квест на кулдауне 24ч' : 'Сначала выбей Бабича > 100 А-БИЧЕЙ');
+        return;
+      }
       state.bal = (Number(state.bal) || 0) + 20;
       state.highDropQuestState = 'cooldown';
       state.highDropNextAt = Date.now() + DAY_MS;
@@ -3534,7 +3543,10 @@
       const boosts = Number(state.totalWheelBoosts) || 0;
       const claimed = Number(state.claimed40BoostBatches) || 0;
       const avail = Math.floor(boosts / 40) - claimed;
-      if (avail <= 0) return;
+      if (avail <= 0) {
+        showToast(`Нужно ещё ${40 - (boosts % 40)} улучшений колеса`);
+        return;
+      }
       state.claimed40BoostBatches = claimed + avail;
       state.bal = (Number(state.bal) || 0) + avail * 14;
       playWin();
@@ -3586,9 +3598,6 @@
     document.addEventListener('visibilitychange', saveState);
     window.addEventListener('pagehide', saveState);
 
-    if (state.bal === 25 && (!Array.isArray(state.inv) || state.inv.length === 0) && (Number(state.xp) || 0) === 0 && !state.welcomeClaimed) {
-      state.bal = 0;
-    }
     syncActiveDayTracker();
     tickPlayTime();
     ensureAuction();
