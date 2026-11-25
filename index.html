@@ -2518,57 +2518,6 @@
 
     }
 
-    function renderLeaderboardUI() {
-      const entries = getLeaderboardEntries();
-      const myIdx = entries.findIndex(e => e.isMe);
-      const rank = myIdx !== -1 ? myIdx + 1 : 10;
-      dom.playerRankBadge.textContent = `МЕСТО #${rank}`;
-
-      const frag = document.createDocumentFragment();
-      entries.forEach((row, idx) => {
-        const div = document.createElement('div');
-        div.className = `lb-row ${row.isMe ? 'is-me' : ''}`;
-        const prize = getTopRewardAmount(idx + 1);
-        div.innerHTML = `
-          <div class="lb-left">
-            <span class="lb-rank">#${idx + 1}</span>
-            <div style="min-width:0;">
-              <div class="lb-name">${escapeHtml(row.name)} ${row.isMe ? '(ТЫ)' : ''}</div>
-              <div class="lb-sub">Топ: ${escapeHtml(row.top)}${prize ? ` · Приз: ${prize.toLocaleString('ru-RU')}` : ''}</div>
-            </div>
-          </div>
-          <div class="lb-score">${Number(row.score).toLocaleString('ru-RU')}</div>
-        `;
-        frag.appendChild(div);
-      });
-      dom.leaderboardList.replaceChildren(frag);
-
-      const heldMs = syncRankHoldTimer(rank);
-      const rewardAmt = getTopRewardAmount(rank);
-      const alreadyClaimed = Boolean(state.claimedTopRewards && state.claimedTopRewards[String(rank)]);
-
-      if (rewardAmt <= 0) {
-        dom.topRewardStatus.textContent = 'Займи место с #1 по #5 и удерживай его 10 минут для получения награды.';
-        dom.btnClaimTop.disabled = true;
-        dom.btnClaimTop.textContent = 'НУЖНО МЕСТО В ТОП-5';
-      } else if (alreadyClaimed) {
-        dom.topRewardStatus.textContent = `Награда за #${rank} место уже получена (1 раз за место).`;
-        dom.btnClaimTop.disabled = true;
-        dom.btnClaimTop.textContent = 'НАГРАДА ПОЛУЧЕНА';
-      } else if (heldMs < TOP_HOLD_REQUIRED_MS) {
-        const leftSec = Math.ceil((TOP_HOLD_REQUIRED_MS - heldMs) / 1000);
-        const mm = String(Math.floor(leftSec / 60)).padStart(2, '0');
-        const ss = String(leftSec % 60).padStart(2, '0');
-        dom.topRewardStatus.textContent = `Удерживай #${rank} место ещё ${mm}:${ss} (нужно 10:00 подряд).`;
-        dom.btnClaimTop.disabled = true;
-        dom.btnClaimTop.textContent = `УДЕРЖАНИЕ: ${mm}:${ss}`;
-      } else {
-        dom.topRewardStatus.textContent = `Удержано 10+ мин на #${rank} месте! Доступно ${rewardAmt.toLocaleString('ru-RU')} А-БИЧЕЙ.`;
-        dom.btnClaimTop.disabled = false;
-        dom.btnClaimTop.textContent = `ЗАБРАТЬ ${rewardAmt.toLocaleString('ru-RU')} А-БИЧЕЙ`;
-      }
-    }
-
     function formatHMS(ms) {
       const total = Math.max(0, Math.ceil(ms / 1000));
       const h = Math.floor(total / 3600);
@@ -3460,32 +3409,6 @@
 
     dom.btnDeleteAll.addEventListener('click', deleteAllUnlocked);
 
-    dom.btnClaimTop.addEventListener('click', () => {
-      const entries = getLeaderboardEntries();
-      const idx = entries.findIndex(e => e.isMe);
-      const rank = idx !== -1 ? idx + 1 : 10;
-      const prize = getTopRewardAmount(rank);
-      const held = syncRankHoldTimer(rank);
-      if (prize <= 0) {
-        showToast('Нужно место с #1 по #5');
-        return;
-      }
-      if (state.claimedTopRewards[String(rank)]) {
-        showToast('Награда за это место уже получена');
-        return;
-      }
-      if (held < TOP_HOLD_REQUIRED_MS) {
-        showToast('Нужно удержать место 10 минут подряд');
-        return;
-      }
-      state.claimedTopRewards[String(rank)] = true;
-      state.bal += prize;
-      state.xp += 120;
-      playWin();
-      showToast(`Топ #${rank}: +${prize.toLocaleString('ru-RU')} А-БИЧЕЙ!`);
-      renderActiveTabView();
-    });
-
     dom.btnRedeemCode.addEventListener('click', redeemPromoCode);
     dom.promoCodeInput.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') redeemPromoCode();
@@ -3617,6 +3540,17 @@
       showToast('Квест выполнен: +400 А-БИЧЕЙ за 2 часа в игре!');
       renderActiveTabView();
       renderRewards();
+    });
+
+    dom.paneRewards.addEventListener('click', (e) => {
+      const btn = e.target.closest('button');
+      if (!btn || !btn.id) return;
+      if (btn.id === 'btn-claim-7d' && btn.disabled) {
+        showToast(`Нужно зайти ещё дней: ${Math.max(0, 7 - (Number(state.activeDaysCount) || 0))}`);
+      } else if (btn.id === 'btn-claim-2h' && btn.disabled) {
+        const remMs = Math.max(0, (2 * 60 * 60 * 1000) - (Number(state.playTimeMs) || 0));
+        showToast(`До 2 часов осталось: ${formatHMS(remMs)}`);
+      }
     });
 
     setInterval(() => {
