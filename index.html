@@ -2561,6 +2561,20 @@
       return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
     }
 
+    function canClaimReward(type) {
+      const now = Date.now();
+      if (type === 'welcome') return !state.welcomeClaimed;
+      if (type === '12h') return now >= (Number(state.twelveHourNextAt) || 0);
+      if (type === 'auction') return state.auctionQuestState === 'ready';
+      if (type === '15w') return (Math.floor((Number(state.successfulSpins) || 0) / 15) - (Number(state.claimed15Batches) || 0)) > 0;
+      if (type === '100l') return (Math.floor((Number(state.failedSpins) || 0) / 100) - (Number(state.claimed100LossBatches) || 0)) > 0;
+      if (type === '24h') return state.highDropQuestState === 'ready';
+      if (type === '40b') return (Math.floor((Number(state.totalWheelBoosts) || 0) / 40) - (Number(state.claimed40BoostBatches) || 0)) > 0;
+      if (type === '7d') return !state.quest7dClaimed && (Number(state.activeDaysCount) || 0) >= 7;
+      if (type === '2h') return !state.quest2hClaimed && (Number(state.playTimeMs) || 0) >= (2 * 60 * 60 * 1000);
+      return false;
+    }
+
     function updateTimersUI() {
       const now = Date.now();
 
